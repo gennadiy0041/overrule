@@ -118,6 +118,7 @@ export async function seedDemoTemplate(ctx: AppContext, seed = DEMO_SEED): Promi
   if (!occupation || pool.length === 0) return 0;
 
   const today = etDay(ctx.now());
+  ctx.drills.clearDailyBefore(today, DEMO_SOC);
   let clock = middayOf(addDays(today, -DEMO_DAYS));
   // Same engine, but a private clock and no model: notes are graded by the keyword heuristic.
   const service = new DrillService({

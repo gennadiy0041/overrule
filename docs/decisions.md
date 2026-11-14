@@ -28,6 +28,19 @@ Short notes on choices that are not obvious from the code.
 - **Word limit has 15% slack** (`WORD_LIMIT_SLACK`): models count words loosely and the limit only exists to keep a
   drill near five minutes.
 
+- **Claude answers through an optional tool call.** The current model rejects a forced `tool_choice`
+  ("not supported for this model"), so the single tool is offered with `auto` and the system prompt tells the model
+  to answer through it. An answer without the tool call is treated as malformed and takes the normal retry path.
+- **Gemini runs in JSON mode with the schema in the prompt.** Its `responseSchema` dialect rejected our nested
+  union schema with HTTP 400. The answer is validated by the same zod schema and verifier as any other draft.
+- **Stringified nested fields are unwrapped before validation.** Models occasionally return `"brief": "{…}"`.
+  That is a transport quirk, not a content problem, and should not cost a 30-second retry.
+- **Three-minute cooldown after a failed live generation.** When a provider is down (or out of credit) the pool is
+  served at once; live drills resume by themselves when the provider does.
+- **Internal traffic never spends model budget.** Sessions from automated browsers or `/?internal=1` get pool drills.
+- **Six Customer Service drills were written in the build session.** The model account ran out of credit during the
+  pool run. They pass `verifyDrill` but were not cross-checked; `data/pool/stats.json` says so.
+
 ## Scoring
 
 - **Hits are decided by code.** A model grades only the optional "why" note, once per attempt, with a 12 s budget and
@@ -45,6 +58,8 @@ Short notes on choices that are not obvious from the code.
   through the same `submit`, scoring and Elo as any user, at every boot. Each visitor gets a private copy, shifted
   so its last day is yesterday, and can play today's Daily Catch.
 - **Scanning from the demo profile starts a fresh session** rather than rewriting the demo data.
+- **The demo player's seed was chosen, and says so.** The scripted week is deterministic; among a few dozen seeds we
+  kept one whose week shows the intended arc clearly. The banner reads "Demo profile — simulated week".
 
 ## Engineering
 
@@ -55,5 +70,7 @@ Short notes on choices that are not obvious from the code.
   and the Docker image small.
 - **In-flight generations live in a `Map`.** One process, one replica, one SQLite file on a volume. Horizontal
   scaling would move this to a job table.
+- **Deploys are triggered explicitly.** Railway builds the Dockerfile from the GitHub repository; in this project
+  the push webhook did not fire, so a deploy is started after each push.
 - **Internal traffic is excluded from metrics** by a cookie (`/?internal=1`) and by user agent (Playwright,
   headless Chrome, crawlers).

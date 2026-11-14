@@ -10,6 +10,7 @@ and your Judgment Score moves.
 [![CI](https://github.com/gennadiy0041/overrule/actions/workflows/ci.yml/badge.svg)](https://github.com/gennadiy0041/overrule/actions/workflows/ci.yml)
 
 **Live:** https://overrule-production.up.railway.app — no sign-up, no login.
+**Pitch deck:** [deck/Overrule_BusinessCup2.pdf](deck/Overrule_BusinessCup2.pdf)
 
 Built solo in 24 hours for Business Cup 2.0 (Zimran × AIESEC), Skills track.
 
@@ -31,6 +32,14 @@ Built solo in 24 hours for Business Cup 2.0 (Zimran × AIESEC), Skills track.
 Also worth a look: one of the 923 SEO pages, e.g.
 [/will-ai-replace/marketing-managers](https://overrule-production.up.railway.app/will-ai-replace/marketing-managers),
 and the method page [/about](https://overrule-production.up.railway.app/about).
+
+<p>
+  <img src="deck/shots/map-phone.png" alt="Personal AI-exposure map" width="240" />
+  <img src="deck/shots/drill-phone.png" alt="A drill: flagging mistakes in an AI-written email" width="240" />
+  <img src="deck/shots/review-phone.png" alt="The annotated review" width="240" />
+</p>
+
+Screenshots are taken from production by `bun run screenshots`.
 
 ---
 
@@ -83,7 +92,7 @@ flowchart LR
 
 ```mermaid
 flowchart TD
-  T["A task from your job<br/>(AI-exposed tasks only)"] --> G["Claude: one structured call<br/>(forced tool use → strict JSON)"]
+  T["A task from your job<br/>(AI-exposed tasks only)"] --> G["Claude: one structured call<br/>(tool use → strict JSON)"]
   G --> V{"verifyDrill<br/>pure code, no LLM"}
   V -- pass --> U["Served to the user"]
   V -- fail --> R["One retry with the verifier's findings"]
@@ -111,9 +120,14 @@ For the pre-built pool there is one more gate: **a different model solves the dr
 sees, and the drill is kept only if it finds at least half of the planted mistakes. Counts of generated, accepted
 and rejected drills are in [data/pool/stats.json](data/pool/stats.json).
 
+The launch pool holds **54 drills for six occupations**: of 87 model drafts, 39 were rejected by the verifier and 48
+were accepted and cross-checked. The remaining six (Customer Service) were written in the build session after the
+model account ran out of credit — verified by the same code, not cross-checked, and marked as such in the stats.
+
 The user never sees a provider error: the wait screen streams the real stages over SSE, and after 45 seconds the
 verified pool takes over. The first drill starts generating in the background as soon as the tasks are picked in
-the scan.
+the scan. When a live generation fails, the pool is served at once for the next three minutes instead of making the
+next person wait for the same outage — and live drills come back by themselves when the provider does.
 
 **The answer key never leaves the server before submission** (`toPublicDrill`), which the API test asserts.
 
@@ -153,7 +167,7 @@ demo profiles, no internal traffic) and stay locked until there are 20 of them.
 | Web      | React + Vite + Tailwind v4, served by the same process; the drill and everything after the landing are code-split |
 | Storage  | SQLite (`bun:sqlite`) on a Railway volume, forward-only migrations applied at boot                     |
 | Models   | Claude (primary) → Gemini (secondary) → verified pool; plain `fetch`, no SDKs                          |
-| Hosting  | Railway, Dockerfile on `oven/bun`, health check `/api/health`, auto-deploy on push                     |
+| Hosting  | Railway, Dockerfile on `oven/bun`, health check `/api/health`, SQLite on a volume                      |
 
 ```text
 src/engine/     pure TypeScript, no I/O — exposure, drillSchema, verifyDrill, safeMath, scoring, elo,
@@ -209,7 +223,7 @@ Development: `bun run dev` (server with reload) and `bun run dev:web` (Vite on :
 
 ```bash
 bun run typecheck   # tsc --noEmit
-bun run test        # unit tests + the API test (in-memory SQLite, fake model provider)
+bun run test        # 321 unit tests + the API test (in-memory SQLite, fake model provider)
 bun run e2e         # Playwright against production: phone and desktop
 ```
 
@@ -239,6 +253,8 @@ traffic (team browsers via `/?internal=1`, automated tests, the demo profile) is
 - **Drills are AI-generated.** Verification proves structure and arithmetic; it cannot prove that a "logic" or
   "audience" mistake is unambiguous. The blind cross-check covers the pool, not live drills.
 - **The Judgment Score is a practice record**, not a credential. Employer recognition is a later stage.
+- **Live generation needs model credit.** Without it the product runs entirely from the verified pool; for
+  occupations outside the launch six that means a drill from the closest pooled occupation, labelled as such.
 - **Checkout is a demo**: no payment is collected in this build. Unit economics in the deck are hypotheses to be
   tested with a small ad budget.
 - **One process, one replica**: in-flight generations are tracked in memory; SQLite on a single volume.

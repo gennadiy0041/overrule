@@ -218,6 +218,7 @@ function DrillView({ drillId }: { drillId: string }) {
           <blockquote className="mt-2 border-l-2 border-ink pl-3 leading-relaxed">{drill.brief.ask}</blockquote>
           <p className="mt-3 text-xs text-ink-3" title={drill.task}>
             Trains: {truncate(drill.task, 100)}
+            {data.origin === "pool" && ` · pre-verified drill (${drill.occupation})`}
           </p>
         </section>
 

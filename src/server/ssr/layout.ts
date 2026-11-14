@@ -62,10 +62,10 @@ export function siteFooter(): SafeHtml {
         <a href="https://github.com/gennadiy0041/overrule" class="underline-offset-4 hover:underline" rel="noreferrer">GitHub</a>
       </nav>
       <p>
-        Exposure data: Eloundou et al., “GPTs are GPTs” (2023), dataset under the MIT License. Task statements from the
-        O*NET® Database by the U.S. Department of Labor, Employment and Training Administration (USDOL/ETA), used under
-        the CC BY 4.0 license. Overrule has modified this information; USDOL/ETA has not approved, endorsed, or tested
-        these modifications.
+        Exposure data: Eloundou et al., “GPTs are GPTs” (2023), MIT License. This site includes information from the
+        O*NET 27.2 and 30.0 Databases by the U.S. Department of Labor, Employment and Training Administration
+        (USDOL/ETA). Used under the CC BY 4.0 license. O*NET® is a trademark of USDOL/ETA. Overrule has modified all or
+        some of this information. USDOL/ETA has not approved, endorsed, or tested these modifications.
       </p>
       <p class="mt-2">Exposure means AI can speed up a task — not that a job disappears.</p>
     </div>

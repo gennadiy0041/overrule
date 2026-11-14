@@ -1,0 +1,826 @@
+{
+  "soc": "43-4051.00",
+  "occupation": "Customer Service Representatives",
+  "drills": [
+    {
+      "brief": {
+        "from": "Marisol Vega",
+        "role": "Customer Service Representative, Brightline Broadband",
+        "ask": "Draft a reply to customer Alan Pruitt, who asked what he would pay if he moves from the Basic plan ($45/month) to the Plus plan ($60/month). Current promotion: 20% off Plus for the first 3 months, then full price. One-time switch fee: $15, no exceptions. He can keep his email address. Use only these facts. Under 120 words."
+      },
+      "artifact": {
+        "kind": "reply",
+        "title": "Re: Switching to the Plus plan",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Hi Alan, thanks for reaching out about the Plus plan."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "Plus is $60 a month, which is $15 more than your current Basic plan."
+              },
+              {
+                "id": "s3",
+                "text": "With the current promotion you get 20% off for the first 3 months, so you would pay $42 a month during that time."
+              },
+              {
+                "id": "s4",
+                "text": "Over those 3 months the discount saves you $36 in total."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s5",
+                "text": "There is a one-time switch fee of $15, which we waive for customers who have been with us more than two years."
+              },
+              {
+                "id": "s6",
+                "text": "Because Plus costs more than Basic, switching will lower your monthly bill once the promotion ends."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s7",
+                "text": "You can keep your current email address."
+              },
+              {
+                "id": "s8",
+                "text": "Reply to this email and I will make the change for you."
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s3",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "20% off $60 is $48 a month ($60 × 0.80), not $42.",
+          "correction": "…so you would pay $48 a month during that time.",
+          "cue": "Recompute every discounted price from the list price and the percentage."
+        },
+        {
+          "targetId": "s5",
+          "type": "facts",
+          "severity": 3,
+          "explanation": "The brief says the $15 fee has no exceptions. The two-year waiver is not in the supplied facts: an invented policy the company would have to honour or retract.",
+          "correction": "There is a one-time switch fee of $15.",
+          "cue": "Any exception or waiver must be traceable to the policy you were given."
+        },
+        {
+          "targetId": "s6",
+          "type": "logic",
+          "severity": 2,
+          "explanation": "The sentence contradicts itself: Plus costs $15 more than Basic, so the bill goes up after the promotion, not down.",
+          "correction": "After the promotion ends, your monthly bill will be $15 higher than it is today.",
+          "cue": "Read each “because… so…” as a claim and check that the conclusion follows."
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "s4",
+          "looksWrongBecause": "It does not match the $42 figure in the sentence before it.",
+          "fineBecause": "20% of $60 is $12 a month, and 3 × $12 = $36. This line is right; the $42 is the error."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "s2",
+          "expression": "60-45",
+          "stated": 15,
+          "tolerance": 0,
+          "isError": false
+        },
+        {
+          "targetId": "s3",
+          "expression": "60*0.8",
+          "stated": 42,
+          "tolerance": 0.5,
+          "isError": true
+        },
+        {
+          "targetId": "s4",
+          "expression": "60*0.2*3",
+          "stated": 36,
+          "tolerance": 0.5,
+          "isError": false
+        }
+      ],
+      "id": "pool-43405100-18565-l2",
+      "soc": "43-4051.00",
+      "occupation": "Customer Service Representatives",
+      "taskId": 18565,
+      "task": "Confer with customers by telephone or in person to provide information about products or services, take or enter orders, cancel accounts, or obtain details of complaints.",
+      "level": 2
+    },
+    {
+      "brief": {
+        "from": "Carla Mendes",
+        "role": "Customer Service Representative, Tidewater Fitness",
+        "ask": "Reply to member Josh Kim, who wants to cancel. Facts: monthly plan $39, billed on the 1st. Cancellation needs 30 days' notice, so his request received April 12 ends the membership on May 12. He owes one more payment on May 1, prorated for 12 days: $39 × 12 / 31. The $49 annual maintenance fee he paid in January is not refundable. He may instead freeze the membership for up to 3 months at $10 a month. Friendly, no pressure, his choice. Under 140 words."
+      },
+      "artifact": {
+        "kind": "reply",
+        "title": "Re: Cancelling my membership",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Hi Josh, I'm sorry to hear you're thinking of leaving, and I'm happy to help."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "Cancellation requires 30 days' notice, so with your request received April 12, your membership will end on May 12."
+              },
+              {
+                "id": "s3",
+                "text": "You will have one more payment on May 1, prorated for 12 days: $18.10."
+              },
+              {
+                "id": "s4",
+                "text": "The $49 annual maintenance fee you paid in January will be refunded in full."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s5",
+                "text": "If you would rather pause, you can freeze your membership for up to 3 months at $10 a month."
+              },
+              {
+                "id": "s6",
+                "text": "Three months of freeze would cost $30 instead of $117 at the regular rate."
+              },
+              {
+                "id": "s7",
+                "text": "Since you are cancelling, freezing is the only option available to you."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s8",
+                "text": "Honestly, most members who cancel regret it within a month, so I'd strongly urge you to reconsider."
+              },
+              {
+                "id": "s9",
+                "text": "Just reply to let me know which option you prefer."
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s3",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "$39 × 12 / 31 = $15.10, not $18.10.",
+          "correction": "…prorated for 12 days: $15.10.",
+          "cue": "Recompute every prorated amount from the formula you were given."
+        },
+        {
+          "targetId": "s4",
+          "type": "risk",
+          "severity": 3,
+          "explanation": "The brief says the annual fee is not refundable. Promising a refund in writing commits the company to something outside its policy.",
+          "correction": "The $49 annual maintenance fee paid in January is not refundable.",
+          "cue": "Any promise of money back must match the policy exactly."
+        },
+        {
+          "targetId": "s7",
+          "type": "logic",
+          "severity": 2,
+          "explanation": "It contradicts the rest of the reply: he can cancel or freeze. Saying freezing is the “only option” makes no sense for someone who is cancelling.",
+          "correction": "Delete the sentence; both options are open to him.",
+          "cue": "Check that each sentence agrees with the options stated around it."
+        },
+        {
+          "targetId": "s8",
+          "type": "audience",
+          "severity": 2,
+          "explanation": "The brief asked for a friendly reply with no pressure. This sentence pressures the member and cites a statistic nobody supplied.",
+          "correction": "Delete the sentence.",
+          "cue": "Compare the tone with what the requester asked for."
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "s6",
+          "looksWrongBecause": "$117 looks high next to a $39 plan.",
+          "fineBecause": "3 × $10 = $30 for the freeze, and 3 × $39 = $117 at the regular rate. Both figures are right."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "s3",
+          "expression": "39*12/31",
+          "stated": 18.1,
+          "tolerance": 0.05,
+          "isError": true
+        },
+        {
+          "targetId": "s6",
+          "expression": "10*3",
+          "stated": 30,
+          "tolerance": 0,
+          "isError": false
+        },
+        {
+          "targetId": "s6",
+          "expression": "39*3",
+          "stated": 117,
+          "tolerance": 0,
+          "isError": false
+        }
+      ],
+      "id": "pool-43405100-18565-l3",
+      "soc": "43-4051.00",
+      "occupation": "Customer Service Representatives",
+      "taskId": 18565,
+      "task": "Confer with customers by telephone or in person to provide information about products or services, take or enter orders, cancel accounts, or obtain details of complaints.",
+      "level": 3
+    },
+    {
+      "brief": {
+        "from": "Owen Tracy",
+        "role": "Customer Service Representative, Lumen Home Appliances",
+        "ask": "Write the CRM case note for this call. Facts: customer Hannah Reed called on June 4 about a leaking dishwasher, model LD-300, bought on February 10. Warranty: 12 months. I offered a technician visit on June 9 between 1 and 5 pm, free under warranty, and she accepted. She mentioned she is recovering from surgery: do not record health details. The call lasted 14 minutes, 6 of them on hold. I made no promise about the outcome of the visit. Neutral and factual. Under 120 words."
+      },
+      "artifact": {
+        "kind": "summary",
+        "title": "Case note: leaking dishwasher LD-300",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Customer Hannah Reed called on June 4 about a leak in her LD-300 dishwasher, purchased on February 10."
+              },
+              {
+                "id": "s2",
+                "text": "The unit is within its 12-month warranty, with about 8 months remaining."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s3",
+                "text": "The call lasted 14 minutes, of which 6 were on hold and 10 were conversation."
+              },
+              {
+                "id": "s4",
+                "text": "A technician visit is booked for June 9 between 1 and 5 pm at no charge."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s5",
+                "text": "The customer is recovering from surgery and cannot lift heavy items."
+              },
+              {
+                "id": "s6",
+                "text": "We told her the technician will definitely fix the leak in one visit."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s7",
+                "text": "No further action is needed from the customer before the visit."
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s3",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "14 minutes minus 6 on hold leaves 8 minutes of conversation, not 10.",
+          "correction": "…of which 6 were on hold and 8 were conversation.",
+          "cue": "Parts must add up to the total stated in the same sentence."
+        },
+        {
+          "targetId": "s5",
+          "type": "risk",
+          "severity": 3,
+          "explanation": "The brief said not to record health details. Storing them in the CRM could create privacy exposure — check with compliance.",
+          "correction": "Delete the sentence.",
+          "cue": "Health and other sensitive personal details stay out of the record unless required."
+        },
+        {
+          "targetId": "s6",
+          "type": "facts",
+          "severity": 2,
+          "explanation": "The brief states that no promise was made about the outcome. The note records a commitment that never happened.",
+          "correction": "Delete the sentence.",
+          "cue": "A record must not contain statements nobody made."
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "s2",
+          "looksWrongBecause": "Four months after purchase, “8 months remaining” can read like a slip for “4”.",
+          "fineBecause": "About 4 of the 12 warranty months have passed (February 10 to June 4), so about 8 remain."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "s2",
+          "expression": "12-4",
+          "stated": 8,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "s3",
+          "expression": "14-6",
+          "stated": 10,
+          "tolerance": 0.5,
+          "isError": true
+        }
+      ],
+      "id": "pool-43405100-2578-l3",
+      "soc": "43-4051.00",
+      "occupation": "Customer Service Representatives",
+      "taskId": 2578,
+      "task": "Keep records of customer interactions or transactions, recording details of inquiries, complaints, or comments, as well as actions taken.",
+      "level": 3
+    },
+    {
+      "brief": {
+        "from": "Derek Olsen",
+        "role": "Customer Service Team Lead, Harbor Utilities",
+        "ask": "Write a follow-up email to customer Priya Nair confirming her billing problem is resolved. Facts: she was charged $128.40 in March instead of $84.60; the difference was credited to her account on April 3; her April bill will be $84.60 minus that credit. Do not mention the internal ticket number (HU-20931) or which employee made the error. Confirm she needs to do nothing. Under 100 words."
+      },
+      "artifact": {
+        "kind": "email",
+        "title": "Your March bill has been corrected",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Hi Priya, I'm writing to confirm that your billing issue is fully resolved."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "In March you were charged $128.40 instead of $84.60."
+              },
+              {
+                "id": "s3",
+                "text": "We credited the difference of $34.80 to your account on April 3."
+              },
+              {
+                "id": "s4",
+                "text": "Your April bill will therefore be $40.80."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s5",
+                "text": "The error was made by a new agent, Tomas, and is logged under ticket HU-20931."
+              },
+              {
+                "id": "s6",
+                "text": "Our system now checks every bill automatically, so this cannot happen again."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s7",
+                "text": "You do not need to do anything further."
+              },
+              {
+                "id": "s8",
+                "text": "Thank you for your patience."
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s3",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "$128.40 − $84.60 = $43.80. The draft transposed the digits to $34.80.",
+          "correction": "We credited the difference of $43.80 to your account on April 3.",
+          "cue": "Recompute every difference from the two amounts in the message."
+        },
+        {
+          "targetId": "s5",
+          "type": "audience",
+          "severity": 3,
+          "explanation": "The brief said not to mention the ticket number or the employee. This puts an internal reference and a colleague's name in a customer email.",
+          "correction": "Delete the sentence.",
+          "cue": "Check the draft against every “do not mention” in the request."
+        },
+        {
+          "targetId": "s6",
+          "type": "facts",
+          "severity": 2,
+          "explanation": "Nothing in the supplied facts says a new automatic check exists, and “cannot happen again” is an assurance nobody gave.",
+          "correction": "Delete the sentence, or say only that the account has been corrected.",
+          "cue": "Reassurances about systems and the future need a source."
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "s4",
+          "looksWrongBecause": "It looks too low, and it does not follow from the $34.80 credit stated above.",
+          "fineBecause": "$84.60 minus the real credit of $43.80 is $40.80. The bill amount is right; the credit figure is the error."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "s3",
+          "expression": "128.40-84.60",
+          "stated": 34.8,
+          "tolerance": 0.01,
+          "isError": true
+        },
+        {
+          "targetId": "s4",
+          "expression": "84.60-(128.40-84.60)",
+          "stated": 40.8,
+          "tolerance": 0.01,
+          "isError": false
+        }
+      ],
+      "id": "pool-43405100-2580-l2",
+      "soc": "43-4051.00",
+      "occupation": "Customer Service Representatives",
+      "taskId": 2580,
+      "task": "Check to ensure that appropriate changes were made to resolve customers' problems.",
+      "level": 2
+    },
+    {
+      "brief": {
+        "from": "Renee Calloway",
+        "role": "Senior Customer Service Representative, Northgate Mobile",
+        "ask": "Write an escalation summary for the Billing Disputes team about the account ending 4471. Facts: the customer disputes three roaming charges from a trip on March 8–10: $38.50, $41.25 and $27.75. She contacted us on March 14, March 21 and April 2. Policy: disputes over $100 in total go to Billing Disputes; smaller ones are resolved by the front line. A $20 goodwill credit was applied on March 21. She asks for the remaining amount to be refunded. Facts only, no opinions about the customer. Under 150 words."
+      },
+      "artifact": {
+        "kind": "summary",
+        "title": "Escalation summary: roaming charge dispute, account ending 4471",
+        "blocks": [
+          {
+            "type": "table",
+            "columns": [
+              "Date of charge",
+              "Amount"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "March 8"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "$38.50"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "March 9"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "$41.25"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "March 10"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "$27.75"
+                }
+              ],
+              [
+                {
+                  "id": "r4c1",
+                  "text": "Total disputed"
+                },
+                {
+                  "id": "r4c2",
+                  "text": "$107.50"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "The customer disputes three roaming charges from March 8–10 totaling $107.50."
+              },
+              {
+                "id": "s2",
+                "text": "She has contacted us four times: on March 14, March 21 and April 2."
+              },
+              {
+                "id": "s3",
+                "text": "A $20 goodwill credit was applied on March 21, so the amount still in dispute is $87.50."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s4",
+                "text": "Because the remaining amount is under $100, policy requires escalation to Billing Disputes."
+              },
+              {
+                "id": "s5",
+                "text": "Roaming charges are automatically refundable within 60 days under federal rules."
+              },
+              {
+                "id": "s6",
+                "text": "Frankly, she has been difficult on every call and seems to be looking for a free trip."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s7",
+                "text": "Requested action: review the three charges and refund the remaining amount if the dispute is upheld."
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s2",
+          "type": "numbers",
+          "severity": 1,
+          "explanation": "Three contact dates are listed, and the brief gives three contacts — not four.",
+          "correction": "She has contacted us three times: on March 14, March 21 and April 2.",
+          "cue": "Count the items in a list against the number stated in the same sentence."
+        },
+        {
+          "targetId": "s4",
+          "type": "logic",
+          "severity": 2,
+          "explanation": "The reasoning is inverted: policy sends disputes over $100 to Billing Disputes. This case qualifies because the disputed total is $107.50, not because the remainder is under $100.",
+          "correction": "Because the disputed total of $107.50 is over $100, policy requires escalation to Billing Disputes.",
+          "cue": "Check every “because” against the rule it relies on."
+        },
+        {
+          "targetId": "s5",
+          "type": "facts",
+          "severity": 3,
+          "explanation": "No such rule is in the supplied facts, and its source cannot be traced. An invented regulation would mislead the team deciding the refund.",
+          "correction": "Delete the sentence.",
+          "cue": "Laws, rules and deadlines need a source you can point to."
+        },
+        {
+          "targetId": "s6",
+          "type": "audience",
+          "severity": 3,
+          "explanation": "The brief asked for facts only, with no opinions about the customer. This is a personal judgment in a record another team will read.",
+          "correction": "Delete the sentence.",
+          "cue": "Opinions about people do not belong in a case record."
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "s3",
+          "looksWrongBecause": "The total in the table is $107.50, so a different figure here looks inconsistent.",
+          "fineBecause": "$107.50 − $20 credit = $87.50, which is the amount still in dispute."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "r4c2",
+          "expression": "38.50+41.25+27.75",
+          "stated": 107.5,
+          "tolerance": 0.01,
+          "isError": false
+        },
+        {
+          "targetId": "s1",
+          "expression": "38.50+41.25+27.75",
+          "stated": 107.5,
+          "tolerance": 0.01,
+          "isError": false
+        },
+        {
+          "targetId": "s2",
+          "expression": "1+1+1",
+          "stated": 4,
+          "tolerance": 0,
+          "isError": true
+        },
+        {
+          "targetId": "s3",
+          "expression": "107.50-20",
+          "stated": 87.5,
+          "tolerance": 0.01,
+          "isError": false
+        }
+      ],
+      "id": "pool-43405100-2582-l3",
+      "soc": "43-4051.00",
+      "occupation": "Customer Service Representatives",
+      "taskId": 2582,
+      "task": "Refer unresolved customer grievances to designated departments for further investigation.",
+      "level": 3
+    },
+    {
+      "brief": {
+        "from": "Lena Brandt",
+        "role": "Customer Service Representative, Cedar Valley Gas",
+        "ask": "Draft the service discontinuance confirmation for customer Marcus Hill, who is moving out. Facts: service at 418 Alder Street ends May 31, with a final meter reading that day. His $150 deposit will be refunded minus the final bill, estimated at $62, by check within 30 days of the final reading, to his new address. He gave the new address by phone: do not print it in full, only the city (Dayton). Neutral tone, no promises beyond these facts. Under 120 words."
+      },
+      "artifact": {
+        "kind": "email",
+        "title": "Confirmation: end of gas service at 418 Alder Street",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Dear Mr. Hill, this confirms your request to end gas service at 418 Alder Street."
+              },
+              {
+                "id": "s2",
+                "text": "Service will be discontinued on May 31, and we will take a final meter reading that day."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s3",
+                "text": "Your $150 deposit will be refunded minus your final bill, estimated at $62."
+              },
+              {
+                "id": "s4",
+                "text": "You should therefore receive about $98."
+              },
+              {
+                "id": "s5",
+                "text": "We will mail the check to 2207 Wren Court, Apt 5, Dayton."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s6",
+                "text": "We guarantee the refund will reach you before June 15."
+              },
+              {
+                "id": "s7",
+                "text": "The 30-day window runs from your final reading, so the latest date is June 30."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s8",
+                "text": "If your plans change, please call us before May 31."
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s4",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "$150 − $62 = $88, not $98.",
+          "correction": "You should therefore receive about $88.",
+          "cue": "Recompute any “therefore” amount from the two figures before it."
+        },
+        {
+          "targetId": "s5",
+          "type": "audience",
+          "severity": 3,
+          "explanation": "The brief said to print only the city. The full new address was given by phone and should not appear in the letter.",
+          "correction": "We will mail the check to your new address in Dayton.",
+          "cue": "Check what the requester said to leave out — especially personal details."
+        },
+        {
+          "targetId": "s6",
+          "type": "risk",
+          "severity": 2,
+          "explanation": "The policy is “within 30 days of the final reading”. A guarantee of an earlier date is a promise the company never made and could be held to.",
+          "correction": "Delete the sentence; the 30-day window is the only commitment.",
+          "cue": "Flag “guarantee” on any date or outcome the policy does not promise."
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "s7",
+          "looksWrongBecause": "Thirty days after May 31 sounds as if it should land in July.",
+          "fineBecause": "June has 30 days, so 30 days after May 31 is June 30."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "s4",
+          "expression": "150-62",
+          "stated": 98,
+          "tolerance": 0.5,
+          "isError": true
+        }
+      ],
+      "id": "pool-43405100-2584-l2",
+      "soc": "43-4051.00",
+      "occupation": "Customer Service Representatives",
+      "taskId": 2584,
+      "task": "Complete contract forms, prepare change of address records, or issue service discontinuance orders, using computers.",
+      "level": 2
+    }
+  ]
+}

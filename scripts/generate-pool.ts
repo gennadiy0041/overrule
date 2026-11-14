@@ -99,6 +99,8 @@ interface StatsFile {
   models: Record<string, string>;
   perOccupation: OccupationStats[];
   totals: Omit<OccupationStats, "soc" | "occupation" | "crossCheckedBy">;
+  /** Anything a reader of the numbers must know, e.g. drills that entered the pool another way. */
+  notes?: string[];
 }
 
 function emptyStats(occupation: Occupation): OccupationStats {
@@ -278,6 +280,7 @@ if (import.meta.main) {
       models: { claude: env.CLAUDE_MODEL, gemini: env.GEMINI_MODEL, crossCheckFallback: crossCheckModel },
       perOccupation: all,
       totals: totalsOf(all),
+      ...(previous?.notes ? { notes: previous.notes } : {}),
     };
     await Bun.write(statsPath, `${JSON.stringify(out, null, 2)}\n`);
   }

@@ -224,12 +224,12 @@ export default function Dashboard() {
             </Link>
           </p>
         )}
-        <div className="grid gap-5 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
-          <div className="grid gap-5 lg:sticky lg:top-5">
+        <div className="grid grid-cols-[minmax(0,1fr)] gap-5 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
+          <div className="grid grid-cols-[minmax(0,1fr)] gap-5 lg:sticky lg:top-5">
             <DailyCard me={me} />
             <ScoreCard me={me} />
           </div>
-          <div className="grid gap-5">
+          <div className="grid grid-cols-[minmax(0,1fr)] gap-5">
             <CatchRates me={me} />
             <DebriefCard me={me} />
             <PracticeCard me={me} />

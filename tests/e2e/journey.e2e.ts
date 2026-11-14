@@ -10,6 +10,12 @@ function watchConsole(page: Page): string[] {
   return errors;
 }
 
+/** The page itself must never scroll sideways — on a phone that is the first thing that feels broken. */
+async function expectNoSidewaysScroll(page: Page): Promise<void> {
+  const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+  expect(overflow, `horizontal overflow on ${page.url()}`).toBeLessThanOrEqual(0);
+}
+
 /** Optional screenshots for the deck and for visual review: SHOTS=dir bun run e2e */
 async function shot(page: Page, name: string): Promise<void> {
   const dir = process.env["SHOTS"];
@@ -21,6 +27,7 @@ test("the whole path: landing → scan → map → drill → result → paywall 
 
   await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("AI does the work. You get paid for the judgment.");
+  await expectNoSidewaysScroll(page);
   await shot(page, "01-landing");
   await page.getByRole("link", { name: "Scan my job — free" }).first().click();
 
@@ -28,6 +35,7 @@ test("the whole path: landing → scan → map → drill → result → paywall 
   await page.getByRole("combobox").fill("marketing manager");
   await page.getByRole("option", { name: /Marketing Managers/ }).first().click();
   await expect(page.getByRole("heading", { name: "Which of these do you actually do?" })).toBeVisible();
+  await expectNoSidewaysScroll(page);
   await shot(page, "02-scan-tasks");
   await page.getByRole("button", { name: "Continue" }).click();
   for (const [question, answer] of [
@@ -44,6 +52,7 @@ test("the whole path: landing → scan → map → drill → result → paywall 
   await expect(page).toHaveURL(/\/map$/);
   await expect(page.getByText("of your work is AI-exposed")).toBeVisible();
   await expect(page.getByRole("heading", { name: "Your value is moving from doing to judging." })).toBeVisible();
+  await expectNoSidewaysScroll(page);
   await shot(page, "03-map");
   await page.getByRole("link", { name: "Catch your first AI mistake (2 min)" }).click();
 
@@ -58,6 +67,7 @@ test("the whole path: landing → scan → map → drill → result → paywall 
   await shot(page, "04-drill-flag-sheet");
   await page.getByRole("button", { name: "Flag it" }).click();
   await expect(page.getByText(/1 of \d flags/)).toBeVisible();
+  await expectNoSidewaysScroll(page);
   await shot(page, "05-drill");
   await page.getByRole("button", { name: "Submit review" }).click();
 
@@ -66,12 +76,14 @@ test("the whole path: landing → scan → map → drill → result → paywall 
   await expect(page.getByRole("heading", { level: 1 })).toContainText(/You caught \d of \d|Clean catch/);
   await expect(page.getByText("Judgment Score")).toBeVisible();
   await expect(page.getByRole("heading", { name: "What to watch for" })).toBeVisible();
+  await expectNoSidewaysScroll(page);
   await shot(page, "06-result");
   await page.getByRole("link", { name: "Continue" }).click();
 
   // Soft paywall → demo checkout (no card fields) → dashboard with Pro.
   await expect(page).toHaveURL(/\/pro$/);
   await expect(page.getByRole("link", { name: "Continue with free plan" })).toBeVisible();
+  await expectNoSidewaysScroll(page);
   await shot(page, "07-paywall");
   await page.getByRole("link", { name: "Start my 7-day free trial" }).click();
   await expect(page.getByText("Demo checkout — no payment is collected in this hackathon build")).toBeVisible();
@@ -83,6 +95,7 @@ test("the whole path: landing → scan → map → drill → result → paywall 
   await expect(page.getByRole("heading", { name: /Daily Catch #\d+/ })).toBeVisible();
   await expect(page.getByText(/over 1 drill/)).toBeVisible();
   await expect(page.getByRole("link", { name: "Start a practice drill" })).toBeVisible();
+  await expectNoSidewaysScroll(page);
   await shot(page, "09-dashboard");
 
   expect(errors).toEqual([]);
@@ -95,6 +108,7 @@ test("the demo profile shows a simulated week and lets you play today's Daily Ca
   await expect(page).toHaveURL(/\/dashboard$/);
   await expect(page.getByText("Demo profile — simulated week.")).toBeVisible();
   await expect(page.getByRole("heading", { name: "History" })).toBeVisible();
+  await expectNoSidewaysScroll(page);
   await shot(page, "10-demo-dashboard");
 
   await page.getByRole("link", { name: "Play today’s catch" }).click();
@@ -110,6 +124,7 @@ test("an SEO page is server-rendered and leads into the scan", async ({ page }) 
 
   await page.goto("/will-ai-replace/accountants-and-auditors");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Will AI replace Accountants and Auditors? A task-by-task look");
+  await expectNoSidewaysScroll(page);
   await shot(page, "12-seo");
   await page.getByRole("link", { name: "Scan my job — free" }).click();
   await expect(page.getByRole("heading", { name: "Which of these do you actually do?" })).toBeVisible();

@@ -97,6 +97,11 @@ export class DrillRepo {
     return row?.id ?? null;
   }
 
+  /** Forget assignments for days before `day` — used when the demo week is replayed against the current pool. */
+  clearDailyBefore(day: string, soc: string): void {
+    this.db.query("DELETE FROM daily WHERE soc = ? AND day < ?").run(soc, day);
+  }
+
   /** First writer wins: a day's Daily Catch never changes once assigned. */
   assignDaily(day: string, soc: string, drillId: string): string {
     this.db.query("INSERT OR IGNORE INTO daily (day, soc, drill_id) VALUES (?, ?, ?)").run(day, soc, drillId);
