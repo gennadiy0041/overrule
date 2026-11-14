@@ -4,157 +4,59 @@ Working memory for the build. Updated after every milestone.
 
 - Prod: https://overrule-production.up.railway.app
 - Repo: https://github.com/gennadiy0041/overrule
-- Railway: project `business-cup-demo`, service `overrule` (`ab5e6d03-de53-4911-9d1c-5cdc9cdbcc0a`), volume `/data`, autodeploy on push to `main`
+- Deck: `deck/Overrule_BusinessCup2.pdf` (10 slides) · Video: `docs/demo.mp4`
+- Railway: project `business-cup-demo`, service `overrule` (`ab5e6d03-de53-4911-9d1c-5cdc9cdbcc0a`), volume `/data`
 - Deadline: final package by 2026-11-15 11:00 Astana (form closes 12:00)
 
-## P0
+## State on 2026-11-15, 03:30 Astana
 
-- [x] Data import: 923 occupations, 19,265 tasks, 48,532 alternate titles
-- [x] `exposure` engine + test reproducing `human_rating_beta` for all 923 occupations
-- [x] Railway deploy, volume, variables (key references to `demo`), `/api/health`
-- [x] Public GitHub repo
-- [ ] Engine: safeMath, verifyDrill, scoring, elo, adaptive, daily (workflow 1, in progress)
-- [ ] LLM layer: Claude → retry → Gemini → pool (workflow 1, in progress)
-- [ ] Drill pool for 6 starter occupations (workflow 1, in progress)
-- [ ] API: occupations, scan, map, drills, submit, me, checkout, events
-- [ ] Web: landing → scan → map → drill → result → paywall → demo checkout → dashboard
-- [ ] README draft
+Everything in P0 and P1 is live in production and covered by tests: 321 unit/API tests, 10 Playwright e2e runs
+against production (phone + desktop), CI green.
 
-## P1
+### P0 — done
 
-- [ ] Daily Catch + share grid, streak, `.ics`
-- [ ] Demo profile (seeded through the real engine), Weekly Debrief, Review Report
-- [ ] SEO pages + sitemap, /about, /metrics, /survey + micro-survey
-- [ ] Limits, pool cross-check, mobile polish
-- [ ] e2e against prod, CI, final README, docs/defense-ru.md
+- [x] Data import (923 occupations, 19,265 tasks), `exposure` engine, test reproducing published β for all 923
+- [x] Engine: safeMath, verifyDrill, scoring, why-heuristic, share, elo, adaptive, daily, search
+- [x] LLM layer: Claude → retry with verifier findings → Gemini → verified pool; why-note grading; blind cross-check
+- [x] Drill pool: 54 verified drills for all six launch occupations (48 cross-checked; see `data/pool/stats.json`)
+- [x] Landing → scan → map → drill → submit → result → Elo → soft paywall → demo checkout → dashboard
+- [x] Anonymous sessions, events, Railway deploy, public repo, README
 
-## P2 (only if P0+P1 green by 04:00)
+### P1 — done
 
-- [ ] Second Look, dynamic OG image, PWA
+- [x] Daily Catch with share grid, streak, `.ics` reminder
+- [x] Demo profile (replayed through the real engine), Weekly Debrief, Review Report (`/r/:id`)
+- [x] 923 SEO pages + sitemap + robots, `/about`, `/metrics`, `/survey` and the micro-survey
+- [x] Generation limits, provider cooldown, internal traffic excluded from metrics and model spend
+- [x] e2e against prod, CI, README, `docs/defense-ru.md`
 
-## Pitch package
+### Pitch package — done
 
-- [ ] Deck PDF (≤10 slides, real screenshots), pitch script (5 and 3 min), Q&A, demo video, LinkedIn post
+- [x] Deck PDF with production screenshots, pitch script (5 and 3 min), Q&A, demo video, LinkedIn post
+
+### Not done
+
+- [ ] P2: Second Look, dynamic OG image, PWA
+- [ ] Engine modules were written by agents and are covered by tests, but the planned fresh-eyes review never ran
+
+## Things to know
+
+- **Model credit.** The Anthropic account ran out of credit during the pool run; Gemini is at its quota. Until credit
+  is added, every drill comes from the verified pool (instant, labelled "pre-verified drill"). Live generation
+  resumes by itself within three minutes of a top-up — no deploy needed. One live drill costs roughly $0.07–0.15.
+- **Deploys are manual.** A push to `main` does not trigger Railway here. After pushing, re-attach the source:
+  Railway MCP `connect-service-source` (repo `gennadiy0041/overrule`, branch `main`) — it builds the latest commit.
+- **Live numbers in the deck.** `bun run build-deck` reads `/metrics` (token in `.local/metrics-token.txt`, also
+  the `METRICS_TOKEN` variable on Railway). Rebuild after the survey post so slide 8 shows real numbers with N.
+- **Refreshing visuals:** `bun run screenshots` → `bun run build-deck` → `bun run record-demo`.
 
 ## Decision log
 
-- 20:20 Repo lives in `overrule/` next to the prompt file; the prompt (with the selftest token) stays outside the repo.
-- 20:25 Percentiles are ranked on β recomputed from task labels, not on the floats in `occ_level.csv`:
-  the CSV stores Pharmacists as 0.39999999999999997, which shifts Project Management Specialists
-  from 64.1% to 64.2%. We show the exact value (64.1%) and a unit test documents the artifact.
-- 20:30 O*NET Alternate Titles (30.0, CC BY 4.0) downloaded and imported for job-title search.
-- 20:32 `METRICS_TOKEN` generated locally into `.local/metrics-token.txt` (git-ignored) and set on Railway via CLI.
-- 20:35 Server-rendered pages use plain template strings with escaping (no React on the server): fewer runtime deps.
-
-## HANDOFF — session 1 stopped early (usage limit reached)
-
-**State of the tree: work in progress. The server does not boot yet** — it imports engine / LLM modules that
-the parallel agents had not all finished when the session stopped. The work is committed on local `main` and
-pushed to the remote branch `wip/session-1`. Remote `main` and prod are still the scaffold (`/api/health` only),
-so nothing broken was deployed.
-
-Done and verified
-- Tooling and access (gh, Railway CLI linked to service `overrule`, Bun, Playwright Chromium, ffmpeg).
-- Data import, `exposure` engine, unit test reproducing published beta for all 923 occupations.
-- Railway service `overrule`: volume `/data`, healthcheck, variables (key references), domain; prod answers 200.
-
-Written by the lead; type-checks except for imports of modules the agents were still writing
-- `src/shared/api.ts` (the HTTP contract), `src/shared/pricing.ts`
-- `src/server`: env, db (migrations), bootstrap, app, session, http, occupationStore, `repos/*`,
-  `services/{drillService,pool,attemptResult,debrief,profile,exposureMap}`,
-  `routes/{occupations,scan,drills,account,events}`, `ssr/{html,layout}`
-- `src/web`: `styles.css` (design tokens), `ui/` kit, `lib/api`, `lib/format`, `App.tsx` (router, lazy routes)
-
-In flight when stopped — three workflows, all stopped; their files may be partial, review before trusting
-- W1 `overrule-engine-llm` (run `wf_b58b0773-832`): engine safeMath / verifyDrill / scoring / whyHeuristic / share /
-  elo / adaptive / daily / search with tests; LLM layer `src/server/llm/*`; `scripts/llm-smoke.ts`,
-  `scripts/generate-pool.ts`; `data/short-task-names.json`, `data/modern-titles.json`, `data/ATTRIBUTION.md`.
-  The review phase and the pool generation had not run.
-- W2 `overrule-pages-1` (run `wf_8f3ff3ff-e1a`): Landing, Scan, ExposureMap, About, Survey; `src/server/ssr/seoPages.ts`.
-- W3 `overrule-pages-2` (run `wf_44bf5f31-b1e`): Drill + Result, StartDrill + Paywall + Checkout, Dashboard.
-- The workflow scripts are saved in the session's `workflows/scripts` folder. In the same session they resume with
-  `resumeFromRunId`; otherwise re-run them — the agents will find the existing files.
-- Agents may have left Vite dev servers on ports 5181-5216; they are safe to kill.
-
-Next steps, in order
-1. Finish and verify the engine modules (`elo`, `adaptive`, `daily` must exist) and `src/server/llm`;
-   `bun test tests/unit` and `bunx tsc --noEmit` green.
-2. Boot locally (`bun run build`, `bun start`), walk landing -> scan -> map, push to `main`, verify prod.
-3. `bun run import-data` once `data/short-task-names.json` exists; pool: `railway run bun scripts/generate-pool.ts`.
-4. Not written yet: `POST /api/reports` + `/r/:id`, `POST /api/demo` + demo seeding, `GET /api/calendar.ics`,
-   `/metrics`, wiring `seoPages` + sitemap + robots into `app.ts`, CI, README, e2e, deck, pitch docs.
-5. Sync the footer attribution (web `ui/index.tsx`, `ssr/layout.ts`) with the exact O*NET wording in `data/ATTRIBUTION.md`.
-
-Stopped at: 2026-11-14 20:52 local time (Astana).
-
-File inventory at stop:
-```
-ls: cannot access 'src/server/llm': No such file or directory
-ls: cannot access 'src/web/drill': No such file or directory
-ls: cannot access 'src/web/funnel': No such file or directory
-ls: cannot access 'src/web/dashboard': No such file or directory
-data:
-alt-titles.json
-modern-titles.json
-occupations.json
-pool
-raw
-short-task-names.json
-
-scripts:
-import-data.ts
-lib
-
-src/engine:
-adaptive.ts
-daily.ts
-drillSchema.ts
-elo.ts
-exposure.ts
-occupations.ts
-safeMath.ts
-scoring.ts
-search.ts
-share.ts
-verifyDrill.ts
-whyHeuristic.ts
-
-src/server/ssr:
-html.ts
-layout.ts
-
-src/web/pages:
-About.tsx
-Checkout.tsx
-Dashboard.tsx
-Drill.tsx
-ExposureMap.tsx
-Landing.tsx
-Paywall.tsx
-Result.tsx
-Scan.tsx
-StartDrill.tsx
-Survey.tsx
-landing
-
-tests/unit:
-adaptive.test.ts
-daily.test.ts
-elo.test.ts
-exposure.test.ts
-safeMath.test.ts
-scoring.test.ts
-share.test.ts
-verifyDrill.test.ts
-whyHeuristic.test.ts
-```
-
-Unit tests at stop:
-```
-bun test v1.4.4 (38afee6c8)
-
- 280 pass
- 0 fail
- 6519 expect() calls
-Ran 280 tests across 9 files. [256.00ms]
-```
+- Nov 14 20:20 Repo lives in `overrule/` next to the prompt file; the prompt (with the selftest token) stays outside.
+- Nov 14 20:25 Percentiles are ranked on β recomputed from task labels: the published CSV stores Pharmacists as
+  0.39999999999999997, which shifts Project Management Specialists from 64.1% to 64.2%. A unit test documents it.
+- Nov 15 02:20 Parallel agent workflows hit the usage limit twice; the rest was written sequentially by the lead.
+- Nov 15 02:35 Claude rejects a forced `tool_choice` → optional tool call. Gemini rejects our schema → JSON mode.
+- Nov 15 02:45 Credit ran out mid-pool → cooldown + pool-only mode; six Customer Service drills written in-session.
+- Nov 15 02:50 Minified one-line effects returned a promise as cleanup and crashed navigation → block-bodied effects.
+- More in `docs/decisions.md`.

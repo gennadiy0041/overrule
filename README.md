@@ -10,7 +10,7 @@ and your Judgment Score moves.
 [![CI](https://github.com/gennadiy0041/overrule/actions/workflows/ci.yml/badge.svg)](https://github.com/gennadiy0041/overrule/actions/workflows/ci.yml)
 
 **Live:** https://overrule-production.up.railway.app — no sign-up, no login.
-**Pitch deck:** [deck/Overrule_BusinessCup2.pdf](deck/Overrule_BusinessCup2.pdf)
+**Pitch deck:** [deck/Overrule_BusinessCup2.pdf](deck/Overrule_BusinessCup2.pdf) · **60-second walkthrough:** [docs/demo.mp4](docs/demo.mp4)
 
 Built solo in 24 hours for Business Cup 2.0 (Zimran × AIESEC), Skills track.
 
@@ -39,7 +39,8 @@ and the method page [/about](https://overrule-production.up.railway.app/about).
   <img src="deck/shots/review-phone.png" alt="The annotated review" width="240" />
 </p>
 
-Screenshots are taken from production by `bun run screenshots`.
+Screenshots and the walkthrough video are captured from production by `bun run screenshots` and
+`bun run record-demo`; the deck is built from them by `bun run build-deck`.
 
 ---
 
@@ -176,9 +177,10 @@ src/shared/     the HTTP contract (zod request schemas + response types) used by
 src/server/     routes/ · services/ (drill service, demo seeding, metrics, report) · repos/ · llm/ · ssr/
 src/web/        React app: pages/, drill/, ui/ (small kit), lib/
 data/           occupations.json (built by scripts/import-data.ts), pool/ (verified drills), raw sources
-scripts/        import-data, generate-pool, llm-smoke, screenshots, build-deck, record-demo
+scripts/        import-data, generate-pool, llm-smoke, screenshots, build-deck, record-demo, build-og
 tests/          unit/ (engine + an API test that walks the whole product path), e2e/ (Playwright, against prod)
-docs/           decisions, pitch material
+deck/           the pitch deck (PDF, the HTML it is built from, production screenshots)
+docs/           decisions.md, the walkthrough video, pitch script and Q&A (Russian), LinkedIn post
 ```
 
 Design decisions worth knowing are logged in [docs/decisions.md](docs/decisions.md).

@@ -10,9 +10,9 @@
  * mistakes and trips on one decoy. Output: deck/shots/*.png
  */
 import { chromium, type Browser, type Page } from "@playwright/test";
-import { existsSync, mkdirSync, readdirSync, readFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { ERROR_TYPE_INFO, type Drill } from "../src/engine/drillSchema";
+import { flag, openFlagSheet, poolDrill } from "./lib/reviewer";
 
 const ROOT = join(import.meta.dir, "..");
 const OUT = join(ROOT, "deck", "shots");
@@ -20,29 +20,11 @@ const BASE = process.env["BASE_URL"] ?? "https://overrule-production.up.railway.
 const PHONE = { viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true };
 const DESKTOP = { viewport: { width: 1280, height: 800 }, deviceScaleFactor: 2 };
 
-function poolDrill(id: string): Drill | undefined {
-  const dir = join(ROOT, "data", "pool");
-  for (const name of readdirSync(dir)) {
-    if (!/^\d{2}-\d{4}\.\d{2}\.json$/.test(name)) continue;
-    const file = JSON.parse(readFileSync(join(dir, name), "utf8")) as { drills: Drill[] };
-    const drill = file.drills.find((d) => d.id === id);
-    if (drill) return drill;
-  }
-  return undefined;
-}
-
 async function save(page: Page, name: string): Promise<void> {
   // Let entrance animations and count-ups finish, so nothing is caught mid-motion.
   await page.waitForTimeout(1300);
   await page.screenshot({ path: join(OUT, `${name}.png`) });
   console.log(`  ${name}.png`);
-}
-
-async function flag(page: Page, targetId: string, type: keyof typeof ERROR_TYPE_INFO, why?: string): Promise<void> {
-  await page.locator(`[data-target-id="${targetId}"]`).click();
-  await page.getByRole("radio", { name: ERROR_TYPE_INFO[type].label }).click();
-  if (why) await page.getByLabel("Why? (optional)").fill(why.slice(0, 140));
-  await page.getByRole("button", { name: "Flag it" }).click();
 }
 
 /** Landing → scan → map → drill → result → paywall, on a phone. */
@@ -73,10 +55,7 @@ async function journey(browser: Browser): Promise<void> {
   const drill = poolDrill(page.url().split("/drill/")[1] ?? "");
   const [first, second] = drill?.key ?? [];
   if (first) {
-    await page.locator(`[data-target-id="${first.targetId}"]`).scrollIntoViewIfNeeded();
-    await page.locator(`[data-target-id="${first.targetId}"]`).click();
-    await page.getByRole("radio", { name: ERROR_TYPE_INFO[first.type].label }).click();
-    await page.getByLabel("Why? (optional)").fill(first.cue.slice(0, 140));
+    await openFlagSheet(page, first.targetId, first.type, first.cue);
     await save(page, "sheet-phone");
     await page.getByRole("button", { name: "Flag it" }).click();
   }

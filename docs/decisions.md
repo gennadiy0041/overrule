@@ -27,7 +27,6 @@ Short notes on choices that are not obvious from the code.
   the remaining scan questions, so it is normally ready.
 - **Word limit has 15% slack** (`WORD_LIMIT_SLACK`): models count words loosely and the limit only exists to keep a
   drill near five minutes.
-
 - **Claude answers through an optional tool call.** The current model rejects a forced `tool_choice`
   ("not supported for this model"), so the single tool is offered with `auto` and the system prompt tells the model
   to answer through it. An answer without the tool call is treated as malformed and takes the normal retry path.
