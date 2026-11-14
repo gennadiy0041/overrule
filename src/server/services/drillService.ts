@@ -283,7 +283,15 @@ export class DrillService {
       createdAt: now.toISOString(),
     };
 
-    attempts.insert(session.id, result, flags);
+    try {
+      attempts.insert(session.id, result, flags);
+    } catch (error) {
+      // A second submission of the same drill won the race while the notes were being graded
+      // (one attempt per drill is enforced by the database). Its result stands.
+      const first = attempts.findForDrill(session.id, drillId);
+      if (first) return first;
+      throw error;
+    }
     sessions.recordAttempt(session.id, ratingAfter);
     events.log(session.id, "drill_submit", now, {
       mode,

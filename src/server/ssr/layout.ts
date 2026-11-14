@@ -85,6 +85,8 @@ export function renderDocument(meta: PageMeta, body: SafeHtml, context: LayoutCo
     ${meta.noindex ? raw('<meta name="robots" content="noindex, nofollow" />') : html`<link rel="canonical" href="${url}" />`}
     <meta name="theme-color" content="#FAF7F2" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/icon-180.png" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Overrule" />
     <meta property="og:title" content="${meta.title}" />

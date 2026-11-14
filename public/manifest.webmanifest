@@ -1,0 +1,28 @@
+{
+  "name": "Overrule — Know when to overrule AI",
+  "short_name": "Overrule",
+  "description": "A 5-minute daily drill: catch the mistakes AI hides in real documents from your job.",
+  "start_url": "/daily",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#FAF7F2",
+  "theme_color": "#FAF7F2",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

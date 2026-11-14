@@ -1,5 +1,6 @@
 import { existsSync, readFileSync } from "node:fs";
 import { Hono, type Context } from "hono";
+import { bodyLimit } from "hono/body-limit";
 import { serveStatic } from "hono/bun";
 import { secureHeaders } from "hono/secure-headers";
 import type { AppContext, AppEnv } from "./context";
@@ -12,6 +13,9 @@ import { pageRoutes } from "./routes/pages";
 import { scanRoutes } from "./routes/scan";
 import { createDemoSession } from "./services/demo";
 import { internalFlag, isInternalRequest, setSessionCookie, withSession } from "./session";
+
+/** The largest legitimate request (a scan with 60 tasks) is a few kilobytes. */
+const MAX_BODY_BYTES = 32 * 1024;
 
 /** Relative to the process working directory (the repository root). */
 const WEB_ROOT = "./dist/web";
@@ -34,6 +38,7 @@ export function createApp(ctx: AppContext): Hono {
 
   app.use("*", secureHeaders({ crossOriginResourcePolicy: false }));
   app.use("*", internalFlag(ctx));
+  app.use("/api/*", bodyLimit({ maxSize: MAX_BODY_BYTES, onError: (c) => apiError(c, 400, "body_too_large") }));
 
   app.get("/api/health", (c) => {
     const row = ctx.db.query("SELECT COALESCE(MAX(version), 0) AS version FROM schema_migrations").get() as {

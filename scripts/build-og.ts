@@ -48,5 +48,14 @@ const page = await browser.newPage({ viewport: { width: 1200, height: 630 }, dev
 await page.setContent(html, { waitUntil: "load" });
 await page.evaluate(() => document.fonts.ready);
 await page.screenshot({ path: join(ROOT, "public", "og.png"), type: "png" });
-await browser.close();
 console.log("public/og.png written");
+
+const ICON = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="100%" height="100%"><rect width="48" height="48" fill="#14120F"/><g transform="translate(8 8)"><path d="M8 16.5l5.2 5.2L24 10.5" fill="none" stroke="#FAF7F2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 23L26 9" stroke="#D93A2B" stroke-width="3" stroke-linecap="round"/></g></svg>`;
+for (const size of [180, 192, 512]) {
+  const icon = await browser.newPage({ viewport: { width: size, height: size }, deviceScaleFactor: 1 });
+  await icon.setContent(`<body style="margin:0">${ICON}</body>`);
+  await icon.screenshot({ path: join(ROOT, "public", `icon-${size}.png`), type: "png" });
+  await icon.close();
+  console.log(`public/icon-${size}.png written`);
+}
+await browser.close();
