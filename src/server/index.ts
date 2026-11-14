@@ -1,10 +1,10 @@
 import { createApp } from "./app";
-import { openDatabase } from "./db";
+import { buildContext } from "./bootstrap";
 import { loadEnv } from "./env";
 
 const env = loadEnv();
-const db = openDatabase(env.DB_PATH);
-const app = createApp({ env, db });
+const ctx = await buildContext(env);
+const app = createApp(ctx);
 
 const server = Bun.serve({
   port: env.PORT,
@@ -17,8 +17,8 @@ const server = Bun.serve({
 console.log(`overrule listening on :${server.port} (${env.NODE_ENV}), db ${env.DB_PATH}`);
 
 function shutdown(): void {
-  server.stop();
-  db.close();
+  void server.stop();
+  ctx.db.close();
   process.exit(0);
 }
 process.on("SIGTERM", shutdown);

@@ -1,0 +1,124 @@
+{
+  "id": "ref-marketing-l3",
+  "soc": "11-2021.00",
+  "occupation": "Marketing Managers",
+  "level": 3,
+  "taskId": 952,
+  "task": "Evaluate the financial aspects of product development, such as budgets, expenditures, research and development appropriations, or return-on-investment and profit-loss projections.",
+  "brief": {
+    "from": "Dana Ortiz",
+    "role": "VP Marketing, Northwind Outdoor Co.",
+    "ask": "Summarize October paid social results for Monday's leadership sync: ROAS by channel and where to move November's $20K test budget. Under 200 words."
+  },
+  "artifact": {
+    "kind": "email",
+    "title": "October paid social: results + November test budget",
+    "blocks": [
+      {
+        "type": "text",
+        "style": "paragraph",
+        "segments": [{ "id": "s1", "text": "Hi Dana, here's the October summary for Monday." }]
+      },
+      {
+        "type": "table",
+        "columns": ["Channel", "Spend", "Revenue", "ROAS"],
+        "rows": [
+          [
+            { "id": "r1c1", "text": "Meta" },
+            { "id": "r1c2", "text": "$42,000" },
+            { "id": "r1c3", "text": "$126,000" },
+            { "id": "r1c4", "text": "3.0x" }
+          ],
+          [
+            { "id": "r2c1", "text": "TikTok" },
+            { "id": "r2c2", "text": "$18,000" },
+            { "id": "r2c3", "text": "$63,000" },
+            { "id": "r2c4", "text": "3.5x" }
+          ],
+          [
+            { "id": "r3c1", "text": "Pinterest" },
+            { "id": "r3c2", "text": "$10,000" },
+            { "id": "r3c3", "text": "$22,000" },
+            { "id": "r3c4", "text": "2.2x" }
+          ],
+          [
+            { "id": "r4c1", "text": "Total" },
+            { "id": "r4c2", "text": "$70,000" },
+            { "id": "r4c3", "text": "$211,000" },
+            { "id": "r4c4", "text": "3.0x" }
+          ]
+        ]
+      },
+      {
+        "type": "text",
+        "style": "paragraph",
+        "segments": [
+          { "id": "s3", "text": "Blended ROAS rose from 2.6x in September to 3.0x, a 40% improvement." },
+          { "id": "s4", "text": "TikTok returned $3.50 for every $1 spent, our best channel." },
+          {
+            "id": "s5",
+            "text": "Outdoor brands average 5.1x ROAS on TikTok (Harlow Retail Index, 2025), so we are well below benchmark."
+          },
+          {
+            "id": "s6",
+            "text": "Recommendation: move the full $20K test budget to Pinterest, where we have the most room to grow."
+          },
+          {
+            "id": "s7",
+            "text": "The new creative says our jackets are 100% waterproof in any storm; it tested best, so let's scale it."
+          },
+          { "id": "s8", "text": "Happy to walk through the details on Monday." }
+        ]
+      }
+    ]
+  },
+  "key": [
+    {
+      "targetId": "s3",
+      "type": "numbers",
+      "severity": 2,
+      "explanation": "3.0 / 2.6 = 1.15, so ROAS improved about 15%, not 40%.",
+      "correction": "…a ~15% improvement.",
+      "cue": "Recompute any % change from the two numbers in the sentence."
+    },
+    {
+      "targetId": "s5",
+      "type": "facts",
+      "severity": 2,
+      "explanation": "This benchmark is not in the data you were given and its source can't be verified: a typical invented statistic.",
+      "correction": "Remove it or replace it with a sourced benchmark.",
+      "cue": "Precise numbers with no traceable source."
+    },
+    {
+      "targetId": "s6",
+      "type": "logic",
+      "severity": 3,
+      "explanation": "Pinterest has the lowest ROAS in the table (2.2x); moving the whole test budget there contradicts the results.",
+      "correction": "Test the $20K on TikTok (3.5x), or split it between TikTok and Meta.",
+      "cue": "Check every recommendation against the table."
+    },
+    {
+      "targetId": "s7",
+      "type": "risk",
+      "severity": 3,
+      "explanation": "'100% waterproof in any storm' is an absolute claim that needs substantiation; unsupported ad claims can create legal risk.",
+      "correction": "Use a tested claim (e.g., a rating from lab tests) and route the copy to legal review.",
+      "cue": "Absolute words: 100%, any, guaranteed."
+    }
+  ],
+  "decoys": [
+    {
+      "targetId": "s4",
+      "looksWrongBecause": "Sounds like marketing exaggeration.",
+      "fineBecause": "$63,000 / $18,000 = 3.5, exactly right."
+    }
+  ],
+  "numericChecks": [
+    { "targetId": "s3", "expression": "(3.0/2.6-1)*100", "stated": 40, "tolerance": 2, "isError": true },
+    { "targetId": "s4", "expression": "63000/18000", "stated": 3.5, "tolerance": 0.05, "isError": false },
+    { "targetId": "r2c4", "expression": "63000/18000", "stated": 3.5, "tolerance": 0.05, "isError": false },
+    { "targetId": "r3c4", "expression": "22000/10000", "stated": 2.2, "tolerance": 0.05, "isError": false },
+    { "targetId": "r4c3", "expression": "126000+63000+22000", "stated": 211000, "tolerance": 1, "isError": false },
+    { "targetId": "r4c4", "expression": "211000/70000", "stated": 3.0, "tolerance": 0.05, "isError": false }
+  ]
+}

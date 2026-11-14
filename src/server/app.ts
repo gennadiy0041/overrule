@@ -1,31 +1,49 @@
 import { Hono } from "hono";
 import { serveStatic } from "hono/bun";
-import type { Database } from "./db";
-import type { Env } from "./env";
+import { secureHeaders } from "hono/secure-headers";
+import type { AppContext, AppEnv } from "./context";
+import { apiError } from "./http";
+import { accountRoutes } from "./routes/account";
+import { drillRoutes } from "./routes/drills";
+import { eventRoutes } from "./routes/events";
+import { occupationRoutes } from "./routes/occupations";
+import { scanRoutes } from "./routes/scan";
+import { internalFlag, withSession } from "./session";
 
-export interface AppDeps {
-  env: Env;
-  db: Database;
-}
-
+/** Relative to the process working directory (the repository root). */
 const WEB_ROOT = "./dist/web";
 
-export function createApp(deps: AppDeps): Hono {
+export function createApp(ctx: AppContext): Hono {
   const app = new Hono();
 
+  app.use("*", secureHeaders({ crossOriginResourcePolicy: false }));
+  app.use("*", internalFlag(ctx));
+
   app.get("/api/health", (c) => {
-    const row = deps.db.query("SELECT COALESCE(MAX(version), 0) AS version FROM schema_migrations").get() as {
+    const row = ctx.db.query("SELECT COALESCE(MAX(version), 0) AS version FROM schema_migrations").get() as {
       version: number;
     };
     return c.json({
       status: "ok",
       schema: row.version,
-      llm: { claude: Boolean(deps.env.ANTHROPIC_API_KEY), gemini: Boolean(deps.env.GEMINI_API_KEY) },
-      time: new Date().toISOString(),
+      occupations: ctx.occupations.all.length,
+      llm: { claude: Boolean(ctx.env.ANTHROPIC_API_KEY), gemini: Boolean(ctx.env.GEMINI_API_KEY) },
+      time: ctx.now().toISOString(),
     });
   });
 
-  app.all("/api/*", (c) => c.json({ error: "not_found" }, 404));
+  // Public reads need no session…
+  app.route("/api", occupationRoutes(ctx));
+
+  // …everything else runs behind the anonymous session cookie.
+  const api = new Hono<AppEnv>();
+  api.use("*", withSession(ctx));
+  api.route("/", scanRoutes(ctx));
+  api.route("/", drillRoutes(ctx));
+  api.route("/", accountRoutes(ctx));
+  api.route("/", eventRoutes(ctx));
+  api.all("*", (c) => apiError(c, 404, "not_found"));
+  app.route("/api", api);
 
   // Hashed build assets are immutable; everything else falls back to the SPA shell.
   app.use(
