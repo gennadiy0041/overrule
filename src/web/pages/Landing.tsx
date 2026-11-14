@@ -39,7 +39,9 @@ function Hero() {
 }
 
 export default function Landing() {
-  useEffect(() => track("landing_view"), []);
+  useEffect(() => {
+    track("landing_view");
+  }, []);
 
   return (
     <Shell

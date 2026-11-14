@@ -1,0 +1,1996 @@
+{
+  "soc": "13-1082.00",
+  "occupation": "Project Management Specialists",
+  "drills": [
+    {
+      "brief": {
+        "from": "Dana Ortiz",
+        "role": "Project Manager, Brightwell Logistics",
+        "ask": "Draft a short internal email to my four-person team assigning duties for the Harbor Point warehouse system rollout. Go-live is Monday, October 14, 2024. Priya Nair: data migration, 12 hrs/week. Marcus Lee: integration testing, 10 hrs/week. Elena Ruiz: user training, 8 hrs/week. Tom Becker: vendor liaison, 6 hrs/week. Do not mention the $84,000 vendor contract value, because it is confidential to leadership. Do not add facts I haven't given you. Keep it under 200 words."
+      },
+      "artifact": {
+        "kind": "email",
+        "title": "Harbor Point rollout assignments",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "subject",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Subject: Harbor Point rollout: your assignments"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "Hi team,"
+              },
+              {
+                "id": "s3",
+                "text": "Here are your responsibilities for the Harbor Point warehouse system rollout, with go-live on Monday, October 14."
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Owner",
+              "Duty",
+              "Hours/week"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "Priya Nair"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "Data migration"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "12"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "Marcus Lee"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "Integration testing"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "10"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "Elena Ruiz"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "User training"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "8"
+                }
+              ],
+              [
+                {
+                  "id": "r4c1",
+                  "text": "Tom Becker"
+                },
+                {
+                  "id": "r4c2",
+                  "text": "Vendor liaison"
+                },
+                {
+                  "id": "r4c3",
+                  "text": "6"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s4",
+                "text": "Together this adds up to 38 hours per week of project effort."
+              },
+              {
+                "id": "s5",
+                "text": "Marcus, please use the vendor's certified test suite, which cuts testing time by 30%."
+              },
+              {
+                "id": "s6",
+                "text": "Tom, please keep the $84,000 vendor contract in mind when you request extra support."
+              },
+              {
+                "id": "s7",
+                "text": "Elena, please schedule all training sessions before go-live."
+              },
+              {
+                "id": "s8",
+                "text": "Send me any blockers by Friday each week."
+              },
+              {
+                "id": "s9",
+                "text": "Thanks, Dana"
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s4",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "The weekly hours in the table sum to 12 + 10 + 8 + 6 = 36, not 38.",
+          "correction": "Together this adds up to 36 hours per week of project effort.",
+          "cue": "Re-add any total from the table rows beside it."
+        },
+        {
+          "targetId": "s5",
+          "type": "facts",
+          "severity": 2,
+          "explanation": "The brief supplied no certified test suite and no 30% time saving. The statistic is invented, and Dana asked for no added facts.",
+          "correction": "Marcus, please own integration testing ahead of go-live.",
+          "cue": "Check every statistic against the facts the requester supplied."
+        },
+        {
+          "targetId": "s6",
+          "type": "audience",
+          "severity": 3,
+          "explanation": "The brief says the $84,000 vendor contract value is confidential to leadership and must not be mentioned. The email puts it in front of the whole team.",
+          "correction": "Tom, please check with me before you request extra vendor support.",
+          "cue": "Re-read the brief's \"do not share\" items against the final text."
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "s3",
+          "looksWrongBecause": "A reader may doubt that October 14 falls on a Monday.",
+          "fineBecause": "October 14, 2024 is a Monday, and the brief gave that date and weekday."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "s4",
+          "expression": "12+10+8+6",
+          "stated": 38,
+          "tolerance": 0.5,
+          "isError": true
+        }
+      ],
+      "id": "pool-13108200-21462-l2",
+      "soc": "13-1082.00",
+      "occupation": "Project Management Specialists",
+      "taskId": 21462,
+      "task": "Assign duties or responsibilities to project personnel.",
+      "level": 2
+    },
+    {
+      "brief": {
+        "from": "Dana Whitfield",
+        "role": "PMO Lead, Harbor Ridge Logistics",
+        "ask": "Draft a responsibility plan for our Dock Scheduler rollout (go-live June 16) for the project team. Assignments: Priya Nair, data migration, 40 hrs, due May 23; Tom Okafor, vendor liaison, 16 hrs, May 30; Marcus Lee, user training, 24 hrs, June 6; Elena Ruiz, testing, 32 hrs, June 9. Only Tom may discuss contract terms with the vendor. Internal use; no salary or ratings. Max 280 words."
+      },
+      "artifact": {
+        "kind": "plan",
+        "title": "Dock Scheduler Rollout: Responsibility Assignments",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "This plan assigns cutover duties for the Dock Scheduler rollout, with go-live on June 16."
+              },
+              {
+                "id": "s2",
+                "text": "The four assignments total 122 hours."
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Owner",
+              "Duty",
+              "Hours",
+              "Due"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "Priya Nair"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "Data migration"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "40"
+                },
+                {
+                  "id": "r1c4",
+                  "text": "May 23"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "Tom Okafor"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "Vendor liaison"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "16"
+                },
+                {
+                  "id": "r2c4",
+                  "text": "May 30"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "Marcus Lee"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "User training"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "24"
+                },
+                {
+                  "id": "r3c4",
+                  "text": "June 6"
+                }
+              ],
+              [
+                {
+                  "id": "r4c1",
+                  "text": "Elena Ruiz"
+                },
+                {
+                  "id": "r4c2",
+                  "text": "Testing"
+                },
+                {
+                  "id": "r4c3",
+                  "text": "32"
+                },
+                {
+                  "id": "r4c4",
+                  "text": "June 9"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s3",
+                "text": "Priya owns data migration and carries the largest share, about 36% of total hours."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s4",
+                "text": "Tom is the only team member authorized to discuss contract terms with the vendor."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s5",
+                "text": "Elena's testing must follow the vendor's contract requirement of a 10-business-day UAT window."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s6",
+                "text": "Marcus will train users on the final configuration after Elena's testing signs off on June 9."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s7",
+                "text": "Elena's sign-off leaves a full week before go-live."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s8",
+                "text": "This schedule guarantees a go-live with zero downtime."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s9",
+                "text": "Please escalate blockers to Dana Whitfield."
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s2",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "The table hours are 40 + 16 + 24 + 32 = 112, not 122. The stated total is off by 10 hours.",
+          "correction": "The four assignments total 112 hours.",
+          "cue": "Re-add table columns before trusting a stated total"
+        },
+        {
+          "targetId": "s5",
+          "type": "facts",
+          "severity": 2,
+          "explanation": "The brief says nothing about a vendor contract requirement or a 10-business-day UAT window. This is an invented constraint presented as a contract term.",
+          "correction": "Remove the claim, or state the testing window only if the contract confirms it.",
+          "cue": "Ask where each stated requirement comes from"
+        },
+        {
+          "targetId": "s6",
+          "type": "logic",
+          "severity": 3,
+          "explanation": "Training is due June 6, but this line says it happens after testing signs off on June 9. The sentence contradicts the due date in the table.",
+          "correction": "Marcus will train users on the near-final configuration and complete training by June 6.",
+          "cue": "Cross-check sequencing in text against due dates in the table"
+        },
+        {
+          "targetId": "s8",
+          "type": "risk",
+          "severity": 3,
+          "explanation": "A plan cannot guarantee zero downtime. This is an unsupported absolute promise that could create commitments the team cannot keep.",
+          "correction": "This schedule is designed to minimize downtime at go-live.",
+          "cue": "Flag absolute words like guarantees or zero"
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "s3",
+          "looksWrongBecause": "A 36% share for one person may look too large or imprecise.",
+          "fineBecause": "Priya's 40 hours divided by the 112-hour total is 35.7%, which rounds to 36%, and 40 is the largest assignment."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "s2",
+          "expression": "40+16+24+32",
+          "stated": 122,
+          "tolerance": 0.5,
+          "isError": true
+        },
+        {
+          "targetId": "s3",
+          "expression": "40/(40+16+24+32)*100",
+          "stated": 36,
+          "tolerance": 0.5,
+          "isError": false
+        }
+      ],
+      "id": "pool-13108200-21462-l3",
+      "soc": "13-1082.00",
+      "occupation": "Project Management Specialists",
+      "taskId": 21462,
+      "task": "Assign duties or responsibilities to project personnel.",
+      "level": 3
+    },
+    {
+      "brief": {
+        "from": "Dana Whitfield",
+        "role": "Project Manager, Alder Ridge Credit Union",
+        "ask": "Draft an email to the Lending, Member Services and Compliance heads after our requirements interviews on the member portal upgrade. Include a table of each top requirement and funding request: Lending, online loan status tracking, $42,000; Member Services, secure messaging, $28,000; Compliance, audit trail reporting, $15,000. Approved budget is $70,000. Ask them to reply by Oct. 3 on how to trim scope. Do not share vendor pricing or negotiation plans with the departments."
+      },
+      "artifact": {
+        "kind": "email",
+        "title": "Portal upgrade requirements and funding",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "subject",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Subject: Portal upgrade: requirements recap and funding decision needed"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "Hello team,"
+              },
+              {
+                "id": "s3",
+                "text": "Thank you for meeting with me last week to define what the member portal upgrade must deliver."
+              },
+              {
+                "id": "s4",
+                "text": "Your top requirements and funding requests are below."
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Department",
+              "Top requirement",
+              "Request"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "Lending"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "Online loan status tracking"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "$42,000"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "Member Services"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "Secure messaging"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "$28,000"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "Compliance"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "Audit trail reporting"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "$15,000"
+                }
+              ],
+              [
+                {
+                  "id": "r4c1",
+                  "text": "Total"
+                },
+                {
+                  "id": "r4c2",
+                  "text": "All three"
+                },
+                {
+                  "id": "r4c3",
+                  "text": "$85,000"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s5",
+                "text": "The requests total $85,000, which is 25% over the $70,000 approved budget."
+              },
+              {
+                "id": "s6",
+                "text": "We cannot fund all three requests in full."
+              },
+              {
+                "id": "s7",
+                "text": "Compliance's audit trail is mandatory, so I propose funding it first."
+              },
+              {
+                "id": "s8",
+                "text": "Our vendor will guarantee the portal meets every regulatory requirement."
+              },
+              {
+                "id": "s9",
+                "text": "The vendor quoted $61,000 for the base build, and we expect to negotiate 10% off."
+              },
+              {
+                "id": "s10",
+                "text": "Please reply by Friday, Oct. 3 with the scope you would trim to fit the remaining $55,000."
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s5",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "$85,000 against a $70,000 budget is $15,000 over, and 15,000/70,000 = 21.4%, not 25%. 25% would use the wrong base or a miscalculation.",
+          "correction": "The requests total $85,000, which is about 21% ($15,000) over the $70,000 approved budget.",
+          "cue": "Recompute any % change from the two numbers in the sentence"
+        },
+        {
+          "targetId": "s8",
+          "type": "risk",
+          "severity": 3,
+          "explanation": "An unconditional guarantee of full regulatory compliance is an unsupported absolute claim that could create legal exposure for the credit union. A vendor cannot promise this, and nothing in the source supports it.",
+          "correction": "Our vendor will design the portal to support our regulatory requirements; Compliance will review it before launch.",
+          "cue": "Flag guarantees and 'every' or 'all' claims that nobody can prove"
+        },
+        {
+          "targetId": "s9",
+          "type": "audience",
+          "severity": 3,
+          "explanation": "The brief said not to share vendor pricing or negotiation plans with the departments, yet the email discloses the vendor quote and the planned discount.",
+          "correction": "Delete the sentence; keep vendor pricing and negotiation plans internal.",
+          "cue": "Check each sentence against the brief's confidentiality limits"
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "s6",
+          "looksWrongBecause": "The blunt statement may seem too negative for an email to department heads.",
+          "fineBecause": "It is accurate: requests total $85,000 against a $70,000 budget, so full funding is impossible, and plain wording suits a decision request."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "r4c3",
+          "expression": "42000+28000+15000",
+          "stated": 85000,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "s5",
+          "expression": "(85/70-1)*100",
+          "stated": 25,
+          "tolerance": 0.5,
+          "isError": true
+        },
+        {
+          "targetId": "s10",
+          "expression": "70000-15000",
+          "stated": 55000,
+          "tolerance": 1,
+          "isError": false
+        }
+      ],
+      "id": "pool-13108200-21463-l2",
+      "soc": "13-1082.00",
+      "occupation": "Project Management Specialists",
+      "taskId": 21463,
+      "task": "Communicate with key stakeholders to determine project requirements and objectives.",
+      "level": 2
+    },
+    {
+      "brief": {
+        "from": "Dana Whitfield",
+        "role": "Project Manager, Pinecrest Distribution",
+        "ask": "Summarize my Aug 5-9 stakeholder interviews for the steering committee (internal, under 250 words). Facts: budget $180,000 (license $96,000, integration $54,000, training $18,000, contingency $12,000); avg truck wait 52 min, target 35; go-live Oct 14; 14 requirements (6 must, 5 should, 3 could); 5 stakeholders in 4 sessions (Finance and IT shared one). Ops and Carrier Relations ranked appointment windows top. No performance promises."
+      },
+      "artifact": {
+        "kind": "summary",
+        "title": "Dock Scheduling Project: Stakeholder Interview Summary",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Interview Scope"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "Between August 5 and 9, we interviewed five stakeholders in four sessions to confirm requirements for the Pinecrest dock scheduling system."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s3",
+                "text": "Objectives"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s4",
+                "text": "The primary objective is to reduce average truck wait from 52 minutes to 35 minutes, a 49% reduction."
+              },
+              {
+                "id": "s5",
+                "text": "Go-live is targeted for October 14, within the $180,000 approved budget."
+              },
+              {
+                "id": "s6",
+                "text": "Carrier on-time arrival currently stands at 91%, according to the 2023 Regional Dock Benchmark."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s7",
+                "text": "Requirements"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s8",
+                "text": "We captured 14 requirements: 6 must-have, 5 should-have and 3 could-have."
+              },
+              {
+                "id": "s9",
+                "text": "Operations and Carrier Relations both ranked appointment windows as their top priority."
+              },
+              {
+                "id": "s10",
+                "text": "IT's main concern is integration with the existing warehouse system."
+              },
+              {
+                "id": "s11",
+                "text": "Finance will not approve spending beyond $180,000."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s12",
+                "text": "Budget"
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Item",
+              "Amount",
+              "Share of budget"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "Software license"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "$96,000"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "53.3%"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "Integration"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "$54,000"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "30.0%"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "Training"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "$18,000"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "10.0%"
+                }
+              ],
+              [
+                {
+                  "id": "r4c1",
+                  "text": "Contingency"
+                },
+                {
+                  "id": "r4c2",
+                  "text": "$12,000"
+                },
+                {
+                  "id": "r4c3",
+                  "text": "6.7%"
+                }
+              ],
+              [
+                {
+                  "id": "r5c1",
+                  "text": "Total"
+                },
+                {
+                  "id": "r5c2",
+                  "text": "$180,000"
+                },
+                {
+                  "id": "r5c3",
+                  "text": "100.0%"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s13",
+                "text": "Recommendation"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s14",
+                "text": "Because appointment windows were the top priority for two stakeholders, we recommend moving them to phase 2 so the team can start with reporting dashboards."
+              },
+              {
+                "id": "s15",
+                "text": "With these requirements in place, the system will guarantee an average wait of 35 minutes by go-live."
+              },
+              {
+                "id": "s16",
+                "text": "Next step: request steering committee sign-off on the requirement list."
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s4",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "Going from 52 to 35 minutes is a 17-minute drop, which is 17/52 = 32.7% of the current wait, not 49%.",
+          "correction": "…from 52 minutes to 35 minutes, a 33% reduction.",
+          "cue": "Recompute any % change from the two numbers in the sentence"
+        },
+        {
+          "targetId": "s6",
+          "type": "facts",
+          "severity": 2,
+          "explanation": "The 91% on-time figure and the '2023 Regional Dock Benchmark' are not in the data Dana supplied and cannot be traced to any interview.",
+          "correction": "Delete the sentence, or replace it with an on-time figure that Dana or the interviewees actually provided.",
+          "cue": "Ask where every statistic and named source came from"
+        },
+        {
+          "targetId": "s14",
+          "type": "logic",
+          "severity": 3,
+          "explanation": "The recommendation contradicts the document's own finding: appointment windows were the top priority for Operations and Carrier Relations, yet they are pushed to phase 2 in favor of dashboards nobody ranked first.",
+          "correction": "Recommend building appointment windows in phase 1, since two stakeholders ranked them top priority.",
+          "cue": "Check that recommendations follow the priorities stated above them"
+        },
+        {
+          "targetId": "s15",
+          "type": "risk",
+          "severity": 3,
+          "explanation": "Guaranteeing a 35-minute average wait is an unsupported absolute and breaks the brief's 'no performance promises'. It could create commitments to the steering committee that the team cannot back up.",
+          "correction": "The 35-minute average wait remains the target; progress will be tracked after go-live.",
+          "cue": "Flag guarantee wording on outcomes not yet delivered"
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "s2",
+          "looksWrongBecause": "Five stakeholders in four sessions looks like a miscount.",
+          "fineBecause": "Finance and IT were interviewed together in one session, as stated in the brief, so five people in four sessions is correct."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "s4",
+          "expression": "(52-35)/52*100",
+          "stated": 49,
+          "tolerance": 0.5,
+          "isError": true
+        },
+        {
+          "targetId": "s5",
+          "expression": "96000+54000+18000+12000",
+          "stated": 180000,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "s8",
+          "expression": "6+5+3",
+          "stated": 14,
+          "tolerance": 0,
+          "isError": false
+        },
+        {
+          "targetId": "r1c3",
+          "expression": "96000/180000*100",
+          "stated": 53.3,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "r2c3",
+          "expression": "54000/180000*100",
+          "stated": 30,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "r3c3",
+          "expression": "18000/180000*100",
+          "stated": 10,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "r4c3",
+          "expression": "12000/180000*100",
+          "stated": 6.7,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "r5c2",
+          "expression": "96000+54000+18000+12000",
+          "stated": 180000,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "r5c3",
+          "expression": "53.3+30+10+6.7",
+          "stated": 100,
+          "tolerance": 0.05,
+          "isError": false
+        }
+      ],
+      "id": "pool-13108200-21463-l3",
+      "soc": "13-1082.00",
+      "occupation": "Project Management Specialists",
+      "taskId": 21463,
+      "task": "Communicate with key stakeholders to determine project requirements and objectives.",
+      "level": 3
+    },
+    {
+      "brief": {
+        "from": "Dana Ortiz",
+        "role": "Project Manager, Keystone Systems",
+        "ask": "Draft a short customer-facing status summary for Brightwater Foods on the portal migration, as of week 18. Facts: 18 of 30 weeks elapsed; 42 of 56 tasks complete; $312,000 spent of a $480,000 budget; data migration finished Apr 14 as planned; user acceptance testing (UAT) start moved from May 12 to May 27 because Brightwater's data file arrived late; go-live still Aug 4; Brightwater must deliver cleansed product data by June 6. Use only these facts. Keep it under 200 words."
+      },
+      "artifact": {
+        "kind": "summary",
+        "title": "Brightwater Foods Portal Migration: Customer Status Update",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Progress summary"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "Schedule: 18 of 30 weeks elapsed (60%)."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s3",
+                "text": "Tasks: 42 of 56 complete (75%)."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s4",
+                "text": "Budget: $312,000 of $480,000 spent (55%)."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s5",
+                "text": "Milestones"
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Milestone",
+              "Planned",
+              "Current",
+              "Status"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "Data migration"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "Apr 14"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "Apr 14"
+                },
+                {
+                  "id": "r1c4",
+                  "text": "Complete"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "UAT start"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "May 12"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "May 27"
+                },
+                {
+                  "id": "r2c4",
+                  "text": "Delayed"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "Go-live"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "Aug 4"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "Aug 4"
+                },
+                {
+                  "id": "r3c4",
+                  "text": "On track"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s6",
+                "text": "Assessment"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s7",
+                "text": "UAT start slipped because the customer data file arrived late."
+              },
+              {
+                "id": "s8",
+                "text": "With 75% of tasks done and only 60% of time elapsed, the project is behind schedule."
+              },
+              {
+                "id": "s9",
+                "text": "Industry data from the 2024 Fulcrum Index shows migrations of this size average a 3-week slip, so this delay is normal."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s10",
+                "text": "Next steps"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s11",
+                "text": "Brightwater delivers cleansed product data by June 6."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s12",
+                "text": "Go-live remains August 4."
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s4",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "$312,000 / $480,000 = 65%, not 55%. The stated percentage understates spend and hides that budget use is ahead of the 60% schedule elapsed.",
+          "correction": "Budget: $312,000 of $480,000 spent (65%).",
+          "cue": "Recompute every percentage from the two figures beside it."
+        },
+        {
+          "targetId": "s8",
+          "type": "logic",
+          "severity": 3,
+          "explanation": "75% of tasks done against 60% of time elapsed means work is ahead of schedule, not behind. The conclusion contradicts the document's own data and the table showing go-live on track.",
+          "correction": "With 75% of tasks done and 60% of time elapsed, task progress is ahead of schedule.",
+          "cue": "Check that each conclusion points the same direction as the numbers."
+        },
+        {
+          "targetId": "s9",
+          "type": "facts",
+          "severity": 3,
+          "explanation": "The \"2024 Fulcrum Index\" and the 3-week average slip are not in the supplied facts and cannot be traced. The brief said to use only the given facts. Presenting an invented benchmark to a customer harms trust.",
+          "correction": "Delete the sentence, or replace it with a supplied fact: the 15-day slip came from the late data file, and go-live is unchanged.",
+          "cue": "Ask where every benchmark or named source comes from."
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "s3",
+          "looksWrongBecause": "75% is a very round figure and may look estimated rather than calculated.",
+          "fineBecause": "42 / 56 = 0.75 exactly, so 75% is correct."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "s2",
+          "expression": "18/30*100",
+          "stated": 60,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "s3",
+          "expression": "42/56*100",
+          "stated": 75,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "s4",
+          "expression": "312000/480000*100",
+          "stated": 55,
+          "tolerance": 0.5,
+          "isError": true
+        }
+      ],
+      "id": "pool-13108200-21465-l2",
+      "soc": "13-1082.00",
+      "occupation": "Project Management Specialists",
+      "taskId": 21465,
+      "task": "Create project status presentations for delivery to customers or project personnel.",
+      "level": 2
+    },
+    {
+      "brief": {
+        "from": "Dana Ortiz",
+        "role": "Project Manager, Northbeam Software",
+        "ask": "Draft a one-page status summary for Lakeshore Logistics' steering committee on the dispatch platform upgrade. Facts: 58% complete; $312,000 spent of $480,000; go-live slipped from Oct 14 to Nov 4 because the carrier's API credentials arrived Sep 9, not Aug 19. Include a budget-by-phase table and a decision request. Do not share our subcontractor dispute or internal margins, and make no promises beyond what the schedule supports. Under 280 words."
+      },
+      "artifact": {
+        "kind": "summary",
+        "title": "Lakeshore Dispatch Platform Upgrade: Status as of September 30",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Overall status: Amber"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "The project is 58% complete, and $312,000 of the $480,000 budget (65%) has been spent."
+              },
+              {
+                "id": "s3",
+                "text": "Go-live has moved from October 14 to November 4, a four-week slip."
+              },
+              {
+                "id": "s4",
+                "text": "The delay stems from carrier API credentials arriving on September 9 instead of the planned August 19."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s5",
+                "text": "Budget by phase"
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Phase",
+              "Budget",
+              "Spent",
+              "% used"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "Discovery"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "$60,000"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "$58,000"
+                },
+                {
+                  "id": "r1c4",
+                  "text": "97%"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "Build"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "$220,000"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "$160,000"
+                },
+                {
+                  "id": "r2c4",
+                  "text": "73%"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "Integration"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "$120,000"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "$70,000"
+                },
+                {
+                  "id": "r3c4",
+                  "text": "58%"
+                }
+              ],
+              [
+                {
+                  "id": "r4c1",
+                  "text": "Testing"
+                },
+                {
+                  "id": "r4c2",
+                  "text": "$80,000"
+                },
+                {
+                  "id": "r4c3",
+                  "text": "$24,000"
+                },
+                {
+                  "id": "r4c4",
+                  "text": "30%"
+                }
+              ],
+              [
+                {
+                  "id": "r5c1",
+                  "text": "Total"
+                },
+                {
+                  "id": "r5c2",
+                  "text": "$480,000"
+                },
+                {
+                  "id": "r5c3",
+                  "text": "$312,000"
+                },
+                {
+                  "id": "r5c4",
+                  "text": "65%"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s6",
+                "text": "Risks and next steps"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s7",
+                "text": "Build spend is ahead of progress, partly because of rework billed by our subcontractor, Pinecrest Data, which we are disputing."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s8",
+                "text": "Testing has used 30% of its $80,000 budget because most test cycles begin after integration."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s9",
+                "text": "Spend is tracking slightly ahead of progress, so we expect to finish under budget without a change request."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s10",
+                "text": "We guarantee the November 4 go-live, regardless of when the remaining carrier interfaces are delivered."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s11",
+                "text": "Decision needed: approve the revised schedule by October 7."
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s3",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "October 14 to November 4 is 21 days, which is three weeks, not four. This also matches the three-week API credential delay (Aug 19 to Sep 9).",
+          "correction": "Go-live has moved from October 14 to November 4, a three-week slip.",
+          "cue": "Recompute date gaps from the two dates in the sentence."
+        },
+        {
+          "targetId": "s7",
+          "type": "audience",
+          "severity": 3,
+          "explanation": "The brief says not to share the subcontractor dispute. Naming Pinecrest Data and the dispute puts internal information in a customer-facing document.",
+          "correction": "Build spend is ahead of progress; we will review the cause and report at the next meeting.",
+          "cue": "Check each line against the brief's do-not-share list."
+        },
+        {
+          "targetId": "s9",
+          "type": "logic",
+          "severity": 3,
+          "explanation": "Spend is 65% against 58% complete, so cost is running ahead of progress. That points to a likely overrun, not an underrun. Build is also at 73% of budget. The sentence contradicts the document's own data.",
+          "correction": "Spend is running 7 points ahead of progress, so we are monitoring for a possible overrun and will flag any change request early.",
+          "cue": "Compare each conclusion with the figures above it."
+        },
+        {
+          "targetId": "s10",
+          "type": "risk",
+          "severity": 3,
+          "explanation": "An unconditional guarantee of the date, regardless of carrier delivery, goes beyond what the schedule supports. The delay was already caused by late carrier inputs. The wording could create a commitment or liability, so check with the contracts team.",
+          "correction": "We forecast a November 4 go-live, provided the remaining carrier interfaces are delivered on schedule.",
+          "cue": "Replace guarantees with forecasts and stated conditions."
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "s8",
+          "looksWrongBecause": "With the project 58% complete, only 30% of the testing budget used looks suspiciously low.",
+          "fineBecause": "$24,000 / $80,000 = 30%, and the stated reason is plausible: testing is back-loaded after integration."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "s2",
+          "expression": "312000/480000*100",
+          "stated": 65,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "s3",
+          "expression": "(17+4)/7",
+          "stated": 4,
+          "tolerance": 0.1,
+          "isError": true
+        },
+        {
+          "targetId": "r1c4",
+          "expression": "58000/60000*100",
+          "stated": 97,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r2c4",
+          "expression": "160000/220000*100",
+          "stated": 73,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r3c4",
+          "expression": "70000/120000*100",
+          "stated": 58,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r4c4",
+          "expression": "24000/80000*100",
+          "stated": 30,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r5c2",
+          "expression": "60000+220000+120000+80000",
+          "stated": 480000,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "r5c3",
+          "expression": "58000+160000+70000+24000",
+          "stated": 312000,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "r5c4",
+          "expression": "312000/480000*100",
+          "stated": 65,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "s8",
+          "expression": "24000/80000*100",
+          "stated": 30,
+          "tolerance": 0.5,
+          "isError": false
+        }
+      ],
+      "id": "pool-13108200-21465-l3",
+      "soc": "13-1082.00",
+      "occupation": "Project Management Specialists",
+      "taskId": 21465,
+      "task": "Create project status presentations for delivery to customers or project personnel.",
+      "level": 3
+    },
+    {
+      "brief": {
+        "from": "Marisol Quinn",
+        "role": "Operations Manager, Eastbrook Public Library",
+        "ask": "Draft a one-page project plan for the Board of Trustees (non-technical readers: plain language, no technical jargon) for installing 6 self-checkout kiosks by May 12, 2025. Approved budget: $120,000. Costs: kiosks $11,500 each, installation $18,000, training $9,500, software $11,500, contingency $18,000. Kickoff Mar 3, install Apr 14–May 2, training May 5–9. The vendor offers only its standard warranty, no other promises."
+      },
+      "artifact": {
+        "kind": "plan",
+        "title": "Eastbrook Library Self-Checkout Kiosk Plan",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Objective"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "Install self-checkout kiosks at all six Eastbrook Library branches by May 12, 2025, to shorten checkout waits."
+              },
+              {
+                "id": "s3",
+                "text": "Kiosks will connect to the catalog system via SIP2 over TLS 1.2 with LDAP-bound authentication."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s4",
+                "text": "Schedule and Staffing"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s5",
+                "text": "Mar 3: project kickoff; Apr 14–May 2: installation, one branch at a time."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s6",
+                "text": "May 5–9: staff training at every branch; May 12: go-live."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s7",
+                "text": "Staffing: project manager at 50%, one IT technician for three weeks, one trained lead per branch."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s8",
+                "text": "Budget"
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Item",
+              "Cost"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "Kiosks (6 × $11,500)"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "$69,000"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "Installation"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "$18,000"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "Training"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "$9,500"
+                }
+              ],
+              [
+                {
+                  "id": "r4c1",
+                  "text": "Software licenses"
+                },
+                {
+                  "id": "r4c2",
+                  "text": "$11,500"
+                }
+              ],
+              [
+                {
+                  "id": "r5c1",
+                  "text": "Contingency"
+                },
+                {
+                  "id": "r5c2",
+                  "text": "$18,000"
+                }
+              ],
+              [
+                {
+                  "id": "r6c1",
+                  "text": "Total"
+                },
+                {
+                  "id": "r6c2",
+                  "text": "$126,000"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s9",
+                "text": "Contingency of $18,000 is 15% of the $120,000 approved budget."
+              },
+              {
+                "id": "s10",
+                "text": "The plan fits within the approved $120,000 budget."
+              },
+              {
+                "id": "s11",
+                "text": "The vendor guarantees zero downtime and full compliance with patron privacy law."
+              },
+              {
+                "id": "s12",
+                "text": "We will report progress to the Board monthly."
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s3",
+          "type": "audience",
+          "severity": 2,
+          "explanation": "The brief asked for plain language for non-technical Board members. This sentence uses protocol and authentication jargon (SIP2, TLS 1.2, LDAP) they cannot evaluate.",
+          "correction": "Kiosks will connect securely to the existing library catalog so loans are recorded automatically.",
+          "cue": "Check the draft's vocabulary against the reader named in the brief"
+        },
+        {
+          "targetId": "s10",
+          "type": "logic",
+          "severity": 3,
+          "explanation": "The table total is $126,000, which is $6,000 above the $120,000 approved budget (126,000 − 120,000). The conclusion contradicts the document's own figures.",
+          "correction": "The plan exceeds the approved $120,000 budget by $6,000; reduce costs (e.g., contingency) or request Board approval for the extra amount.",
+          "cue": "Compare every 'within budget' claim to the total line"
+        },
+        {
+          "targetId": "s11",
+          "type": "risk",
+          "severity": 3,
+          "explanation": "Guaranteeing zero downtime and full privacy-law compliance is an unsupported absolute. The brief says the vendor offers only its standard warranty, so this could create legal exposure; check with legal.",
+          "correction": "The vendor provides its standard warranty; privacy and uptime terms will be confirmed with counsel before contract signing.",
+          "cue": "Flag absolute guarantees that the source does not contain"
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "s9",
+          "looksWrongBecause": "A contingency of $18,000 seems unusually large for a kiosk installation.",
+          "fineBecause": "18,000 / 120,000 = 15%, exactly as stated, and it matches the contingency figure supplied in the brief."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "r1c2",
+          "expression": "6*11500",
+          "stated": 69000,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "r6c2",
+          "expression": "69000+18000+9500+11500+18000",
+          "stated": 126000,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "s9",
+          "expression": "18000/120000*100",
+          "stated": 15,
+          "tolerance": 0.5,
+          "isError": false
+        }
+      ],
+      "id": "pool-13108200-21466-l2",
+      "soc": "13-1082.00",
+      "occupation": "Project Management Specialists",
+      "taskId": 21466,
+      "task": "Develop or update project plans including information such as objectives, technologies, schedules, funding, and staffing.",
+      "level": 2
+    },
+    {
+      "brief": {
+        "from": "Dana Whitfield",
+        "role": "PMO Lead, Fernhill Logistics",
+        "ask": "Draft a short resource and budget needs plan for moving our regional office to Birch Street, March 3–May 23, 2025 (12 weeks). Use only my figures: movers $18,000, IT cabling $24,000, furniture $31,500, plus 10% contingency on those three; approved budget is $78,000. Staff: project manager 0.5 FTE, two IT technicians for weeks 6–9, facilities coordinator 0.25 FTE. All hourly staff must be paid for every hour worked. Cite no outside sources. Keep it under 200 words."
+      },
+      "artifact": {
+        "kind": "plan",
+        "title": "Fernhill Office Relocation: Resource and Budget Needs",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "This plan sets out the staff and funds needed to move the Fernhill regional office to Birch Street between March 3 and May 23, 2025 (12 weeks)."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "Staffing"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s3",
+                "text": "Project manager: 0.5 FTE for all 12 weeks."
+              },
+              {
+                "id": "s4",
+                "text": "IT technicians: two people for weeks 6–9, covering cabling and workstation setup."
+              },
+              {
+                "id": "s5",
+                "text": "Facilities coordinator: 0.25 FTE for all 12 weeks."
+              },
+              {
+                "id": "s6",
+                "text": "Hourly employees will pack their own desks on the weekend before the move, and this time will not be logged as paid hours."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s7",
+                "text": "Budget"
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Item",
+              "Timing",
+              "Cost"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "Movers"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "Weeks 11–12"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "$18,000"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "IT cabling"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "Weeks 6–8"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "$24,000"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "Furniture"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "Weeks 9–10"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "$31,500"
+                }
+              ],
+              [
+                {
+                  "id": "r4c1",
+                  "text": "Contingency (10%)"
+                },
+                {
+                  "id": "r4c2",
+                  "text": "Reserve"
+                },
+                {
+                  "id": "r4c3",
+                  "text": "$7,350"
+                }
+              ],
+              [
+                {
+                  "id": "r5c1",
+                  "text": "Total"
+                },
+                {
+                  "id": "r5c2",
+                  "text": "All weeks"
+                },
+                {
+                  "id": "r5c3",
+                  "text": "$80,850"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s8",
+                "text": "Contingency is 10% of the three quoted items."
+              },
+              {
+                "id": "s9",
+                "text": "The $80,850 total fits within the approved $78,000 budget, so no additional funding is needed."
+              },
+              {
+                "id": "s10",
+                "text": "Mover rates typically rise 15% in May, according to the 2024 National Relocation Index, so we should lock in the quote now."
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s6",
+          "type": "risk",
+          "severity": 3,
+          "explanation": "Asking hourly employees to pack desks on a weekend without logging paid hours could create wage-and-hour exposure, and it contradicts the brief that all hourly staff are paid for every hour worked. Check with HR/legal.",
+          "correction": "Hourly employees will pack their desks during scheduled paid hours, and any weekend time will be logged and paid.",
+          "cue": "Flag any plan that has hourly staff working unpaid."
+        },
+        {
+          "targetId": "s9",
+          "type": "logic",
+          "severity": 3,
+          "explanation": "The conclusion contradicts the document's own figures. $18,000 + $24,000 + $31,500 = $73,500; plus $7,350 contingency = $80,850, which is $2,850 above the $78,000 budget.",
+          "correction": "The $80,850 total exceeds the approved $78,000 budget by $2,850, so additional funding of $2,850 is needed (or scope must be cut).",
+          "cue": "Compare the total with the budget before accepting a 'within budget' claim."
+        },
+        {
+          "targetId": "s10",
+          "type": "facts",
+          "severity": 2,
+          "explanation": "The 15% May rate increase and the 2024 National Relocation Index are not in the figures Dana supplied, and she asked for no outside sources. The statistic cannot be traced.",
+          "correction": "Remove the statistic and say: Lock in the mover quote now to secure the quoted price.",
+          "cue": "Ask where each statistic or source comes from in the brief."
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "s1",
+          "looksWrongBecause": "March 3 to May 23 may seem like more or less than 12 weeks.",
+          "fineBecause": "March 3, 2025 is a Monday and May 23 is a Friday 11 weeks and 4 days later, so the span covers exactly 12 work weeks."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "r4c3",
+          "expression": "0.1*(18000+24000+31500)",
+          "stated": 7350,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "r5c3",
+          "expression": "18000+24000+31500+7350",
+          "stated": 80850,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "s9",
+          "expression": "18000+24000+31500+0.1*(18000+24000+31500)",
+          "stated": 80850,
+          "tolerance": 1,
+          "isError": false
+        }
+      ],
+      "id": "pool-13108200-21467-l2",
+      "soc": "13-1082.00",
+      "occupation": "Project Management Specialists",
+      "taskId": 21467,
+      "task": "Identify project needs such as resources, staff, or finances by reviewing project objectives and schedules.",
+      "level": 2
+    }
+  ]
+}

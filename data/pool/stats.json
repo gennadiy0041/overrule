@@ -1,0 +1,97 @@
+{
+  "updatedAt": "2026-11-14T21:47:52.279Z",
+  "models": {
+    "claude": "claude-sonnet-5-5",
+    "gemini": "gemini-3.5-flash",
+    "crossCheckFallback": "claude-haiku-5-5"
+  },
+  "perOccupation": [
+    {
+      "soc": "11-2021.00",
+      "occupation": "Marketing Managers",
+      "slots": 15,
+      "accepted": 10,
+      "generated": 51,
+      "rejectedByVerify": 11,
+      "providerErrors": 30,
+      "rejectedByCrossCheck": 0,
+      "crossCheckedBy": {
+        "gemini-3.5-flash": 9,
+        "claude-sonnet-5-5": 1
+      }
+    },
+    {
+      "soc": "13-1161.00",
+      "occupation": "Market Research Analysts and Marketing Specialists",
+      "slots": 10,
+      "accepted": 10,
+      "generated": 15,
+      "rejectedByVerify": 5,
+      "providerErrors": 0,
+      "rejectedByCrossCheck": 0,
+      "crossCheckedBy": {
+        "claude-haiku-5-5": 8,
+        "gemini-3.5-flash": 2
+      }
+    },
+    {
+      "soc": "13-2011.00",
+      "occupation": "Accountants and Auditors",
+      "slots": 10,
+      "accepted": 10,
+      "generated": 17,
+      "rejectedByVerify": 7,
+      "providerErrors": 0,
+      "rejectedByCrossCheck": 0,
+      "crossCheckedBy": {
+        "claude-haiku-5-5": 9,
+        "gemini-3.5-flash": 1
+      }
+    },
+    {
+      "soc": "13-1071.00",
+      "occupation": "Human Resources Specialists",
+      "slots": 10,
+      "accepted": 10,
+      "generated": 21,
+      "rejectedByVerify": 10,
+      "providerErrors": 1,
+      "rejectedByCrossCheck": 0,
+      "crossCheckedBy": {
+        "claude-haiku-5-5": 10
+      }
+    },
+    {
+      "soc": "13-1082.00",
+      "occupation": "Project Management Specialists",
+      "slots": 10,
+      "accepted": 8,
+      "generated": 26,
+      "rejectedByVerify": 6,
+      "providerErrors": 12,
+      "rejectedByCrossCheck": 0,
+      "crossCheckedBy": {
+        "claude-haiku-5-5": 8
+      }
+    },
+    {
+      "soc": "43-4051.00",
+      "occupation": "Customer Service Representatives",
+      "slots": 10,
+      "accepted": 0,
+      "generated": 60,
+      "rejectedByVerify": 0,
+      "providerErrors": 60,
+      "rejectedByCrossCheck": 0,
+      "crossCheckedBy": {}
+    }
+  ],
+  "totals": {
+    "slots": 65,
+    "accepted": 48,
+    "generated": 190,
+    "rejectedByVerify": 39,
+    "providerErrors": 103,
+    "rejectedByCrossCheck": 0
+  }
+}

@@ -1,0 +1,2898 @@
+{
+  "soc": "13-2011.00",
+  "occupation": "Accountants and Auditors",
+  "drills": [
+    {
+      "brief": {
+        "from": "Dana Whitfield",
+        "role": "Internal Audit Manager, Harlan Ridge Supply Co.",
+        "ask": "Draft a one-page report of our Q3 accounts payable audit findings for the audit committee. We randomly sampled 200 invoices totaling $640,000 paid July 1 to September 30. Results: 6 duplicate payments ($14,400), 10 invoices paid without documented approval ($52,000), 4 late payments ($9,600). Total exceptions: 20 invoices, $76,000. We have no external benchmark data, so use only these figures. Include a table, observations and recommendations."
+      },
+      "artifact": {
+        "kind": "report",
+        "title": "Q3 Accounts Payable Audit Findings",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Scope and Results"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "We randomly tested 200 invoices totaling $640,000 paid between July 1 and September 30."
+              },
+              {
+                "id": "s3",
+                "text": "Twenty invoices (15%) contained exceptions totaling $76,000."
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Finding",
+              "Invoices",
+              "Amount",
+              "Share of exception $"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "Duplicate payments"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "6"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "$14,400"
+                },
+                {
+                  "id": "r1c4",
+                  "text": "19%"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "Missing approval"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "10"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "$52,000"
+                },
+                {
+                  "id": "r2c4",
+                  "text": "68%"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "Late payment"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "4"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "$9,600"
+                },
+                {
+                  "id": "r3c4",
+                  "text": "13%"
+                }
+              ],
+              [
+                {
+                  "id": "r4c1",
+                  "text": "Total"
+                },
+                {
+                  "id": "r4c2",
+                  "text": "20"
+                },
+                {
+                  "id": "r4c3",
+                  "text": "$76,000"
+                },
+                {
+                  "id": "r4c4",
+                  "text": "100%"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s4",
+                "text": "Observations"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s5",
+                "text": "Duplicate payments are 30% of exceptions by count but only 19% by dollars."
+              },
+              {
+                "id": "s6",
+                "text": "Missing approvals carry the largest exposure at $52,000."
+              },
+              {
+                "id": "s7",
+                "text": "Peer companies average an 8% exception rate, according to the AICPA Payables Benchmark."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s8",
+                "text": "Recommendations"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s9",
+                "text": "Prioritize late-payment remediation first, since it is the largest source of exposure."
+              },
+              {
+                "id": "s10",
+                "text": "Require documented approval before any invoice is released for payment."
+              },
+              {
+                "id": "s11",
+                "text": "Enable duplicate-invoice matching in the payment system."
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s3",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "20 exceptions out of 200 sampled invoices is 10%, not 15% (20/200 = 0.10).",
+          "correction": "Twenty invoices (10%) contained exceptions totaling $76,000.",
+          "cue": "Recompute any rate from the counts stated in the document"
+        },
+        {
+          "targetId": "s7",
+          "type": "facts",
+          "severity": 3,
+          "explanation": "The brief supplied no external benchmark data and said to use only the given figures. The 'AICPA Payables Benchmark' and its 8% rate cannot be traced and appear invented.",
+          "correction": "Delete the sentence, or state that no external benchmark was available.",
+          "cue": "Ask where every benchmark or outside statistic came from"
+        },
+        {
+          "targetId": "s9",
+          "type": "logic",
+          "severity": 3,
+          "explanation": "Late payments are the smallest category ($9,600, 13%). Missing approvals are the largest ($52,000, 68%). The recommendation contradicts the report's own data.",
+          "correction": "Prioritize enforcing documented approval before payment, since missing approvals are the largest source of exposure.",
+          "cue": "Check that each recommendation targets the biggest finding in the data"
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "s5",
+          "looksWrongBecause": "A 30% share by count and a 19% share by dollars for the same category looks inconsistent.",
+          "fineBecause": "6 of 20 exceptions is 30%, and $14,400 of $76,000 is about 19%. The duplicate invoices were small in value, so the two shares differ."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "s3",
+          "expression": "(6+10+4)/200*100",
+          "stated": 15,
+          "tolerance": 0.5,
+          "isError": true
+        },
+        {
+          "targetId": "s5",
+          "expression": "6/20*100",
+          "stated": 30,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "s5",
+          "expression": "14400/76000*100",
+          "stated": 19,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r1c4",
+          "expression": "14400/76000*100",
+          "stated": 19,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r2c4",
+          "expression": "52000/76000*100",
+          "stated": 68,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r3c4",
+          "expression": "9600/76000*100",
+          "stated": 13,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r4c2",
+          "expression": "6+10+4",
+          "stated": 20,
+          "tolerance": 0,
+          "isError": false
+        },
+        {
+          "targetId": "r4c3",
+          "expression": "14400+52000+9600",
+          "stated": 76000,
+          "tolerance": 1,
+          "isError": false
+        }
+      ],
+      "id": "pool-13201100-21505-l2",
+      "soc": "13-2011.00",
+      "occupation": "Accountants and Auditors",
+      "taskId": 21505,
+      "task": "Prepare detailed reports on audit findings.",
+      "level": 2
+    },
+    {
+      "brief": {
+        "from": "Dana Whitfield",
+        "role": "Senior Internal Auditor",
+        "ask": "Write the Q3 accounts payable audit findings report for the Audit Committee, under 280 words. We sampled 150 of 3,000 invoices: 5 duplicate payments ($18,400), 4 missing approvals ($27,600), 3 missing purchase orders ($9,200). Controller will fix by Dec 15. Do not name employees, and do not draw conclusions about intent or fraud; that is outside this scope. Prioritize by dollar value."
+      },
+      "artifact": {
+        "kind": "report",
+        "title": "Q3 Accounts Payable Audit: Findings Report",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Scope and Results"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "We tested 150 of 3,000 vendor invoices paid in Q3 (5%)."
+              },
+              {
+                "id": "s3",
+                "text": "Exceptions were found in 12 invoices, an error rate of 12%."
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Finding",
+              "Exceptions",
+              "Rate",
+              "Value"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "Duplicate payments"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "5"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "3.3%"
+                },
+                {
+                  "id": "r1c4",
+                  "text": "$18,400"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "Missing approval"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "4"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "2.7%"
+                },
+                {
+                  "id": "r2c4",
+                  "text": "$27,600"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "Missing purchase order"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "3"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "2.0%"
+                },
+                {
+                  "id": "r3c4",
+                  "text": "$9,200"
+                }
+              ],
+              [
+                {
+                  "id": "r4c1",
+                  "text": "Total"
+                },
+                {
+                  "id": "r4c2",
+                  "text": "12"
+                },
+                {
+                  "id": "r4c3",
+                  "text": "8.0%"
+                },
+                {
+                  "id": "r4c4",
+                  "text": "$55,200"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s4",
+                "text": "Observations"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s5",
+                "text": "Missing approvals carried the highest dollar exposure at $27,600, followed by duplicate payments at $18,400."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s6",
+                "text": "Marcus Doyle in Accounts Payable processed the four payments that lacked approval."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s7",
+                "text": "The exceptions are process failures only, and we confirm that no fraud occurred."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s8",
+                "text": "Recommendations"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s9",
+                "text": "Remediate the purchase-order gap first, as it represents the largest share of the exposure."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s10",
+                "text": "Add a second-level approval step for payments above the approval threshold."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s11",
+                "text": "The Controller will complete all fixes by December 15, and Internal Audit will follow up afterward."
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s3",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "12 exceptions out of 150 invoices is 12/150 = 8%, not 12%. The table's own total row shows 8.0%, so the text contradicts it.",
+          "correction": "Exceptions were found in 12 invoices, an error rate of 8%.",
+          "cue": "Recompute any rate from the counts in the same sentence"
+        },
+        {
+          "targetId": "s6",
+          "type": "audience",
+          "severity": 3,
+          "explanation": "The brief says not to name employees. The Audit Committee report names an individual and ties him to the exceptions, which exposes the company and goes against the instruction.",
+          "correction": "Refer to the function only, e.g. 'Four payments processed without approval were traced to the AP approval step.'",
+          "cue": "Check the draft against each 'do not' in the brief"
+        },
+        {
+          "targetId": "s7",
+          "type": "risk",
+          "severity": 3,
+          "explanation": "The brief puts intent and fraud outside the scope. Testing a sample of 150 invoices cannot support a confirmation that no fraud occurred. This is an unsupported absolute claim; check with legal/compliance.",
+          "correction": "Our testing identified control exceptions; it was not designed to assess intent or fraud.",
+          "cue": "Be wary of 'confirm', 'no', 'all' or 'never' in audit conclusions"
+        },
+        {
+          "targetId": "s9",
+          "type": "logic",
+          "severity": 2,
+          "explanation": "The table shows missing purchase orders are the smallest exposure ($9,200 of $55,200). Missing approvals ($27,600) are the largest. Prioritizing the PO gap contradicts the data and the brief's request to prioritize by dollar value.",
+          "correction": "Remediate the missing-approval control first, as it represents the largest share of the exposure ($27,600).",
+          "cue": "Check each recommendation against the table's rankings"
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "r3c3",
+          "looksWrongBecause": "A rate of exactly 2.0% looks too neat and may seem to have been rounded or invented.",
+          "fineBecause": "3 exceptions / 150 invoices = 0.02 = 2.0% exactly."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "s3",
+          "expression": "12/150*100",
+          "stated": 12,
+          "tolerance": 0.5,
+          "isError": true
+        },
+        {
+          "targetId": "s2",
+          "expression": "150/3000*100",
+          "stated": 5,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r1c3",
+          "expression": "5/150*100",
+          "stated": 3.3,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "r2c3",
+          "expression": "4/150*100",
+          "stated": 2.7,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "r3c3",
+          "expression": "3/150*100",
+          "stated": 2,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "r4c3",
+          "expression": "12/150*100",
+          "stated": 8,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "r4c2",
+          "expression": "5+4+3",
+          "stated": 12,
+          "tolerance": 0,
+          "isError": false
+        },
+        {
+          "targetId": "r4c4",
+          "expression": "18400+27600+9200",
+          "stated": 55200,
+          "tolerance": 1,
+          "isError": false
+        }
+      ],
+      "id": "pool-13201100-21505-l3",
+      "soc": "13-2011.00",
+      "occupation": "Accountants and Auditors",
+      "taskId": 21505,
+      "task": "Prepare detailed reports on audit findings.",
+      "level": 3
+    },
+    {
+      "brief": {
+        "from": "Dana Whitlock",
+        "role": "Senior Internal Auditor, Harlan Packaging Co.",
+        "ask": "Write a one-page report to CFO Mark Ellison and the three plant managers on fixed-asset utilization and the year-end asset audit. Data: Dayton used 9,840 of 12,000 machine hours; Reno 7,320 of 12,000; Tulsa 7,400 of 10,000. Audit sampled 40 assets; 3 could not be located. Recommend changes. No external benchmarks were provided. Do not mention the confidential talks about selling the Reno line; plant managers will read this."
+      },
+      "artifact": {
+        "kind": "report",
+        "title": "Fixed Asset Utilization and Audit Results, FY2024",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Summary"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "Machine utilization across the three plants was 72.2% in FY2024."
+              },
+              {
+                "id": "s3",
+                "text": "Reno is the main gap at 61%, which is 15 points below Dayton's 82%."
+              },
+              {
+                "id": "s4",
+                "text": "The industry benchmark of 85%, published by the National Equipment Council, puts all three plants below target."
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Plant",
+              "Hours available",
+              "Hours used",
+              "Utilization"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "Dayton"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "12,000"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "9,840"
+                },
+                {
+                  "id": "r1c4",
+                  "text": "82%"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "Reno"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "12,000"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "7,320"
+                },
+                {
+                  "id": "r2c4",
+                  "text": "61%"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "Tulsa"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "10,000"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "7,400"
+                },
+                {
+                  "id": "r3c4",
+                  "text": "74%"
+                }
+              ],
+              [
+                {
+                  "id": "r4c1",
+                  "text": "Total"
+                },
+                {
+                  "id": "r4c2",
+                  "text": "34,000"
+                },
+                {
+                  "id": "r4c3",
+                  "text": "24,560"
+                },
+                {
+                  "id": "r4c4",
+                  "text": "72.2%"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s5",
+                "text": "Audit results"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s6",
+                "text": "We sampled 40 assets and could not locate 3 (7.5%)."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s7",
+                "text": "Recommendations"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s8",
+                "text": "Move overflow orders from Reno to Tulsa, which has 26 points of unused capacity."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s9",
+                "text": "Hold Reno's line unchanged until the sale talks with Corvane Industries conclude."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s10",
+                "text": "Complete a tag-and-register reconciliation at all plants by March 31."
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s3",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "Dayton is at 82% and Reno at 61%, so the gap is 82 - 61 = 21 percentage points, not 15.",
+          "correction": "Reno is the main gap at 61%, which is 21 points below Dayton's 82%.",
+          "cue": "Recompute every gap from the two figures quoted in the same sentence."
+        },
+        {
+          "targetId": "s4",
+          "type": "facts",
+          "severity": 3,
+          "explanation": "The 85% benchmark and the 'National Equipment Council' were not in the data supplied; the brief says no external benchmarks were provided. It is an untraceable, invented source.",
+          "correction": "Delete the sentence, or state that no external benchmark was available and compare plants only with each other.",
+          "cue": "Trace every cited benchmark or source back to the supplied data."
+        },
+        {
+          "targetId": "s9",
+          "type": "audience",
+          "severity": 3,
+          "explanation": "The brief says not to mention the confidential Reno sale talks because plant managers will read the report. This line discloses them by name.",
+          "correction": "Hold Reno's line unchanged pending a management review of its utilization.",
+          "cue": "Check each line against the stated readers and confidentiality limits."
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "s6",
+          "looksWrongBecause": "3 missing assets out of 40 may seem to be a rounded or inflated percentage.",
+          "fineBecause": "3 / 40 = 0.075, which is exactly 7.5%."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "s3",
+          "expression": "82-61",
+          "stated": 15,
+          "tolerance": 0.5,
+          "isError": true
+        },
+        {
+          "targetId": "s2",
+          "expression": "24560/34000*100",
+          "stated": 72.2,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "r1c4",
+          "expression": "9840/12000*100",
+          "stated": 82,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r2c4",
+          "expression": "7320/12000*100",
+          "stated": 61,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r3c4",
+          "expression": "7400/10000*100",
+          "stated": 74,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r4c2",
+          "expression": "12000+12000+10000",
+          "stated": 34000,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "r4c3",
+          "expression": "9840+7320+7400",
+          "stated": 24560,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "r4c4",
+          "expression": "24560/34000*100",
+          "stated": 72.2,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "s6",
+          "expression": "3/40*100",
+          "stated": 7.5,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "s8",
+          "expression": "100-74",
+          "stated": 26,
+          "tolerance": 0.5,
+          "isError": false
+        }
+      ],
+      "id": "pool-13201100-21506-l2",
+      "soc": "13-2011.00",
+      "occupation": "Accountants and Auditors",
+      "taskId": 21506,
+      "task": "Report to management about asset utilization and audit results, and recommend changes in operations and financial activities.",
+      "level": 2
+    },
+    {
+      "brief": {
+        "from": "Dana Whitfield",
+        "role": "CFO, Halvorsen Packaging Co.",
+        "ask": "Draft a short report to me on FY2024 fixed asset utilization and our physical count, with recommended operational and financial changes. Data: Press Line 1 used 4,800 of 6,000 hrs, NBV $1,450,000; Press Line 2 used 2,700 of 6,000 hrs, NBV $1,100,000, resale est. $700,000; Packaging Line used 3,400 of 4,000 hrs, NBV $620,000. Count: 80 items sampled, 4 not located. We have no peer benchmarks. It is a sample test, so no absolute assurance."
+      },
+      "artifact": {
+        "kind": "report",
+        "title": "FY2024 Fixed Asset Utilization and Count Results",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Summary"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "Production assets were used 68.1% of available hours in FY2024, led by the Packaging Line at 85%."
+              },
+              {
+                "id": "s3",
+                "text": "Press Line 2 is the main concern: 45% utilization on a net book value of $1.10 million."
+              },
+              {
+                "id": "s4",
+                "text": "The physical count located 76 of 80 sampled items, and the 4 missing items (5%) are being traced."
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Asset",
+              "Hours available",
+              "Hours used",
+              "Utilization",
+              "Net book value"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "Press Line 1"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "6,000"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "4,800"
+                },
+                {
+                  "id": "r1c4",
+                  "text": "80.0%"
+                },
+                {
+                  "id": "r1c5",
+                  "text": "$1,450,000"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "Press Line 2"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "6,000"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "2,700"
+                },
+                {
+                  "id": "r2c4",
+                  "text": "45.0%"
+                },
+                {
+                  "id": "r2c5",
+                  "text": "$1,100,000"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "Packaging Line"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "4,000"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "3,400"
+                },
+                {
+                  "id": "r3c4",
+                  "text": "85.0%"
+                },
+                {
+                  "id": "r3c5",
+                  "text": "$620,000"
+                }
+              ],
+              [
+                {
+                  "id": "r4c1",
+                  "text": "Total"
+                },
+                {
+                  "id": "r4c2",
+                  "text": "16,000"
+                },
+                {
+                  "id": "r4c3",
+                  "text": "10,900"
+                },
+                {
+                  "id": "r4c4",
+                  "text": "72.4%"
+                },
+                {
+                  "id": "r4c5",
+                  "text": "$3,170,000"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s5",
+                "text": "Findings"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s6",
+                "text": "Peer plants average 78% utilization, per the Industry Equipment Utilization Index."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s7",
+                "text": "The sample count confirms the fixed asset register is fully accurate and no assets are misstated."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s8",
+                "text": "Selling Press Line 2 at the estimated $700,000 would record a $400,000 loss against book value."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s9",
+                "text": "Recommendations"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s10",
+                "text": "Approve a $900,000 third press line to add capacity ahead of next year's demand."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s11",
+                "text": "Evaluate sale or redeployment of Press Line 2 and test it for impairment before year-end."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s12",
+                "text": "Trace the four missing items by March 31 and update the register."
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "r4c4",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "Total utilization is total hours used divided by total hours available: 10,900 / 16,000 = 68.1%, not 72.4%. The summary paragraph (s2) already states 68.1%, so the table contradicts the text.",
+          "correction": "68.1%",
+          "cue": "Recompute totals and ratios from the table's own columns and compare with the text."
+        },
+        {
+          "targetId": "s6",
+          "type": "facts",
+          "severity": 3,
+          "explanation": "The 78% peer average and the named index are not in the data supplied; the brief says no peer benchmarks are available. This is an invented source that management could rely on.",
+          "correction": "Remove the benchmark, or state that no peer benchmark data is available for comparison.",
+          "cue": "Ask where every benchmark or named source came from."
+        },
+        {
+          "targetId": "s7",
+          "type": "risk",
+          "severity": 3,
+          "explanation": "A sample test of 80 items cannot confirm the register is fully accurate or that nothing is misstated, and 4 of 80 items were not located. This absolute assurance overstates the audit work and could create exposure; the brief also asked for no absolute assurance.",
+          "correction": "The sample count located 76 of 80 items; the 4 missing items are being traced, and the results do not provide absolute assurance over the full register.",
+          "cue": "Flag absolute assurance language drawn from sample-based work."
+        },
+        {
+          "targetId": "s10",
+          "type": "logic",
+          "severity": 3,
+          "explanation": "Buying a $900,000 third press line contradicts the table: Press Line 2 is used only 45% of hours (2,700 of 6,000) and is a candidate for sale, and press capacity is clearly not the constraint. The recommendation also conflicts with s11.",
+          "correction": "Defer new press capacity until Press Line 2's idle hours are redeployed or the asset is sold.",
+          "cue": "Check that each recommendation fits the report's own utilization data."
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "s8",
+          "looksWrongBecause": "A $400,000 loss on selling a line that is still in service looks large and the round figure looks suspicious.",
+          "fineBecause": "Net book value is $1,100,000 and the estimated sale price is $700,000, so the loss is 1,100,000 − 700,000 = $400,000."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "s2",
+          "expression": "10900/16000*100",
+          "stated": 68.1,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "s2",
+          "expression": "3400/4000*100",
+          "stated": 85,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "s3",
+          "expression": "2700/6000*100",
+          "stated": 45,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "s3",
+          "expression": "1100000/1000000",
+          "stated": 1.1,
+          "tolerance": 0.005,
+          "isError": false
+        },
+        {
+          "targetId": "s4",
+          "expression": "80-4",
+          "stated": 76,
+          "tolerance": 0,
+          "isError": false
+        },
+        {
+          "targetId": "s4",
+          "expression": "4/80*100",
+          "stated": 5,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "r1c4",
+          "expression": "4800/6000*100",
+          "stated": 80,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "r2c4",
+          "expression": "2700/6000*100",
+          "stated": 45,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "r3c4",
+          "expression": "3400/4000*100",
+          "stated": 85,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "r4c2",
+          "expression": "6000+6000+4000",
+          "stated": 16000,
+          "tolerance": 0,
+          "isError": false
+        },
+        {
+          "targetId": "r4c3",
+          "expression": "4800+2700+3400",
+          "stated": 10900,
+          "tolerance": 0,
+          "isError": false
+        },
+        {
+          "targetId": "r4c4",
+          "expression": "10900/16000*100",
+          "stated": 72.4,
+          "tolerance": 0.05,
+          "isError": true
+        },
+        {
+          "targetId": "r4c5",
+          "expression": "1450000+1100000+620000",
+          "stated": 3170000,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "s8",
+          "expression": "1100000-700000",
+          "stated": 400000,
+          "tolerance": 1,
+          "isError": false
+        }
+      ],
+      "id": "pool-13201100-21506-l3",
+      "soc": "13-2011.00",
+      "occupation": "Accountants and Auditors",
+      "taskId": 21506,
+      "task": "Report to management about asset utilization and audit results, and recommend changes in operations and financial activities.",
+      "level": 3
+    },
+    {
+      "brief": {
+        "from": "Dana Whitcomb",
+        "role": "Internal Audit Manager, Corvane Freight",
+        "ask": "Draft a short email from me to our CFO, Marcus Lee, summarizing our access review of the PayCore payroll system. Facts: 240 user accounts; 18 belonged to terminated employees; 14 users could both change pay rates and approve payroll runs; 3 of 60 sampled bank-detail changes had no documented approval. Marcus is not technical, so use plain business language with no IT jargon. Give three recommended actions. Keep it under 200 words."
+      },
+      "artifact": {
+        "kind": "email",
+        "title": "Payroll system access review: results and next steps",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "subject",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Subject: Payroll system access review: results and next steps"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "Marcus,"
+              },
+              {
+                "id": "s3",
+                "text": "We finished the access review of the PayCore payroll system and found three issues that need your attention."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s4",
+                "text": "What we found"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s5",
+                "text": "18 of 240 user accounts (9%) belonged to employees who had already left the company."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s6",
+                "text": "14 users (5.8%) could both change pay rates and approve payroll runs, which removes a key check."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s7",
+                "text": "3 of 60 sampled bank-detail changes (5%) had no documented approval."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s8",
+                "text": "The underlying cause is orphaned RBAC provisioning, with no compensating UAR evidence in the SoD matrix."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s9",
+                "text": "Recommended actions"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s10",
+                "text": "Disable the 18 accounts immediately, and have HR notify IT of departures within one business day."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s11",
+                "text": "Separate rate-change and approval duties so no single user holds both."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s12",
+                "text": "Require a second approver for every bank-detail change."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s13",
+                "text": "Once these steps are in place, payroll fraud will be impossible."
+              },
+              {
+                "id": "s14",
+                "text": "I can walk you through the details this week."
+              },
+              {
+                "id": "s15",
+                "text": "Dana"
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s5",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "18 of 240 is 7.5%, not 9%. 18/240 = 0.075.",
+          "correction": "18 of 240 user accounts (7.5%) belonged to employees who had already left the company.",
+          "cue": "Recompute every percentage from the two counts in the sentence."
+        },
+        {
+          "targetId": "s8",
+          "type": "audience",
+          "severity": 2,
+          "explanation": "The brief says the CFO is not technical and asked for plain business language with no IT jargon. RBAC, UAR and SoD matrix are unexplained jargon.",
+          "correction": "The underlying cause is that access was not removed or reviewed when people changed roles or left, and nobody checked the access list regularly.",
+          "cue": "Check the draft's wording against the reader named in the brief."
+        },
+        {
+          "targetId": "s13",
+          "type": "risk",
+          "severity": 3,
+          "explanation": "An absolute guarantee that fraud will be impossible is unsupported. The controls reduce risk but cannot eliminate it, and a promise like this could create exposure if fraud later occurs.",
+          "correction": "Once these steps are in place, the risk of payroll fraud will be substantially reduced.",
+          "cue": "Flag words like impossible, guaranteed and never."
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "s7",
+          "looksWrongBecause": "5% looks like a very small share, and a sample of 60 seems too small and neat to be significant.",
+          "fineBecause": "3 of 60 is exactly 5%, matching the brief, and any unapproved bank-detail change is a real control failure."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "s5",
+          "expression": "18/240*100",
+          "stated": 9,
+          "tolerance": 0.5,
+          "isError": true
+        },
+        {
+          "targetId": "s6",
+          "expression": "14/240*100",
+          "stated": 5.8,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "s7",
+          "expression": "3/60*100",
+          "stated": 5,
+          "tolerance": 0.5,
+          "isError": false
+        }
+      ],
+      "id": "pool-13201100-21511-l2",
+      "soc": "13-2011.00",
+      "occupation": "Accountants and Auditors",
+      "taskId": 21511,
+      "task": "Examine and evaluate financial and information systems, recommending controls to ensure system reliability and data integrity.",
+      "level": 2
+    },
+    {
+      "brief": {
+        "from": "Marcus Delgado",
+        "role": "Internal Audit Manager, Corvane Foods",
+        "ask": "Write a one-page Audit Committee summary of our Ledgerline ERP controls review (Jan 1–Jun 30, 2025). Data: 412 changes, 60 sampled; 9 lacked approval required by Policy IT-14; 4 were approved by the deploying developer. 52 nightly interface batches tested, 3 out of balance ($7,200, $6,900, $4,300). 25 terminated users tested, 2 kept access beyond 5 business days. No employee names; no outside benchmarks; don't overstate assurance."
+      },
+      "artifact": {
+        "kind": "report",
+        "title": "Ledgerline ERP Controls Review: Findings for the Audit Committee",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Scope"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "We reviewed Ledgerline ERP general IT controls for January 1 to June 30, 2025."
+              },
+              {
+                "id": "s3",
+                "text": "We sampled 60 of 412 production changes, tested 52 nightly interface batches and checked 25 terminated-user accounts."
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Control tested",
+              "Sample",
+              "Exceptions",
+              "Rate"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "Change approval (Policy IT-14)"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "60"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "9"
+                },
+                {
+                  "id": "r1c4",
+                  "text": "15.0%"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "Developer self-approval"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "60"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "4"
+                },
+                {
+                  "id": "r2c4",
+                  "text": "6.7%"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "Interface reconciliation"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "52"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "3"
+                },
+                {
+                  "id": "r3c4",
+                  "text": "5.8%"
+                }
+              ],
+              [
+                {
+                  "id": "r4c1",
+                  "text": "Access removal within 5 business days"
+                },
+                {
+                  "id": "r4c2",
+                  "text": "25"
+                },
+                {
+                  "id": "r4c3",
+                  "text": "2"
+                },
+                {
+                  "id": "r4c4",
+                  "text": "8.0%"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s4",
+                "text": "Findings"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s5",
+                "text": "Nine sampled changes were deployed without the documented approval that Policy IT-14 requires."
+              },
+              {
+                "id": "s6",
+                "text": "Four changes were approved by the same developer who deployed them, a segregation-of-duties weakness."
+              },
+              {
+                "id": "s7",
+                "text": "Self-approval affected 4 of 60 sampled changes, about 10%."
+              },
+              {
+                "id": "s8",
+                "text": "Three interface batches were out of balance, totaling $18,400 ($7,200, $6,900 and $4,300)."
+              },
+              {
+                "id": "s9",
+                "text": "The 15% approval exception rate is well above the 3% benchmark in the Global IT Controls Index."
+              },
+              {
+                "id": "s10",
+                "text": "Two terminated users kept system access beyond five business days."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s11",
+                "text": "Recommendations"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s12",
+                "text": "Defer enforcement of the system approval workflow to next year and fix access removal first, since it has the highest exception rate."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s13",
+                "text": "Remove deployment rights from anyone who approves their own change."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s14",
+                "text": "Add a daily reconciliation sign-off for every interface batch."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s15",
+                "text": "Once these controls are in place, Ledgerline data integrity will be guaranteed and no unauthorized change can occur."
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s7",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "4 of 60 is 6.7%, not about 10%. The table in the same document shows 6.7% for self-approval, so the sentence contradicts it.",
+          "correction": "Self-approval affected 4 of 60 sampled changes, about 7%.",
+          "cue": "Recompute any percentage from the two counts in the sentence and match it to the table."
+        },
+        {
+          "targetId": "s9",
+          "type": "facts",
+          "severity": 3,
+          "explanation": "The 3% benchmark and the 'Global IT Controls Index' were not supplied in the brief, which said to use no outside benchmarks. The source cannot be traced and may be invented.",
+          "correction": "Delete the sentence, or compare the rate only to Policy IT-14, which requires approval for all changes.",
+          "cue": "Ask where every benchmark or index came from before it goes to a committee."
+        },
+        {
+          "targetId": "s12",
+          "type": "logic",
+          "severity": 3,
+          "explanation": "The table shows access removal at 8.0%, below change approval at 15.0%. The recommendation says access removal has the highest rate and defers the largest exception area, which contradicts the data.",
+          "correction": "Enforce the system approval workflow first, because change approval has the highest exception rate (15.0%). Then fix access removal.",
+          "cue": "Check that every priority ranking matches the rates in the table."
+        },
+        {
+          "targetId": "s15",
+          "type": "risk",
+          "severity": 3,
+          "explanation": "This is an absolute assurance claim. Controls reduce risk but cannot guarantee data integrity or rule out every unauthorized change. The brief said not to overstate assurance, and an audit committee could rely on it.",
+          "correction": "Once these controls are in place and operating effectively, the risk of unauthorized changes and data integrity errors should be reduced.",
+          "cue": "Flag words like 'guaranteed' and 'no ... can occur' in assurance statements."
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "r3c4",
+          "looksWrongBecause": "3 of 52 looks like it should be about 5.7%, so 5.8% may seem miscalculated.",
+          "fineBecause": "3/52 = 5.769%, which rounds to 5.8% at one decimal."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "s7",
+          "expression": "4/60*100",
+          "stated": 10,
+          "tolerance": 0.5,
+          "isError": true
+        },
+        {
+          "targetId": "r1c4",
+          "expression": "9/60*100",
+          "stated": 15,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "r2c4",
+          "expression": "4/60*100",
+          "stated": 6.7,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "r3c4",
+          "expression": "3/52*100",
+          "stated": 5.8,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "r4c4",
+          "expression": "2/25*100",
+          "stated": 8,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "s8",
+          "expression": "7200+6900+4300",
+          "stated": 18400,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "s9",
+          "expression": "9/60*100",
+          "stated": 15,
+          "tolerance": 0.5,
+          "isError": false
+        }
+      ],
+      "id": "pool-13201100-21511-l3",
+      "soc": "13-2011.00",
+      "occupation": "Accountants and Auditors",
+      "taskId": 21511,
+      "task": "Examine and evaluate financial and information systems, recommending controls to ensure system reliability and data integrity.",
+      "level": 3
+    },
+    {
+      "brief": {
+        "from": "Dana Whitfield",
+        "role": "Controller, Brightwater Garden Centers",
+        "ask": "Write a findings memo for me on our refund review. We tested 40 refunds in each of 4 stores. Exceptions (no manager approval or no receipt): Maple 2, Oak 6, Pine 3, Cedar 9. I interviewed 8 cashiers; 5 said approvals were skipped when lines were long. Under 200 words, plain language, no employee names, three recommendations."
+      },
+      "artifact": {
+        "kind": "report",
+        "title": "Refund Controls Review: Brightwater Garden Centers",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Scope"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "We tested 40 refunds at each of four stores, 160 in total."
+              },
+              {
+                "id": "s3",
+                "text": "An exception is a refund missing manager approval or a receipt."
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Store",
+              "Refunds tested",
+              "Exceptions",
+              "Exception rate"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "Maple"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "40"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "2"
+                },
+                {
+                  "id": "r1c4",
+                  "text": "5.0%"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "Oak"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "40"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "6"
+                },
+                {
+                  "id": "r2c4",
+                  "text": "15.0%"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "Pine"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "40"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "3"
+                },
+                {
+                  "id": "r3c4",
+                  "text": "7.5%"
+                }
+              ],
+              [
+                {
+                  "id": "r4c1",
+                  "text": "Cedar"
+                },
+                {
+                  "id": "r4c2",
+                  "text": "40"
+                },
+                {
+                  "id": "r4c3",
+                  "text": "9"
+                },
+                {
+                  "id": "r4c4",
+                  "text": "22.5%"
+                }
+              ],
+              [
+                {
+                  "id": "r5c1",
+                  "text": "Total"
+                },
+                {
+                  "id": "r5c2",
+                  "text": "160"
+                },
+                {
+                  "id": "r5c3",
+                  "text": "20"
+                },
+                {
+                  "id": "r5c4",
+                  "text": "12.5%"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s4",
+                "text": "Findings"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s5",
+                "text": "Exceptions totaled 20 of 160 refunds (12.5%)."
+              },
+              {
+                "id": "s6",
+                "text": "Cedar had the highest rate at 22.5%, more than four times Maple's 5.0%."
+              },
+              {
+                "id": "s7",
+                "text": "Five of eight cashiers interviewed (62.5%) said approvals were skipped when lines were long."
+              },
+              {
+                "id": "s8",
+                "text": "Carla Nguyen at Cedar told us she approves refunds herself when the manager is busy."
+              },
+              {
+                "id": "s9",
+                "text": "The Cedar results prove that cashiers there are stealing cash."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s10",
+                "text": "Recommendations"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s11",
+                "text": "Start retraining at Maple, where exceptions were most frequent."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s12",
+                "text": "Require a system-enforced manager approval code for every refund over $50."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s13",
+                "text": "Re-test 40 refunds per store in 90 days."
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s8",
+          "type": "audience",
+          "severity": 2,
+          "explanation": "The brief said no employee names, yet the memo names a cashier and attributes an admission of skipped controls to her.",
+          "correction": "Carla Nguyen is not named: \"One Cedar cashier said she approves refunds herself when the manager is busy.\"",
+          "cue": "Check the draft against every formatting or confidentiality instruction in the ask"
+        },
+        {
+          "targetId": "s9",
+          "type": "risk",
+          "severity": 3,
+          "explanation": "Missing approvals or receipts show control weakness, not theft. Stating that cashiers are stealing is an unsupported accusation that could create legal and HR exposure; check with legal/HR.",
+          "correction": "The high Cedar exception rate indicates weak approval controls and warrants further investigation.",
+          "cue": "Control gaps are not proof of misconduct; flag accusations the evidence cannot support"
+        },
+        {
+          "targetId": "s11",
+          "type": "logic",
+          "severity": 2,
+          "explanation": "Maple had the fewest exceptions (2 of 40, 5.0%), the lowest rate. Retraining should start at Cedar (9 of 40, 22.5%), which contradicts the memo's own table.",
+          "correction": "Start retraining at Cedar, where exceptions were most frequent.",
+          "cue": "Check each recommendation against the table's best and worst performers"
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "s6",
+          "looksWrongBecause": "\"More than four times\" sounds like an exaggerated comparison between two stores.",
+          "fineBecause": "22.5% divided by 5.0% is 4.5, which is more than four times."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "s2",
+          "expression": "40*4",
+          "stated": 160,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r1c4",
+          "expression": "2/40*100",
+          "stated": 5,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "r2c4",
+          "expression": "6/40*100",
+          "stated": 15,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "r3c4",
+          "expression": "3/40*100",
+          "stated": 7.5,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "r4c4",
+          "expression": "9/40*100",
+          "stated": 22.5,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "r5c2",
+          "expression": "40+40+40+40",
+          "stated": 160,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r5c3",
+          "expression": "2+6+3+9",
+          "stated": 20,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r5c4",
+          "expression": "20/160*100",
+          "stated": 12.5,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "s5",
+          "expression": "20/160*100",
+          "stated": 12.5,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "s7",
+          "expression": "5/8*100",
+          "stated": 62.5,
+          "tolerance": 0.05,
+          "isError": false
+        }
+      ],
+      "id": "pool-13201100-21513-l2",
+      "soc": "13-2011.00",
+      "occupation": "Accountants and Auditors",
+      "taskId": 21513,
+      "task": "Examine records and interview workers to ensure recording of transactions and compliance with laws and regulations.",
+      "level": 2
+    },
+    {
+      "brief": {
+        "from": "Priya Nandakumar",
+        "role": "Internal Audit Manager, Larkspur Tool & Supply",
+        "ask": "Draft an email to CFO Dana Whitfield on our Q1 expense report testing. Sampled 60 of 480 reports: Denver 20 (3 exceptions), Tulsa 25 (2), Boise 15 (4). Exception dollars: missing receipts $2,140, over per diem $1,310, personal charges $780. Policy: receipts required over $25. Of 8 staff interviewed, 5 said approvers skip receipt checks. She forwards it to branch managers, so no employee names. No outside benchmarks. Include next steps."
+      },
+      "artifact": {
+        "kind": "email",
+        "title": "Q1 Expense Report Testing: Exceptions and Next Steps",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "subject",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Subject: Q1 expense report testing: exceptions and next steps"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "Dana,"
+              },
+              {
+                "id": "s3",
+                "text": "We tested 60 of 480 Q1 employee expense reports (12.5%) across three branches and found exceptions in 9 of them (15%)."
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Branch",
+              "Reports tested",
+              "Exceptions",
+              "Exception rate"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "Denver"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "20"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "3"
+                },
+                {
+                  "id": "r1c4",
+                  "text": "15%"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "Tulsa"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "25"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "2"
+                },
+                {
+                  "id": "r2c4",
+                  "text": "8%"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "Boise"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "15"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "4"
+                },
+                {
+                  "id": "r3c4",
+                  "text": "27%"
+                }
+              ],
+              [
+                {
+                  "id": "r4c1",
+                  "text": "Total"
+                },
+                {
+                  "id": "r4c2",
+                  "text": "60"
+                },
+                {
+                  "id": "r4c3",
+                  "text": "9"
+                },
+                {
+                  "id": "r4c4",
+                  "text": "15%"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s4",
+                "text": "Exceptions totaled $4,320 in three categories:"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s5",
+                "text": "Missing receipts for expenses over the $25 policy threshold: $2,140."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s6",
+                "text": "Per diem amounts above the approved daily rate: $1,310."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s7",
+                "text": "Personal charges submitted for reimbursement: $780."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s8",
+                "text": "We also interviewed 8 staff members, and 5 said approvers sometimes sign reports without checking receipts."
+              },
+              {
+                "id": "s9",
+                "text": "Marcus Bell, the Boise approver, confirmed he signs reports in batches at month end."
+              },
+              {
+                "id": "s10",
+                "text": "Our overall exception rate is well above the 4% industry benchmark published by the National Expense Review Council."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s11",
+                "text": "Next steps"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s12",
+                "text": "Require approvers to attest that receipts were reviewed before sign-off."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s13",
+                "text": "Because Boise has the highest exception rate, cut its sample next quarter and focus testing on Tulsa, the lowest-rate branch."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s14",
+                "text": "We will report Q2 results by July 15."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s15",
+                "text": "Priya"
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s4",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "The three category amounts do not sum to the stated total: $2,140 + $1,310 + $780 = $4,230, not $4,320 (digits transposed).",
+          "correction": "Exceptions totaled $4,230 in three categories:",
+          "cue": "Add up the listed components and compare with the stated total."
+        },
+        {
+          "targetId": "s9",
+          "type": "audience",
+          "severity": 3,
+          "explanation": "The brief says the email is forwarded to branch managers, so no employee names. Naming the Boise approver and his admission exposes an individual and ignores the instruction.",
+          "correction": "Remove the name: \"The Boise approver confirmed that reports are signed in batches at month end.\" Or drop the sentence.",
+          "cue": "Check the brief's distribution and confidentiality limits before keeping any name."
+        },
+        {
+          "targetId": "s10",
+          "type": "facts",
+          "severity": 2,
+          "explanation": "The 4% benchmark and the named council are not in the data supplied, and the brief said no outside benchmarks. The source cannot be traced.",
+          "correction": "Delete the sentence, or state only the internal 15% rate.",
+          "cue": "Ask where every benchmark or outside source came from."
+        },
+        {
+          "targetId": "s13",
+          "type": "logic",
+          "severity": 3,
+          "explanation": "The table shows Boise has the highest exception rate (27%), yet the recommendation cuts its sample and moves effort to the lowest-rate branch. This contradicts the data and the audit goal.",
+          "correction": "Because Boise has the highest exception rate, increase its sample next quarter and keep testing the other branches.",
+          "cue": "Check that each recommendation follows the direction of the table."
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "r3c4",
+          "looksWrongBecause": "27% is a rounded figure and looks high compared with the other branches, so a reader may suspect an error.",
+          "fineBecause": "4 exceptions out of 15 reports is 26.67%, which rounds to 27%. It is correct and is the highest rate."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "s3",
+          "expression": "60/480*100",
+          "stated": 12.5,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "s3",
+          "expression": "9/60*100",
+          "stated": 15,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r1c4",
+          "expression": "3/20*100",
+          "stated": 15,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r2c4",
+          "expression": "2/25*100",
+          "stated": 8,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r3c4",
+          "expression": "4/15*100",
+          "stated": 27,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r4c2",
+          "expression": "20+25+15",
+          "stated": 60,
+          "tolerance": 0,
+          "isError": false
+        },
+        {
+          "targetId": "r4c3",
+          "expression": "3+2+4",
+          "stated": 9,
+          "tolerance": 0,
+          "isError": false
+        },
+        {
+          "targetId": "r4c4",
+          "expression": "9/60*100",
+          "stated": 15,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "s4",
+          "expression": "2140+1310+780",
+          "stated": 4320,
+          "tolerance": 1,
+          "isError": true
+        }
+      ],
+      "id": "pool-13201100-21513-l3",
+      "soc": "13-2011.00",
+      "occupation": "Accountants and Auditors",
+      "taskId": 21513,
+      "task": "Examine records and interview workers to ensure recording of transactions and compliance with laws and regulations.",
+      "level": 3
+    },
+    {
+      "brief": {
+        "from": "Maria Ortega",
+        "role": "Controller, Juniper Ridge Outfitters",
+        "ask": "Set up a four-digit chart of accounts for our new Denver store and assign four opening entries: shelving $12,400 (10-year life, on credit), inventory $30,000 (on credit), lease deposit $6,000 (cash), grand-opening ads $2,500 (cash). Keep it under 200 words, for the store manager."
+      },
+      "artifact": {
+        "kind": "plan",
+        "title": "Chart of Accounts Setup: Denver Store",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Account structure"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "We use four-digit codes: 1000s assets, 2000s liabilities, 3000s equity, 4000s revenue, 5000s cost of sales, 6000s operating expenses."
+              },
+              {
+                "id": "s3",
+                "text": "GAAP requires retailers to number accounts in four digits, so this format is mandatory."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s4",
+                "text": "Opening entries"
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Entry",
+              "Amount",
+              "Debit",
+              "Credit"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "Display shelving (10-year life)"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "$12,400"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "6300 Repairs Expense"
+                },
+                {
+                  "id": "r1c4",
+                  "text": "2000 Accounts Payable"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "Opening inventory"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "$30,000"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "1200 Inventory"
+                },
+                {
+                  "id": "r2c4",
+                  "text": "2000 Accounts Payable"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "Lease security deposit"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "$6,000"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "1300 Security Deposits"
+                },
+                {
+                  "id": "r3c4",
+                  "text": "1000 Cash"
+                }
+              ],
+              [
+                {
+                  "id": "r4c1",
+                  "text": "Grand opening advertising"
+                },
+                {
+                  "id": "r4c2",
+                  "text": "$2,500"
+                },
+                {
+                  "id": "r4c3",
+                  "text": "6200 Advertising Expense"
+                },
+                {
+                  "id": "r4c4",
+                  "text": "1000 Cash"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s5",
+                "text": "Entries 1 and 2 create $42,400 in accounts payable."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s6",
+                "text": "Controls"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s7",
+                "text": "The bookkeeper may post entries and reconcile the bank account, so no second review is needed."
+              },
+              {
+                "id": "s8",
+                "text": "Each entry needs an invoice or receipt on file before posting."
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s3",
+          "type": "facts",
+          "severity": 2,
+          "explanation": "GAAP does not prescribe account numbering. Four-digit codes are a company design choice, so calling them a GAAP requirement is an invented rule.",
+          "correction": "Say the four-digit format is our internal standard, chosen for consistency.",
+          "cue": "Check that any cited rule or standard really exists."
+        },
+        {
+          "targetId": "r1c3",
+          "type": "logic",
+          "severity": 3,
+          "explanation": "The table states the shelving has a 10-year life and costs $12,400. It is a long-lived asset and should be capitalized and depreciated, not expensed as repairs. That would understate assets and profit.",
+          "correction": "Debit 1500 Furniture and Fixtures.",
+          "cue": "Match each account to the item's useful life and nature."
+        },
+        {
+          "targetId": "s7",
+          "type": "risk",
+          "severity": 3,
+          "explanation": "One person posting entries and reconciling the bank account removes segregation of duties and a second review. This raises fraud and error risk and could be an internal control weakness.",
+          "correction": "Have a different person reconcile the bank account, and require review of entries before posting.",
+          "cue": "Look for one person controlling both recording and reconciling."
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "r3c3",
+          "looksWrongBecause": "A lease-related payment is debited to an asset account, not an expense, which may look like misclassification.",
+          "fineBecause": "A refundable security deposit is a receivable-type asset, not rent expense, until it is forfeited or applied to rent."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "s5",
+          "expression": "12400+30000",
+          "stated": 42400,
+          "tolerance": 1,
+          "isError": false
+        }
+      ],
+      "id": "pool-13201100-21517-l2",
+      "soc": "13-2011.00",
+      "occupation": "Accountants and Auditors",
+      "taskId": 21517,
+      "task": "Establish tables of accounts and assign entries to proper accounts.",
+      "level": 2
+    },
+    {
+      "brief": {
+        "from": "Dana Whitfield",
+        "role": "Controller, Pinecrest Outdoor Supply",
+        "ask": "Set up a short chart of accounts for our new retail line (1000s assets, 2000s liabilities, 4000s revenue, 6000s expenses) and map four March transactions: shelving $4,800 paid cash (5-year life), inventory $12,500 on account, $3,000 customer deposit for an undelivered custom order, 12-month insurance $2,400 paid. It goes to our outside bookkeeping firm, which serves other clients: do not mention vendor rebates or pricing terms. Under 280 words."
+      },
+      "artifact": {
+        "kind": "plan",
+        "title": "Pinecrest Retail Line: Account Setup and March Entry Mapping",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Below is the proposed account structure for the new retail line and the March entries assigned to it."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "1000s Assets: 1000 Cash, 1200 Inventory, 1300 Prepaid Insurance, 1500 Store Fixtures."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s3",
+                "text": "2000s Liabilities: 2000 Accounts Payable, 2200 Customer Deposits."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s4",
+                "text": "4000s Revenue: 4000 Retail Sales."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s5",
+                "text": "6000s Expenses: 6100 Insurance Expense, 6200 Depreciation Expense."
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Date",
+              "Transaction",
+              "Amount",
+              "Debit",
+              "Credit"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "Mar 3"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "Display shelving, paid cash"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "$4,800"
+                },
+                {
+                  "id": "r1c4",
+                  "text": "1500 Store Fixtures"
+                },
+                {
+                  "id": "r1c5",
+                  "text": "1000 Cash"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "Mar 8"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "Inventory received on account"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "$12,500"
+                },
+                {
+                  "id": "r2c4",
+                  "text": "1200 Inventory"
+                },
+                {
+                  "id": "r2c5",
+                  "text": "2000 Accounts Payable"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "Mar 12"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "Deposit, undelivered custom order"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "$3,000"
+                },
+                {
+                  "id": "r3c4",
+                  "text": "1000 Cash"
+                },
+                {
+                  "id": "r3c5",
+                  "text": "2200 Customer Deposits"
+                }
+              ],
+              [
+                {
+                  "id": "r4c1",
+                  "text": "Mar 20"
+                },
+                {
+                  "id": "r4c2",
+                  "text": "12-month insurance premium"
+                },
+                {
+                  "id": "r4c3",
+                  "text": "$2,400"
+                },
+                {
+                  "id": "r4c4",
+                  "text": "1300 Prepaid Insurance"
+                },
+                {
+                  "id": "r4c5",
+                  "text": "1000 Cash"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s6",
+                "text": "The four entries total $22,700."
+              },
+              {
+                "id": "s7",
+                "text": "The $3,000 deposit is recorded as a liability, not revenue, even though cash was received, because the order has not been delivered."
+              },
+              {
+                "id": "s8",
+                "text": "Shelving depreciates straight-line over five years, or $960 per year."
+              },
+              {
+                "id": "s9",
+                "text": "The premium is released to 6100 Insurance Expense at $240 per month."
+              },
+              {
+                "id": "s10",
+                "text": "Cedar Ridge Mills' confidential volume rebate will reduce inventory cost once it is credited."
+              },
+              {
+                "id": "s11",
+                "text": "Following this mapping is guaranteed to satisfy auditors and tax authorities without further documentation."
+              },
+              {
+                "id": "s12",
+                "text": "Please confirm the account numbers before posting."
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s9",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "The table shows a $2,400 premium covering 12 months, so monthly expense is 2,400 / 12 = $200, not $240. $240 would fully expense the premium in 10 months.",
+          "correction": "The premium is released to 6100 Insurance Expense at $200 per month.",
+          "cue": "Recompute per-period amounts from the total and term shown in the table."
+        },
+        {
+          "targetId": "s10",
+          "type": "audience",
+          "severity": 3,
+          "explanation": "The brief says the memo goes to an outside bookkeeping firm that serves other clients and must not mention vendor rebates or pricing terms. This sentence discloses a confidential rebate arrangement.",
+          "correction": "Delete the sentence; record inventory at the invoice amount of $12,500.",
+          "cue": "Check the brief's confidentiality limits against who will actually receive the document."
+        },
+        {
+          "targetId": "s11",
+          "type": "risk",
+          "severity": 3,
+          "explanation": "An unsupported absolute guarantee about auditor and tax authority acceptance, with no documentation needed, could create compliance exposure. Acceptance depends on support and facts; check with the tax adviser.",
+          "correction": "This mapping follows standard practice; keep invoices and contracts on file to support each entry.",
+          "cue": "Flag any 'guaranteed' or 'no documentation needed' claim about audits or tax."
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "s7",
+          "looksWrongBecause": "Cash was received, so a reader may expect the $3,000 to be booked as revenue.",
+          "fineBecause": "The custom order is undelivered, so the company still owes goods or a refund. It is a liability (2200 Customer Deposits) until delivery."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "s6",
+          "expression": "4800+12500+3000+2400",
+          "stated": 22700,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "s8",
+          "expression": "4800/5",
+          "stated": 960,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "s9",
+          "expression": "2400/12",
+          "stated": 240,
+          "tolerance": 1,
+          "isError": true
+        }
+      ],
+      "id": "pool-13201100-21517-l3",
+      "soc": "13-2011.00",
+      "occupation": "Accountants and Auditors",
+      "taskId": 21517,
+      "task": "Establish tables of accounts and assign entries to proper accounts.",
+      "level": 3
+    }
+  ]
+}

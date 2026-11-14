@@ -4,6 +4,676 @@
   "drills": [
     {
       "brief": {
+        "from": "Maya Brooks",
+        "role": "Marketing Manager, Cedar & Finch Candle Co.",
+        "ask": "Write a short recap email to our agency partner Lumen Creative. November gift-box results: email $4,000 spend/400 orders, paid social $18,000/360, search $10,000/250, influencer $8,000/100. Recommend moving up to $6,000 in December toward the most efficient channel. Keep it under 200 words. Do not share our gross margin (58%) or discount plans with the agency, and avoid ad claims we cannot substantiate."
+      },
+      "artifact": {
+        "kind": "email",
+        "title": "November Holiday Recap and December Plan",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "subject",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Subject: Cedar & Finch November recap and December budget"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "Hi Lumen team, here is where November landed for our holiday gift boxes."
+              },
+              {
+                "id": "s3",
+                "text": "We spent $40,000 and received 1,110 orders, a blended cost per order of $36."
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Channel",
+              "Spend",
+              "Orders",
+              "Cost per order"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "Email"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "$4,000"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "400"
+                },
+                {
+                  "id": "r1c4",
+                  "text": "$10"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "Paid social"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "$18,000"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "360"
+                },
+                {
+                  "id": "r2c4",
+                  "text": "$50"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "Search"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "$10,000"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "250"
+                },
+                {
+                  "id": "r3c4",
+                  "text": "$40"
+                }
+              ],
+              [
+                {
+                  "id": "r4c1",
+                  "text": "Influencer"
+                },
+                {
+                  "id": "r4c2",
+                  "text": "$8,000"
+                },
+                {
+                  "id": "r4c3",
+                  "text": "100"
+                },
+                {
+                  "id": "r4c4",
+                  "text": "$80"
+                }
+              ],
+              [
+                {
+                  "id": "r5c1",
+                  "text": "Total"
+                },
+                {
+                  "id": "r5c2",
+                  "text": "$40,000"
+                },
+                {
+                  "id": "r5c3",
+                  "text": "1,110"
+                },
+                {
+                  "id": "r5c4",
+                  "text": "$36"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s4",
+                "text": "Email cost just $10 per order, because it reaches existing subscribers only."
+              },
+              {
+                "id": "s5",
+                "text": "Influencer was our costliest channel at $80 per order."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s6",
+                "text": "December recommendation"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s7",
+                "text": "Shift $6,000 from email to influencer, since influencer delivers our strongest returns."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s8",
+                "text": "Hold paid social and search at November levels."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s9",
+                "text": "Use this headline in every ad: \"Soot-free, non-toxic candles, guaranteed safe in any home.\""
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s10",
+                "text": "Our 58% gross margin leaves room to test a 15% December discount."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s11",
+                "text": "Please send creative drafts by November 22."
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s7",
+          "type": "logic",
+          "severity": 3,
+          "explanation": "Influencer has the highest cost per order ($8,000/100 = $80) and email the lowest ($4,000/400 = $10). Moving budget from email to influencer contradicts the table and the brief's request to favor the most efficient channel.",
+          "correction": "Shift $6,000 from influencer to email, since email delivers the lowest cost per order.",
+          "cue": "Check that a recommendation points toward the best performer in the table"
+        },
+        {
+          "targetId": "s9",
+          "type": "risk",
+          "severity": 3,
+          "explanation": "\"Guaranteed safe in any home\" and \"non-toxic\" are unsupported absolute product claims. The brief said to avoid claims that cannot be substantiated, and such wording could create advertising liability; check with legal/compliance.",
+          "correction": "Use a substantiated line such as: \"Hand-poured candles in seasonal scents.\"",
+          "cue": "Flag absolutes like guaranteed, any, always in ad copy"
+        },
+        {
+          "targetId": "s10",
+          "type": "audience",
+          "severity": 3,
+          "explanation": "The email goes to an outside agency, and the brief said not to share the 58% gross margin or discount plans. This sentence discloses both.",
+          "correction": "Delete the sentence.",
+          "cue": "Check each line against what the brief says the recipient must not see"
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "s4",
+          "looksWrongBecause": "$10 per order seems implausibly low compared with the other channels.",
+          "fineBecause": "$4,000 / 400 orders = $10; email reaches existing subscribers, so a low cost is expected."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "s3",
+          "expression": "4000+18000+10000+8000",
+          "stated": 40000,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "s3",
+          "expression": "400+360+250+100",
+          "stated": 1110,
+          "tolerance": 0,
+          "isError": false
+        },
+        {
+          "targetId": "s3",
+          "expression": "40000/1110",
+          "stated": 36,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r1c4",
+          "expression": "4000/400",
+          "stated": 10,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r2c4",
+          "expression": "18000/360",
+          "stated": 50,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r3c4",
+          "expression": "10000/250",
+          "stated": 40,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r4c4",
+          "expression": "8000/100",
+          "stated": 80,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r5c2",
+          "expression": "4000+18000+10000+8000",
+          "stated": 40000,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "r5c3",
+          "expression": "400+360+250+100",
+          "stated": 1110,
+          "tolerance": 0,
+          "isError": false
+        },
+        {
+          "targetId": "r5c4",
+          "expression": "40000/1110",
+          "stated": 36,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "s4",
+          "expression": "4000/400",
+          "stated": 10,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "s5",
+          "expression": "8000/100",
+          "stated": 80,
+          "tolerance": 0.5,
+          "isError": false
+        }
+      ],
+      "id": "pool-11202100-20709-l2",
+      "soc": "11-2021.00",
+      "occupation": "Marketing Managers",
+      "taskId": 20709,
+      "task": "Formulate, direct, or coordinate marketing activities or policies to promote products or services, working with advertising or promotion managers.",
+      "level": 2
+    },
+    {
+      "brief": {
+        "from": "Priya Nair",
+        "role": "Marketing Manager at Cedarline Furniture",
+        "ask": "Email Dana Ortiz (Advertising Manager) our Q4 channel split. Q3 spend/leads: search $24,000/480, social $18,000/450, email $6,000/300, display $12,000/120. Q4 budget $72,000 (Q3: $60,000): search $24,000, social $27,000, email $15,000, display $6,000. Dana will forward it to our outside agency, so no internal margin data. Use only these figures, no outside benchmarks. Under 250 words."
+      },
+      "artifact": {
+        "kind": "email",
+        "title": "Q4 channel budget proposal",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "subject",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Subject: Q4 channel budget proposal and Q3 results"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "Hi Dana,"
+              },
+              {
+                "id": "s3",
+                "text": "Here is the Q4 channel split I recommend, based on Q3 lead results."
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Channel",
+              "Q3 spend",
+              "Q3 leads",
+              "Q3 cost per lead",
+              "Q4 plan"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "Paid search"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "$24,000"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "480"
+                },
+                {
+                  "id": "r1c4",
+                  "text": "$50"
+                },
+                {
+                  "id": "r1c5",
+                  "text": "$24,000"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "Paid social"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "$18,000"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "450"
+                },
+                {
+                  "id": "r2c4",
+                  "text": "$40"
+                },
+                {
+                  "id": "r2c5",
+                  "text": "$27,000"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "Email"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "$6,000"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "300"
+                },
+                {
+                  "id": "r3c4",
+                  "text": "$20"
+                },
+                {
+                  "id": "r3c5",
+                  "text": "$15,000"
+                }
+              ],
+              [
+                {
+                  "id": "r4c1",
+                  "text": "Display"
+                },
+                {
+                  "id": "r4c2",
+                  "text": "$12,000"
+                },
+                {
+                  "id": "r4c3",
+                  "text": "120"
+                },
+                {
+                  "id": "r4c4",
+                  "text": "$100"
+                },
+                {
+                  "id": "r4c5",
+                  "text": "$6,000"
+                }
+              ],
+              [
+                {
+                  "id": "r5c1",
+                  "text": "Total"
+                },
+                {
+                  "id": "r5c2",
+                  "text": "$60,000"
+                },
+                {
+                  "id": "r5c3",
+                  "text": "1,350"
+                },
+                {
+                  "id": "r5c4",
+                  "text": "$44"
+                },
+                {
+                  "id": "r5c5",
+                  "text": "$72,000"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s4",
+                "text": "Q4 funding rises 20% to $72,000 from $60,000 in Q3."
+              },
+              {
+                "id": "s5",
+                "text": "Display was our weakest channel at $100 per lead, 3 times social's $40, so I propose cutting it in half."
+              },
+              {
+                "id": "s6",
+                "text": "Email delivered leads at $20 each, so it grows to $15,000, and social grows to $27,000."
+              },
+              {
+                "id": "s7",
+                "text": "Our blended cost per lead of $44 sits well below the $55 industry benchmark from the Retail Marketing Index."
+              },
+              {
+                "id": "s8",
+                "text": "Our 38% gross margin on furniture means even the $50 search leads stay profitable."
+              },
+              {
+                "id": "s9",
+                "text": "With this mix, we guarantee Q4 will deliver at least 1,600 leads."
+              },
+              {
+                "id": "s10",
+                "text": "Please tell me by Friday if you want changes before we brief the agency."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s11",
+                "text": "Thanks,"
+              },
+              {
+                "id": "s12",
+                "text": "Priya"
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s5",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "Display's $100 cost per lead is 2.5 times social's $40 ($100 / $40 = 2.5), not 3 times. The table in the same email shows both figures.",
+          "correction": "Display was our weakest channel at $100 per lead, 2.5 times social's $40, so I propose cutting it in half.",
+          "cue": "Recompute every ratio from the two figures quoted in the same sentence."
+        },
+        {
+          "targetId": "s7",
+          "type": "facts",
+          "severity": 3,
+          "explanation": "The $55 benchmark and the 'Retail Marketing Index' are not in the data supplied. Priya said to use only the given figures and no outside benchmarks, so the source cannot be traced.",
+          "correction": "Our blended cost per lead of $44 is down from our own channel range of $20 to $100; drop the external benchmark.",
+          "cue": "Ask where every benchmark or named index comes from before it goes out."
+        },
+        {
+          "targetId": "s8",
+          "type": "audience",
+          "severity": 3,
+          "explanation": "The brief says Dana will forward the email to the outside agency and that no internal margin data may be included. The 38% gross margin is internal financial information and was not supplied.",
+          "correction": "Delete the sentence, or say search remains acceptable for lead volume without citing margin.",
+          "cue": "Check who may receive a forwarded document before keeping internal financials in it."
+        },
+        {
+          "targetId": "s9",
+          "type": "risk",
+          "severity": 3,
+          "explanation": "Promising a guaranteed result of at least 1,600 leads is an unsupported absolute claim. Q3 delivered 1,350 leads, and results depend on market conditions. It could create commitments with the agency or leadership that cannot be backed up.",
+          "correction": "With this mix, we expect Q4 to deliver more leads than Q3, and we will track progress weekly.",
+          "cue": "Replace 'guarantee' with 'expect' unless a contract or data backs it."
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "s4",
+          "looksWrongBecause": "A 20% increase sounds like a large jump and the dollar figures are round enough to look made up.",
+          "fineBecause": "$72,000 / $60,000 = 1.2, so the increase is exactly 20%, matching the Q3 total and the Q4 budget in the brief."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "r1c4",
+          "expression": "24000/480",
+          "stated": 50,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r2c4",
+          "expression": "18000/450",
+          "stated": 40,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r3c4",
+          "expression": "6000/300",
+          "stated": 20,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r4c4",
+          "expression": "12000/120",
+          "stated": 100,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r5c2",
+          "expression": "24000+18000+6000+12000",
+          "stated": 60000,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "r5c3",
+          "expression": "480+450+300+120",
+          "stated": 1350,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r5c4",
+          "expression": "60000/1350",
+          "stated": 44,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r5c5",
+          "expression": "24000+27000+15000+6000",
+          "stated": 72000,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "s4",
+          "expression": "(72000/60000-1)*100",
+          "stated": 20,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "s5",
+          "expression": "100/40",
+          "stated": 3,
+          "tolerance": 0.05,
+          "isError": true
+        },
+        {
+          "targetId": "s7",
+          "expression": "60000/1350",
+          "stated": 44,
+          "tolerance": 0.5,
+          "isError": false
+        }
+      ],
+      "id": "pool-11202100-20709-l3",
+      "soc": "11-2021.00",
+      "occupation": "Marketing Managers",
+      "taskId": 20709,
+      "task": "Formulate, direct, or coordinate marketing activities or policies to promote products or services, working with advertising or promotion managers.",
+      "level": 3
+    },
+    {
+      "brief": {
         "from": "Dana Whitfield",
         "role": "Marketing Manager at Norlake Candle Co.",
         "ask": "Write an email to Tom Reyes, buyer at our retail partner Greenleaf Stores, summarizing the spring co-promotion and proposing a fall plan. Data: email spend $8,000, revenue $44,000; paid social spend $30,000, revenue $66,000; in-store displays spend $22,000, revenue $33,000. Show return per $1 spent, propose moving $10,000 from displays to email, and ask him to confirm by September 15. Do not share our production costs or margins, and do not promise results."
@@ -573,6 +1243,641 @@
     },
     {
       "brief": {
+        "from": "Dana Whitfield",
+        "role": "Marketing Manager, Brightwell Pet Foods",
+        "ask": "Write a short summary for our CFO on the finances of the PawPure dental chew. My figures: development budget $240,000, spent so far $168,000; engineering says formulation is 50% complete; launch marketing $90,000; projected revenue $600,000 in year one and $900,000 in year two; gross margin 35%. Don't cite outside benchmarks, because I have none verified. Don't promise results; these are projections."
+      },
+      "artifact": {
+        "kind": "summary",
+        "title": "PawPure dental chew: budget and ROI summary",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Development has used $168,000 of the $240,000 approved budget (70%), leaving $72,000."
+              },
+              {
+                "id": "s2",
+                "text": "Formulation work is 50% complete, so spending is on track."
+              },
+              {
+                "id": "s3",
+                "text": "Launch marketing adds $90,000, bringing total investment to $330,000."
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Item",
+              "Year 1",
+              "Year 2"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "Revenue"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "$600,000"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "$900,000"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "Gross profit (35%)"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "$210,000"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "$315,000"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "Cumulative net"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "-$120,000"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "$195,000"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s4",
+                "text": "Year one is a $120,000 loss, but cumulative net turns positive in year two."
+              },
+              {
+                "id": "s5",
+                "text": "Two-year ROI is 59% ($195,000 net on $330,000 invested)."
+              },
+              {
+                "id": "s6",
+                "text": "Revenue assumes the 22% average first-year growth for pet-category launches reported by the Petfood Insights Index."
+              },
+              {
+                "id": "s7",
+                "text": "This 59% return is guaranteed, so Finance can treat it as committed income."
+              },
+              {
+                "id": "s8",
+                "text": "Recommendation: release the remaining $72,000 and proceed to launch."
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s2",
+          "type": "logic",
+          "severity": 2,
+          "explanation": "Spending is 70% of budget ($168,000 / $240,000) while work is only 50% complete. Spend is running ahead of progress, so 'on track' contradicts the document's own data.",
+          "correction": "Formulation work is 50% complete but 70% of the budget is spent, so spending is running ahead of progress and needs review.",
+          "cue": "Compare percent spent with percent complete before calling a project on track."
+        },
+        {
+          "targetId": "s6",
+          "type": "facts",
+          "severity": 3,
+          "explanation": "The 'Petfood Insights Index' and its 22% growth figure are not in the data supplied. The brief said no verified outside benchmarks exist, so this source appears invented.",
+          "correction": "Revenue assumes the projections supplied by Marketing: $600,000 in year one and $900,000 in year two.",
+          "cue": "Ask where every cited benchmark or index comes from."
+        },
+        {
+          "targetId": "s7",
+          "type": "risk",
+          "severity": 3,
+          "explanation": "Calling a projected return 'guaranteed' and 'committed income' is an unsupported absolute claim. The brief said not to promise results, and Finance could act on it.",
+          "correction": "This 59% return is a projection that depends on the revenue and margin assumptions above.",
+          "cue": "Flag 'guaranteed' or 'committed' wherever a forecast is described."
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "s4",
+          "looksWrongBecause": "A $120,000 first-year loss may seem to conflict with a recommendation to proceed.",
+          "fineBecause": "$210,000 gross profit minus $330,000 investment is -$120,000, and cumulative net turns positive at $195,000 in year two, so the sentence is correct."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "s1",
+          "expression": "168000/240000*100",
+          "stated": 70,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "s1",
+          "expression": "240000-168000",
+          "stated": 72000,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "s3",
+          "expression": "240000+90000",
+          "stated": 330000,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "r2c2",
+          "expression": "600000*0.35",
+          "stated": 210000,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "r2c3",
+          "expression": "900000*0.35",
+          "stated": 315000,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "r3c2",
+          "expression": "210000-330000",
+          "stated": -120000,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "r3c3",
+          "expression": "210000+315000-330000",
+          "stated": 195000,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "s4",
+          "expression": "330000-210000",
+          "stated": 120000,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "s5",
+          "expression": "195000/330000*100",
+          "stated": 59,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "s8",
+          "expression": "240000-168000",
+          "stated": 72000,
+          "tolerance": 1,
+          "isError": false
+        }
+      ],
+      "id": "pool-11202100-952-l2",
+      "soc": "11-2021.00",
+      "occupation": "Marketing Managers",
+      "taskId": 952,
+      "task": "Evaluate the financial aspects of product development, such as budgets, expenditures, research and development appropriations, or return-on-investment and profit-loss projections.",
+      "level": 2
+    },
+    {
+      "brief": {
+        "from": "Marcus Webb",
+        "role": "Marketing Manager, Lumio Home",
+        "ask": "Write a short email to Priya Raman (Finance Director) for Thursday's steering meeting on the Sprout Lamp. Approved budget $480,000: design 90k, tooling 200k, testing 70k, launch marketing 120k. Forecast at completion: 96k, 218k, 66k, 120k. Contribution is $34/unit; base 14,000 units, upside 19,000, downside 9,000. Measure ROI on forecast cost. Show downside, base and upside scenarios with payback in months, and end with a recommendation."
+      },
+      "artifact": {
+        "kind": "email",
+        "title": "Sprout Lamp budget forecast and year-1 ROI",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "subject",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Sprout Lamp budget forecast and year-1 ROI"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "Hi Priya,"
+              },
+              {
+                "id": "s3",
+                "text": "Here is the financial check on Sprout Lamp development ahead of Thursday's steering meeting."
+              },
+              {
+                "id": "s4",
+                "text": "The approved budget is $480,000, and our forecast at completion is $500,000, a $20,000 (4.2%) overrun."
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Phase",
+              "Budget",
+              "Forecast",
+              "Variance"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "Design"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "$90,000"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "$96,000"
+                },
+                {
+                  "id": "r1c4",
+                  "text": "+$6,000"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "Tooling"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "$200,000"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "$218,000"
+                },
+                {
+                  "id": "r2c4",
+                  "text": "+$18,000"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "Testing"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "$70,000"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "$66,000"
+                },
+                {
+                  "id": "r3c4",
+                  "text": "-$4,000"
+                }
+              ],
+              [
+                {
+                  "id": "r4c1",
+                  "text": "Launch marketing"
+                },
+                {
+                  "id": "r4c2",
+                  "text": "$120,000"
+                },
+                {
+                  "id": "r4c3",
+                  "text": "$120,000"
+                },
+                {
+                  "id": "r4c4",
+                  "text": "$0"
+                }
+              ],
+              [
+                {
+                  "id": "r5c1",
+                  "text": "Total"
+                },
+                {
+                  "id": "r5c2",
+                  "text": "$480,000"
+                },
+                {
+                  "id": "r5c3",
+                  "text": "$500,000"
+                },
+                {
+                  "id": "r5c4",
+                  "text": "+$20,000"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s5",
+                "text": "Tooling is the main driver, running 18% over its budget."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s6",
+                "text": "Return scenarios"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s7",
+                "text": "Each scenario assumes $34 contribution per unit, with ROI measured on the $500,000 forecast cost."
+              },
+              {
+                "id": "s8",
+                "text": "The table below shows the base and upside cases."
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Scenario",
+              "Units",
+              "Contribution",
+              "Year-1 ROI",
+              "Payback (months)"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r6c1",
+                  "text": "Base"
+                },
+                {
+                  "id": "r6c2",
+                  "text": "14,000"
+                },
+                {
+                  "id": "r6c3",
+                  "text": "$476,000"
+                },
+                {
+                  "id": "r6c4",
+                  "text": "-4.8%"
+                },
+                {
+                  "id": "r6c5",
+                  "text": "12.6"
+                }
+              ],
+              [
+                {
+                  "id": "r7c1",
+                  "text": "Upside"
+                },
+                {
+                  "id": "r7c2",
+                  "text": "19,000"
+                },
+                {
+                  "id": "r7c3",
+                  "text": "$646,000"
+                },
+                {
+                  "id": "r7c4",
+                  "text": "29.2%"
+                },
+                {
+                  "id": "r7c5",
+                  "text": "9.3"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s9",
+                "text": "The base case recovers the investment within the first year."
+              },
+              {
+                "id": "s10",
+                "text": "With testing nearly complete, the 14,000-unit base forecast is effectively guaranteed."
+              },
+              {
+                "id": "s11",
+                "text": "Recommendation: approve the $20,000 overrun and release the launch funds."
+              },
+              {
+                "id": "s12",
+                "text": "Best, Marcus"
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s5",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "Tooling forecast is $218,000 against a $200,000 budget: 18,000 / 200,000 = 9% over, not 18%. The dollar variance ($18,000) was reused as a percent.",
+          "correction": "Tooling is the main driver, running 9% over its budget.",
+          "cue": "Recompute any % from the two figures; don't reuse a dollar amount as a percent."
+        },
+        {
+          "targetId": "s8",
+          "type": "audience",
+          "severity": 2,
+          "explanation": "The brief asked for downside, base and upside scenarios. The draft shows only base and upside and leaves out the 9,000-unit downside, which is the case Finance most needs to see.",
+          "correction": "The table below shows the downside, base and upside cases (add a 9,000-unit downside row: $306,000 contribution, -38.8% ROI, 19.6-month payback).",
+          "cue": "Check the deliverable against every item the requester listed."
+        },
+        {
+          "targetId": "s9",
+          "type": "logic",
+          "severity": 2,
+          "explanation": "The table shows base-case payback of 12.6 months and a year-1 ROI of -4.8%. The investment is not recovered within the first year.",
+          "correction": "The base case recovers the investment in about 12.6 months, just after year one.",
+          "cue": "Compare each conclusion with the table figures next to it."
+        },
+        {
+          "targetId": "s10",
+          "type": "risk",
+          "severity": 3,
+          "explanation": "Calling a sales forecast 'effectively guaranteed' is an unsupported absolute. Finished testing does not secure demand, and the claim could mislead the steering committee into committing funds.",
+          "correction": "With testing nearly complete, the 14,000-unit base forecast remains an estimate that depends on demand.",
+          "cue": "Flag 'guaranteed' and similar absolutes attached to forecasts."
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "r4c4",
+          "looksWrongBecause": "A variance of exactly $0 on launch marketing looks too neat to be real.",
+          "fineBecause": "Budget and forecast are both $120,000, so the variance is exactly $0. This matches the brief."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "s4",
+          "expression": "500000-480000",
+          "stated": 20000,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "s4",
+          "expression": "(500000/480000-1)*100",
+          "stated": 4.2,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "r1c4",
+          "expression": "96000-90000",
+          "stated": 6000,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "r2c4",
+          "expression": "218000-200000",
+          "stated": 18000,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "r3c4",
+          "expression": "66000-70000",
+          "stated": -4000,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "r4c4",
+          "expression": "120000-120000",
+          "stated": 0,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "r5c2",
+          "expression": "90000+200000+70000+120000",
+          "stated": 480000,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "r5c3",
+          "expression": "96000+218000+66000+120000",
+          "stated": 500000,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "r5c4",
+          "expression": "500000-480000",
+          "stated": 20000,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "s5",
+          "expression": "18000/200000*100",
+          "stated": 18,
+          "tolerance": 0.5,
+          "isError": true
+        },
+        {
+          "targetId": "r6c3",
+          "expression": "14000*34",
+          "stated": 476000,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "r6c4",
+          "expression": "(476000-500000)/500000*100",
+          "stated": -4.8,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "r6c5",
+          "expression": "500000/(476000/12)",
+          "stated": 12.6,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "r7c3",
+          "expression": "19000*34",
+          "stated": 646000,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "r7c4",
+          "expression": "(646000-500000)/500000*100",
+          "stated": 29.2,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "r7c5",
+          "expression": "500000/(646000/12)",
+          "stated": 9.3,
+          "tolerance": 0.05,
+          "isError": false
+        }
+      ],
+      "id": "pool-11202100-952-l3",
+      "soc": "11-2021.00",
+      "occupation": "Marketing Managers",
+      "taskId": 952,
+      "task": "Evaluate the financial aspects of product development, such as budgets, expenditures, research and development appropriations, or return-on-investment and profit-loss projections.",
+      "level": 3
+    },
+    {
+      "brief": {
         "from": "Priya Nandakumar",
         "role": "Marketing Manager, consumer products",
         "ask": "Draft a short email to Dana Whitfield and the product development team with our color and packaging recommendation for the TrailSip spring bottle. Use only this data: survey of 400 customers, votes Sage 148, Charcoal 132, Coral 120; current box costs $1.20 per unit, recycled sleeve costs $0.95 per unit; planned run is 50,000 units. We have no outside studies, so do not cite any. Ask them to confirm sleeve dimensions by Friday. Keep it under 200 words."
@@ -780,6 +2085,217 @@
       "taskId": 956,
       "task": "Consult with product development personnel on product specifications, such as design, color, or packaging.",
       "level": 2
+    },
+    {
+      "brief": {
+        "from": "Elena Rostova",
+        "role": "Senior Marketing Manager",
+        "ask": "Draft an internal consultation memo to Marcus Vance (Lead Product Designer) summarizing our 200-person focus group feedback on the ChefStack cookware line specifications (trim color, handle ergonomics, eco-packaging). Focus purely on internal specs for Marcus. Do not include external consumer ad copy, and do not make absolute durability guarantees."
+      },
+      "artifact": {
+        "kind": "summary",
+        "title": "ChefStack Cookware Specification & Focus Group Feedback Summary",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "1. Executive Summary & Context"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "This memo summarizes consumer feedback from our recent 200-participant focus group to assist Product Development with final specifications for the ChefStack cookware line."
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Trim Option",
+              "Participant Count",
+              "Preference Share"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "Matte Charcoal"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "130"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "65%"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "Gloss Cobalt"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "70"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "35%"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s3",
+                "text": "2. Color & Design Recommendations"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s4",
+                "text": "In the study, 130 out of 200 participants selected Matte Charcoal, representing a 75% preference rate."
+              },
+              {
+                "id": "s5",
+                "text": "Based on this feedback, we recommend adopting Gloss Cobalt as the primary production trim color for launch."
+              },
+              {
+                "id": "s6",
+                "text": "Our new ceramic-infused trim finish is 100% scratch-proof under all cooking conditions and completely chemical-free."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s7",
+                "text": "3. Packaging & Ergonomics Specs"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s8",
+                "text": "The proposed unbleached cardboard packaging increases unit cost from $3.60 to $4.20, representing a 16.7% cost increase per package."
+              },
+              {
+                "id": "s9",
+                "text": "The total tooling modification for this eco-packaging is estimated at $38,000, which remains within our $40,000 budget cap."
+              },
+              {
+                "id": "s10",
+                "text": "Order your ChefStack set today at chefstack.com to receive 15% off your first purchase!"
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s4",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "130 out of 200 participants equals 65% (130 / 200 * 100 = 65%), not 75%.",
+          "correction": "In the study, 130 out of 200 participants selected Matte Charcoal, representing a 65% preference rate.",
+          "cue": "Recompute percentages directly from the sample sizes provided in the text."
+        },
+        {
+          "targetId": "s5",
+          "type": "logic",
+          "severity": 3,
+          "explanation": "The recommendation to adopt Gloss Cobalt contradicts the focus group data, where Matte Charcoal was overwhelmingly preferred (65% vs 35%).",
+          "correction": "Based on this feedback, we recommend adopting Matte Charcoal as the primary production trim color for launch.",
+          "cue": "Check that final recommendations match the leading preference from the underlying feedback data."
+        },
+        {
+          "targetId": "s6",
+          "type": "risk",
+          "severity": 3,
+          "explanation": "Claiming the coating is '100% scratch-proof under all cooking conditions' creates severe compliance and legal liability through an unsupported absolute performance claim.",
+          "correction": "Our new ceramic-infused trim finish offers high scratch resistance under standard cooking conditions.",
+          "cue": "Flag absolute performance claims that create legal liability and violate compliance guidelines."
+        },
+        {
+          "targetId": "s10",
+          "type": "audience",
+          "severity": 2,
+          "explanation": "The document was requested as an internal spec memo to Product Development, but s10 includes consumer-facing promotional ad copy ('Order your ChefStack set today...').",
+          "correction": "Remove the external consumer promotional statement from the internal product spec memo.",
+          "cue": "Ensure text matches the intended internal audience and omits external promotional copy."
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "s8",
+          "looksWrongBecause": "A reader might mistakenly calculate ($4.20 - $3.60) / $4.20 = 14.3% or confuse the absolute difference ($0.60) with the percentage change.",
+          "fineBecause": "Percentage cost increase is calculated relative to the original base cost: ($4.20 - $3.60) / $3.60 = 0.60 / 3.60 = 16.667%, which rounds accurately to 16.7%."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "s2",
+          "expression": "130+70",
+          "stated": 200,
+          "tolerance": 0,
+          "isError": false
+        },
+        {
+          "targetId": "r1c3",
+          "expression": "(130/200)*100",
+          "stated": 65,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r2c3",
+          "expression": "(70/200)*100",
+          "stated": 35,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "s4",
+          "expression": "(130/200)*100",
+          "stated": 75,
+          "tolerance": 0.5,
+          "isError": true
+        },
+        {
+          "targetId": "s8",
+          "expression": "((4.20-3.60)/3.60)*100",
+          "stated": 16.7,
+          "tolerance": 0.1,
+          "isError": false
+        }
+      ],
+      "id": "pool-11202100-956-l3",
+      "soc": "11-2021.00",
+      "occupation": "Marketing Managers",
+      "taskId": 956,
+      "task": "Consult with product development personnel on product specifications, such as design, color, or packaging.",
+      "level": 3
     },
     {
       "brief": {

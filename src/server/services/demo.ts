@@ -26,6 +26,13 @@ const PERSONAL_DRILL_DAYS: ReadonlySet<number> = new Set([7, 5, 4, 2]);
 const DAY_MS = 86_400_000;
 const HOUR_MS = 3_600_000;
 
+/**
+ * Seed of the scripted player. Fixed, so the simulated week is the same on every
+ * boot; picked among a few dozen seeds for a week that shows the intended arc
+ * clearly (catch rate from roughly 45% to 85%, false alarms fading out).
+ */
+export const DEMO_SEED = 47;
+
 const JESS_ANSWERS: ScanAnswers = { aiUse: "daily", aiInReview: "yes", shippedAiError: "yes", worry: "careless" };
 const JESS_TASK_COUNT = 10;
 
@@ -53,20 +60,20 @@ interface PlayerSkill {
   decoyFlagRate: number;
 }
 
-/** Jess improves over the week: catches go from ~50% to ~80% while false alarms fade. */
+/** Jess improves over the week: she catches more, names the type more often, and stops over-flagging. */
 function skillOn(dayIndex: number): PlayerSkill {
   const progress = dayIndex / (DEMO_DAYS - 1);
   return {
-    catchRate: 0.5 + 0.3 * progress,
-    typeAccuracy: 0.75 + 0.15 * progress,
-    falseFlagRate: 0.6 - 0.5 * progress,
-    decoyFlagRate: 0.5 - 0.4 * progress,
+    catchRate: 0.45 + 0.45 * progress,
+    typeAccuracy: 0.7 + 0.25 * progress,
+    falseFlagRate: 0.7 - 0.65 * progress,
+    decoyFlagRate: 0.6 - 0.55 * progress,
   };
 }
 
 /** Her blind spot, so the dashboard has a real weak spot to show. */
 const WEAK_TYPE: ErrorType = "risk";
-const WEAK_TYPE_PENALTY = 0.35;
+const WEAK_TYPE_PENALTY = 0.3;
 const NOTE_RATE = 0.6;
 
 function scriptedFlags(drill: Drill, skill: PlayerSkill, random: () => number): Flag[] {
@@ -104,7 +111,7 @@ function jessTasks(occupation: Occupation): UserTask[] {
  * (Re)build the template week. Runs at boot; a no-op until the Marketing pool exists.
  * Returns the number of attempts played.
  */
-export async function seedDemoTemplate(ctx: AppContext): Promise<number> {
+export async function seedDemoTemplate(ctx: AppContext, seed = DEMO_SEED): Promise<number> {
   const occupation = ctx.occupations.get(DEMO_SOC);
   const pool = ctx.pool.for(DEMO_SOC);
   ctx.sessions.remove(DEMO_TEMPLATE_ID);
@@ -141,7 +148,7 @@ export async function seedDemoTemplate(ctx: AppContext): Promise<number> {
   );
   const personal = pool.filter((drill) => !reserved.has(drill.id) && !pastDailies.has(drill.id));
 
-  const random = mulberry32(20261114);
+  const random = mulberry32(seed);
   const play = async (drillId: string, skill: PlayerSkill): Promise<void> => {
     const stored = ctx.drills.find(drillId);
     if (!stored || ctx.attempts.findForDrill(DEMO_TEMPLATE_ID, drillId)) return;

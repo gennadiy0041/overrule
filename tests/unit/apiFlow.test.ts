@@ -324,6 +324,68 @@ describe("events, surveys and metrics", () => {
   });
 });
 
+describe("when the model providers are down", () => {
+  test("the verified pool is served at once, and the provider is not asked again during the cooldown", async () => {
+    let calls = 0;
+    const broken: StructuredProvider = {
+      name: "claude",
+      model: "fake-model",
+      async generate() {
+        calls++;
+        throw new Error("credit balance is too low");
+      },
+    };
+    const env = loadEnv({ NODE_ENV: "test", DB_PATH: ":memory:", APP_URL: "https://overrule.test" });
+    const downCtx = await buildContext(env, { providers: { claude: broken } });
+    // The committed pool (data/pool) is what keeps the product alive in this situation.
+    expect(downCtx.pool.for(MARKETING).length).toBeGreaterThan(0);
+    const downApp = createApp(downCtx);
+
+    const scanAndStart = async (): Promise<ReadyEvent> => {
+      const visitor = new Client(downApp);
+      const detail = await visitor.json<OccupationDetail>(`/api/occupations/${MARKETING}`);
+      const tasks = detail.tasks.slice(0, 4).map((task) => ({ taskId: task.id, frequency: "often" as const }));
+      await visitor.json("/api/scan", { body: { soc: MARKETING, tasks, complete: true } });
+      const events = await visitor.sse("/api/drills/next", { mode: "first" });
+      // The person is told the truth: this drill comes from the pre-verified pool.
+      expect(events.some((e) => e.event === "stage" && (e.data as { stage: string }).stage === "pool")).toBe(true);
+      return events.find((e) => e.event === "ready")!.data as ReadyEvent;
+    };
+
+    expect((await scanAndStart()).origin).toBe("pool");
+    const callsAfterFirstVisitor = calls;
+    expect(callsAfterFirstVisitor).toBeGreaterThan(0);
+
+    expect((await scanAndStart()).origin).toBe("pool");
+    expect(calls).toBe(callsAfterFirstVisitor);
+  });
+
+  test("internal traffic never spends model budget", async () => {
+    let calls = 0;
+    const counting: StructuredProvider = {
+      name: "claude",
+      model: "fake-model",
+      async generate() {
+        calls++;
+        throw new Error("should not be called");
+      },
+    };
+    const env = loadEnv({ NODE_ENV: "test", DB_PATH: ":memory:", APP_URL: "https://overrule.test" });
+    const internalApp = createApp(await buildContext(env, { providers: { claude: counting } }));
+    const headers = { "user-agent": "Mozilla/5.0 HeadlessChrome/159.0", "content-type": "application/json" };
+    const detail = (await (await internalApp.request(`/api/occupations/${MARKETING}`)).json()) as OccupationDetail;
+    const tasks = detail.tasks.slice(0, 4).map((task) => ({ taskId: task.id, frequency: "often" }));
+    const response = await internalApp.request("/api/scan", {
+      method: "POST",
+      headers,
+      body: JSON.stringify({ soc: MARKETING, tasks, complete: true }),
+    });
+    expect(response.status).toBe(200);
+    await Bun.sleep(20);
+    expect(calls).toBe(0);
+  });
+});
+
 describe("server-rendered pages", () => {
   test("an SEO page is rendered for an occupation, and unknown slugs are 404", async () => {
     const page = await client.request("/will-ai-replace/marketing-managers");

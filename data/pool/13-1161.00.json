@@ -1,0 +1,2848 @@
+{
+  "soc": "13-1161.00",
+  "occupation": "Market Research Analysts and Marketing Specialists",
+  "drills": [
+    {
+      "brief": {
+        "from": "Priya Nand",
+        "role": "Product Marketing Lead, Northfield Bikes",
+        "ask": "Write a short email (under 200 words) to our independent dealer partners summarizing our January survey of 700 urban commuters on e-bike purchase intent. Would-buy counts by age: 18–29, 50 of 200; 30–44, 90 of 250; 45–59, 33 of 150; 60+, 12 of 100. Recommend a spring pilot for the highest-intent group. Dealers are outside the company, so do not share internal margins or costs, and do not make claims we can't support."
+      },
+      "artifact": {
+        "kind": "email",
+        "title": "Commuter survey results: spring e-bike pilot",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "subject",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Subject: Commuter survey results and spring e-bike pilot"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "Hello dealer partners,"
+              },
+              {
+                "id": "s3",
+                "text": "In January we surveyed 700 urban commuters about e-bike purchase intent."
+              },
+              {
+                "id": "s4",
+                "text": "Overall, 185 respondents (26.4%) said they would buy."
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Age group",
+              "Respondents",
+              "Would buy",
+              "Intent rate"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "18–29"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "200"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "50"
+                },
+                {
+                  "id": "r1c4",
+                  "text": "25%"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "30–44"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "250"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "90"
+                },
+                {
+                  "id": "r2c4",
+                  "text": "36%"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "45–59"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "150"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "33"
+                },
+                {
+                  "id": "r3c4",
+                  "text": "22%"
+                }
+              ],
+              [
+                {
+                  "id": "r4c1",
+                  "text": "60+"
+                },
+                {
+                  "id": "r4c2",
+                  "text": "100"
+                },
+                {
+                  "id": "r4c3",
+                  "text": "12"
+                },
+                {
+                  "id": "r4c4",
+                  "text": "12%"
+                }
+              ],
+              [
+                {
+                  "id": "r5c1",
+                  "text": "Total"
+                },
+                {
+                  "id": "r5c2",
+                  "text": "700"
+                },
+                {
+                  "id": "r5c3",
+                  "text": "185"
+                },
+                {
+                  "id": "r5c4",
+                  "text": "26.4%"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s5",
+                "text": "Intent peaks at 36% among ages 30–44 and falls to 12% among those 60 and older."
+              },
+              {
+                "id": "s6",
+                "text": "Exactly one in four 18–29-year-olds (25%) said they would buy."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s7",
+                "text": "Recommendation: run the spring pilot with the 45–59 group, which shows the strongest intent."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s8",
+                "text": "Our 38% unit margin leaves room for dealer discounts during the pilot."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s9",
+                "text": "You can tell riders the bike will pay for itself within a year, guaranteed."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s10",
+                "text": "Please reply by Friday if your store can join the pilot."
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s7",
+          "type": "logic",
+          "severity": 2,
+          "explanation": "The recommendation contradicts the table. The 45–59 group has a 22% intent rate (33/150); the 30–44 group has the highest at 36% (90/250).",
+          "correction": "Recommendation: run the spring pilot with the 30–44 group, which shows the strongest intent (36%).",
+          "cue": "Check that the recommended group is actually the top row in the data."
+        },
+        {
+          "targetId": "s8",
+          "type": "audience",
+          "severity": 3,
+          "explanation": "The email goes to outside dealers, and the brief said not to share internal margins or costs. A 38% unit margin is internal information and weakens negotiating position.",
+          "correction": "Delete the sentence, or say 'Details on pilot dealer terms will follow from your account manager.'",
+          "cue": "Before sending externally, scan for margins, costs and other internal figures."
+        },
+        {
+          "targetId": "s9",
+          "type": "risk",
+          "severity": 3,
+          "explanation": "An unsupported absolute savings guarantee, with no source in the survey or brief. Dealers repeating it to customers could create legal and consumer-claim risk; check with legal/compliance.",
+          "correction": "Remove the claim, or say 'Many commuters can reduce transportation costs; we will share approved messaging soon.'",
+          "cue": "Flag 'guaranteed' and 'always' claims that nothing in the source supports."
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "s6",
+          "looksWrongBecause": "'Exactly one in four' looks too neat to be a real survey result.",
+          "fineBecause": "50 of 200 respondents is exactly 25%, which is one in four."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "s4",
+          "expression": "185/700*100",
+          "stated": 26.4,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "r1c4",
+          "expression": "50/200*100",
+          "stated": 25,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r2c4",
+          "expression": "90/250*100",
+          "stated": 36,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r3c4",
+          "expression": "33/150*100",
+          "stated": 22,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r4c4",
+          "expression": "12/100*100",
+          "stated": 12,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r5c2",
+          "expression": "200+250+150+100",
+          "stated": 700,
+          "tolerance": 0,
+          "isError": false
+        },
+        {
+          "targetId": "r5c3",
+          "expression": "50+90+33+12",
+          "stated": 185,
+          "tolerance": 0,
+          "isError": false
+        },
+        {
+          "targetId": "r5c4",
+          "expression": "185/700*100",
+          "stated": 26.4,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "s5",
+          "expression": "90/250*100",
+          "stated": 36,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "s6",
+          "expression": "50/200*100",
+          "stated": 25,
+          "tolerance": 0.5,
+          "isError": false
+        }
+      ],
+      "id": "pool-13116100-5433-l2",
+      "soc": "13-1161.00",
+      "occupation": "Market Research Analysts and Marketing Specialists",
+      "taskId": 5433,
+      "task": "Collect and analyze data on customer demographics, preferences, needs, and buying habits to identify potential markets and factors affecting product demand.",
+      "level": 2
+    },
+    {
+      "brief": {
+        "from": "Dana Whitfield",
+        "role": "Consumer Insights Manager, Brightleaf Tea Co.",
+        "ask": "Write a one-page summary for Harbor Market's beverage buyers (an outside retail partner) of our January survey of 1,200 Pacific Northwest adults on Brightleaf cold-brew concentrate. Likely buyers by age: 18–24 96 of 240; 25–34 189 of 420; 35–49 108 of 360; 50+ 36 of 180. Use only these figures and cite no outside studies. Don't share internal costs or margins (our gross margin is 58%). Keep it under 280 words."
+      },
+      "artifact": {
+        "kind": "summary",
+        "title": "Cold-Brew Tea Concentrate: Purchase Intent by Age Segment",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Purpose"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "This summary shares results from our January online survey of 1,200 Pacific Northwest adults for Harbor Market's beverage buyers."
+              },
+              {
+                "id": "s3",
+                "text": "It covers purchase intent for Brightleaf cold-brew tea concentrate by age group."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s4",
+                "text": "Results"
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Age group",
+              "Respondents",
+              "Likely buyers",
+              "Share likely"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "18–24"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "240"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "96"
+                },
+                {
+                  "id": "r1c4",
+                  "text": "40%"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "25–34"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "420"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "189"
+                },
+                {
+                  "id": "r2c4",
+                  "text": "45%"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "35–49"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "360"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "108"
+                },
+                {
+                  "id": "r3c4",
+                  "text": "30%"
+                }
+              ],
+              [
+                {
+                  "id": "r4c1",
+                  "text": "50+"
+                },
+                {
+                  "id": "r4c2",
+                  "text": "180"
+                },
+                {
+                  "id": "r4c3",
+                  "text": "36"
+                },
+                {
+                  "id": "r4c4",
+                  "text": "20%"
+                }
+              ],
+              [
+                {
+                  "id": "r5c1",
+                  "text": "Total"
+                },
+                {
+                  "id": "r5c2",
+                  "text": "1,200"
+                },
+                {
+                  "id": "r5c3",
+                  "text": "429"
+                },
+                {
+                  "id": "r5c4",
+                  "text": "35.8%"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s5",
+                "text": "Overall, 429 of 1,200 respondents (41%) said they would likely buy the concentrate."
+              },
+              {
+                "id": "s6",
+                "text": "The 25–34 group was the largest segment at 35% of the sample and showed the highest intent at 45%."
+              },
+              {
+                "id": "s7",
+                "text": "The overall result is close to the 33% trial rate reported in the 2023 National Beverage Council study."
+              },
+              {
+                "id": "s8",
+                "text": "Intent was lowest among respondents 50 and older at 20%, because the flavor is too sweet for older buyers."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s9",
+                "text": "Implications"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s10",
+                "text": "Lead the launch with the 18–34 group, where combined intent is 43%."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s11",
+                "text": "Our 58% gross margin leaves room for a promotional price during the first month."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s12",
+                "text": "Next step: run a price test with 18–34 respondents in March."
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s5",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "The overall share is 429 / 1,200 = 35.75%, about 35.8% as the table's total row shows. The sentence says 41%, which contradicts the table.",
+          "correction": "Overall, 429 of 1,200 respondents (35.8%) said they would likely buy the concentrate.",
+          "cue": "Recompute any percentage from the two counts in the same sentence."
+        },
+        {
+          "targetId": "s7",
+          "type": "facts",
+          "severity": 3,
+          "explanation": "The brief supplied only the survey counts and said to cite no outside studies. The 2023 National Beverage Council study and its 33% trial rate cannot be traced to any supplied data and look invented.",
+          "correction": "Delete the sentence, or replace it with a comparison drawn only from the survey data.",
+          "cue": "Ask where every benchmark or named study came from before sending."
+        },
+        {
+          "targetId": "s8",
+          "type": "logic",
+          "severity": 2,
+          "explanation": "The survey measured intent by age, not reasons or flavor feedback. Saying the flavor is too sweet for older buyers presents an unsupported cause for the lower intent.",
+          "correction": "Intent was lowest among respondents 50 and older at 20%; the survey did not test why, so a follow-up question is worth considering.",
+          "cue": "Challenge any 'because' that the data did not measure."
+        },
+        {
+          "targetId": "s11",
+          "type": "audience",
+          "severity": 3,
+          "explanation": "The summary goes to an outside retail partner, and the brief said not to share internal costs or margins. This bullet discloses the 58% gross margin and hints at pricing plans.",
+          "correction": "Remove the bullet, or replace it with a neutral next step that does not mention margin.",
+          "cue": "Before sending outside, scan for margins, costs and other internal figures."
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "s6",
+          "looksWrongBecause": "A segment share of exactly 35% and a round 45% intent look too neat to be real.",
+          "fineBecause": "420 / 1,200 = 35%, and 189 / 420 = 45%. Both match the table, and 45% is the highest segment share."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "r1c4",
+          "expression": "96/240*100",
+          "stated": 40,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r2c4",
+          "expression": "189/420*100",
+          "stated": 45,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r3c4",
+          "expression": "108/360*100",
+          "stated": 30,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r4c4",
+          "expression": "36/180*100",
+          "stated": 20,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r5c2",
+          "expression": "240+420+360+180",
+          "stated": 1200,
+          "tolerance": 0,
+          "isError": false
+        },
+        {
+          "targetId": "r5c3",
+          "expression": "96+189+108+36",
+          "stated": 429,
+          "tolerance": 0,
+          "isError": false
+        },
+        {
+          "targetId": "r5c4",
+          "expression": "429/1200*100",
+          "stated": 35.8,
+          "tolerance": 0.1,
+          "isError": false
+        },
+        {
+          "targetId": "s5",
+          "expression": "429/1200*100",
+          "stated": 41,
+          "tolerance": 0.5,
+          "isError": true
+        },
+        {
+          "targetId": "s6",
+          "expression": "420/1200*100",
+          "stated": 35,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "s10",
+          "expression": "(96+189)/(240+420)*100",
+          "stated": 43,
+          "tolerance": 0.5,
+          "isError": false
+        }
+      ],
+      "id": "pool-13116100-5433-l3",
+      "soc": "13-1161.00",
+      "occupation": "Market Research Analysts and Marketing Specialists",
+      "taskId": 5433,
+      "task": "Collect and analyze data on customer demographics, preferences, needs, and buying habits to identify potential markets and factors affecting product demand.",
+      "level": 3
+    },
+    {
+      "brief": {
+        "from": "Dana Whitfield",
+        "role": "VP of Marketing, Brightleaf Coffee Co.",
+        "ask": "Write a short findings summary (under 200 words) of our Q2 vs Q3 loyalty app survey. Data: 1,200 respondents per wave. Satisfaction (top-2-box) 62% in Q2, 71% in Q3. App users 360 in Q2, 480 in Q3. Repeat intent: app users 78%, non-users 54%. Average order value $8.40 in Q2, $9.24 in Q3. Use only these figures, no outside benchmarks. Include a small table."
+      },
+      "artifact": {
+        "kind": "summary",
+        "title": "Loyalty App Survey: Q3 Findings",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Key findings"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "We surveyed 1,200 customers in each of Q2 and Q3."
+              },
+              {
+                "id": "s3",
+                "text": "Satisfaction (top-2-box) rose from 62% to 71%, a gain of 9 points."
+              },
+              {
+                "id": "s4",
+                "text": "Q3 satisfaction also beats the 65% industry average."
+              },
+              {
+                "id": "s5",
+                "text": "App users made up 45% of Q3 respondents (480 of 1,200)."
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Metric",
+              "Q2",
+              "Q3",
+              "Change"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "Satisfaction (top-2-box)"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "62%"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "71%"
+                },
+                {
+                  "id": "r1c4",
+                  "text": "+9 points"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "Average order value"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "$8.40"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "$9.24"
+                },
+                {
+                  "id": "r2c4",
+                  "text": "+10%"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "App users (share of respondents)"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "30%"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "40%"
+                },
+                {
+                  "id": "r3c4",
+                  "text": "+10 points"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s6",
+                "text": "Implications"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s7",
+                "text": "Repeat purchase intent is 78% among app users versus 54% among non-users."
+              },
+              {
+                "id": "s8",
+                "text": "The app clearly causes higher repeat intent, so we recommend moving the full promo budget to app downloads."
+              },
+              {
+                "id": "s9",
+                "text": "Average order value reached $9.24, up from $8.40."
+              },
+              {
+                "id": "s10",
+                "text": "We suggest re-surveying in Q4 to confirm the trend."
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s5",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "480 of 1,200 is 480/1200 = 40%, not 45%. The table in the same document also shows 40%.",
+          "correction": "App users made up 40% of Q3 respondents (480 of 1,200).",
+          "cue": "Recompute every percentage from the counts in the same sentence."
+        },
+        {
+          "targetId": "s4",
+          "type": "facts",
+          "severity": 3,
+          "explanation": "The 65% industry average is not in the supplied data, and the brief said to use no outside benchmarks. It cannot be traced to any source.",
+          "correction": "Delete the sentence, or state only the Q2 to Q3 comparison (62% to 71%).",
+          "cue": "Ask where every benchmark came from; if it isn't in the brief, cut it."
+        },
+        {
+          "targetId": "s8",
+          "type": "logic",
+          "severity": 3,
+          "explanation": "Survey data shows app users have higher repeat intent (78% vs 54%), which is a correlation. Heavy app users may already be more loyal, so causation is not shown. Moving the full promo budget on that basis is unsupported.",
+          "correction": "App users show higher repeat intent, but the survey cannot show the app causes it; test the effect before shifting budget.",
+          "cue": "When a group differs, ask whether the group was already different before."
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "r2c4",
+          "looksWrongBecause": "A +10% change on order value looks suspiciously round.",
+          "fineBecause": "$9.24 / $8.40 = 1.10, so the increase is exactly 10%."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "s3",
+          "expression": "71-62",
+          "stated": 9,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "s5",
+          "expression": "480/1200*100",
+          "stated": 45,
+          "tolerance": 0.5,
+          "isError": true
+        },
+        {
+          "targetId": "r1c4",
+          "expression": "71-62",
+          "stated": 9,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "r2c4",
+          "expression": "(9.24/8.4-1)*100",
+          "stated": 10,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r3c2",
+          "expression": "360/1200*100",
+          "stated": 30,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r3c3",
+          "expression": "480/1200*100",
+          "stated": 40,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r3c4",
+          "expression": "40-30",
+          "stated": 10,
+          "tolerance": 0.05,
+          "isError": false
+        }
+      ],
+      "id": "pool-13116100-5434-l2",
+      "soc": "13-1161.00",
+      "occupation": "Market Research Analysts and Marketing Specialists",
+      "taskId": 5434,
+      "task": "Prepare reports of findings, illustrating data graphically and translating complex findings into written text.",
+      "level": 2
+    },
+    {
+      "brief": {
+        "from": "Dana Whitfield",
+        "role": "Director of Consumer Insights, Brightleaf Foods",
+        "ask": "Write a one-page findings summary on our June Harvest Crunch concept test for the executive team and retail partner Stonebridge Markets. Survey: 800 US adults; 300 aged 18–34 (42% top-2-box intent), 300 aged 35–54 (31%), 200 aged 55+ (18%). Goal: maximize first-quarter trial; recommend where to focus launch spend. Vendor name and fieldwork costs ($12 per respondent) are confidential and must not appear, since the report goes outside the company."
+      },
+      "artifact": {
+        "kind": "report",
+        "title": "Harvest Crunch Concept Test: Key Findings",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Summary"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "We surveyed 800 US adults in June about the Harvest Crunch oat bar concept."
+              },
+              {
+                "id": "s3",
+                "text": "Overall, 31.9% say they would definitely or probably buy it, about 255 of 800 respondents."
+              },
+              {
+                "id": "s4",
+                "text": "Intent falls steadily with age, as the table shows."
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Age group",
+              "Respondents",
+              "Intent (%)",
+              "Likely buyers"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "18–34"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "300"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "42"
+                },
+                {
+                  "id": "r1c4",
+                  "text": "126"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "35–54"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "300"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "31"
+                },
+                {
+                  "id": "r2c4",
+                  "text": "93"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "55+"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "200"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "18"
+                },
+                {
+                  "id": "r3c4",
+                  "text": "36"
+                }
+              ],
+              [
+                {
+                  "id": "r4c1",
+                  "text": "Total"
+                },
+                {
+                  "id": "r4c2",
+                  "text": "800"
+                },
+                {
+                  "id": "r4c3",
+                  "text": "31.9"
+                },
+                {
+                  "id": "r4c4",
+                  "text": "255"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s5",
+                "text": "What the data shows"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s6",
+                "text": "Adults 18–34 lead at 42%, 28 points above the 18% for adults 55+."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s7",
+                "text": "Adults 35–54 sit close to the overall average at 31%."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s8",
+                "text": "The 55+ group has the fewest likely buyers, at 36 of 200."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s9",
+                "text": "Fieldwork cost $9,600 with PanelNorth, at $12 per respondent."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s10",
+                "text": "Recommendation"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s11",
+                "text": "Focus 60% of first-quarter launch spend on adults 55+, where there is the most room to grow."
+              },
+              {
+                "id": "s12",
+                "text": "These results guarantee at least 30% trial at launch."
+              },
+              {
+                "id": "s13",
+                "text": "We will re-test pricing with the same age groups before national rollout."
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s6",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "The gap between 42% (18–34) and 18% (55+) is 42 − 18 = 24 points, not 28. The table in the same document shows the correct figures.",
+          "correction": "Adults 18–34 lead at 42%, 24 points above the 18% for adults 55+.",
+          "cue": "Recompute every gap from the two figures cited in the sentence."
+        },
+        {
+          "targetId": "s9",
+          "type": "audience",
+          "severity": 2,
+          "explanation": "The brief says the vendor name and fieldwork costs are confidential and the report goes to an outside retail partner. This bullet discloses both PanelNorth and the $12 per respondent cost.",
+          "correction": "Delete the bullet; keep vendor and cost details out of the external report.",
+          "cue": "Check the brief's confidentiality limits before any internal detail goes in an outward-facing document."
+        },
+        {
+          "targetId": "s11",
+          "type": "logic",
+          "severity": 3,
+          "explanation": "The goal is to maximize first-quarter trial. The table shows adults 55+ have the lowest intent (18%) and fewest likely buyers (36), while 18–34 has the highest (42%, 126 buyers). Putting most spend on 55+ contradicts the data.",
+          "correction": "Focus most first-quarter launch spend on adults 18–34, with a smaller share for 35–54.",
+          "cue": "Test each recommendation against the table and the stated goal."
+        },
+        {
+          "targetId": "s12",
+          "type": "risk",
+          "severity": 3,
+          "explanation": "A concept test measures stated intent, not actual purchases, so it cannot guarantee any trial level. An absolute promise in an outward-facing report could create commercial and legal exposure.",
+          "correction": "These results suggest meaningful trial potential, but stated intent typically overstates actual purchase.",
+          "cue": "Flag words like 'guarantee' wherever survey intent is turned into a forecast."
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "r4c3",
+          "looksWrongBecause": "The simple average of 42, 31 and 18 is 30.3, so 31.9 for the total looks wrong.",
+          "fineBecause": "The groups differ in size, so the total is weighted: (126 + 93 + 36) / 800 = 31.9%."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "s6",
+          "expression": "42-18",
+          "stated": 28,
+          "tolerance": 0.5,
+          "isError": true
+        },
+        {
+          "targetId": "s3",
+          "expression": "255/800*100",
+          "stated": 31.9,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "s3",
+          "expression": "(300*42/100+300*31/100+200*18/100)",
+          "stated": 255,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r4c3",
+          "expression": "(126+93+36)/800*100",
+          "stated": 31.9,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "r4c2",
+          "expression": "300+300+200",
+          "stated": 800,
+          "tolerance": 0,
+          "isError": false
+        },
+        {
+          "targetId": "r1c4",
+          "expression": "300*42/100",
+          "stated": 126,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r2c4",
+          "expression": "300*31/100",
+          "stated": 93,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r3c4",
+          "expression": "200*18/100",
+          "stated": 36,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r4c4",
+          "expression": "126+93+36",
+          "stated": 255,
+          "tolerance": 0,
+          "isError": false
+        },
+        {
+          "targetId": "s8",
+          "expression": "200*18/100",
+          "stated": 36,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "s9",
+          "expression": "800*12",
+          "stated": 9600,
+          "tolerance": 1,
+          "isError": false
+        }
+      ],
+      "id": "pool-13116100-5434-l3",
+      "soc": "13-1161.00",
+      "occupation": "Market Research Analysts and Marketing Specialists",
+      "taskId": 5434,
+      "task": "Prepare reports of findings, illustrating data graphically and translating complex findings into written text.",
+      "level": 3
+    },
+    {
+      "brief": {
+        "from": "Dana Whitfield",
+        "role": "Senior Marketing Analyst, Ridgeback Outdoor Gear",
+        "ask": "Write a short summary for our marketing director of the Ridgeback trail shoe price test. Online survey, 600 U.S. runners, 200 per price. Top-2-box purchase intent: $89 = 41%, $99 = 36%, $109 = 24%. Include intent-weighted revenue per respondent (price x intent), a recommendation, and a next step. Use only our survey data; we have no outside benchmarks or studies to cite."
+      },
+      "artifact": {
+        "kind": "summary",
+        "title": "Ridgeback Trail Shoe Price Test: Summary",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "We tested three price points for the Ridgeback trail shoe in an online survey of 600 U.S. runners, with 200 respondents per price."
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Price",
+              "Respondents",
+              "Top-2-box intent",
+              "Weighted revenue per respondent"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "$89"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "200"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "41%"
+                },
+                {
+                  "id": "r1c4",
+                  "text": "$36.49"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "$99"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "200"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "36%"
+                },
+                {
+                  "id": "r2c4",
+                  "text": "$35.64"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "$109"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "200"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "24%"
+                },
+                {
+                  "id": "r3c4",
+                  "text": "$26.16"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "Intent falls 17 points from $89 to $109, a 41% relative drop."
+              },
+              {
+                "id": "s3",
+                "text": "This pattern matches the 2023 National Footwear Pricing Index, which found runners accept premiums of up to 12%."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s4",
+                "text": "Recommendation"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s5",
+                "text": "We recommend launching at $99, because it delivers the highest intent-weighted revenue."
+              },
+              {
+                "id": "s6",
+                "text": "Stated intent at $99 guarantees a first-year sell-out of the initial production run."
+              },
+              {
+                "id": "s7",
+                "text": "Next step: validate the choice with a two-week retail A/B test in three regions."
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s3",
+          "type": "facts",
+          "severity": 2,
+          "explanation": "The 'National Footwear Pricing Index' and its 12% premium finding are not in the survey data, and the brief said there are no outside benchmarks. The source appears invented.",
+          "correction": "Delete the sentence, or replace it with a statement based only on the survey data.",
+          "cue": "Check every cited study or index against the sources you were given."
+        },
+        {
+          "targetId": "s5",
+          "type": "logic",
+          "severity": 3,
+          "explanation": "The table shows $89 has the highest intent-weighted revenue ($36.49 vs $35.64 at $99) and the highest intent. Recommending $99 on that basis contradicts the document's own data.",
+          "correction": "We recommend launching at $89, because it delivers the highest intent-weighted revenue ($36.49 per respondent).",
+          "cue": "Match each recommendation to the row the table actually ranks first."
+        },
+        {
+          "targetId": "s6",
+          "type": "risk",
+          "severity": 3,
+          "explanation": "Stated purchase intent in a survey cannot guarantee sales, and a sell-out guarantee could set unsupported expectations for production and finance. Intent usually overstates actual purchases.",
+          "correction": "Stated intent at the recommended price suggests solid demand, but actual sales may differ; validate in market.",
+          "cue": "Flag 'guarantees' wherever survey intent is treated as certain sales."
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "s2",
+          "looksWrongBecause": "The 17 points and the 41% look mixed up, since 41% is also the intent at $89.",
+          "fineBecause": "41% - 24% = 17 percentage points, and 17/41 = 41.5%, so the relative drop is about 41%. The match is a coincidence."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "r1c4",
+          "expression": "89*0.41",
+          "stated": 36.49,
+          "tolerance": 0.01,
+          "isError": false
+        },
+        {
+          "targetId": "r2c4",
+          "expression": "99*0.36",
+          "stated": 35.64,
+          "tolerance": 0.01,
+          "isError": false
+        },
+        {
+          "targetId": "r3c4",
+          "expression": "109*0.24",
+          "stated": 26.16,
+          "tolerance": 0.01,
+          "isError": false
+        },
+        {
+          "targetId": "s2",
+          "expression": "41-24",
+          "stated": 17,
+          "tolerance": 0.01,
+          "isError": false
+        },
+        {
+          "targetId": "s2",
+          "expression": "(41-24)/41*100",
+          "stated": 41,
+          "tolerance": 0.6,
+          "isError": false
+        },
+        {
+          "targetId": "s1",
+          "expression": "200*3",
+          "stated": 600,
+          "tolerance": 0.01,
+          "isError": false
+        }
+      ],
+      "id": "pool-13116100-5439-l2",
+      "soc": "13-1161.00",
+      "occupation": "Market Research Analysts and Marketing Specialists",
+      "taskId": 5439,
+      "task": "Conduct research on consumer opinions and marketing strategies, collaborating with marketing professionals, statisticians, pollsters, and other professionals.",
+      "level": 2
+    },
+    {
+      "brief": {
+        "from": "Priya Nand",
+        "role": "Market research analyst, Juniper Pet Co.",
+        "ask": "Write a short email to Dana Ruiz, VP Marketing, on our September DentaBite price test. 800 U.S. dog owners, three cells: $12.99 (n=270, 54% top-2-box intent), $14.99 (n=265, 46%), $16.99 (n=265, 31%). Unit cost is $6.00. Recommend one price. Dana isn't a statistician, so plain English, no stats jargon. Use only claims the data supports; no health claims. Ask her to approve by Oct. 18."
+      },
+      "artifact": {
+        "kind": "email",
+        "title": "DentaBite price test: results and recommendation",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "subject",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Subject: DentaBite price test: recommend $14.99"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "Hi Dana,"
+              },
+              {
+                "id": "s3",
+                "text": "We surveyed 800 U.S. dog owners in September, randomly assigning each to see DentaBite at one of three prices."
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Price",
+              "Respondents",
+              "Top-2-box intent",
+              "Margin per 100 respondents"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "$12.99"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "270"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "54%"
+                },
+                {
+                  "id": "r1c4",
+                  "text": "$377"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "$14.99"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "265"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "46%"
+                },
+                {
+                  "id": "r2c4",
+                  "text": "$414"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "$16.99"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "265"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "31%"
+                },
+                {
+                  "id": "r3c4",
+                  "text": "$341"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s4",
+                "text": "Intent falls steadily as price rises, from 54% at $12.99 to 31% at $16.99."
+              },
+              {
+                "id": "s5",
+                "text": "We recommend $14.99 even though $12.99 had the highest intent."
+              },
+              {
+                "id": "s6",
+                "text": "At a $6.00 unit cost, $14.99 earns $414 in margin per 100 respondents, about 20% more than $12.99."
+              },
+              {
+                "id": "s7",
+                "text": "The result is consistent with the 2024 National Pet Pricing Index, which puts the sweet spot for dental chews at $15."
+              },
+              {
+                "id": "s8",
+                "text": "Pairwise differences were significant after Bonferroni correction (adjusted α = 0.017)."
+              },
+              {
+                "id": "s9",
+                "text": "Packaging can state that DentaBite prevents dental disease in dogs."
+              },
+              {
+                "id": "s10",
+                "text": "Please approve the price by Oct. 18 so packaging can go to print."
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s6",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "Margin per 100 respondents is $414 at $14.99 versus $377 at $12.99, which is only about 10% more (413.54/377.46 = 1.096), not 20%.",
+          "correction": "At a $6.00 unit cost, $14.99 earns $414 in margin per 100 respondents, about 10% more than $12.99.",
+          "cue": "Recompute any % difference from the table figures it cites"
+        },
+        {
+          "targetId": "s7",
+          "type": "facts",
+          "severity": 2,
+          "explanation": "The \"2024 National Pet Pricing Index\" is not in the data supplied and cannot be traced; it looks like an invented source supporting the price.",
+          "correction": "Delete the sentence, or cite only a benchmark that is actually in the source material.",
+          "cue": "Ask where every outside benchmark comes from"
+        },
+        {
+          "targetId": "s8",
+          "type": "audience",
+          "severity": 2,
+          "explanation": "The brief says Dana is not a statistician and wants plain English with no stats jargon. Bonferroni correction and adjusted alpha ignore that instruction.",
+          "correction": "The differences between the three prices are large enough that we are confident they are real, not chance.",
+          "cue": "Check the draft against the reader and tone the brief asked for"
+        },
+        {
+          "targetId": "s9",
+          "type": "risk",
+          "severity": 3,
+          "explanation": "A claim that the product prevents dental disease is a health claim. The survey measured purchase intent only, so nothing supports it, and the brief ruled out health claims. It could create regulatory and advertising risk, so check with legal or compliance.",
+          "correction": "Remove it. Packaging claims should be limited to what the product's substantiation supports, as approved by legal.",
+          "cue": "Flag any health or absolute product claim the data cannot support"
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "s5",
+          "looksWrongBecause": "Recommending a price that did not have the highest purchase intent seems to contradict the data.",
+          "fineBecause": "Margin per 100 respondents is highest at $14.99 ($414 vs $377 at $12.99 and $341 at $16.99), so it is the best price for profit."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "s3",
+          "expression": "270+265+265",
+          "stated": 800,
+          "tolerance": 0,
+          "isError": false
+        },
+        {
+          "targetId": "r1c4",
+          "expression": "(12.99-6)*54",
+          "stated": 377,
+          "tolerance": 0.6,
+          "isError": false
+        },
+        {
+          "targetId": "r2c4",
+          "expression": "(14.99-6)*46",
+          "stated": 414,
+          "tolerance": 0.6,
+          "isError": false
+        },
+        {
+          "targetId": "r3c4",
+          "expression": "(16.99-6)*31",
+          "stated": 341,
+          "tolerance": 0.6,
+          "isError": false
+        },
+        {
+          "targetId": "s6",
+          "expression": "(14.99-6)*46",
+          "stated": 414,
+          "tolerance": 0.6,
+          "isError": false
+        },
+        {
+          "targetId": "s6",
+          "expression": "((14.99-6)*46/((12.99-6)*54)-1)*100",
+          "stated": 20,
+          "tolerance": 0.5,
+          "isError": true
+        }
+      ],
+      "id": "pool-13116100-5439-l3",
+      "soc": "13-1161.00",
+      "occupation": "Market Research Analysts and Marketing Specialists",
+      "taskId": 5439,
+      "task": "Conduct research on consumer opinions and marketing strategies, collaborating with marketing professionals, statisticians, pollsters, and other professionals.",
+      "level": 3
+    },
+    {
+      "brief": {
+        "from": "Priya Nandakumar",
+        "role": "Marketing Manager, Brightleaf Pantry (meal-kit company)",
+        "ask": "Draft a short plan comparing email, SMS and phone for our customer satisfaction survey, and recommend one. We need 400 completed responses by June 30 with a $3,000 budget. Expected response rates: email 8%, SMS 12%, phone 20%. Cost per completed response: email $4, SMS $6, phone $25. Plan a 50-person pilot by May 15. It goes to our store managers, so use plain language with no statistical jargon. Use only the figures I gave you. Keep it under 200 words."
+      },
+      "artifact": {
+        "kind": "plan",
+        "title": "Customer Satisfaction Survey: Collection Plan",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Goal and budget"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "We need 400 completed responses by June 30 with a budget of $3,000."
+              },
+              {
+                "id": "s3",
+                "text": "The table compares the three methods."
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Method",
+              "Expected response",
+              "Contacts needed",
+              "Cost for 400 completes"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "Email"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "8%"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "5,000"
+                },
+                {
+                  "id": "r1c4",
+                  "text": "$1,600"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "SMS"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "12%"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "4,000"
+                },
+                {
+                  "id": "r2c4",
+                  "text": "$2,400"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "Phone"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "20%"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "2,000"
+                },
+                {
+                  "id": "r3c4",
+                  "text": "$10,000"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s4",
+                "text": "Recommendation"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s5",
+                "text": "Email and SMS both fit the budget, while phone is far over it."
+              },
+              {
+                "id": "s6",
+                "text": "We recommend SMS: it gets more replies than email for $800 more."
+              },
+              {
+                "id": "s7",
+                "text": "An industry benchmark from the National Retail Survey Board puts SMS response at 30%, so we may beat our estimate."
+              },
+              {
+                "id": "s8",
+                "text": "We will weight responses using raking and post-stratification so results match our customer base."
+              },
+              {
+                "id": "s9",
+                "text": "Next step: send a 50-person pilot by May 15 to test the question wording."
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "r2c3",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "SMS contacts needed = 400 / 0.12 = about 3,334, not 4,000. 4,000 would only give 480 completes at 12%... actually it overstates the list needed by about 670 contacts.",
+          "correction": "3,334",
+          "cue": "Recompute contacts as target completes divided by response rate."
+        },
+        {
+          "targetId": "s7",
+          "type": "facts",
+          "severity": 2,
+          "explanation": "The brief supplied only the three expected response rates and said to use only those figures. The 'National Retail Survey Board' 30% benchmark cannot be traced and looks invented.",
+          "correction": "Delete the sentence, or say the 12% estimate is the only figure used.",
+          "cue": "Ask where every benchmark or named source came from."
+        },
+        {
+          "targetId": "s8",
+          "type": "audience",
+          "severity": 1,
+          "explanation": "The brief says the plan goes to store managers and must use plain language without statistical jargon. 'Raking' and 'post-stratification' are jargon for that audience.",
+          "correction": "We will adjust the results so they reflect our whole customer base.",
+          "cue": "Check wording against the stated reader."
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "r3c4",
+          "looksWrongBecause": "$10,000 for phone looks very high next to the other methods.",
+          "fineBecause": "400 completes × $25 per complete = $10,000, which is correct and well above the $3,000 budget."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "r1c3",
+          "expression": "400/0.08",
+          "stated": 5000,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "r2c3",
+          "expression": "400/0.12",
+          "stated": 4000,
+          "tolerance": 1,
+          "isError": true
+        },
+        {
+          "targetId": "r3c3",
+          "expression": "400/0.2",
+          "stated": 2000,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "r1c4",
+          "expression": "400*4",
+          "stated": 1600,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "r2c4",
+          "expression": "400*6",
+          "stated": 2400,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "r3c4",
+          "expression": "400*25",
+          "stated": 10000,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "s6",
+          "expression": "2400-1600",
+          "stated": 800,
+          "tolerance": 1,
+          "isError": false
+        }
+      ],
+      "id": "pool-13116100-5443-l2",
+      "soc": "13-1161.00",
+      "occupation": "Market Research Analysts and Marketing Specialists",
+      "taskId": 5443,
+      "task": "Devise and evaluate methods and procedures for collecting data, such as surveys, opinion polls, or questionnaires, or arrange to obtain existing data.",
+      "level": 2
+    },
+    {
+      "brief": {
+        "from": "Dana Whitfield",
+        "role": "Senior Research Analyst, Harlow Home Goods",
+        "ask": "Draft a one-page plan for marketing leadership comparing three ways to collect concept-test data for our refillable cleaner: online panel (600 completes, $12 each), store intercept (300, $18 each), loyalty email (1,200 invites, 8% response, $15 per complete). Budget is $18,000. Loyalty answers will be matched to purchase history by member ID. Use only my figures; no outside sources."
+      },
+      "artifact": {
+        "kind": "plan",
+        "title": "Concept Test Data Collection Plan: Refillable Cleaner Line",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Objective"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "We need a read on purchase intent for the refillable cleaning-spray line before the packaging decision on October 14."
+              },
+              {
+                "id": "s3",
+                "text": "We compared three collection methods against the $18,000 research budget."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s4",
+                "text": "Options compared"
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Method",
+              "Completes",
+              "Cost per complete",
+              "Total cost",
+              "Margin of error (95%)"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "Online panel"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "600"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "$12"
+                },
+                {
+                  "id": "r1c4",
+                  "text": "$7,200"
+                },
+                {
+                  "id": "r1c5",
+                  "text": "±4.0%"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "Store intercept"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "300"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "$18"
+                },
+                {
+                  "id": "r2c4",
+                  "text": "$5,400"
+                },
+                {
+                  "id": "r2c5",
+                  "text": "±5.7%"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "Loyalty email"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "96"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "$15"
+                },
+                {
+                  "id": "r3c4",
+                  "text": "$1,440"
+                },
+                {
+                  "id": "r3c5",
+                  "text": "±10.0%"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s5",
+                "text": "Assessment"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s6",
+                "text": "Online panel: lowest cost per complete and the tightest margin of error, but it under-represents shoppers who rarely go online."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s7",
+                "text": "Store intercept: costs $6 more per complete than the panel, yet it reaches in-store shoppers the panel misses."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s8",
+                "text": "Loyalty email: 1,200 invitations at an expected 8% response yield 96 completes."
+              },
+              {
+                "id": "s9",
+                "text": "The 8% rate matches the Retail Research Alliance 2023 benchmark for retail email surveys."
+              },
+              {
+                "id": "s10",
+                "text": "At ±10.0%, these results are directional only."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s11",
+                "text": "Recommendation"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s12",
+                "text": "Make the loyalty email the primary method because it has the lowest cost per complete, and keep the panel and intercept as supporting checks."
+              },
+              {
+                "id": "s13",
+                "text": "Running all three methods costs $14,040, leaving $3,960, about 12% of the budget unspent."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s14",
+                "text": "Data handling"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s15",
+                "text": "Loyalty responses will be matched to purchase history by member ID."
+              },
+              {
+                "id": "s16",
+                "text": "All respondents are guaranteed complete anonymity, and no individual can ever be identified."
+              },
+              {
+                "id": "s17",
+                "text": "Fielding starts once Legal approves the consent wording."
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s9",
+          "type": "facts",
+          "severity": 2,
+          "explanation": "The Retail Research Alliance 2023 benchmark is not in the figures the requester supplied (she asked for no outside sources) and cannot be traced. The 8% is her own expected response rate.",
+          "correction": "Delete the sentence, or say 'The 8% rate is our planning assumption.'",
+          "cue": "Challenge any named benchmark or source that the brief did not supply"
+        },
+        {
+          "targetId": "s12",
+          "type": "logic",
+          "severity": 3,
+          "explanation": "The table shows the loyalty email costs $15 per complete, more than the panel's $12. It also has the widest margin of error (±10.0%), and the plan itself calls its results directional only. The recommendation contradicts the document's own data.",
+          "correction": "Make the online panel the primary method (lowest cost per complete, ±4.0%), with the intercept as support and the loyalty email as a directional check.",
+          "cue": "Check that the recommendation matches the table it follows"
+        },
+        {
+          "targetId": "s13",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "$7,200 + $5,400 + $1,440 = $14,040, so $18,000 - $14,040 = $3,960. $3,960 / $18,000 = 22%, not 12%.",
+          "correction": "Running all three methods costs $14,040, leaving $3,960, about 22% of the budget unspent.",
+          "cue": "Recompute any percentage from the two numbers in the sentence"
+        },
+        {
+          "targetId": "s16",
+          "type": "risk",
+          "severity": 3,
+          "explanation": "The previous sentence says loyalty responses are matched to purchase history by member ID, so those respondents are identifiable. A guarantee of complete anonymity, with no individual 'ever' identifiable, is an absolute promise that conflicts with the plan and could create privacy and legal risk. Check with legal/compliance.",
+          "correction": "Say that responses are confidential, that loyalty responses are linked to member IDs, and that results are reported only in aggregate, with wording approved by Legal.",
+          "cue": "Compare any privacy promise with how the data is actually linked"
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "s10",
+          "looksWrongBecause": "Calling a result 'directional only' in a plan may seem to undercut one of the three methods being recommended.",
+          "fineBecause": "With 96 completes the margin of error is 1.96 × sqrt(0.25/96) ≈ ±10.0%, which is too wide for firm decisions. The blunt caveat is accurate and appropriate."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "r1c4",
+          "expression": "600*12",
+          "stated": 7200,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "r2c4",
+          "expression": "300*18",
+          "stated": 5400,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "r3c4",
+          "expression": "96*15",
+          "stated": 1440,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "s7",
+          "expression": "18-12",
+          "stated": 6,
+          "tolerance": 0.01,
+          "isError": false
+        },
+        {
+          "targetId": "s8",
+          "expression": "1200*0.08",
+          "stated": 96,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "s13",
+          "expression": "7200+5400+1440",
+          "stated": 14040,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "s13",
+          "expression": "18000-14040",
+          "stated": 3960,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "s13",
+          "expression": "(18000-14040)/18000*100",
+          "stated": 12,
+          "tolerance": 0.5,
+          "isError": true
+        }
+      ],
+      "id": "pool-13116100-5443-l3",
+      "soc": "13-1161.00",
+      "occupation": "Market Research Analysts and Marketing Specialists",
+      "taskId": 5443,
+      "task": "Devise and evaluate methods and procedures for collecting data, such as surveys, opinion polls, or questionnaires, or arrange to obtain existing data.",
+      "level": 3
+    },
+    {
+      "brief": {
+        "from": "Dana Whitfield",
+        "role": "Marketing Manager, Harbor & Pine Outfitters",
+        "ask": "Write a short email (under 200 words) to our store managers summarizing Q2 paid channel results. Data: email $6,000 spend, 300 leads; social $12,000, 400 leads; radio $9,000, 150 leads. Our target cost per lead is $35. Briefly explain how we identify advertising needs and propose moving $3,000 from radio to email. Our agency fee terms are confidential: do not include them in anything store managers see."
+      },
+      "artifact": {
+        "kind": "email",
+        "title": "Q2 advertising needs review: channel results",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "subject",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Subject: Q2 advertising needs review: channel results"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "Hi store managers,"
+              },
+              {
+                "id": "s3",
+                "text": "Here is how our Q2 paid channels performed and how we decide where to focus next."
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Channel",
+              "Spend",
+              "Leads",
+              "Cost per lead"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "Email"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "$6,000"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "300"
+                },
+                {
+                  "id": "r1c4",
+                  "text": "$20"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "Social"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "$12,000"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "400"
+                },
+                {
+                  "id": "r2c4",
+                  "text": "$30"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "Radio"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "$9,000"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "150"
+                },
+                {
+                  "id": "r3c4",
+                  "text": "$60"
+                }
+              ],
+              [
+                {
+                  "id": "r4c1",
+                  "text": "Total"
+                },
+                {
+                  "id": "r4c2",
+                  "text": "$27,000"
+                },
+                {
+                  "id": "r4c3",
+                  "text": "850"
+                },
+                {
+                  "id": "r4c4",
+                  "text": "$31.76"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s4",
+                "text": "Email delivered the lowest cost per lead at $20, which is 40% below social's $30."
+              },
+              {
+                "id": "s5",
+                "text": "Radio costs twice as much per lead as social ($60 versus $30)."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s6",
+                "text": "Our process"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s7",
+                "text": "Each quarter we compare cost per lead by channel against the $35 target."
+              },
+              {
+                "id": "s8",
+                "text": "Channels above target get a gap review with store managers."
+              },
+              {
+                "id": "s9",
+                "text": "Gaps in seasonal demand trigger new ad requests."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s10",
+                "text": "Next step"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s11",
+                "text": "Radio is the only channel above target, so we propose moving $3,000 of its budget to email."
+              },
+              {
+                "id": "s12",
+                "text": "Doing so guarantees at least 150 additional leads at email's current cost."
+              },
+              {
+                "id": "s13",
+                "text": "For context, our agency fee is 12% of spend, or $3,240 for the quarter."
+              },
+              {
+                "id": "s14",
+                "text": "Please send questions by Friday."
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s4",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "Email's $20 versus social's $30 is a drop of (30-20)/30 = 33%, not 40%. The 40% figure uses the wrong base or is simply miscalculated.",
+          "correction": "Email delivered the lowest cost per lead at $20, which is about 33% below social's $30.",
+          "cue": "Recompute any % change from the two numbers in the sentence."
+        },
+        {
+          "targetId": "s12",
+          "type": "risk",
+          "severity": 3,
+          "explanation": "Lead results from moving budget cannot be guaranteed. $3,000 / $20 gives about 150 leads only if email's cost per lead holds, which is an assumption. An absolute promise could mislead managers and set up missed commitments.",
+          "correction": "At email's current $20 cost per lead, this could yield roughly 150 additional leads, though results may vary.",
+          "cue": "Flag 'guarantee' wherever the future depends on assumptions."
+        },
+        {
+          "targetId": "s13",
+          "type": "audience",
+          "severity": 3,
+          "explanation": "The brief says agency fee terms are confidential and must not appear in anything store managers see. This sentence discloses the fee rate and amount to them.",
+          "correction": "Delete the sentence. Keep agency fee terms out of the store manager email.",
+          "cue": "Check the draft against every 'do not include' instruction in the brief."
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "s5",
+          "looksWrongBecause": "A 'twice as much' claim with such neat numbers can look like a rough or inflated comparison.",
+          "fineBecause": "Radio's cost per lead is $9,000 / 150 = $60 and social's is $12,000 / 400 = $30, so the ratio is exactly 2."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "r1c4",
+          "expression": "6000/300",
+          "stated": 20,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r2c4",
+          "expression": "12000/400",
+          "stated": 30,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r3c4",
+          "expression": "9000/150",
+          "stated": 60,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r4c2",
+          "expression": "6000+12000+9000",
+          "stated": 27000,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "r4c3",
+          "expression": "300+400+150",
+          "stated": 850,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r4c4",
+          "expression": "27000/850",
+          "stated": 31.76,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "s4",
+          "expression": "(30-20)/30*100",
+          "stated": 40,
+          "tolerance": 0.5,
+          "isError": true
+        },
+        {
+          "targetId": "s5",
+          "expression": "60/30",
+          "stated": 2,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "s12",
+          "expression": "3000/20",
+          "stated": 150,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "s13",
+          "expression": "0.12*27000",
+          "stated": 3240,
+          "tolerance": 1,
+          "isError": false
+        }
+      ],
+      "id": "pool-13116100-5444-l2",
+      "soc": "13-1161.00",
+      "occupation": "Market Research Analysts and Marketing Specialists",
+      "taskId": 5444,
+      "task": "Develop and implement procedures for identifying advertising needs.",
+      "level": 2
+    },
+    {
+      "brief": {
+        "from": "Dana Reyes",
+        "role": "Owner, Harborline Boat Rentals",
+        "ask": "Draft a one-page advertising needs assessment for Harborline Boat Rentals' spring season. Last season's data: radio $12,000 for 150 leads; paid search $9,000 for 300; social ads $6,000 for 120; direct mail $8,000 for 80. Total $35,000 for 650 leads. Use only these figures, no outside benchmarks. Recommend how to use the $35,000 spring budget. Keep it under 280 words and do not promise results."
+      },
+      "artifact": {
+        "kind": "report",
+        "title": "Harborline Boat Rentals: Spring Advertising Needs Assessment",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Purpose"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "This assessment identifies where Harborline should place its $35,000 spring advertising budget, based on last season's lead results."
+              },
+              {
+                "id": "s3",
+                "text": "Each channel was compared on spend, leads and cost per lead (CPL)."
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Channel",
+              "Spend",
+              "Leads",
+              "CPL"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "Radio"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "$12,000"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "150"
+                },
+                {
+                  "id": "r1c4",
+                  "text": "$80"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "Paid search"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "$9,000"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "300"
+                },
+                {
+                  "id": "r2c4",
+                  "text": "$30"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "Social ads"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "$6,000"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "120"
+                },
+                {
+                  "id": "r3c4",
+                  "text": "$50"
+                }
+              ],
+              [
+                {
+                  "id": "r4c1",
+                  "text": "Direct mail"
+                },
+                {
+                  "id": "r4c2",
+                  "text": "$8,000"
+                },
+                {
+                  "id": "r4c3",
+                  "text": "80"
+                },
+                {
+                  "id": "r4c4",
+                  "text": "$100"
+                }
+              ],
+              [
+                {
+                  "id": "r5c1",
+                  "text": "Total"
+                },
+                {
+                  "id": "r5c2",
+                  "text": "$35,000"
+                },
+                {
+                  "id": "r5c3",
+                  "text": "650"
+                },
+                {
+                  "id": "r5c4",
+                  "text": "$53.85"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s4",
+                "text": "Findings"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s5",
+                "text": "Paid search was the cheapest source of leads at $30 each and produced 56% of all leads."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s6",
+                "text": "Radio took the largest share of spend ($12,000), but its CPL of $80 is well above the blended CPL."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s7",
+                "text": "Social ads delivered 120 leads at $50 each, half the CPL of direct mail."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s8",
+                "text": "The National Marine Marketing Index puts the average CPL for boat rental firms at $45, so every channel except paid search is above benchmark."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s9",
+                "text": "Recommendation"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s10",
+                "text": "Direct mail has the highest CPL at $100, so we recommend adding $4,000 to it to bring down our blended CPL."
+              },
+              {
+                "id": "s11",
+                "text": "Fund the increase by trimming radio from $12,000 to $8,000."
+              },
+              {
+                "id": "s12",
+                "text": "Keep paid search and social ads at last season's levels."
+              },
+              {
+                "id": "s13",
+                "text": "With this mix, Harborline is guaranteed to fill every weekend slot by June."
+              },
+              {
+                "id": "s14",
+                "text": "Next step: Dana approves the plan by March 1 so creative can be booked."
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s5",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "Paid search produced 300 of 650 leads, which is 300/650 = 46.2%, not 56%.",
+          "correction": "Paid search was the cheapest source of leads at $30 each and produced 46% of all leads.",
+          "cue": "Recompute any share from the table figures before trusting the stated percent."
+        },
+        {
+          "targetId": "s8",
+          "type": "facts",
+          "severity": 2,
+          "explanation": "The brief supplied only Harborline's own figures and asked for no outside benchmarks. The 'National Marine Marketing Index' and its $45 average cannot be traced and appear invented.",
+          "correction": "Delete the benchmark sentence, or compare channels only against the blended CPL of $53.85.",
+          "cue": "Ask where every outside statistic or named index comes from."
+        },
+        {
+          "targetId": "s10",
+          "type": "logic",
+          "severity": 3,
+          "explanation": "Direct mail has the highest CPL ($100), so adding budget to it would raise the blended CPL, not lower it. The recommendation contradicts the table and the stated goal.",
+          "correction": "Shift the $4,000 from direct mail or radio toward paid search, the lowest-CPL channel, to bring down blended CPL.",
+          "cue": "Check that each recommendation moves money toward the data's better performer."
+        },
+        {
+          "targetId": "s13",
+          "type": "risk",
+          "severity": 3,
+          "explanation": "Guaranteeing that every weekend slot will fill is an unsupported absolute claim based on past lead counts, and the brief said not to promise results.",
+          "correction": "Replace with: 'This mix should lower our blended CPL; we will track leads weekly and adjust.'",
+          "cue": "Flag words like guaranteed or every when the data only shows past leads."
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "r5c4",
+          "looksWrongBecause": "The four channel CPLs ($80, $30, $50, $100) average $65, so $53.85 looks too low for the total row.",
+          "fineBecause": "Blended CPL is total spend over total leads: $35,000 / 650 = $53.85. It is weighted by leads, so cheap paid search pulls it below the simple average."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "r1c4",
+          "expression": "12000/150",
+          "stated": 80,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r2c4",
+          "expression": "9000/300",
+          "stated": 30,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r3c4",
+          "expression": "6000/120",
+          "stated": 50,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r4c4",
+          "expression": "8000/80",
+          "stated": 100,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r5c2",
+          "expression": "12000+9000+6000+8000",
+          "stated": 35000,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "r5c3",
+          "expression": "150+300+120+80",
+          "stated": 650,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r5c4",
+          "expression": "35000/650",
+          "stated": 53.85,
+          "tolerance": 0.01,
+          "isError": false
+        },
+        {
+          "targetId": "s5",
+          "expression": "300/650*100",
+          "stated": 56,
+          "tolerance": 0.5,
+          "isError": true
+        },
+        {
+          "targetId": "s7",
+          "expression": "100/2",
+          "stated": 50,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "s11",
+          "expression": "12000-4000",
+          "stated": 8000,
+          "tolerance": 0.5,
+          "isError": false
+        }
+      ],
+      "id": "pool-13116100-5444-l3",
+      "soc": "13-1161.00",
+      "occupation": "Market Research Analysts and Marketing Specialists",
+      "taskId": 5444,
+      "task": "Develop and implement procedures for identifying advertising needs.",
+      "level": 3
+    }
+  ]
+}

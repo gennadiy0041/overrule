@@ -63,6 +63,13 @@ export interface DrillServiceDeps {
  */
 export const USER_WAIT_BUDGET_MS = 45_000;
 
+/**
+ * After a live generation fails, the pool is served straight away for this long
+ * instead of making the next person wait for the same outage. Short enough that
+ * live drills come back by themselves once the provider does.
+ */
+export const LIVE_COOLDOWN_MS = 3 * 60_000;
+
 /** Used when an occupation has no AI-exposed (E1/E2) task to build a drill on. */
 const GENERIC_TASK = {
   id: 0,
@@ -84,11 +91,15 @@ interface GenerationPlan {
   avoidTitles: string[];
   /** Owner of the drill; null for a shared Daily Catch. */
   sessionId: string | null;
+  /** Our own traffic (tests, the team): never spend model budget on it. */
+  internal: boolean;
 }
 
 export class DrillService {
   /** In-flight generations, keyed by who they are for. One process, one replica — a Map is enough. */
   private readonly pending = new Map<string, PendingGeneration>();
+  /** Epoch ms until which live generation is skipped (see LIVE_COOLDOWN_MS). */
+  private liveDownUntil = 0;
 
   constructor(private readonly deps: DrillServiceDeps) {}
 
@@ -114,7 +125,7 @@ export class DrillService {
   async next(session: Session, requested: "first" | "practice" | "daily", onStage: StageListener): Promise<ReadyEvent> {
     const occupation = this.occupationOf(session);
     if (!occupation) throw new ServiceError(409, "scan_required");
-    if (requested === "daily") return this.nextDaily(occupation, onStage);
+    if (requested === "daily") return this.nextDaily(occupation, session.isInternal, onStage);
 
     const mode = this.hasPersonalAttempt(session.id) ? "practice" : requested;
     if (mode === "practice") this.assertCanPractice(session);
@@ -176,7 +187,7 @@ export class DrillService {
     };
   }
 
-  private async nextDaily(occupation: Occupation, onStage: StageListener): Promise<ReadyEvent> {
+  private async nextDaily(occupation: Occupation, internal: boolean, onStage: StageListener): Promise<ReadyEvent> {
     const day = etDay(this.deps.now());
     const { drills } = this.deps;
     const assigned = drills.dailyDrillId(day, occupation.soc) ?? this.assignDailyFromPool(day, occupation.soc);
@@ -184,7 +195,7 @@ export class DrillService {
 
     // No pool for this occupation: today's shared drill is generated once, by whoever arrives first.
     const key = `daily:${day}:${occupation.soc}`;
-    const generation = this.pending.get(key) ?? this.startGeneration(key, this.dailyPlan(occupation, day), day);
+    const generation = this.pending.get(key) ?? this.startGeneration(key, this.dailyPlan(occupation, day, internal), day);
     const stored = await this.waitFor(generation, onStage);
     if (stored) return { drillId: drills.assignDaily(day, occupation.soc, stored.drill.id), origin: "live" };
 
@@ -351,6 +362,7 @@ export class DrillService {
   private async generate(plan: GenerationPlan, emit: StageListener): Promise<StoredDrill | null> {
     const { providers, drills, llmLog } = this.deps;
     if (!providers.claude && !providers.gemini) return null;
+    if (plan.internal || this.deps.now().getTime() < this.liveDownUntil) return null;
     if (!this.withinLimits(plan.sessionId)) return null;
 
     const generated = await generateDrill(
@@ -371,7 +383,10 @@ export class DrillService {
         onStage: emit,
       },
     );
-    if (!generated) return null;
+    if (!generated) {
+      this.liveDownUntil = this.deps.now().getTime() + LIVE_COOLDOWN_MS;
+      return null;
+    }
 
     const stored: StoredDrill = {
       drill: generated.drill,
@@ -420,10 +435,11 @@ export class DrillService {
       requiredTypes: weak ? [weak] : isFirst ? ["numbers"] : [],
       avoidTitles: history.slice(-5).map((a) => a.drill.artifact.title),
       sessionId: session.id,
+      internal: session.isInternal,
     };
   }
 
-  private dailyPlan(occupation: Occupation, day: string): GenerationPlan {
+  private dailyPlan(occupation: Occupation, day: string, internal: boolean): GenerationPlan {
     const exposed = exposedTasks(occupation);
     const number = dailyNumber(day);
     const task = exposed.length > 0 ? exposed[pickDailyIndex(day, exposed.length)]! : GENERIC_TASK;
@@ -434,6 +450,7 @@ export class DrillService {
       requiredTypes: [],
       avoidTitles: [],
       sessionId: null,
+      internal,
     };
   }
 

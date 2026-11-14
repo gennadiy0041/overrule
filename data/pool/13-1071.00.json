@@ -1,0 +1,2389 @@
+{
+  "soc": "13-1071.00",
+  "occupation": "Human Resources Specialists",
+  "drills": [
+    {
+      "brief": {
+        "from": "Priya Raman",
+        "role": "HR Specialist, Talent Acquisition at Harborline Logistics",
+        "ask": "Draft a short status email (under 150 words) to everyone who applied for the Warehouse Operations Coordinator role and has not yet been told a result. Facts: 212 applications received by May 23; 18 phone screens done; 6 finalists interviewing June 9–13; final decisions emailed to all applicants by June 20. Company policy: unsuccessful applications are kept on file for 12 months. Do not promise interviews or offers to anyone."
+      },
+      "artifact": {
+        "kind": "email",
+        "title": "Update on your Warehouse Operations Coordinator application",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "subject",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Subject: Update on your Warehouse Operations Coordinator application"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "Dear Applicant,"
+              },
+              {
+                "id": "s3",
+                "text": "Thank you for applying for the Warehouse Operations Coordinator role at Harborline Logistics."
+              },
+              {
+                "id": "s4",
+                "text": "We received 212 applications by May 23, and our review is still in progress."
+              },
+              {
+                "id": "s5",
+                "text": "So far, 18 candidates have completed phone screens, and 6 (about 3% of all applicants) have been invited to final interviews on June 9–13."
+              },
+              {
+                "id": "s6",
+                "text": "Your application remains under consideration, and no further action is needed from you."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s7",
+                "text": "We will email final decisions to all applicants by June 6, once the final interviews are complete."
+              },
+              {
+                "id": "s8",
+                "text": "If you are not selected, we guarantee you an interview for the next Operations opening."
+              },
+              {
+                "id": "s9",
+                "text": "We also keep unsuccessful applications on file for 24 months and may contact you about similar roles."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s10",
+                "text": "Thank you for your patience and your interest in Harborline."
+              },
+              {
+                "id": "s11",
+                "text": "Sincerely,"
+              },
+              {
+                "id": "s12",
+                "text": "Priya Raman, Talent Acquisition, Harborline Logistics"
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s7",
+          "type": "logic",
+          "severity": 2,
+          "explanation": "The email says decisions will go out by June 6 'once the final interviews are complete', but the final interviews run June 9–13. The deadline falls before the interviews even start; the brief gives June 20.",
+          "correction": "We will email final decisions to all applicants by June 20, after the final interviews are complete.",
+          "cue": "Check that every date in a timeline falls in a possible order."
+        },
+        {
+          "targetId": "s8",
+          "type": "risk",
+          "severity": 3,
+          "explanation": "Guaranteeing an interview for a future opening is a promise outside the brief, which says not to promise interviews or offers. It could create fairness or legal exposure; check with HR/legal.",
+          "correction": "If you are not selected, we encourage you to apply for future openings that match your experience.",
+          "cue": "Flag any 'guarantee' or promise made to applicants."
+        },
+        {
+          "targetId": "s9",
+          "type": "facts",
+          "severity": 2,
+          "explanation": "The email states a 24-month retention period, but the company policy in the brief is 12 months. Applicants would be given incorrect information about their data.",
+          "correction": "We also keep unsuccessful applications on file for 12 months and may contact you about similar roles.",
+          "cue": "Compare each policy detail with the source the requester gave."
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "s5",
+          "looksWrongBecause": "3% looks too small and too round for the share of applicants invited to final interviews.",
+          "fineBecause": "6 of 212 applicants is 2.83%, which rounds to about 3%, and the wording 'about' is accurate."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "s5",
+          "expression": "6/212*100",
+          "stated": 3,
+          "tolerance": 0.5,
+          "isError": false
+        }
+      ],
+      "id": "pool-13107100-18857-l2",
+      "soc": "13-1071.00",
+      "occupation": "Human Resources Specialists",
+      "taskId": 18857,
+      "task": "Contact job applicants to inform them of the status of their applications.",
+      "level": 2
+    },
+    {
+      "brief": {
+        "from": "Dana Whitfield",
+        "role": "Talent Acquisition Specialist, Alder Ridge Credit Union",
+        "ask": "Draft an email to the 27 candidates who completed a phone screen for Member Services Supervisor but are not advancing. Facts: 240 applications, 36 phone screens, 9 onsite interviews. We keep résumés on file for 12 months. Be warm and brief, under 200 words. Do not share internal scoring or other candidates' details, and do not promise future consideration. Sign as me."
+      },
+      "artifact": {
+        "kind": "email",
+        "title": "Your Member Services Supervisor application",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "subject",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Subject: Update on your Member Services Supervisor application"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "Dear Candidate,"
+              },
+              {
+                "id": "s3",
+                "text": "Thank you for taking the time to speak with our team about the Member Services Supervisor role at Alder Ridge Credit Union."
+              },
+              {
+                "id": "s4",
+                "text": "After careful review, we have decided not to move your application forward to the onsite interview stage."
+              },
+              {
+                "id": "s5",
+                "text": "Here is how the process unfolded."
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Stage",
+              "Candidates",
+              "Share of applications"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "Applications received"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "240"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "100%"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "Phone screens"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "36"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "15%"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "Onsite interviews"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "9"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "3.8%"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s6",
+                "text": "Nine of the 36 screened candidates (33%) were invited to interview onsite."
+              },
+              {
+                "id": "s7",
+                "text": "Your score of 71 on our internal rubric fell below the 80-point cutoff for this round."
+              },
+              {
+                "id": "s8",
+                "text": "Your background is impressive, and this decision reflects a very competitive pool rather than any shortcoming in your experience."
+              },
+              {
+                "id": "s9",
+                "text": "We will keep your résumé on file for 24 months."
+              },
+              {
+                "id": "s10",
+                "text": "You will be first in line for any future supervisor opening."
+              },
+              {
+                "id": "s11",
+                "text": "Current openings are always posted on our careers page."
+              },
+              {
+                "id": "s12",
+                "text": "Thank you again for your interest in joining Alder Ridge."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s13",
+                "text": "Warm regards,"
+              },
+              {
+                "id": "s14",
+                "text": "Dana Whitfield"
+              },
+              {
+                "id": "s15",
+                "text": "Talent Acquisition Specialist, Alder Ridge Credit Union"
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s6",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "Nine of 36 is 25%, not 33% (9/36 = 0.25). The percentage is also inconsistent with the funnel table.",
+          "correction": "Nine of the 36 screened candidates (25%) were invited to interview onsite.",
+          "cue": "Recompute any percentage from the two numbers in the sentence."
+        },
+        {
+          "targetId": "s7",
+          "type": "audience",
+          "severity": 3,
+          "explanation": "The brief said not to share internal scoring. Quoting the candidate's rubric score and cutoff exposes internal evaluation criteria to an outside reader and invites disputes.",
+          "correction": "Remove the sentence, or say only that the decision reflects a very competitive pool.",
+          "cue": "Check what the brief says must stay internal before sending outside."
+        },
+        {
+          "targetId": "s9",
+          "type": "facts",
+          "severity": 2,
+          "explanation": "The brief states résumés are kept on file for 12 months, not 24. The email misstates company practice.",
+          "correction": "We will keep your résumé on file for 12 months.",
+          "cue": "Match every policy detail to the source the requester gave."
+        },
+        {
+          "targetId": "s10",
+          "type": "risk",
+          "severity": 3,
+          "explanation": "Promising priority for future openings contradicts the brief's instruction not to promise future consideration. It could create an expectation or legal exposure; check with HR/legal.",
+          "correction": "You are welcome to apply for future openings that match your experience.",
+          "cue": "Watch for promises of future treatment in rejection messages."
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "r2c3",
+          "looksWrongBecause": "A perfectly round 15% looks too neat, and it differs from the 25% advancement figure used elsewhere.",
+          "fineBecause": "36 / 240 = 0.15 exactly; the table's base is all 240 applications, not the 36 screened."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "s6",
+          "expression": "9/36*100",
+          "stated": 33,
+          "tolerance": 0.5,
+          "isError": true
+        },
+        {
+          "targetId": "r1c3",
+          "expression": "240/240*100",
+          "stated": 100,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r2c3",
+          "expression": "36/240*100",
+          "stated": 15,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r3c3",
+          "expression": "9/240*100",
+          "stated": 3.8,
+          "tolerance": 0.06,
+          "isError": false
+        }
+      ],
+      "id": "pool-13107100-18857-l3",
+      "soc": "13-1071.00",
+      "occupation": "Human Resources Specialists",
+      "taskId": 18857,
+      "task": "Contact job applicants to inform them of the status of their applications.",
+      "level": 3
+    },
+    {
+      "brief": {
+        "from": "Dana Whitfield",
+        "role": "HR Manager, Brightwater Logistics",
+        "ask": "Draft a short all-staff email explaining 2025 PTO accrual and FMLA eligibility. Facts: full-time PTO is 80 hrs/yr (0–2 yrs), 120 (3–5), 160 (6+), accrued monthly; carryover cap 40 hrs, excess forfeited Dec 31. FMLA: 12 months, 1,250 hours in past 12 months, employer with 50+ employees within 75 miles, up to 12 weeks unpaid. Under 200 words."
+      },
+      "artifact": {
+        "kind": "email",
+        "title": "PTO Accrual and FMLA Eligibility Update",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "subject",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Subject: PTO accrual and FMLA eligibility for 2025"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "Hi everyone,"
+              },
+              {
+                "id": "s3",
+                "text": "Here is how PTO accrues for full-time employees starting January 1."
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Tenure",
+              "Annual hours",
+              "Monthly accrual"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "0–2 years"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "80"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "6.67"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "3–5 years"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "120"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "10.00"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "6+ years"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "160"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "14.33"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s4",
+                "text": "Unused PTO above 40 hours is forfeited on December 31."
+              },
+              {
+                "id": "s5",
+                "text": "Because of this cap, you should save all your PTO until December to avoid losing any."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s6",
+                "text": "FMLA eligibility"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s7",
+                "text": "FMLA covers employers with 25 or more employees within 75 miles."
+              },
+              {
+                "id": "s8",
+                "text": "You must have worked 12 months and at least 1,250 hours in the past year, which is about 24 hours a week."
+              },
+              {
+                "id": "s9",
+                "text": "Eligible employees may take up to 12 weeks of unpaid leave in a year."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s10",
+                "text": "Contact HR before requesting leave so we can confirm your eligibility."
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "r3c3",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "160 annual hours divided by 12 months is 13.33, not 14.33. At 14.33 per month employees would accrue about 172 hours a year.",
+          "correction": "13.33",
+          "cue": "Recompute per-period figures from the annual total."
+        },
+        {
+          "targetId": "s5",
+          "type": "logic",
+          "severity": 2,
+          "explanation": "Saving everything until December is the way to lose hours above the 40-hour cap, so the advice contradicts the policy. Employees should use PTO during the year.",
+          "correction": "Because of this cap, plan to use PTO during the year so you do not lose hours above 40.",
+          "cue": "Check that advice actually follows from the rule it cites."
+        },
+        {
+          "targetId": "s7",
+          "type": "facts",
+          "severity": 3,
+          "explanation": "The brief states FMLA covers employers with 50 or more employees within 75 miles, not 25. The email would tell staff the wrong coverage threshold.",
+          "correction": "FMLA covers employers with 50 or more employees within 75 miles.",
+          "cue": "Compare every legal threshold against the supplied source."
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "s8",
+          "looksWrongBecause": "Converting 1,250 hours to about 24 hours a week looks like an unsupported extra figure.",
+          "fineBecause": "1,250 hours divided by 52 weeks is 24.04, so about 24 hours a week is correct."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "r1c3",
+          "expression": "80/12",
+          "stated": 6.67,
+          "tolerance": 0.01,
+          "isError": false
+        },
+        {
+          "targetId": "r2c3",
+          "expression": "120/12",
+          "stated": 10,
+          "tolerance": 0.01,
+          "isError": false
+        },
+        {
+          "targetId": "r3c3",
+          "expression": "160/12",
+          "stated": 14.33,
+          "tolerance": 0.01,
+          "isError": true
+        },
+        {
+          "targetId": "s8",
+          "expression": "1250/52",
+          "stated": 24,
+          "tolerance": 0.5,
+          "isError": false
+        }
+      ],
+      "id": "pool-13107100-18861-l2",
+      "soc": "13-1071.00",
+      "occupation": "Human Resources Specialists",
+      "taskId": 18861,
+      "task": "Interpret and explain human resources policies, procedures, laws, standards, or regulations.",
+      "level": 2
+    },
+    {
+      "brief": {
+        "from": "Dana Ruiz",
+        "role": "HR Manager, Harlow Freight Systems",
+        "ask": "Draft a reply to Marcus Bell, a warehouse associate, who asks if he qualifies for FMLA leave for his father's surgery on Nov 4. His record: 14 months of service, 1,310 hours in the past 12 months, site has 120 employees within 75 miles. FMLA tests: 12 months, 1,250 hours, 50 employees. Up to 12 weeks unpaid; our policy requires using up to 80 hours of PTO concurrently (he has 56). Certification due in 15 days. Plain tone, under 200 words. Do not mention any other employee's leave."
+      },
+      "artifact": {
+        "kind": "reply",
+        "title": "Re: Your FMLA leave question",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "subject",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Re: Your FMLA leave question"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "Hi Marcus,"
+              },
+              {
+                "id": "s3",
+                "text": "Thank you for asking about leave for your father's surgery on November 4."
+              },
+              {
+                "id": "s4",
+                "text": "Based on your records, you appear to meet all three FMLA eligibility tests, shown below."
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Test",
+              "Requirement",
+              "Your record"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "Length of service"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "12 months"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "14 months"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "Hours worked, past 12 months"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "1,250 hours"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "1,310 hours"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "Employees within 75 miles"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "50 employees"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "120 employees"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s5",
+                "text": "You exceed the hours minimum by 160 hours."
+              },
+              {
+                "id": "s6",
+                "text": "FMLA provides up to 12 weeks of unpaid leave in a 12-month period, which equals 480 hours on a full-time schedule."
+              },
+              {
+                "id": "s7",
+                "text": "Company policy requires you to use up to 80 hours of accrued PTO at the start of leave, so your 56 hours will run concurrently with the unpaid leave."
+              },
+              {
+                "id": "s8",
+                "text": "Your PTO balance will stay untouched while you are out."
+              },
+              {
+                "id": "s9",
+                "text": "Because the need is foreseeable, please submit your request by October 1 so we have at least 30 days' notice."
+              },
+              {
+                "id": "s10",
+                "text": "Medical certification is due within 15 calendar days of our request."
+              },
+              {
+                "id": "s11",
+                "text": "Your leave is approved, and your job is guaranteed to be waiting for you in the same position, shift and pay no matter what happens."
+              },
+              {
+                "id": "s12",
+                "text": "Several coworkers have handled this process smoothly, including Priya Nair in Receiving, who took leave last spring for her mother's surgery."
+              },
+              {
+                "id": "s13",
+                "text": "Please call me with any questions."
+              },
+              {
+                "id": "s14",
+                "text": "Dana Ruiz, HR Manager"
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s5",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "1,310 hours worked minus the 1,250-hour requirement is 60 hours, not 160.",
+          "correction": "You exceed the hours minimum by 60 hours.",
+          "cue": "Recompute every difference from the figures in the table."
+        },
+        {
+          "targetId": "s8",
+          "type": "logic",
+          "severity": 2,
+          "explanation": "Contradicts the earlier sentence (s7) saying policy requires his 56 PTO hours to run concurrently with the leave, so the balance will be used, not untouched.",
+          "correction": "Your 56 hours of PTO will be applied at the start of your leave.",
+          "cue": "Compare later statements against earlier ones on the same topic."
+        },
+        {
+          "targetId": "s11",
+          "type": "risk",
+          "severity": 3,
+          "explanation": "Approving before certification and guaranteeing the same position, shift and pay unconditionally is an unsupported absolute. FMLA restores an equivalent position and approval depends on certification; this could create legal exposure — check with legal/compliance.",
+          "correction": "Your leave will be approved once we receive complete medical certification, and you will be restored to the same or an equivalent position as FMLA requires.",
+          "cue": "Flag 'guaranteed' and 'no matter what' in employment promises."
+        },
+        {
+          "targetId": "s12",
+          "type": "audience",
+          "severity": 3,
+          "explanation": "The brief said not to mention any other employee's leave. Naming a coworker and her family medical situation discloses private information and ignores the instruction.",
+          "correction": "Delete the sentence; do not reference other employees' leave.",
+          "cue": "Check the draft against every 'do not' in the request."
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "s10",
+          "looksWrongBecause": "Many readers expect a 30-day certification window, so 15 days may seem too short.",
+          "fineBecause": "The brief gives certification due in 15 days, and FMLA allows employers to require it at least 15 calendar days after the request."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "s5",
+          "expression": "1310-1250",
+          "stated": 160,
+          "tolerance": 0.5,
+          "isError": true
+        },
+        {
+          "targetId": "s6",
+          "expression": "12*40",
+          "stated": 480,
+          "tolerance": 0.5,
+          "isError": false
+        }
+      ],
+      "id": "pool-13107100-18861-l3",
+      "soc": "13-1071.00",
+      "occupation": "Human Resources Specialists",
+      "taskId": 18861,
+      "task": "Interpret and explain human resources policies, procedures, laws, standards, or regulations.",
+      "level": 3
+    },
+    {
+      "brief": {
+        "from": "Dana Whitfield",
+        "role": "HR Specialist, Copperline Fabrication (240 employees)",
+        "ask": "Draft a short all-staff email (about 150 words plus a small status table) announcing revised Handbook Section 4.2, effective Feb 3, 2025: remote work up to 2 days/week with manager approval (was 1), core hours 10-3, acknowledge in HR portal by Feb 28. Status: Plant 94 of 130, Office 72 of 80, Sales 30 of 30. Neutral tone, no promises beyond policy. Do not mention the confidential plant consolidation planned for next quarter."
+      },
+      "artifact": {
+        "kind": "email",
+        "title": "Updated Handbook Section 4.2: Attendance and Remote Work",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "subject",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Subject: Updated Handbook Section 4.2 – Attendance and Remote Work"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "Section 4.2 of the Employee Handbook takes effect February 3, 2025."
+              },
+              {
+                "id": "s3",
+                "text": "Eligible employees may now work remotely up to two days per week with manager approval, up from one day."
+              },
+              {
+                "id": "s4",
+                "text": "Core hours are 10 a.m. to 3 p.m. for everyone."
+              },
+              {
+                "id": "s5",
+                "text": "These changes come ahead of the plant consolidation planned for next quarter."
+              },
+              {
+                "id": "s6",
+                "text": "Once approved, your remote schedule is guaranteed for as long as you work here."
+              },
+              {
+                "id": "s7",
+                "text": "Please acknowledge the revised section in the HR portal by February 28."
+              },
+              {
+                "id": "s8",
+                "text": "Current acknowledgement status is below."
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Group",
+              "Staff",
+              "Acknowledged",
+              "Rate (%)"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "Plant"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "130"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "94"
+                },
+                {
+                  "id": "r1c4",
+                  "text": "72"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "Office"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "80"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "72"
+                },
+                {
+                  "id": "r2c4",
+                  "text": "90"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "Sales"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "30"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "30"
+                },
+                {
+                  "id": "r3c4",
+                  "text": "100"
+                }
+              ],
+              [
+                {
+                  "id": "r4c1",
+                  "text": "Total"
+                },
+                {
+                  "id": "r4c2",
+                  "text": "240"
+                },
+                {
+                  "id": "r4c3",
+                  "text": "196"
+                },
+                {
+                  "id": "r4c4",
+                  "text": "82"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s9",
+                "text": "We will send reminders to Office staff first, since they have the lowest completion rate."
+              },
+              {
+                "id": "s10",
+                "text": "Questions? Contact Dana Whitfield in HR."
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s5",
+          "type": "audience",
+          "severity": 3,
+          "explanation": "The brief says the plant consolidation planned for next quarter is confidential and must not be mentioned. Putting it in an all-staff email discloses internal information and could cause alarm.",
+          "correction": "Delete the sentence. Keep the email limited to the policy change, core hours and the acknowledgement deadline.",
+          "cue": "Check the draft against the brief's do-not-share list"
+        },
+        {
+          "targetId": "s6",
+          "type": "risk",
+          "severity": 3,
+          "explanation": "A guarantee of the remote schedule 'as long as you work here' is an absolute promise beyond policy. It could create a contractual or legal expectation. The brief asked for no promises beyond policy.",
+          "correction": "Once approved, remote days remain subject to manager approval and business needs, and Section 4.2 may be revised.",
+          "cue": "Flag absolute promises like 'guaranteed' in HR communications"
+        },
+        {
+          "targetId": "s9",
+          "type": "logic",
+          "severity": 2,
+          "explanation": "The table shows Plant has the lowest rate (94/130 = 72%), while Office is at 90% (72/80). Reminders should go to Plant first, not Office.",
+          "correction": "We will send reminders to Plant staff first, since they have the lowest completion rate.",
+          "cue": "Check each conclusion against the lowest or highest value in the table"
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "r3c4",
+          "looksWrongBecause": "A flat 100% completion rate looks too neat to be real.",
+          "fineBecause": "Sales has 30 staff and 30 acknowledgements, as supplied in the brief, so 30/30 = 100%."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "r1c4",
+          "expression": "94/130*100",
+          "stated": 72,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r2c4",
+          "expression": "72/80*100",
+          "stated": 90,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r3c4",
+          "expression": "30/30*100",
+          "stated": 100,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r4c2",
+          "expression": "130+80+30",
+          "stated": 240,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r4c3",
+          "expression": "94+72+30",
+          "stated": 196,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r4c4",
+          "expression": "196/240*100",
+          "stated": 82,
+          "tolerance": 0.5,
+          "isError": false
+        }
+      ],
+      "id": "pool-13107100-18863-l2",
+      "soc": "13-1071.00",
+      "occupation": "Human Resources Specialists",
+      "taskId": 18863,
+      "task": "Maintain and update human resources documents, such as organizational charts, employee handbooks or directories, or performance evaluation forms.",
+      "level": 2
+    },
+    {
+      "brief": {
+        "from": "Priya Nandakumar",
+        "role": "HR Specialist at Cedar Ridge Dental Group",
+        "ask": "Draft an all-staff email announcing the handbook update effective July 1, 2025. Changes: tuition cap $2,000 to $2,500; bereavement leave 3 to 5 days; reviews annual to twice yearly (April, October); directory shows work extensions only. Add a headcount table (before/after): Clinical 48/52, Front Office 14/12, Billing 9/9, Admin 6/7. Don't name individuals or explain role changes. Friendly tone."
+      },
+      "artifact": {
+        "kind": "email",
+        "title": "All-Staff Email: Handbook Update and Headcount",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "subject",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Subject: Employee Handbook Update Effective July 1, 2025"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "Hi everyone,"
+              },
+              {
+                "id": "s3",
+                "text": "The updated Employee Handbook takes effect July 1, 2025, and the full version is on the staff portal."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s4",
+                "text": "What is changing"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s5",
+                "text": "Tuition reimbursement: the annual cap rises from $2,000 to $2,500, a 25% increase."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s6",
+                "text": "Bereavement leave: immediate family leave rises from 3 to 5 days, a 40% increase."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s7",
+                "text": "Federal law requires employers to provide paid bereavement leave, so this change keeps us compliant."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s8",
+                "text": "Performance reviews: reviews move from annual to twice a year, in April and October."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s9",
+                "text": "Employees rated Meets Expectations or higher in the October review are guaranteed a merit raise."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s10",
+                "text": "Directory: the staff directory will list work extensions only."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s11",
+                "text": "Headcount after the org chart update"
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Department",
+              "Before",
+              "After",
+              "Change"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "Clinical"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "48"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "52"
+                },
+                {
+                  "id": "r1c4",
+                  "text": "+4"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "Front Office"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "14"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "12"
+                },
+                {
+                  "id": "r2c4",
+                  "text": "-2"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "Billing"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "9"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "9"
+                },
+                {
+                  "id": "r3c4",
+                  "text": "0"
+                }
+              ],
+              [
+                {
+                  "id": "r4c1",
+                  "text": "Admin"
+                },
+                {
+                  "id": "r4c2",
+                  "text": "6"
+                },
+                {
+                  "id": "r4c3",
+                  "text": "7"
+                },
+                {
+                  "id": "r4c4",
+                  "text": "+1"
+                }
+              ],
+              [
+                {
+                  "id": "r5c1",
+                  "text": "Total"
+                },
+                {
+                  "id": "r5c2",
+                  "text": "77"
+                },
+                {
+                  "id": "r5c3",
+                  "text": "80"
+                },
+                {
+                  "id": "r5c4",
+                  "text": "+3"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s12",
+                "text": "Overall headcount grows from 77 to 80, up 3.9%."
+              },
+              {
+                "id": "s13",
+                "text": "Front Office is down two because Dana Reyes's and Luis Ortega's roles were eliminated in the reorganization."
+              },
+              {
+                "id": "s14",
+                "text": "Please reach out to HR with any questions."
+              },
+              {
+                "id": "s15",
+                "text": "Thanks,"
+              },
+              {
+                "id": "s16",
+                "text": "Priya Nandakumar, HR Specialist"
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s6",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "Going from 3 to 5 days is an increase of 2 days on a base of 3: (5/3-1)*100 = 66.7%, not 40%. 40% would be the share of the new total that the increase represents (2/5), which is the wrong base.",
+          "correction": "Bereavement leave: immediate family leave rises from 3 to 5 days, a 67% increase.",
+          "cue": "Recompute any % change from the two numbers in the sentence."
+        },
+        {
+          "targetId": "s7",
+          "type": "facts",
+          "severity": 3,
+          "explanation": "No federal law requires private employers to provide paid bereavement leave, and the brief supplied no such rule. The claim is a misremembered or invented legal requirement presented as a reason for the change.",
+          "correction": "Remove the sentence, or say the company is expanding leave as a benefit, not because of a legal requirement.",
+          "cue": "Verify any 'the law requires' claim against a source before sending."
+        },
+        {
+          "targetId": "s9",
+          "type": "risk",
+          "severity": 3,
+          "explanation": "Guaranteeing a merit raise to everyone rated Meets Expectations or higher is an absolute promise that the brief did not provide. It could create contractual or legal exposure and limit budget discretion; check with HR leadership and legal.",
+          "correction": "Merit increases, if any, will be considered after the October review and are subject to budget approval.",
+          "cue": "Challenge 'guaranteed' and other absolutes about pay."
+        },
+        {
+          "targetId": "s13",
+          "type": "audience",
+          "severity": 3,
+          "explanation": "The brief said not to name individuals or explain role changes. This all-staff email names two employees and discloses that their roles were eliminated, which is confidential personnel information and ignores the instruction.",
+          "correction": "Delete the sentence. The table already shows the Front Office headcount change.",
+          "cue": "Check the draft against the brief's do-not-share instructions."
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "r3c4",
+          "looksWrongBecause": "A change of 0 for Billing can look like an omission or a copied-over value in a table of updates.",
+          "fineBecause": "Billing headcount is 9 before and 9 after, as the brief states, so the change is 0 and the total still adds up: 4-2+0+1 = 3."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "s5",
+          "expression": "(2500/2000-1)*100",
+          "stated": 25,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "s6",
+          "expression": "(5/3-1)*100",
+          "stated": 40,
+          "tolerance": 0.5,
+          "isError": true
+        },
+        {
+          "targetId": "r1c4",
+          "expression": "52-48",
+          "stated": 4,
+          "tolerance": 0,
+          "isError": false
+        },
+        {
+          "targetId": "r2c4",
+          "expression": "12-14",
+          "stated": -2,
+          "tolerance": 0,
+          "isError": false
+        },
+        {
+          "targetId": "r3c4",
+          "expression": "9-9",
+          "stated": 0,
+          "tolerance": 0,
+          "isError": false
+        },
+        {
+          "targetId": "r4c4",
+          "expression": "7-6",
+          "stated": 1,
+          "tolerance": 0,
+          "isError": false
+        },
+        {
+          "targetId": "r5c2",
+          "expression": "48+14+9+6",
+          "stated": 77,
+          "tolerance": 0,
+          "isError": false
+        },
+        {
+          "targetId": "r5c3",
+          "expression": "52+12+9+7",
+          "stated": 80,
+          "tolerance": 0,
+          "isError": false
+        },
+        {
+          "targetId": "r5c4",
+          "expression": "80-77",
+          "stated": 3,
+          "tolerance": 0,
+          "isError": false
+        },
+        {
+          "targetId": "s12",
+          "expression": "(80/77-1)*100",
+          "stated": 3.9,
+          "tolerance": 0.05,
+          "isError": false
+        }
+      ],
+      "id": "pool-13107100-18863-l3",
+      "soc": "13-1071.00",
+      "occupation": "Human Resources Specialists",
+      "taskId": 18863,
+      "task": "Maintain and update human resources documents, such as organizational charts, employee handbooks or directories, or performance evaluation forms.",
+      "level": 3
+    },
+    {
+      "brief": {
+        "from": "Priya Nand",
+        "role": "HR Operations Manager",
+        "ask": "Write a short email to all department managers summarizing March HRIS record activity. Source figures: opening headcount 120; 8 hires, 5 terminations, 4 transfers, 3 promotions, 2 leaves started; all records entered by March 31. Use a small table of counts. Counts only: do not include individual names or pay. We have no time-to-fill or benchmark data, so don't cite any."
+      },
+      "artifact": {
+        "kind": "email",
+        "title": "March HRIS Personnel Action Summary",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "subject",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Subject: March HRIS Personnel Action Summary"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "Hello managers,"
+              },
+              {
+                "id": "s3",
+                "text": "All March personnel actions were entered in the HRIS by March 31."
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Action",
+              "Count"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "Hires"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "8"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "Terminations"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "5"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "Transfers"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "4"
+                }
+              ],
+              [
+                {
+                  "id": "r4c1",
+                  "text": "Promotions"
+                },
+                {
+                  "id": "r4c2",
+                  "text": "3"
+                }
+              ],
+              [
+                {
+                  "id": "r5c1",
+                  "text": "Leaves started"
+                },
+                {
+                  "id": "r5c2",
+                  "text": "2"
+                }
+              ],
+              [
+                {
+                  "id": "r6c1",
+                  "text": "Total actions"
+                },
+                {
+                  "id": "r6c2",
+                  "text": "22"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s4",
+                "text": "Opening headcount was 120, and closing headcount was 125."
+              },
+              {
+                "id": "s5",
+                "text": "Terminations equaled 4.2% of opening headcount."
+              },
+              {
+                "id": "s6",
+                "text": "Maria Lopez's promotion to Senior Analyst raised her salary to $78,000."
+              },
+              {
+                "id": "s7",
+                "text": "Average time-to-fill for the 8 hires was 31 days, well below the industry benchmark of 42 days."
+              },
+              {
+                "id": "s8",
+                "text": "Please tell me by April 5 if any record for your team looks incorrect."
+              },
+              {
+                "id": "s9",
+                "text": "Thank you,"
+              },
+              {
+                "id": "s10",
+                "text": "HR Operations"
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s4",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "Closing headcount does not match the source figures: 120 opening + 8 hires - 5 terminations = 123, not 125. Transfers, promotions and leaves do not change headcount here.",
+          "correction": "Opening headcount was 120, and closing headcount was 123.",
+          "cue": "Roll headcount forward yourself: opening + hires - exits."
+        },
+        {
+          "targetId": "s6",
+          "type": "audience",
+          "severity": 3,
+          "explanation": "The brief said counts only, with no individual names or pay. This sentence names an employee and discloses her salary to all managers, which is confidential personnel information.",
+          "correction": "Delete the sentence, or say only: '3 promotions were processed.'",
+          "cue": "Check the draft against what the brief said to leave out."
+        },
+        {
+          "targetId": "s7",
+          "type": "facts",
+          "severity": 2,
+          "explanation": "The brief supplied no time-to-fill data and no benchmark. The 31-day average and the 42-day industry benchmark are invented and cannot be traced to the source.",
+          "correction": "Delete the sentence, since no time-to-fill data was provided.",
+          "cue": "Trace every statistic and benchmark to the supplied source."
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "s5",
+          "looksWrongBecause": "A reader may compute 5/125 = 4% or expect a different base, so 4.2% looks off.",
+          "fineBecause": "The stated base is opening headcount: 5/120 = 4.17%, which rounds to 4.2%."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "r6c2",
+          "expression": "8+5+4+3+2",
+          "stated": 22,
+          "tolerance": 0.01,
+          "isError": false
+        },
+        {
+          "targetId": "s4",
+          "expression": "120+8-5",
+          "stated": 125,
+          "tolerance": 0.01,
+          "isError": true
+        },
+        {
+          "targetId": "s5",
+          "expression": "5/120*100",
+          "stated": 4.2,
+          "tolerance": 0.05,
+          "isError": false
+        }
+      ],
+      "id": "pool-13107100-18866-l2",
+      "soc": "13-1071.00",
+      "occupation": "Human Resources Specialists",
+      "taskId": 18866,
+      "task": "Prepare or maintain employment records related to events, such as hiring, termination, leaves, transfers, or promotions, using human resources management system software.",
+      "level": 2
+    },
+    {
+      "brief": {
+        "from": "Marcus Reyes",
+        "role": "HR Specialist, Brightwater Logistics",
+        "ask": "Write a one-page summary for Dana Whitfield (HR Director) of Q3 (Jul 1–Sep 30) personnel actions entered in our HRIS. Data: opening headcount 212; hires 14; terminations 9 (6 voluntary, 3 involuntary); promotions 5; internal transfers 7; leaves 6. Entered within 5 business days: hires 14, terminations 7, promotions 5, transfers 6, leaves 5. Use only this data. No employee names or medical details; leave details stay with HR."
+      },
+      "artifact": {
+        "kind": "summary",
+        "title": "Q3 Personnel Action Records Summary",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "subject",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Q3 HRIS personnel actions: July 1–September 30"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "Dana, here is the Q3 summary of personnel actions entered in the HRIS."
+              },
+              {
+                "id": "s3",
+                "text": "Headcount rose from 212 on July 1 to 217 on September 30 after 14 hires and 9 terminations."
+              },
+              {
+                "id": "s4",
+                "text": "Net growth was 5 employees, or 2.9% of opening headcount."
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Action type",
+              "Count",
+              "Entered within 5 business days"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "Hires"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "14"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "14"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "Terminations"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "9"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "7"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "Promotions"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "5"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "5"
+                }
+              ],
+              [
+                {
+                  "id": "r4c1",
+                  "text": "Transfers"
+                },
+                {
+                  "id": "r4c2",
+                  "text": "7"
+                },
+                {
+                  "id": "r4c3",
+                  "text": "6"
+                }
+              ],
+              [
+                {
+                  "id": "r5c1",
+                  "text": "Leaves"
+                },
+                {
+                  "id": "r5c2",
+                  "text": "6"
+                },
+                {
+                  "id": "r5c3",
+                  "text": "5"
+                }
+              ],
+              [
+                {
+                  "id": "r6c1",
+                  "text": "Total"
+                },
+                {
+                  "id": "r6c2",
+                  "text": "41"
+                },
+                {
+                  "id": "r6c3",
+                  "text": "37"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s5",
+                "text": "Timeliness"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s6",
+                "text": "Of 41 actions, 37 (90.2%) were entered within 5 business days of the effective date."
+              },
+              {
+                "id": "s7",
+                "text": "The four late entries were 2 terminations, 1 transfer and 1 leave."
+              },
+              {
+                "id": "s8",
+                "text": "Hiring caused the delays, so we recommend adding a new-hire data checklist for recruiters."
+              },
+              {
+                "id": "s9",
+                "text": "This compares with the 95% on-time benchmark published by the National HRIS Council."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s10",
+                "text": "Transfers, leaves and separations"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s11",
+                "text": "The 7 transfers moved employees between departments and did not change total headcount."
+              },
+              {
+                "id": "s12",
+                "text": "To help managers plan coverage, each leave record now shows the employee's diagnosis to the direct manager."
+              },
+              {
+                "id": "s13",
+                "text": "Terminations included 6 voluntary and 3 involuntary separations."
+              },
+              {
+                "id": "s14",
+                "text": "Please let me know if you want the detail by department."
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s4",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "Net growth is 217 − 212 = 5 employees, and 5 / 212 = 2.4% of opening headcount, not 2.9%.",
+          "correction": "Net growth was 5 employees, or 2.4% of opening headcount.",
+          "cue": "Recompute any percentage from the two numbers behind it."
+        },
+        {
+          "targetId": "s8",
+          "type": "logic",
+          "severity": 2,
+          "explanation": "The table shows all 14 hires were entered on time. The late entries were terminations, a transfer and a leave (s7), so hiring did not cause the delays and a recruiter checklist would not fix them.",
+          "correction": "Late entries came mainly from terminations, so recommend a termination-processing reminder for HR and managers.",
+          "cue": "Check that a recommendation matches where the table shows the problem."
+        },
+        {
+          "targetId": "s9",
+          "type": "facts",
+          "severity": 2,
+          "explanation": "The 95% benchmark and the 'National HRIS Council' are not in the data supplied and cannot be traced. The brief said to use only the supplied data.",
+          "correction": "Delete the benchmark comparison, or cite an internal on-time target if one is provided.",
+          "cue": "Ask where every benchmark or outside source came from."
+        },
+        {
+          "targetId": "s12",
+          "type": "risk",
+          "severity": 3,
+          "explanation": "Showing diagnoses to line managers exposes confidential medical information and could create legal risk (FMLA/ADA confidentiality). The brief says medical details stay with HR. Check with legal/compliance.",
+          "correction": "Show managers only the leave dates and expected return; keep medical details restricted to HR.",
+          "cue": "Ask who can see leave and medical data in the records."
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "s11",
+          "looksWrongBecause": "Seven transfers were processed, so a reader may expect headcount to change.",
+          "fineBecause": "The brief describes them as internal transfers. Moving between departments leaves total headcount unchanged, and 212 + 14 − 9 = 217 already accounts for the change."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "s3",
+          "expression": "212+14-9",
+          "stated": 217,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "s4",
+          "expression": "(217-212)/212*100",
+          "stated": 2.9,
+          "tolerance": 0.05,
+          "isError": true
+        },
+        {
+          "targetId": "r6c2",
+          "expression": "14+9+5+7+6",
+          "stated": 41,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r6c3",
+          "expression": "14+7+5+6+5",
+          "stated": 37,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "s6",
+          "expression": "37/41*100",
+          "stated": 90.2,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "s7",
+          "expression": "41-37",
+          "stated": 4,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "s13",
+          "expression": "6+3",
+          "stated": 9,
+          "tolerance": 0.5,
+          "isError": false
+        }
+      ],
+      "id": "pool-13107100-18866-l3",
+      "soc": "13-1071.00",
+      "occupation": "Human Resources Specialists",
+      "taskId": 18866,
+      "task": "Prepare or maintain employment records related to events, such as hiring, termination, leaves, transfers, or promotions, using human resources management system software.",
+      "level": 3
+    },
+    {
+      "brief": {
+        "from": "Priya Nair",
+        "role": "HR Specialist, Calloway Freight Systems",
+        "ask": "Draft a friendly welcome email to our 6 new hires for orientation Monday, June 9, 8:30 a.m.-3:30 p.m., Building B, Room 204. Include the agenda with minutes per session: check-in 30, benefits 90, safety 60, lunch 60, systems setup 90, team introductions 90. Remind them to bring ID and I-9 documents, and that benefits enrollment closes 30 days after start. Under 200 words. It goes to the new hires, so keep internal HR metrics out."
+      },
+      "artifact": {
+        "kind": "email",
+        "title": "Welcome to Calloway Freight: Orientation on Monday, June 9",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "subject",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Welcome to Calloway Freight: Orientation on Monday, June 9"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "Hi everyone,"
+              },
+              {
+                "id": "s3",
+                "text": "We're excited to welcome you to the team."
+              },
+              {
+                "id": "s4",
+                "text": "Orientation runs 8:30 a.m. to 3:30 p.m., seven hours in all, in Building B, Room 204."
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Time",
+              "Session",
+              "Minutes"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "8:30"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "Check-in and badges"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "30"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "9:00"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "Benefits overview"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "90"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "10:30"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "Safety training"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "60"
+                }
+              ],
+              [
+                {
+                  "id": "r4c1",
+                  "text": "11:30"
+                },
+                {
+                  "id": "r4c2",
+                  "text": "Lunch"
+                },
+                {
+                  "id": "r4c3",
+                  "text": "60"
+                }
+              ],
+              [
+                {
+                  "id": "r5c1",
+                  "text": "12:30"
+                },
+                {
+                  "id": "r5c2",
+                  "text": "Systems setup"
+                },
+                {
+                  "id": "r5c3",
+                  "text": "90"
+                }
+              ],
+              [
+                {
+                  "id": "r6c1",
+                  "text": "2:00"
+                },
+                {
+                  "id": "r6c2",
+                  "text": "Team introductions"
+                },
+                {
+                  "id": "r6c3",
+                  "text": "90"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s5",
+                "text": "Excluding lunch, training time totals 5 hours."
+              },
+              {
+                "id": "s6",
+                "text": "Please bring your photo ID and original I-9 documents."
+              },
+              {
+                "id": "s7",
+                "text": "Benefits enrollment closes 30 days after your start date, on July 9."
+              },
+              {
+                "id": "s8",
+                "text": "Internal note: our last cohort had an 18% no-show rate, so we are tracking attendance closely."
+              },
+              {
+                "id": "s9",
+                "text": "Once you finish orientation, your position is secure for at least two years."
+              },
+              {
+                "id": "s10",
+                "text": "See you Monday!"
+              },
+              {
+                "id": "s11",
+                "text": "Priya Nair, HR Specialist"
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s5",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "Sessions excluding lunch are 30+90+60+90+90 = 360 minutes = 6 hours, not 5. (Seven-hour day minus the one-hour lunch is also 6.)",
+          "correction": "Excluding lunch, training time totals 6 hours.",
+          "cue": "Re-add table figures before trusting a stated total"
+        },
+        {
+          "targetId": "s8",
+          "type": "audience",
+          "severity": 2,
+          "explanation": "The email goes to the new hires, and the brief says to keep internal HR metrics out. An 18% no-show rate for the prior cohort is internal data and reads as a warning in a welcome message.",
+          "correction": "Delete the sentence, or replace with: Please let us know ahead of time if you can't make it.",
+          "cue": "Ask whether the reader should see each internal detail"
+        },
+        {
+          "targetId": "s9",
+          "type": "risk",
+          "severity": 3,
+          "explanation": "Promising a position is secure for at least two years could be read as a guarantee of employment and undercut at-will status. This could create legal risk, so check with legal/compliance.",
+          "correction": "Remove it; say instead: We're glad you're joining us and look forward to working with you.",
+          "cue": "Flag any promise of job security in HR messages"
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "s4",
+          "looksWrongBecause": "Seven hours with a lunch break sounds like too long for an orientation day.",
+          "fineBecause": "8:30 a.m. to 3:30 p.m. is exactly 7 hours, and the agenda minutes (30+90+60+60+90+90 = 420) add up to 7 hours."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "s4",
+          "expression": "(15.5-8.5)",
+          "stated": 7,
+          "tolerance": 0.01,
+          "isError": false
+        },
+        {
+          "targetId": "s5",
+          "expression": "(30+90+60+90+90)/60",
+          "stated": 5,
+          "tolerance": 0.05,
+          "isError": true
+        }
+      ],
+      "id": "pool-13107100-18870-l2",
+      "soc": "13-1071.00",
+      "occupation": "Human Resources Specialists",
+      "taskId": 18870,
+      "task": "Schedule or conduct new employee orientations.",
+      "level": 2
+    },
+    {
+      "brief": {
+        "from": "Dana Whitfield",
+        "role": "HR Specialist at Brightwater Dental Group",
+        "ask": "Write a one-page Day 1 orientation plan for our 14 new hires starting Monday, June 9, 2025, addressed to the hires, with a table of sessions. Facts: Training Room B seats 12, so split the group for training; benefits enrollment closes 30 days after the start date; introductory period is 90 days; employment is at-will. No salary figures. Friendly tone."
+      },
+      "artifact": {
+        "kind": "plan",
+        "title": "Day 1 Orientation Plan: June 9, 2025 Cohort",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Welcome to Brightwater Dental Group! We're glad all 14 of you are joining us on Monday, June 9, 2025."
+              },
+              {
+                "id": "s2",
+                "text": "Please arrive at the main lobby by 8:45 AM and bring a photo ID for your payroll forms."
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Session",
+              "Start",
+              "End",
+              "Minutes"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "Welcome and culture"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "9:00 AM"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "9:45 AM"
+                },
+                {
+                  "id": "r1c4",
+                  "text": "45"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "Benefits enrollment"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "10:00 AM"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "11:30 AM"
+                },
+                {
+                  "id": "r2c4",
+                  "text": "90"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "Lunch with managers"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "11:30 AM"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "12:30 PM"
+                },
+                {
+                  "id": "r3c4",
+                  "text": "60"
+                }
+              ],
+              [
+                {
+                  "id": "r4c1",
+                  "text": "HIPAA and safety training"
+                },
+                {
+                  "id": "r4c2",
+                  "text": "12:30 PM"
+                },
+                {
+                  "id": "r4c3",
+                  "text": "2:30 PM"
+                },
+                {
+                  "id": "r4c4",
+                  "text": "120"
+                }
+              ],
+              [
+                {
+                  "id": "r5c1",
+                  "text": "IT and badge setup"
+                },
+                {
+                  "id": "r5c2",
+                  "text": "2:30 PM"
+                },
+                {
+                  "id": "r5c3",
+                  "text": "3:30 PM"
+                },
+                {
+                  "id": "r5c4",
+                  "text": "60"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s3",
+                "text": "Key details"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s4",
+                "text": "Training time totals 6 hours 15 minutes, not counting lunch."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s5",
+                "text": "Training Room B seats 12, so all 14 of you will complete the HIPAA and safety session together there."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s6",
+                "text": "The HIPAA module counts toward the state-required 10-hour healthcare privacy certificate."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s7",
+                "text": "Your benefits enrollment closes July 9, 2025, which is 30 days after your start date."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s8",
+                "text": "Completing orientation guarantees your position through the 90-day introductory period."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s9",
+                "text": "Questions? Stop by the HR desk and ask for Dana Whitfield."
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s4",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "The table's non-lunch sessions are 45 + 90 + 120 + 60 = 315 minutes, which is 5 hours 15 minutes, not 6 hours 15 minutes.",
+          "correction": "Training time totals 5 hours 15 minutes, not counting lunch.",
+          "cue": "Re-add table figures before trusting a stated total"
+        },
+        {
+          "targetId": "s5",
+          "type": "logic",
+          "severity": 2,
+          "explanation": "The room seats 12 but there are 14 hires, so they cannot all sit together. The brief said to split the group for training.",
+          "correction": "Training Room B seats 12, so you will complete the HIPAA and safety session in two groups.",
+          "cue": "Compare capacity figures with headcount"
+        },
+        {
+          "targetId": "s6",
+          "type": "facts",
+          "severity": 2,
+          "explanation": "The brief never mentions a state-required 10-hour privacy certificate, and the claim cannot be traced to any source. It looks invented.",
+          "correction": "Remove the claim, or state only that the HIPAA module covers the company's required privacy training.",
+          "cue": "Check every named requirement against the source"
+        },
+        {
+          "targetId": "s8",
+          "type": "risk",
+          "severity": 3,
+          "explanation": "Guaranteeing a position through the introductory period contradicts the at-will employment status in the brief and could create legal exposure. Check with legal/HR counsel.",
+          "correction": "Completing orientation is part of your 90-day introductory period; employment with Brightwater remains at-will.",
+          "cue": "Watch for promises of job security in onboarding text"
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "s7",
+          "looksWrongBecause": "A 30-day window starting June 9 may seem like it should end on a different date than July 9.",
+          "fineBecause": "June has 30 days, so June 9 plus 30 days is July 9, 2025, matching the brief's 30-day rule."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "s4",
+          "expression": "(45+90+120+60)/60",
+          "stated": 6.25,
+          "tolerance": 0.01,
+          "isError": true
+        },
+        {
+          "targetId": "r1c4",
+          "expression": "(9*60+45)-(9*60)",
+          "stated": 45,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r2c4",
+          "expression": "(11*60+30)-(10*60)",
+          "stated": 90,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r3c4",
+          "expression": "(12*60+30)-(11*60+30)",
+          "stated": 60,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r4c4",
+          "expression": "(14*60+30)-(12*60+30)",
+          "stated": 120,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r5c4",
+          "expression": "(15*60+30)-(14*60+30)",
+          "stated": 60,
+          "tolerance": 0.5,
+          "isError": false
+        }
+      ],
+      "id": "pool-13107100-18870-l3",
+      "soc": "13-1071.00",
+      "occupation": "Human Resources Specialists",
+      "taskId": 18870,
+      "task": "Schedule or conduct new employee orientations.",
+      "level": 3
+    }
+  ]
+}
