@@ -9,8 +9,9 @@ and your Judgment Score moves.
 
 [![CI](https://github.com/gennadiy0041/overrule/actions/workflows/ci.yml/badge.svg)](https://github.com/gennadiy0041/overrule/actions/workflows/ci.yml)
 
-**Live:** https://overrule-production.up.railway.app — no sign-up, no login.
-**Pitch deck:** [deck/Overrule_BusinessCup2.pdf](deck/Overrule_BusinessCup2.pdf) · **60-second walkthrough:** [docs/demo.mp4](docs/demo.mp4)
+- **Live:** https://overrule-production.up.railway.app — no sign-up, no login
+- **Pitch deck:** [deck/Overrule_BusinessCup2.pdf](deck/Overrule_BusinessCup2.pdf)
+- **60-second walkthrough:** [docs/demo.mp4](docs/demo.mp4)
 
 Built solo in 24 hours for Business Cup 2.0 (Zimran × AIESEC), Skills track.
 
@@ -21,7 +22,8 @@ Built solo in 24 hours for Business Cup 2.0 (Zimran × AIESEC), Skills track.
 1. Open the [live product](https://overrule-production.up.railway.app) on a phone or a laptop. Tap **Scan my job — free**.
 2. Type a job title (try your own — all 923 O\*NET occupations work), keep or change the pre-selected tasks,
    answer four one-tap questions. You get a **personal AI-exposure map** computed from real labour data.
-3. Tap **Catch your first AI mistake**. A drill is generated for a task from your job while you read the map.
+3. Tap **Catch your first AI mistake**. A drill is generated for a task from your job while you read the map
+   (if the model is unavailable you get a drill from the verified pool instead, and the page says so).
    Tap the sentences or table cells you think are wrong, pick the mistake type, submit.
 4. Read the annotated review, watch the **Judgment Score** move, then continue through the soft paywall
    (**Continue with free plan** always works; the demo checkout collects no payment) to the dashboard.
@@ -117,8 +119,9 @@ served only if:
   ([src/engine/safeMath.ts](src/engine/safeMath.ts) — numbers, `+ − × ÷` and parentheses; no `eval`) recomputes.
   A planted numbers mistake must really be wrong; every other figure must really be right.
 
-For the pre-built pool there is one more gate: **a different model solves the drill blind**, seeing only what a user
-sees, and the drill is kept only if it finds at least half of the planted mistakes. Counts of generated, accepted
+For the pre-built pool there is one more gate: **a different model solves the drill blind** (Gemini, or a second
+Claude model when Gemini is unavailable), seeing only what a user sees, and the drill is kept only if it finds at
+least half of the planted mistakes. Counts of generated, accepted
 and rejected drills are in [data/pool/stats.json](data/pool/stats.json).
 
 The launch pool holds **54 drills for six occupations**: of 87 model drafts, 39 were rejected by the verifier and 48
