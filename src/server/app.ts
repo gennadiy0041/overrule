@@ -1,4 +1,5 @@
-import { Hono } from "hono";
+import { existsSync, readFileSync } from "node:fs";
+import { Hono, type Context } from "hono";
 import { serveStatic } from "hono/bun";
 import { secureHeaders } from "hono/secure-headers";
 import type { AppContext, AppEnv } from "./context";
@@ -14,6 +15,19 @@ import { internalFlag, isInternalRequest, setSessionCookie, withSession } from "
 
 /** Relative to the process working directory (the repository root). */
 const WEB_ROOT = "./dist/web";
+
+/**
+ * The SPA shell with absolute Open Graph URLs. Link previews (LinkedIn, messengers)
+ * ignore relative image paths, and the public origin is only known at runtime.
+ */
+function loadShell(appUrl: string): string | null {
+  const path = `${WEB_ROOT}/index.html`;
+  if (!existsSync(path)) return null;
+  return readFileSync(path, "utf8")
+    .replace('content="/og.png"', `content="${appUrl}/og.png"`)
+    .replace('<meta property="og:type"', `<meta property="og:url" content="${appUrl}/" />
+    <meta property="og:type"`);
+}
 
 export function createApp(ctx: AppContext): Hono {
   const app = new Hono();
@@ -60,6 +74,14 @@ export function createApp(ctx: AppContext): Hono {
   // Server-rendered pages: SEO, public reports, metrics.
   app.route("/", pageRoutes(ctx));
 
+  const shell = loadShell(ctx.env.APP_URL);
+  const serveShell = (c: Context) => {
+    if (shell === null) return c.text("The web app has not been built yet: run `bun run build`.", 503);
+    c.header("Cache-Control", "no-cache");
+    return c.html(shell);
+  };
+  app.get("/", serveShell);
+
   // Hashed build assets are immutable; everything else falls back to the SPA shell.
   app.use(
     "/assets/*",
@@ -69,7 +91,7 @@ export function createApp(ctx: AppContext): Hono {
     }),
   );
   app.use("*", serveStatic({ root: WEB_ROOT }));
-  app.get("*", serveStatic({ path: `${WEB_ROOT}/index.html` }));
+  app.get("*", serveShell);
 
   return app;
 }
