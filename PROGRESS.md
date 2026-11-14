@@ -34,10 +34,19 @@ against production (phone + desktop), CI green.
 
 - [x] Deck PDF with production screenshots, pitch script (5 and 3 min), Q&A, demo video, LinkedIn post
 
-### Not done
+### P2
 
-- [ ] P2: Second Look, dynamic OG image, PWA
-- [ ] Engine modules were written by agents and are covered by tests, but the planned fresh-eyes review never ran
+- [x] Installable web app (manifest and icons; start URL is the Daily Catch). No service worker, so not offline.
+- [ ] Second Look — deliberately not built: it is an LLM feature that could not be verified without model credit,
+      and an unverified feature shipped hours before judging is a worse bet than one flawless path. It is on the roadmap.
+- [ ] Dynamic OG image of a result — not built.
+
+### Known gaps
+
+- The engine modules written by agents are covered by tests (control examples from the spec, real-data checks);
+  the planned fresh-eyes review did not run. The scoring module was read through by the lead.
+- The live generation path was last exercised by the pool run (about 50 successful drills). Changes made after it
+  (longer brief limit, unwrapping stringified fields, cooldown) are unit-tested but have not met the real model.
 
 ## Things to know
 
