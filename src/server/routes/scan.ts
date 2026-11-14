@@ -4,6 +4,7 @@ import { ScanRequestSchema } from "../../shared/api";
 import type { AppContext, AppEnv } from "../context";
 import { apiError, readBody } from "../http";
 import type { UserTask } from "../repos/sessions";
+import { isInternalRequest, setSessionCookie } from "../session";
 import { buildExposureMap } from "../services/exposureMap";
 
 export function scanRoutes(ctx: AppContext): Hono<AppEnv> {
@@ -29,7 +30,17 @@ export function scanRoutes(ctx: AppContext): Hono<AppEnv> {
       return apiError(c, 400, "too_few_tasks", `Pick at least ${MIN_PERSONAL_TASKS} tasks`);
     }
 
-    const session = c.get("session");
+    // Scanning from the demo profile means "now do mine": start a clean session instead of rewriting Jess.
+    let session = c.get("session");
+    if (session.isDemo) {
+      session = ctx.sessions.create({
+        id: crypto.randomUUID(),
+        now: ctx.now(),
+        userAgent: c.req.header("user-agent") ?? null,
+        isInternal: isInternalRequest(c),
+      });
+      setSessionCookie(c, ctx, session.id);
+    }
     const answers = { ...session.scanAnswers, ...body.data.answers };
     ctx.sessions.saveScan(session.id, occupation.soc, [...selected.values()], answers);
     ctx.events.log(session.id, body.data.complete ? "scan_complete" : "task_select", ctx.now(), {

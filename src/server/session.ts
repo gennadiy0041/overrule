@@ -11,6 +11,15 @@ const ONE_YEAR_S = 60 * 60 * 24 * 365;
 /** Automated browsers (our e2e suite, link previews) must not pollute the funnel metrics. */
 const AUTOMATION_UA = /playwright|headlesschrome|puppeteer|bot\b|crawler|spider/i;
 
+export function isAutomation(userAgent: string | null | undefined): boolean {
+  return Boolean(userAgent && AUTOMATION_UA.test(userAgent));
+}
+
+/** Team or automated traffic: tagged by cookie (`/?internal=1`) or recognised by user agent. */
+export function isInternalRequest(c: Context): boolean {
+  return getCookie(c, INTERNAL_COOKIE) === "1" || isAutomation(c.req.header("user-agent"));
+}
+
 function cookieOptions(ctx: AppContext) {
   return {
     path: "/",
@@ -41,7 +50,7 @@ export function withSession(ctx: AppContext): MiddlewareHandler<AppEnv> {
   return async (c, next) => {
     const now = ctx.now();
     const userAgent = c.req.header("user-agent") ?? null;
-    const internal = getCookie(c, INTERNAL_COOKIE) === "1" || (userAgent !== null && AUTOMATION_UA.test(userAgent));
+    const internal = isInternalRequest(c);
 
     const cookieId = getCookie(c, SESSION_COOKIE);
     let session: Session | null = cookieId ? ctx.sessions.find(cookieId) : null;

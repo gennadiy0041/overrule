@@ -7,8 +7,10 @@ import { accountRoutes } from "./routes/account";
 import { drillRoutes } from "./routes/drills";
 import { eventRoutes } from "./routes/events";
 import { occupationRoutes } from "./routes/occupations";
+import { pageRoutes } from "./routes/pages";
 import { scanRoutes } from "./routes/scan";
-import { internalFlag, withSession } from "./session";
+import { createDemoSession } from "./services/demo";
+import { internalFlag, isInternalRequest, setSessionCookie, withSession } from "./session";
 
 /** Relative to the process working directory (the repository root). */
 const WEB_ROOT = "./dist/web";
@@ -35,6 +37,16 @@ export function createApp(ctx: AppContext): Hono {
   // Public reads need no session…
   app.route("/api", occupationRoutes(ctx));
 
+  // …and neither does entering the demo: it replaces the session with a fresh copy of the demo profile.
+  app.post("/api/demo", (c) => {
+    const session = createDemoSession(ctx, {
+      userAgent: c.req.header("user-agent") ?? null,
+      isInternal: isInternalRequest(c),
+    });
+    setSessionCookie(c, ctx, session.id);
+    return c.json({ ok: true });
+  });
+
   // …everything else runs behind the anonymous session cookie.
   const api = new Hono<AppEnv>();
   api.use("*", withSession(ctx));
@@ -44,6 +56,9 @@ export function createApp(ctx: AppContext): Hono {
   api.route("/", eventRoutes(ctx));
   api.all("*", (c) => apiError(c, 404, "not_found"));
   app.route("/api", api);
+
+  // Server-rendered pages: SEO, public reports, metrics.
+  app.route("/", pageRoutes(ctx));
 
   // Hashed build assets are immutable; everything else falls back to the SPA shell.
   app.use(

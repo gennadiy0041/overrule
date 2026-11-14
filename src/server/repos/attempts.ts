@@ -57,6 +57,17 @@ export class AttemptRepo {
     return rows.map((row) => JSON.parse(row.result) as AttemptResult);
   }
 
+  /** Attempts with the flags exactly as submitted — used to copy the demo week. */
+  listRaw(sessionId: string): Array<{ result: AttemptResult; flags: Flag[] }> {
+    const rows = this.db
+      .query("SELECT result, flags FROM attempts WHERE session_id = ? ORDER BY created_at ASC")
+      .all(sessionId) as Array<{ result: string; flags: string }>;
+    return rows.map((row) => ({
+      result: JSON.parse(row.result) as AttemptResult,
+      flags: JSON.parse(row.flags) as Flag[],
+    }));
+  }
+
   countOnDay(sessionId: string, day: string, mode: AttemptResult["mode"]): number {
     const row = this.db
       .query("SELECT COUNT(*) AS n FROM attempts WHERE session_id = ? AND day = ? AND mode = ?")

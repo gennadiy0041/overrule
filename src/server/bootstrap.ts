@@ -7,6 +7,7 @@ import { loadOccupationStore } from "./occupationStore";
 import { AttemptRepo } from "./repos/attempts";
 import { DrillRepo } from "./repos/drills";
 import { EventRepo } from "./repos/events";
+import { ReportRepo } from "./repos/reports";
 import { createLlmLogger } from "./repos/llmCalls";
 import { SessionRepo } from "./repos/sessions";
 import { DrillService, type Providers } from "./services/drillService";
@@ -52,5 +53,18 @@ export async function buildContext(env: Env, options: BootstrapOptions = {}): Pr
   });
 
   console.log(`data: ${occupations.all.length} occupations · pool: ${pool.size} verified drills`);
-  return { env, db, now, occupations, sessions, events, drills, attempts, drillService, ssrAssets: loadSsrAssets(WEB_ROOT) };
+  return {
+    env,
+    db,
+    now,
+    occupations,
+    sessions,
+    events,
+    drills,
+    attempts,
+    reports: new ReportRepo(db),
+    pool,
+    drillService,
+    ssrAssets: loadSsrAssets(WEB_ROOT),
+  };
 }

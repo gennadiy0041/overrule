@@ -1,9 +1,12 @@
 import { Hono } from "hono";
-import { CheckoutRequestSchema, type CheckoutResponse } from "../../shared/api";
+import { CheckoutRequestSchema, type CheckoutResponse, type ReportResponse } from "../../shared/api";
 import { TRIAL_DAYS } from "../../shared/pricing";
 import type { AppContext, AppEnv } from "../context";
-import { readBody } from "../http";
+import { apiError, readBody } from "../http";
+import { isPro } from "../repos/sessions";
+import { buildDailyReminderIcs } from "../services/calendar";
 import { buildMe } from "../services/profile";
+import { buildReportSnapshot, newPublicId } from "../services/report";
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 
@@ -31,6 +34,28 @@ export function accountRoutes(ctx: AppContext): Hono<AppEnv> {
       trialEndsAt: trialEndsAt.toISOString(),
     };
     return c.json(response);
+  });
+
+  /** Freeze the current practice record into a public, printable page (Pro). */
+  app.post("/reports", (c) => {
+    const session = c.get("session");
+    const now = ctx.now();
+    if (!isPro(session, now)) return apiError(c, 402, "pro_required");
+    const occupation = session.soc ? ctx.occupations.get(session.soc) : undefined;
+    const snapshot = buildReportSnapshot(occupation?.title ?? "Professional", ctx.attempts.list(session.id), now);
+    if (!snapshot) return apiError(c, 409, "no_attempts", "Finish a drill first");
+
+    const publicId = newPublicId();
+    ctx.reports.insert(publicId, session.id, snapshot);
+    ctx.events.log(session.id, "report_create", now);
+    const response: ReportResponse = { publicId, path: `/r/${publicId}` };
+    return c.json(response);
+  });
+
+  app.get("/calendar.ics", (c) => {
+    c.header("Content-Type", "text/calendar; charset=utf-8");
+    c.header("Content-Disposition", "attachment; filename=\"overrule-daily-catch.ics\"");
+    return c.body(buildDailyReminderIcs(ctx.env.APP_URL, ctx.now()));
   });
 
   return app;

@@ -121,6 +121,19 @@ export class SessionRepo {
       .run(planChoice, trialEndsAt.toISOString(), id);
   }
 
+  /** Set the score and attempt count directly — only for the copied demo profile. */
+  setProgress(id: string, rating: number, attemptsCount: number): void {
+    this.db.query("UPDATE sessions SET rating = ?, attempts_count = ? WHERE id = ?").run(rating, attemptsCount, id);
+  }
+
+  /** Delete a session and everything it owns (attempts and tasks cascade). */
+  remove(id: string): void {
+    this.db.transaction(() => {
+      this.db.query("DELETE FROM events WHERE session_id = ?").run(id);
+      this.db.query("DELETE FROM sessions WHERE id = ?").run(id);
+    })();
+  }
+
   recordAttempt(id: string, ratingAfter: number): void {
     this.db
       .query("UPDATE sessions SET rating = ?, attempts_count = attempts_count + 1 WHERE id = ?")

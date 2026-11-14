@@ -14,7 +14,7 @@ COPY package.json bun.lock ./
 RUN bun install --frozen-lockfile --production
 COPY --from=build /app/dist ./dist
 COPY src ./src
-COPY data/occupations.json data/alt-titles.json ./data/
+COPY data/occupations.json data/alt-titles.json data/modern-titles.json ./data/
 COPY data/pool ./data/pool
 EXPOSE 3000
 CMD ["bun", "src/server/index.ts"]

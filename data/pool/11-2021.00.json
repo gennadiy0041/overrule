@@ -1,0 +1,1217 @@
+{
+  "soc": "11-2021.00",
+  "occupation": "Marketing Managers",
+  "drills": [
+    {
+      "brief": {
+        "from": "Dana Whitfield",
+        "role": "Marketing Manager at Norlake Candle Co.",
+        "ask": "Write an email to Tom Reyes, buyer at our retail partner Greenleaf Stores, summarizing the spring co-promotion and proposing a fall plan. Data: email spend $8,000, revenue $44,000; paid social spend $30,000, revenue $66,000; in-store displays spend $22,000, revenue $33,000. Show return per $1 spent, propose moving $10,000 from displays to email, and ask him to confirm by September 15. Do not share our production costs or margins, and do not promise results."
+      },
+      "artifact": {
+        "kind": "email",
+        "title": "Spring co-promotion results and fall proposal",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "subject",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Subject: Spring co-promotion results and fall proposal"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "Hi Tom,"
+              },
+              {
+                "id": "s3",
+                "text": "Thank you for a strong spring season together."
+              },
+              {
+                "id": "s4",
+                "text": "Here is how the $60,000 co-promotion performed by channel."
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Channel",
+              "Spend",
+              "Revenue",
+              "Return per $1"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "Email"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "$8,000"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "$44,000"
+                },
+                {
+                  "id": "r1c4",
+                  "text": "5.5x"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "Paid social"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "$30,000"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "$66,000"
+                },
+                {
+                  "id": "r2c4",
+                  "text": "3.2x"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "In-store displays"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "$22,000"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "$33,000"
+                },
+                {
+                  "id": "r3c4",
+                  "text": "1.5x"
+                }
+              ],
+              [
+                {
+                  "id": "r4c1",
+                  "text": "Total"
+                },
+                {
+                  "id": "r4c2",
+                  "text": "$60,000"
+                },
+                {
+                  "id": "r4c3",
+                  "text": "$143,000"
+                },
+                {
+                  "id": "r4c4",
+                  "text": "2.4x"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s5",
+                "text": "Email delivered the strongest return, and in-store displays the weakest."
+              },
+              {
+                "id": "s6",
+                "text": "For fall, we propose moving $10,000 from in-store displays to email."
+              },
+              {
+                "id": "s7",
+                "text": "Our production cost is $6.20 per candle, a 38% margin on wholesale, so we can fund a deeper fall discount."
+              },
+              {
+                "id": "s8",
+                "text": "With this shift, a 4x return on fall spend is guaranteed."
+              },
+              {
+                "id": "s9",
+                "text": "Please confirm the plan by September 15."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s10",
+                "text": "Best regards,"
+              },
+              {
+                "id": "s11",
+                "text": "Dana Whitfield, Norlake Candle Co."
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "r2c4",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "Paid social revenue $66,000 divided by spend $30,000 is 2.2x, not 3.2x. The table overstates the channel's return by a full dollar.",
+          "correction": "2.2x",
+          "cue": "Recompute every ratio in a table from its own row."
+        },
+        {
+          "targetId": "s7",
+          "type": "audience",
+          "severity": 3,
+          "explanation": "The brief said not to share production costs or margins, and this email goes to an outside retail partner. The sentence reveals unit cost and margin, which are internal and weaken negotiating position.",
+          "correction": "Remove the cost and margin detail, e.g. \"We can fund a deeper fall discount.\"",
+          "cue": "Check outbound drafts against the brief's confidentiality limits."
+        },
+        {
+          "targetId": "s8",
+          "type": "risk",
+          "severity": 3,
+          "explanation": "A guaranteed 4x return is an unsupported absolute promise. Spring results varied from 1.5x to 5.5x, and the brief said not to promise results. This could create commercial or legal exposure.",
+          "correction": "Say the shift should improve overall return, based on spring results, without a guarantee.",
+          "cue": "Flag any \"guaranteed\" or promised outcome."
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "r1c4",
+          "looksWrongBecause": "A 5.5x return looks unusually high compared with the other channels.",
+          "fineBecause": "$44,000 / $8,000 = 5.5, so the figure is exact and follows from the supplied data."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "r1c4",
+          "expression": "44000/8000",
+          "stated": 5.5,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "r2c4",
+          "expression": "66000/30000",
+          "stated": 3.2,
+          "tolerance": 0.05,
+          "isError": true
+        },
+        {
+          "targetId": "r3c4",
+          "expression": "33000/22000",
+          "stated": 1.5,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "r4c2",
+          "expression": "8000+30000+22000",
+          "stated": 60000,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "r4c3",
+          "expression": "44000+66000+33000",
+          "stated": 143000,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "r4c4",
+          "expression": "143000/60000",
+          "stated": 2.4,
+          "tolerance": 0.05,
+          "isError": false
+        }
+      ],
+      "id": "pool-11202100-951-l2",
+      "soc": "11-2021.00",
+      "occupation": "Marketing Managers",
+      "taskId": 951,
+      "task": "Identify, develop, or evaluate marketing strategy, based on knowledge of establishment objectives, market characteristics, and cost and markup factors.",
+      "level": 2
+    },
+    {
+      "brief": {
+        "from": "Dana Whitlock",
+        "role": "Marketing Manager, Fernhill Candle Co.",
+        "ask": "Write a short Q1 channel evaluation for our CEO of the new Cedar Hearth 8 oz candle; the goal is to maximize Q1 contribution dollars. Unit cost $6.00. DTC: price $24, fulfillment $4.50, ad cost $7.50 per order, 4,000 units. Wholesale: price $12, freight $0.80/unit, 6,000 units. Marketplace: price $24, 15% fee, fulfillment $4.50, ads $3.00/unit, 3,000 units. I have no outside benchmarks, so use only these figures. End with a recommendation."
+      },
+      "artifact": {
+        "kind": "report",
+        "title": "Cedar Hearth candle: Q1 channel evaluation",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Summary"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "We evaluated three sales channels for the Cedar Hearth 8 oz candle, which costs $6.00 per unit to make."
+              },
+              {
+                "id": "s3",
+                "text": "The goal is to maximize Q1 contribution dollars, not just margin percentage."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s4",
+                "text": "Channel economics"
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Channel",
+              "Price",
+              "Contribution/unit",
+              "Margin",
+              "Q1 units"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "Direct-to-consumer"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "$24.00"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "$6.00"
+                },
+                {
+                  "id": "r1c4",
+                  "text": "25.0%"
+                },
+                {
+                  "id": "r1c5",
+                  "text": "4,000"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "Wholesale"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "$12.00"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "$5.20"
+                },
+                {
+                  "id": "r2c4",
+                  "text": "43.3%"
+                },
+                {
+                  "id": "r2c5",
+                  "text": "6,000"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "Marketplace"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "$24.00"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "$6.90"
+                },
+                {
+                  "id": "r3c4",
+                  "text": "28.8%"
+                },
+                {
+                  "id": "r3c5",
+                  "text": "3,000"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s5",
+                "text": "Wholesale has the highest margin (43.3%) but the lowest per-unit contribution ($5.20)."
+              },
+              {
+                "id": "s6",
+                "text": "Q1 contribution forecasts are $24,000 for direct-to-consumer, $31,200 for wholesale and $20,700 for marketplace, for a total of $77,900."
+              },
+              {
+                "id": "s7",
+                "text": "Wholesale at $12.00 is a 100% markup over unit cost, and the $24.00 retail price adds another 100% markup for retailers."
+              },
+              {
+                "id": "s8",
+                "text": "Marketplace fees are 15% of price, or $3.60 per unit."
+              },
+              {
+                "id": "s9",
+                "text": "The Candle Retailers Council reports that 40% of online candle buyers reorder within 90 days, which supports our direct-to-consumer repeat-purchase assumptions."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s10h",
+                "text": "Recommendation"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s10",
+                "text": "Because direct-to-consumer has the lowest margin of the three channels, double its paid-social budget first."
+              },
+              {
+                "id": "s11",
+                "text": "Keep wholesale at 6,000 units; it supplies 41% of total contribution."
+              },
+              {
+                "id": "s12",
+                "text": "Hold marketplace advertising at $3.00 per unit while we test a lower fulfillment rate."
+              },
+              {
+                "id": "s13",
+                "text": "We will compare actual results with these forecasts in April."
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s6",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "The three forecasts in the sentence and table add to 24,000 + 31,200 + 20,700 = $75,900, not $77,900. The stated total is overstated by $2,000.",
+          "correction": "...for a total of $75,900.",
+          "cue": "Re-add every stated total from its components."
+        },
+        {
+          "targetId": "s9",
+          "type": "facts",
+          "severity": 2,
+          "explanation": "The Candle Retailers Council statistic (40% reorder within 90 days) is not in the figures the requester supplied, who said there are no outside benchmarks. It appears to be invented and could not be traced.",
+          "correction": "Delete the sentence, or label repeat-purchase rates as an internal assumption to be tested.",
+          "cue": "Ask where every outside statistic or named source comes from."
+        },
+        {
+          "targetId": "s10",
+          "type": "logic",
+          "severity": 3,
+          "explanation": "The goal is to maximize contribution dollars. A low margin is a reason not to scale a channel first. DTC has the lowest margin (25.0%) and the second-lowest contribution forecast ($24,000). Doubling its spend contradicts the document's own table.",
+          "correction": "Prioritize the channel with the strongest contribution, such as holding wholesale and testing added spend on marketplace, which has the highest per-unit contribution ($6.90).",
+          "cue": "Check that the recommendation follows from the table."
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "s5",
+          "looksWrongBecause": "A channel with the highest margin having the lowest per-unit contribution seems contradictory.",
+          "fineBecause": "Wholesale margin is 5.20/12.00 = 43.3%, the highest. Per-unit contribution of $5.20 is below DTC's $6.00 and marketplace's $6.90, because the price base is only $12."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "s6",
+          "expression": "24000+31200+20700",
+          "stated": 77900,
+          "tolerance": 1,
+          "isError": true
+        },
+        {
+          "targetId": "s6",
+          "expression": "4000*6.00",
+          "stated": 24000,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "s6",
+          "expression": "6000*5.20",
+          "stated": 31200,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "s6",
+          "expression": "3000*6.90",
+          "stated": 20700,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "r1c3",
+          "expression": "24-6-4.5-7.5",
+          "stated": 6,
+          "tolerance": 0.01,
+          "isError": false
+        },
+        {
+          "targetId": "r2c3",
+          "expression": "12-6-0.8",
+          "stated": 5.2,
+          "tolerance": 0.01,
+          "isError": false
+        },
+        {
+          "targetId": "r3c3",
+          "expression": "24-6-24*0.15-4.5-3",
+          "stated": 6.9,
+          "tolerance": 0.01,
+          "isError": false
+        },
+        {
+          "targetId": "r1c4",
+          "expression": "6/24*100",
+          "stated": 25,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "r2c4",
+          "expression": "5.2/12*100",
+          "stated": 43.3,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "r3c4",
+          "expression": "6.9/24*100",
+          "stated": 28.8,
+          "tolerance": 0.1,
+          "isError": false
+        },
+        {
+          "targetId": "s5",
+          "expression": "5.2/12*100",
+          "stated": 43.3,
+          "tolerance": 0.05,
+          "isError": false
+        },
+        {
+          "targetId": "s7",
+          "expression": "(12/6-1)*100",
+          "stated": 100,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "s8",
+          "expression": "24*0.15",
+          "stated": 3.6,
+          "tolerance": 0.01,
+          "isError": false
+        },
+        {
+          "targetId": "s11",
+          "expression": "31200/75900*100",
+          "stated": 41,
+          "tolerance": 0.5,
+          "isError": false
+        }
+      ],
+      "id": "pool-11202100-951-l3",
+      "soc": "11-2021.00",
+      "occupation": "Marketing Managers",
+      "taskId": 951,
+      "task": "Identify, develop, or evaluate marketing strategy, based on knowledge of establishment objectives, market characteristics, and cost and markup factors.",
+      "level": 3
+    },
+    {
+      "brief": {
+        "from": "Priya Nandakumar",
+        "role": "Marketing Manager, consumer products",
+        "ask": "Draft a short email to Dana Whitfield and the product development team with our color and packaging recommendation for the TrailSip spring bottle. Use only this data: survey of 400 customers, votes Sage 148, Charcoal 132, Coral 120; current box costs $1.20 per unit, recycled sleeve costs $0.95 per unit; planned run is 50,000 units. We have no outside studies, so do not cite any. Ask them to confirm sleeve dimensions by Friday. Keep it under 200 words."
+      },
+      "artifact": {
+        "kind": "email",
+        "title": "TrailSip color and packaging recommendation",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "subject",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Subject: TrailSip spring bottle color and packaging recommendation"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "Hi Dana and team,"
+              },
+              {
+                "id": "s3",
+                "text": "Thanks for walking me through the spring packaging options."
+              },
+              {
+                "id": "s4",
+                "text": "Here is where our customer research points."
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Color",
+              "Votes",
+              "Share"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "Sage"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "148"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "37%"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "Charcoal"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "132"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "33%"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "Coral"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "120"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "30%"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s5",
+                "text": "In our survey of 400 customers, Sage was the most popular color."
+              },
+              {
+                "id": "s6",
+                "text": "Coral drew the fewest votes, so we recommend it as the lead launch color to build demand."
+              },
+              {
+                "id": "s7",
+                "text": "On packaging, the recycled sleeve costs $0.95 per unit versus $1.20 for the current box."
+              },
+              {
+                "id": "s8",
+                "text": "That is a 26% reduction, or $12,500 saved across the planned 50,000 units."
+              },
+              {
+                "id": "s9",
+                "text": "An industry study by the National Packaging Institute found matte sleeves raise shelf sales by 18%."
+              },
+              {
+                "id": "s10",
+                "text": "Please confirm the sleeve dimensions by Friday."
+              },
+              {
+                "id": "s11",
+                "text": "Thanks, Priya"
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s6",
+          "type": "logic",
+          "severity": 2,
+          "explanation": "Coral had the fewest votes (120 of 400), and Sage led with 148. Recommending the least popular color as the lead contradicts the document's own data.",
+          "correction": "Sage drew the most votes, so we recommend it as the lead launch color, with Charcoal second.",
+          "cue": "Check that the recommendation matches the ranking in the data."
+        },
+        {
+          "targetId": "s8",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "The saving is $0.25 on a $1.20 box, which is 0.25/1.20 = 20.8%, not 26%. 26% comes from dividing by the new $0.95 cost, the wrong base. The $12,500 total is correct.",
+          "correction": "That is a 21% reduction, or $12,500 saved across the planned 50,000 units.",
+          "cue": "Recompute any % change from the two numbers in the sentence, using the old value as the base."
+        },
+        {
+          "targetId": "s9",
+          "type": "facts",
+          "severity": 3,
+          "explanation": "The brief says there are no outside studies and none may be cited. The National Packaging Institute study and the 18% figure are invented and cannot be traced.",
+          "correction": "Delete the sentence, or ask the team whether any verified source exists before citing it.",
+          "cue": "Ask where every cited study or statistic comes from."
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "r3c3",
+          "looksWrongBecause": "A share of exactly 30% looks suspiciously neat for survey data.",
+          "fineBecause": "120 of 400 votes is exactly 30%, and 37% + 33% + 30% = 100%."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "s8",
+          "expression": "(1.20-0.95)/1.20*100",
+          "stated": 26,
+          "tolerance": 0.5,
+          "isError": true
+        },
+        {
+          "targetId": "s8",
+          "expression": "(1.20-0.95)*50000",
+          "stated": 12500,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "r1c3",
+          "expression": "148/400*100",
+          "stated": 37,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r2c3",
+          "expression": "132/400*100",
+          "stated": 33,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "r3c3",
+          "expression": "120/400*100",
+          "stated": 30,
+          "tolerance": 0.5,
+          "isError": false
+        },
+        {
+          "targetId": "s5",
+          "expression": "148+132+120",
+          "stated": 400,
+          "tolerance": 0,
+          "isError": false
+        }
+      ],
+      "id": "pool-11202100-956-l2",
+      "soc": "11-2021.00",
+      "occupation": "Marketing Managers",
+      "taskId": 956,
+      "task": "Consult with product development personnel on product specifications, such as design, color, or packaging.",
+      "level": 2
+    },
+    {
+      "brief": {
+        "from": "Maria Chen",
+        "role": "Marketing Manager at a consumer outdoor-gear company",
+        "ask": "Draft a short email (under 150 words) to our counsel Dan Ortiz. Facts: Lumen Harbor Studios, our outside video producer, gets 8% of Q3 net sales of $250,000. Pacifica Media, our distributor, gets 12%. A photographer demands $4,500 for 3 banner ads using her photo unlicensed. We haven't replied. Dan will forward the email to Lumen Harbor, so keep Pacifica's terms out. Ask whether to settle and how to handle the royalty."
+      },
+      "artifact": {
+        "kind": "email",
+        "title": "Q3 royalty and image claim: questions for Legal",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Hi Dan,"
+              },
+              {
+                "id": "s2",
+                "text": "I need your guidance on two open items before we close Q3."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s3",
+                "text": "Royalty: Lumen Harbor Studios, our outside video producer, is owed 8% of Q3 net sales of $250,000, which is $25,000."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s4",
+                "text": "Our agreement with Lumen Harbor was signed March 1, 2024."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s5",
+                "text": "For context, Pacifica Media's distribution rate is 12% of net sales, so we owe it $30,000."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s6",
+                "text": "Image claim: a photographer says three of our banner ads used her photo without a license and demands $4,500, or $1,500 per ad."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "bullet",
+            "segments": [
+              {
+                "id": "s7",
+                "text": "I believe we are covered because the fair use 10% rule lets us use up to 10% of any image without permission."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s8",
+                "text": "Please advise whether we should settle the image claim and how to handle the royalty payment."
+              },
+              {
+                "id": "s9",
+                "text": "I have not replied to the photographer or admitted any fault."
+              },
+              {
+                "id": "s10",
+                "text": "Thanks, Maria"
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "s3",
+          "type": "numbers",
+          "severity": 3,
+          "explanation": "8% of $250,000 is $20,000, not $25,000. The stated royalty overstates the amount owed by $5,000.",
+          "correction": "Royalty: Lumen Harbor Studios, our outside video producer, is owed 8% of Q3 net sales of $250,000, which is $20,000.",
+          "cue": "Recompute any percentage of a base from the two numbers given"
+        },
+        {
+          "targetId": "s5",
+          "type": "audience",
+          "severity": 3,
+          "explanation": "The brief says Dan will forward the email to Lumen Harbor and that Pacifica's terms must stay out. This sentence discloses the distributor's confidential rate and payment to an outside party.",
+          "correction": "Delete the sentence about Pacifica Media's rate and amount.",
+          "cue": "Check who will receive the document before including partner terms"
+        },
+        {
+          "targetId": "s7",
+          "type": "facts",
+          "severity": 3,
+          "explanation": "There is no 'fair use 10% rule' in copyright law. Fair use is a case-by-case, multi-factor test and does not allow a fixed share of an image without permission. The claim is invented and could mislead the decision on settling.",
+          "correction": "Remove the claim and ask Legal whether any fair use defense could apply to the three banner ads.",
+          "cue": "Distrust neat legal rules of thumb; confirm them with counsel"
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "s6",
+          "looksWrongBecause": "Splitting a demand into a neat $1,500 per ad looks like an assumed or rounded figure.",
+          "fineBecause": "$4,500 divided by 3 banner ads is exactly $1,500 per ad."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "s3",
+          "expression": "0.08*250000",
+          "stated": 25000,
+          "tolerance": 1,
+          "isError": true
+        },
+        {
+          "targetId": "s5",
+          "expression": "0.12*250000",
+          "stated": 30000,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "s6",
+          "expression": "4500/3",
+          "stated": 1500,
+          "tolerance": 1,
+          "isError": false
+        }
+      ],
+      "id": "pool-11202100-960-l2",
+      "soc": "11-2021.00",
+      "occupation": "Marketing Managers",
+      "taskId": 960,
+      "task": "Confer with legal staff to resolve problems, such as copyright infringement or royalty sharing with outside producers or distributors.",
+      "level": 2
+    },
+    {
+      "brief": {
+        "from": "Priya Nair",
+        "role": "Marketing Manager, Brightleaf Foods",
+        "ask": "Draft an email to Dana Ruiz in legal on two issues. Royalties: Q3 net revenue $250,000; Harbor Lane Studios (jingle producer) gets 6% and Northgate Media (distributor) gets 12%, both of net revenue. Photo claim: unlicensed image used in 3 emails to 40,000 subscribers; photographer demands $4,800. Do not admit liability or commit to payment before legal advises. Internal only; under 280 words."
+      },
+      "artifact": {
+        "kind": "email",
+        "title": "Legal input needed: Harbor Lane royalty and photo claim",
+        "blocks": [
+          {
+            "type": "text",
+            "style": "subject",
+            "segments": [
+              {
+                "id": "s1",
+                "text": "Subject: Legal input needed: Harbor Lane royalty and photo claim"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s2",
+                "text": "Hi Dana,"
+              },
+              {
+                "id": "s3",
+                "text": "I need your guidance on two open issues before we release Q3 payments."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s4",
+                "text": "1. Jingle royalties"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s5",
+                "text": "Harbor Lane Studios produced the \"Sunrise Table\" jingle, and Northgate Media distributes the licensed merchandise."
+              },
+              {
+                "id": "s6",
+                "text": "Both payments are calculated on Q3 net revenue of $250,000."
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Payee",
+              "Basis",
+              "Rate",
+              "Amount"
+            ],
+            "rows": [
+              [
+                {
+                  "id": "r1c1",
+                  "text": "Harbor Lane Studios"
+                },
+                {
+                  "id": "r1c2",
+                  "text": "$250,000"
+                },
+                {
+                  "id": "r1c3",
+                  "text": "6%"
+                },
+                {
+                  "id": "r1c4",
+                  "text": "$15,000"
+                }
+              ],
+              [
+                {
+                  "id": "r2c1",
+                  "text": "Northgate Media"
+                },
+                {
+                  "id": "r2c2",
+                  "text": "$250,000"
+                },
+                {
+                  "id": "r2c3",
+                  "text": "12%"
+                },
+                {
+                  "id": "r2c4",
+                  "text": "$36,000"
+                }
+              ],
+              [
+                {
+                  "id": "r3c1",
+                  "text": "Total"
+                },
+                {
+                  "id": "r3c2",
+                  "text": "$250,000"
+                },
+                {
+                  "id": "r3c3",
+                  "text": "18%"
+                },
+                {
+                  "id": "r3c4",
+                  "text": "$45,000"
+                }
+              ]
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s7",
+                "text": "That leaves us $205,000 after both payments."
+              },
+              {
+                "id": "s8",
+                "text": "Harbor Lane's 6% rate is well below the 14% benchmark in the 2023 Media Rights Index."
+              },
+              {
+                "id": "s9",
+                "text": "Revenue rose after the jingle launched, so the jingle clearly drove the growth, and we should use that to push Harbor Lane's rate down."
+              },
+              {
+                "id": "s10",
+                "text": "Please confirm whether the contract permits us to renegotiate."
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "heading",
+            "segments": [
+              {
+                "id": "s11",
+                "text": "2. Photo claim"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "style": "paragraph",
+            "segments": [
+              {
+                "id": "s12",
+                "text": "A photographer says we used her image without a license in three emails sent to 40,000 subscribers."
+              },
+              {
+                "id": "s13",
+                "text": "That is 120,000 total sends, and she is asking for $4,800."
+              },
+              {
+                "id": "s14",
+                "text": "To keep things friendly, I plan to tell her this week that we accept responsibility and will pay the full amount."
+              },
+              {
+                "id": "s15",
+                "text": "Please let me know if you see any issue with that."
+              },
+              {
+                "id": "s16",
+                "text": "Thanks, Priya"
+              }
+            ]
+          }
+        ]
+      },
+      "key": [
+        {
+          "targetId": "r2c4",
+          "type": "numbers",
+          "severity": 2,
+          "explanation": "Northgate's fee is 12% of $250,000 = $30,000, not $36,000. The table's own total ($45,000) and the $205,000 remainder only work with $30,000, so the row contradicts the total.",
+          "correction": "$30,000",
+          "cue": "Recompute each table row from its basis and rate, then check the total."
+        },
+        {
+          "targetId": "s8",
+          "type": "facts",
+          "severity": 2,
+          "explanation": "The \"2023 Media Rights Index\" and its 14% benchmark are not in the data supplied and cannot be traced. Legal could be misled by an invented source.",
+          "correction": "Remove the benchmark, or cite a verified source supplied by the team.",
+          "cue": "Ask where every benchmark or index comes from before repeating it."
+        },
+        {
+          "targetId": "s9",
+          "type": "logic",
+          "severity": 2,
+          "explanation": "Timing alone does not show the jingle caused the revenue growth (correlation sold as cause). The renegotiation recommendation also rests on that unsupported claim and has no link to the contract terms.",
+          "correction": "Say revenue rose after launch, that causation is unproven, and ask legal about the contract's renegotiation rights.",
+          "cue": "After-the-fact timing is not proof of cause."
+        },
+        {
+          "targetId": "s14",
+          "type": "risk",
+          "severity": 3,
+          "explanation": "Telling the photographer we accept responsibility and will pay the full $4,800 admits liability and commits to payment before legal has advised. The brief says to do neither, and this could create legal exposure.",
+          "correction": "Hold off contacting her until legal advises; any reply should neither admit liability nor promise payment.",
+          "cue": "Never admit fault or promise money before counsel signs off."
+        }
+      ],
+      "decoys": [
+        {
+          "targetId": "s13",
+          "looksWrongBecause": "120,000 sends can look inflated against a list of 40,000 subscribers.",
+          "fineBecause": "Three emails to 40,000 subscribers is 3 x 40,000 = 120,000 sends."
+        }
+      ],
+      "numericChecks": [
+        {
+          "targetId": "r1c4",
+          "expression": "250000*0.06",
+          "stated": 15000,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "r2c4",
+          "expression": "250000*0.12",
+          "stated": 36000,
+          "tolerance": 1,
+          "isError": true
+        },
+        {
+          "targetId": "r3c3",
+          "expression": "6+12",
+          "stated": 18,
+          "tolerance": 0.1,
+          "isError": false
+        },
+        {
+          "targetId": "r3c4",
+          "expression": "250000*0.06+250000*0.12",
+          "stated": 45000,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "s7",
+          "expression": "250000-45000",
+          "stated": 205000,
+          "tolerance": 1,
+          "isError": false
+        },
+        {
+          "targetId": "s13",
+          "expression": "3*40000",
+          "stated": 120000,
+          "tolerance": 1,
+          "isError": false
+        }
+      ],
+      "id": "pool-11202100-960-l3",
+      "soc": "11-2021.00",
+      "occupation": "Marketing Managers",
+      "taskId": 960,
+      "task": "Confer with legal staff to resolve problems, such as copyright infringement or royalty sharing with outside producers or distributors.",
+      "level": 3
+    }
+  ]
+}

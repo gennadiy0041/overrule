@@ -76,7 +76,8 @@ export type Artifact = z.infer<typeof ArtifactSchema>;
 export const BriefSchema = z.object({
   from: z.string().min(2).max(80),
   role: z.string().min(2).max(120),
-  ask: z.string().min(10).max(500),
+  // The ask carries the source figures and constraints a reviewer needs, so it can run long.
+  ask: z.string().min(10).max(900),
 });
 
 export const SeveritySchema = z.union([z.literal(1), z.literal(2), z.literal(3)]);
