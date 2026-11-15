@@ -9,10 +9,12 @@ import { DrillRepo } from "./repos/drills";
 import { EventRepo } from "./repos/events";
 import { ReportRepo } from "./repos/reports";
 import { createLlmLogger } from "./repos/llmCalls";
+import { RehearsalRepo } from "./repos/rehearsals";
 import { SessionRepo } from "./repos/sessions";
 import { ModelBudget } from "./services/budget";
 import { DrillService, type Providers } from "./services/drillService";
 import { loadPool, syncPool } from "./services/pool";
+import { RehearsalService } from "./services/rehearsalService";
 import { loadSsrAssets } from "./ssr/layout";
 
 export const DATA_DIR = join(import.meta.dir, "..", "..", "data");
@@ -41,6 +43,8 @@ export async function buildContext(env: Env, options: BootstrapOptions = {}): Pr
   for (const rejected of pool.rejected) console.warn(`pool drill rejected by verifyDrill — ${rejected}`);
 
   const budget = new ModelBudget(db, env.LLM_BUDGET_USD);
+  const providers = options.providers ?? createProviders(env);
+  const llmLog = createLlmLogger(db, now);
   const drillService = new DrillService({
     env,
     now,
@@ -50,8 +54,16 @@ export async function buildContext(env: Env, options: BootstrapOptions = {}): Pr
     attempts,
     events,
     pool,
-    providers: options.providers ?? createProviders(env),
-    llmLog: createLlmLogger(db, now),
+    providers,
+    llmLog,
+    budget,
+  });
+  const rehearsalService = new RehearsalService({
+    now,
+    rehearsals: new RehearsalRepo(db),
+    events,
+    providers,
+    llmLog,
     budget,
   });
 
@@ -69,6 +81,7 @@ export async function buildContext(env: Env, options: BootstrapOptions = {}): Pr
     pool,
     budget,
     drillService,
+    rehearsalService,
     ssrAssets: loadSsrAssets(WEB_ROOT),
   };
 }

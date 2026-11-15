@@ -17,6 +17,7 @@ const Checkout = lazy(() => import("./pages/Checkout"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 const About = lazy(() => import("./pages/About"));
 const Survey = lazy(() => import("./pages/Survey"));
+const Defend = lazy(() => import("./pages/Defend"));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -93,6 +94,7 @@ export function App() {
           <Route path="/demo" element={<DemoEntry />} />
           <Route path="/about" element={<About />} />
           <Route path="/survey" element={<Survey />} />
+          <Route path="/defend" element={<Defend />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Lazy>

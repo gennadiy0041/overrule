@@ -9,6 +9,7 @@ import type { Session, SessionRepo } from "./repos/sessions";
 import type { ModelBudget } from "./services/budget";
 import type { DrillService } from "./services/drillService";
 import type { DrillPool } from "./services/pool";
+import type { RehearsalService } from "./services/rehearsalService";
 import type { SsrAssets } from "./ssr/layout";
 
 /** Everything a route needs, built once at boot (and rebuilt per test with an in-memory database). */
@@ -28,6 +29,8 @@ export interface AppContext {
   /** Dollar ceiling on model spend, estimated from the ledger of model calls. */
   budget: ModelBudget;
   drillService: DrillService;
+  /** "Defend your work": questions about a document before it is sent, and a scored round of answers. */
+  rehearsalService: RehearsalService;
   ssrAssets: SsrAssets;
 }
 

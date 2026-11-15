@@ -138,6 +138,15 @@ function Tools({ me }: { me: MeResponse }) {
       </div>
       <div className="flex items-center justify-between gap-4 py-4">
         <div>
+          <p className="font-medium">Defend your work</p>
+          <p className="text-sm text-ink-2">Rehearse the questions your reader will ask before you send a report.</p>
+        </div>
+        <ButtonLink to="/defend" variant="outline" className="shrink-0">
+          Rehearse
+        </ButtonLink>
+      </div>
+      <div className="flex items-center justify-between gap-4 py-4">
+        <div>
           <p className="font-medium">Daily reminder</p>
           <p className="text-sm text-ink-2">Add a daily 5-min reminder to my calendar.</p>
         </div>

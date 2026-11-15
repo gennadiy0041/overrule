@@ -71,6 +71,10 @@ const COUNTERS: ReadonlyArray<EventName> = [
   "seo_page_view",
   "seo_cta_click",
   "survey_submit",
+  "defend_view",
+  "rehearsal_start",
+  "rehearsal_graded",
+  "pack_purchase",
 ];
 
 const DAY_MS = 86_400_000;

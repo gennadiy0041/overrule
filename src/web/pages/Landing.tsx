@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { track } from "../lib/api";
 import { ButtonLink, Eyebrow, Shell } from "../ui";
 import { ClosingBand } from "./landing/ClosingBand";
+import { DefendBand } from "./landing/DefendBand";
 import { FactStrip } from "./landing/FactStrip";
 import { Faq } from "./landing/Faq";
 import { HowItWorks } from "./landing/HowItWorks";
@@ -56,6 +57,7 @@ export default function Landing() {
       <FactStrip />
       <PullQuote />
       <HowItWorks />
+      <DefendBand />
       <Plans />
       <Faq />
       <div className="pt-4">

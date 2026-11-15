@@ -7,7 +7,7 @@
 export type ProviderName = "claude" | "gemini";
 
 /** Why a model was called — recorded with every call for /metrics. */
-export type LlmPurpose = "generate" | "grade_why" | "cross_check";
+export type LlmPurpose = "generate" | "grade_why" | "cross_check" | "rehearse" | "grade_rehearsal";
 
 export interface LlmCallRecord {
   purpose: LlmPurpose;

@@ -112,6 +112,29 @@ const MIGRATIONS: ReadonlyArray<string> = [
   );
   CREATE INDEX llm_calls_by_time ON llm_calls (created_at);
   `,
+  /* 2 — Defend your work: rehearsals and the packs that pay for them. No document text is stored. */ `
+  CREATE TABLE rehearsals (
+    id         TEXT PRIMARY KEY,
+    session_id TEXT NOT NULL REFERENCES sessions(id) ON DELETE CASCADE,
+    written_by TEXT NOT NULL,                    -- llm | rules
+    questions  INTEGER NOT NULL,
+    graded_by  TEXT,                             -- llm | rules, set by the one scored round
+    held       INTEGER,                          -- answers that held
+    created_at TEXT NOT NULL,
+    graded_at  TEXT
+  );
+  CREATE INDEX rehearsals_by_session ON rehearsals (session_id, created_at);
+  CREATE INDEX rehearsals_by_time ON rehearsals (created_at);
+
+  CREATE TABLE rehearsal_packs (
+    id         INTEGER PRIMARY KEY AUTOINCREMENT,
+    session_id TEXT NOT NULL REFERENCES sessions(id) ON DELETE CASCADE,
+    size       INTEGER NOT NULL,
+    price_usd  REAL NOT NULL,
+    created_at TEXT NOT NULL
+  );
+  CREATE INDEX rehearsal_packs_by_session ON rehearsal_packs (session_id);
+  `,
 ];
 
 export function openDatabase(path: string): Database {

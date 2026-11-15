@@ -6,6 +6,7 @@ import { secureHeaders } from "hono/secure-headers";
 import type { AppContext, AppEnv } from "./context";
 import { apiError } from "./http";
 import { accountRoutes } from "./routes/account";
+import { defendRoutes } from "./routes/defend";
 import { drillRoutes } from "./routes/drills";
 import { eventRoutes } from "./routes/events";
 import { occupationRoutes } from "./routes/occupations";
@@ -72,6 +73,7 @@ export function createApp(ctx: AppContext): Hono {
   api.route("/", scanRoutes(ctx));
   api.route("/", drillRoutes(ctx));
   api.route("/", accountRoutes(ctx));
+  api.route("/", defendRoutes(ctx));
   api.route("/", eventRoutes(ctx));
   api.all("*", (c) => apiError(c, 404, "not_found"));
   app.route("/api", api);

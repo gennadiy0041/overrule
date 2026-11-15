@@ -10,7 +10,10 @@ export type ServerEvent =
   | "daily_return"
   | "report_create"
   | "survey_submit"
-  | "seo_page_view";
+  | "seo_page_view"
+  | "rehearsal_start"
+  | "rehearsal_graded"
+  | "pack_purchase";
 
 export type EventName = ClientEvent | ServerEvent;
 

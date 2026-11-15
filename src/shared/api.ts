@@ -5,6 +5,16 @@
 import { z } from "zod";
 import { ErrorTypeSchema, type ErrorType, type Level, type PublicDrill, type Severity } from "../engine/drillSchema";
 import type { ExposureLabel, Frequency, TaskType } from "../engine/exposure";
+import {
+  ANSWER_MAX,
+  QUESTION_MAX,
+  QUOTE_MAX,
+  REHEARSAL_QUESTIONS,
+  REHEARSAL_TEXT_MAX,
+  REHEARSAL_TEXT_MIN,
+  type AnswerVerdict,
+  type RehearsalQuestion,
+} from "../engine/rehearsal";
 
 // ───────────────────────────── Occupations ─────────────────────────────
 
@@ -264,6 +274,59 @@ export interface MeResponse {
   debrief: WeeklyDebrief | null;
 }
 
+// ───────────────────────────── Defend your work ─────────────────────────────
+
+/** Who will read the document: it sets the angle of the questions. */
+export const REHEARSAL_READERS = ["manager", "client", "leadership"] as const;
+export type RehearsalReader = (typeof REHEARSAL_READERS)[number];
+
+export const RehearsalRequestSchema = z.object({
+  text: z.string().trim().min(REHEARSAL_TEXT_MIN).max(REHEARSAL_TEXT_MAX),
+  reader: z.enum(REHEARSAL_READERS).optional(),
+});
+
+/** How many rehearsals this session can still start, and what a pack costs. */
+export interface DefendStatus {
+  remaining: number;
+  /** True until the free rehearsal is used. */
+  freeAvailable: boolean;
+  pack: { size: number; price: number };
+}
+
+export interface RehearsalResponse {
+  id: string;
+  questions: RehearsalQuestion[];
+  /** "llm": written by a model and checked against the text; "rules": written by the rule-based fallback. */
+  writtenBy: "llm" | "rules";
+  status: DefendStatus;
+}
+
+/**
+ * The document is never stored, so the questions travel back with the answers.
+ * One scored round per rehearsal.
+ */
+export const RehearsalGradeRequestSchema = z.object({
+  items: z
+    .array(
+      z.object({
+        id: z.string().min(1).max(8),
+        kind: ErrorTypeSchema,
+        quote: z.string().min(1).max(QUOTE_MAX),
+        question: z.string().min(1).max(QUESTION_MAX),
+        answer: z.string().max(ANSWER_MAX),
+      }),
+    )
+    .min(1)
+    .max(REHEARSAL_QUESTIONS),
+});
+
+export interface RehearsalGradeResponse {
+  results: AnswerVerdict[];
+  held: number;
+  total: number;
+  gradedBy: "llm" | "rules";
+}
+
 // ───────────────────────────── Checkout, events, surveys, reports ─────────────────────────────
 
 export const CheckoutRequestSchema = z.object({ plan: z.enum(["annual", "monthly"]) });
@@ -285,6 +348,7 @@ export const CLIENT_EVENTS = [
   "share_click",
   "calendar_add",
   "seo_cta_click",
+  "defend_view",
 ] as const;
 export type ClientEvent = (typeof CLIENT_EVENTS)[number];
 
