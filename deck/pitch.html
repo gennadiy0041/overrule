@@ -47,6 +47,12 @@ table.compact td:first-child { font-weight: 600; white-space: nowrap; }
 .desktop img { width: 100%; display: block; }
 .shots { align-items: stretch; }
 .live { grid-template-columns: 1.25fr 0.9fr 0.9fr; }
+.live.four { display: grid; grid-template-columns: 1.3fr 0.8fr 0.8fr 0.8fr; gap: 26px; height: 100%; }
+.live.four .phone figcaption { font-size: 14px; }
+.live.four .facts { font-size: 14.5px; }
+.engines table { font-size: 16.5px; } .engines td { padding: 7px 0; }
+.engines .small { font-size: 13px; line-height: 1.42; }
+.engines .channels { margin-top: 12px; font-size: 14.5px; }
 .liveLeft { display: flex; flex-direction: column; justify-content: space-between; min-height: 0; }
 .facts { font-size: 15.5px; line-height: 1.4; color: #48433B; } .facts b { color: #14120F; } .facts p { margin-top: 10px; }
 .qrBig { display: flex; align-items: center; gap: 22px; }
@@ -169,17 +175,8 @@ html, body { height: 100%; overflow: hidden; background: #000; }
   <footer><span class="logo"><svg width="30" height="30" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#14120F"/><path d="M8 16.5l5.2 5.2L24 10.5" fill="none" stroke="#FAF7F2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 23L26 9" stroke="#D93A2B" stroke-width="3" stroke-linecap="round"/></svg>overrule</span><p class="notes">Illustrative persona, not a real person · 1 KPMG US, Trust in AI, Apr 2025 (n = 1,019) · 2 73.3M employed aged 25–44 (BLS, CPS 2025) × 30% (Gallup AI indicator, May 2026) · 3 eWeek, Feb 2026 · 4 OpenAI Podcast, June 2025, as reported in the press</p></footer>
 </section>
 <section class="slide">
-  <header><p class="eyebrow">05 / 10 · What we sell</p><h1>Discover → Develop → Prove</h1></header>
-  <div class="body"><div class="cols3 shots">
-      <figure class="phone"><img src="shots/map-phone.png" alt="" /><figcaption><b>Discover.</b> Free scan → a personal exposure map built on 19,265 human-labeled tasks across 923 occupations.</figcaption></figure>
-      <figure class="phone"><img src="shots/drill-phone.png" alt="" /><figcaption><b>Develop.</b> An AI-written document from your job: 3–4 planted mistakes and lines that only look wrong.</figcaption></figure>
-      <figure class="phone"><img src="shots/dashboard-phone.png" alt="" /><figcaption><b>Prove.</b> A Judgment Score (Elo), a streak, and a record for your self-review.</figcaption></figure>
-    </div></div>
-  <footer><span class="logo"><svg width="30" height="30" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#14120F"/><path d="M8 16.5l5.2 5.2L24 10.5" fill="none" stroke="#FAF7F2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 23L26 9" stroke="#D93A2B" stroke-width="3" stroke-linecap="round"/></svg>overrule</span><p class="notes">Exposure data: Eloundou et al., “GPTs are GPTs” (2023), human task labels over O*NET · All screenshots are the live product; the dashboard shows the demo profile (a simulated week played through the real engine)</p></footer>
-</section>
-<section class="slide">
-  <header><p class="eyebrow">06 / 10 · It works — live</p><h1>Catch today’s AI mistake — live</h1></header>
-  <div class="body"><div class="cols3 live">
+  <header><p class="eyebrow">05 / 10 · What we sell · it works — live</p><h1>Discover → Develop → Prove — live</h1></header>
+  <div class="body"><div class="live four">
       <div class="liveLeft">
         <div class="qrBig"><a href="https://overrule-production.up.railway.app"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 29" shape-rendering="crispEdges"><path stroke="#14120F" d="M0 0.5h7m1 0h1m1 0h1m5 0h1m1 0h3m1 0h7M0 1.5h1m5 0h1m1 0h2m1 0h2m1 0h1m1 0h1m5 0h1m5 0h1M0 2.5h1m1 0h3m1 0h1m2 0h3m1 0h3m2 0h3m1 0h1m1 0h3m1 0h1M0 3.5h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h5m2 0h1m1 0h1m1 0h3m1 0h1M0 4.5h1m1 0h3m1 0h1m3 0h2m1 0h1m1 0h5m2 0h1m1 0h3m1 0h1M0 5.5h1m5 0h1m3 0h1m1 0h2m2 0h1m1 0h2m2 0h1m5 0h1M0 6.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M8 7.5h3m1 0h1m3 0h2M0 8.5h1m1 0h2m1 0h3m4 0h1m2 0h5m2 0h1m2 0h1m1 0h2M5 9.5h1m1 0h1m2 0h4m2 0h5m1 0h3m3 0h1M2 10.5h1m1 0h1m1 0h1m2 0h2m1 0h2m2 0h2m5 0h2m1 0h2M1 11.5h2m2 0h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h1m1 0h1m7 0h1M1 12.5h2m2 0h2m1 0h2m3 0h2m2 0h1m1 0h1m3 0h1m1 0h2M1 13.5h1m3 0h1m3 0h1m2 0h1m1 0h3m2 0h1m1 0h2m3 0h3M0 14.5h2m2 0h1m1 0h2m3 0h1m1 0h1m3 0h3m1 0h3m2 0h3M0 15.5h1m3 0h2m2 0h1m2 0h2m1 0h2m3 0h1m3 0h2m2 0h1M1 16.5h2m3 0h1m1 0h2m1 0h3m4 0h1m2 0h1m1 0h3m1 0h1M1 17.5h3m1 0h1m4 0h2m1 0h3m1 0h1m2 0h1m2 0h1m1 0h3M0 18.5h1m2 0h4m1 0h1m6 0h1m1 0h1m4 0h1m3 0h1M2 19.5h4m1 0h1m1 0h4m1 0h2m1 0h1m2 0h1m5 0h1M1 20.5h2m2 0h2m3 0h1m3 0h1m2 0h1m1 0h8M8 21.5h3m3 0h1m1 0h5m3 0h5M0 22.5h7m1 0h1m2 0h2m1 0h1m3 0h3m1 0h1m1 0h2m1 0h1M0 23.5h1m5 0h1m1 0h3m1 0h2m1 0h1m4 0h1m3 0h2M0 24.5h1m1 0h3m1 0h1m3 0h3m4 0h1m2 0h5m1 0h3M0 25.5h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h4m1 0h5m2 0h2m2 0h1M0 26.5h1m1 0h3m1 0h1m1 0h1m1 0h2m1 0h2m1 0h1m1 0h1m1 0h1m2 0h1m2 0h1m1 0h1M0 27.5h1m5 0h1m3 0h2m1 0h3m4 0h1m2 0h1m1 0h1m1 0h1M0 28.5h7m1 0h1m7 0h1m1 0h1m1 0h2m2 0h1m2 0h1"/></svg>
 </a><div><p><a href="https://overrule-production.up.railway.app"><b>overrule-production.up.railway.app</b></a></p><p class="small">No sign-up · 2 minutes · any of 923 occupations</p><p class="small">Code: <a href="https://github.com/gennadiy0041/overrule"><b>github.com/gennadiy0041/overrule</b></a></p></div></div>
@@ -189,30 +186,31 @@ html, body { height: 100%; overflow: hidden; background: #000; }
           <p><b>Calibration, not suspicion.</b> Misses cost points — and so do false alarms.</p>
         </div>
       </div>
-      <figure class="phone"><img src="shots/sheet-phone.png" alt="" /><figcaption>Tap a line, name the mistake, say why.</figcaption></figure>
-      <figure class="phone"><img src="shots/review-phone.png" alt="" /><figcaption>Every flag is scored by code against an answer key.</figcaption></figure>
+      <figure class="phone"><img src="shots/map-phone.png" alt="" /><figcaption><b>Discover.</b> A free scan: your own exposure map, from 19,265 human-labeled tasks.</figcaption></figure>
+      <figure class="phone"><img src="shots/sheet-phone.png" alt="" /><figcaption><b>Develop.</b> An AI-written document from your job. Tap a line, name the mistake.</figcaption></figure>
+      <figure class="phone"><img src="shots/review-phone.png" alt="" /><figcaption><b>Prove.</b> Scored by code against a key; your Judgment Score moves.</figcaption></figure>
     </div></div>
-  <footer><span class="logo"><svg width="30" height="30" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#14120F"/><path d="M8 16.5l5.2 5.2L24 10.5" fill="none" stroke="#FAF7F2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 23L26 9" stroke="#D93A2B" stroke-width="3" stroke-linecap="round"/></svg>overrule</span><p class="notes">Launch pool: 54 verified drills — 48 kept from 87 model drafts (39 rejected by the verifier) + 6 written during the build · all 54 passed a blind cross-check: a second model had to find at least half of the planted mistakes</p></footer>
+  <footer><span class="logo"><svg width="30" height="30" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#14120F"/><path d="M8 16.5l5.2 5.2L24 10.5" fill="none" stroke="#FAF7F2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 23L26 9" stroke="#D93A2B" stroke-width="3" stroke-linecap="round"/></svg>overrule</span><p class="notes">Exposure data: Eloundou et al., “GPTs are GPTs” (2023), human task labels over O*NET · Launch pool: 54 verified drills — 48 kept from 87 model drafts (39 rejected by the verifier) + 6 written during the build; all 54 passed a blind cross-check by a second model</p></footer>
 </section>
 <section class="slide">
-  <header><p class="eyebrow">07 / 10 · What we sell · why they come back tomorrow</p><h1>Why they come back tomorrow</h1></header>
+  <header><p class="eyebrow">06 / 10 · What we sell · why they come back tomorrow</p><h1>Why they come back tomorrow</h1></header>
   <div class="body"><div class="cols2 wideRight">
       <ul class="big">
-        <li><b>Free — the habit.</b> Daily Catch: one shared drill per profession per day; miss it and it is gone. A streak, a Judgment Score, a shareable Wordle-style grid.</li>
-        <li><b>Paid — $99.99 a year</b> (7-day trial) or $19.99 a month. Personal drills from your own tasks, weak-spot training, a Weekly Debrief, a Review Report for your self-review.</li>
-        <li><b>The trigger.</b> The streak resets at midnight ET; a daily calendar reminder is one tap. No email or push yet — the next thing to build.</li>
-        <li><b>Measured in production:</b> next-day return, Daily Catch completions, shares.</li>
-        <li><b>The metric that matters: renewal.</b> Only ~8% of monthly app subscriptions survive a year<sup>1</sup> — so annual is the default plan.</li>
+        <li><b>Free — the habit.</b> Daily Catch: one shared drill per profession per day; miss it and it is gone. A streak, a Judgment Score, a shareable grid.</li>
+        <li><b>Paid — $99.99 a year</b> (7-day trial) or $19.99 a month. Personal drills from your own tasks, weak-spot training, a Weekly Debrief, a Review Report.</li>
+        <li><b>Next — Defend your work.</b> Paste the report you are about to send; rehearse what your manager will ask — “Where does this number come from?” Add-on: 5 rehearsals for $4.99.</li>
+        <li><b>Next — Partner Catch.</b> A sponsor funds the day’s drill; a verified catch earns the member credit. Both planned, not built: slides 7–8.</li>
+        <li><b>The metric: renewal.</b> ~8% of monthly app subscriptions survive a year<sup>1</sup>; annual by default.</li>
       </ul>
       <figure class="desktop"><img src="shots/dashboard-desktop.png" alt="" /></figure>
     </div></div>
-  <footer><span class="logo"><svg width="30" height="30" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#14120F"/><path d="M8 16.5l5.2 5.2L24 10.5" fill="none" stroke="#FAF7F2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 23L26 9" stroke="#D93A2B" stroke-width="3" stroke-linecap="round"/></svg>overrule</span><p class="notes">1 RevenueCat, State of Subscription Apps 2026 · Dashboard: demo profile, simulated week</p></footer>
+  <footer><span class="logo"><svg width="30" height="30" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#14120F"/><path d="M8 16.5l5.2 5.2L24 10.5" fill="none" stroke="#FAF7F2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 23L26 9" stroke="#D93A2B" stroke-width="3" stroke-linecap="round"/></svg>overrule</span><p class="notes">1 RevenueCat, State of Subscription Apps 2026 · Dashboard: demo profile, simulated week · Next-day return, Daily Catch completions and shares are recorded in production</p></footer>
 </section>
 <section class="slide">
-  <header><p class="eyebrow">08 / 10 · Why it makes money</p><h1>Hypothesis: CAC ≈ $48, paid back on the first payment</h1></header>
-  <div class="body"><div class="cols3 money">
+  <header><p class="eyebrow">07 / 10 · Why it makes money · unit economics</p><h1>Unit economics: two engines and a paid add-on</h1></header>
+  <div class="body"><div class="cols2 engines">
       <div>
-        <p class="eyebrow">Funnel hypothesis · per 1,000 clicks at $1</p>
+        <p class="eyebrow">Engine 1 · subscription — hypothesis, per 1,000 clicks at $1</p>
         <table>
           <tr><td>Start the scan</td><td>600 · 60%</td></tr>
           <tr><td>See their map</td><td>420 · 70%</td></tr>
@@ -220,29 +218,63 @@ html, body { height: 100%; overflow: hidden; background: #000; }
           <tr><td>Start a trial or a monthly plan</td><td>60 · 21%</td></tr>
           <tr><td><b>Pay</b></td><td><b>21 · 35% → CAC ≈ $48</b></td></tr>
         </table>
-        <p class="small">Untested: there are no outside users yet. The test is $300–500 of paid social with the film on slide 3 as the first creative. Fewer than 3 trial starts per 100 clicks would mean LTV &lt; CAC.</p>
-      </div>
-      <div>
-        <p class="eyebrow">Price and lifetime value · estimate</p>
+        <p class="small">Average first payment ≈ $60: ads pay back on the first payment. LTV ≈ $95 after fees and refunds (monthly: 3.5 payments ≈ $70; annual: $99.99 + 30% first renewal<sup>1</sup> ≈ $130; half choose annual), before about $0.06 of model cost per live drill (measured). LTV/CAC ≈ 2; target 3. Untested: no outside users yet, and checkout in this build is a demo. The test: $300–500 of paid social with the film as the first creative.</p>
+        <p class="eyebrow gap">Add-on · Defend your work — hypothesis, per pack</p>
         <table>
-          <tr><td>Annual (default, 7-day trial)</td><td>$99.99</td></tr>
-          <tr><td>Monthly</td><td>$19.99</td></tr>
-          <tr><td>Average first payment</td><td>≈ $60</td></tr>
-          <tr><td><b>Blended LTV, after fees and refunds</b></td><td><b>≈ $95</b></td></tr>
+          <tr><td>5 rehearsals of the questions a manager will ask</td><td>$4.99</td></tr>
+          <tr><td>Card fee 2.9% + $0.30 · models ≈ $0.06 a rehearsal</td><td>−$0.74</td></tr>
+          <tr><td><b>Overrule keeps</b></td><td><b>$4.25 · 85%</b></td></tr>
         </table>
-        <p class="small">Assumes half choose annual. Monthly: 3.5 payments ≈ $70. Annual: $99.99 + 30% first renewal<sup>1</sup> ≈ $130. Blend ≈ $100, before model costs: a live drill costs about $0.06 (measured). LTV/CAC ≈ 2 on these assumptions; target 3. Checkout in this build is a demo: no payment is taken.</p>
       </div>
       <div>
-        <p class="eyebrow">Path to $100M ARR</p>
-        <div class="stat"><p class="figure">1M × $100</p><p>paying members × revenue a year — about 4.5% of the ≈ 22M frequent AI users aged 25–44 (estimate)</p></div>
+        <p class="eyebrow">Engine 2 · Partner Catch — hypothesis, per verified completion</p>
+        <table>
+          <tr><td>A sponsor pays for a verified catch</td><td>$1.00</td></tr>
+          <tr><td>The member’s reward</td><td>$0.50</td></tr>
+          <tr><td><b>Overrule keeps</b></td><td><b>$0.50</b></td></tr>
+        </table>
         <ul class="channels">
-          <li><b>923 SEO pages, live today:</b> “Will AI replace {job}?” — each ends in the scan.</li>
-          <li><b>The shareable grid:</b> every Daily Catch result is a post.</li>
-          <li><b>Quiz-funnel ads:</b> scan → personal map → first catch → paywall.</li>
+          <li><b>The sponsor buys</b> about five minutes of scored attention from a chosen occupation and a brand card on the result screen<sup>2</sup>. It never appears inside the document: drills stay fictional.</li>
+          <li><b>The member earns</b> credit toward the subscription, then cash. 2 sponsored catches a month return $12 a year, 12% of the annual plan; 17 a month return all of it. Rewards are capped at the price paid: cash back, not income.</li>
+          <li><b>Never at a loss.</b> Sponsors prepay. A reward is half of money already received, paid only for a real review (a score threshold, one a day). No sponsor, no reward. And no CAC: it rides on the daily habit.</li>
         </ul>
       </div>
     </div></div>
-  <footer><span class="logo"><svg width="30" height="30" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#14120F"/><path d="M8 16.5l5.2 5.2L24 10.5" fill="none" stroke="#FAF7F2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 23L26 9" stroke="#D93A2B" stroke-width="3" stroke-linecap="round"/></svg>overrule</span><p class="notes">1 RevenueCat 2026: first renewal of annual plans is 23–40% by category · Unit economics and market size are hypotheses, labeled as such</p></footer>
+  <footer><span class="logo"><svg width="30" height="30" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#14120F"/><path d="M8 16.5l5.2 5.2L24 10.5" fill="none" stroke="#FAF7F2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 23L26 9" stroke="#D93A2B" stroke-width="3" stroke-linecap="round"/></svg>overrule</span><p class="notes">1 RevenueCat 2026: first renewal of annual plans is 23–40% by category · 2 Reference points: a click on LinkedIn Ads in the US costs about $9 (ZenABM benchmark of 211 B2B advertisers, Feb 2026); a 15–20-minute survey of an individual contributor pays $20–35 (CleverX, Jul 2026); Brave passes 70% of ad revenue to its users (Brave, 2019) · Card fee: standard US rate · Hypotheses; Partner Catch and Defend your work are not built yet</p></footer>
+</section>
+<section class="slide">
+  <header><p class="eyebrow">08 / 10 · Why it makes money · path to $100M ARR</p><h1>Path to $100M ARR: 890K members, two engines, profit on the way</h1></header>
+  <div class="body"><div class="cols2 engines">
+      <div>
+        <p class="eyebrow">Revenue at scale · hypothesis</p>
+        <table>
+          <tr><td>Subscriptions: 890K members × ≈ $100 a year</td><td>$89M</td></tr>
+          <tr><td>Partner Catch: 890K × 2 a month × $0.50 × 12</td><td>$11M</td></tr>
+          <tr><td><b>ARR</b></td><td><b>$100M</b></td></tr>
+        </table>
+        <p class="small">890K members are 4.0% of the ≈ 22M frequent AI users aged 25–44 (estimate). Not counted: free players of the Daily Catch, and the Defend your work add-on — one member in five buying a $4.99 pack a month would add ≈ $11M. Sponsors would spend $21M a year — under 0.1% of US B2B digital advertising, $24.6B in 2026<sup>1</sup>. The mix has a precedent: Duolingo earns 87% of its revenue from subscriptions and 7% from advertising<sup>2</sup>.</p>
+        <p class="eyebrow gap">How members arrive</p>
+        <ul class="channels">
+          <li><b>923 SEO pages, live today:</b> “Will AI replace {job}?” — each ends in the scan.</li>
+          <li><b>The shareable grid:</b> every Daily Catch result is a post.</li>
+          <li><b>Quiz-funnel ads:</b> scan → personal map → first catch → paywall; the film is the first creative.</li>
+        </ul>
+      </div>
+      <div>
+        <p class="eyebrow">Illustrative P&amp;L at $100M ARR</p>
+        <table>
+          <tr><td>Revenue</td><td>$100M</td></tr>
+          <tr><td>Marketing — at LTV/CAC ≈ 2, half of subscription revenue</td><td>−$45M</td></tr>
+          <tr><td>Models, payments, hosting — ≈ 10% of subscriptions</td><td>−$9M</td></tr>
+          <tr><td>Team and operations — about 80 people</td><td>−$15M</td></tr>
+          <tr><td><b>Operating profit</b></td><td><b>≈ $31M</b></td></tr>
+        </table>
+        <p class="small">Without Partner Catch the same P&amp;L ends at ≈ $20M: the second engine carries no acquisition cost. At LTV/CAC 3, marketing falls to a third of subscription revenue.</p>
+        <p class="eyebrow gap">Who runs it</p>
+        <p class="small">Today: one founder — product, code and growth. Hires in this order, paid from revenue: a COO for sponsors, payouts and fraud control · a head of growth for the paid funnel · a content lead for drill quality · engineers.</p>
+      </div>
+    </div></div>
+  <footer><span class="logo"><svg width="30" height="30" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#14120F"/><path d="M8 16.5l5.2 5.2L24 10.5" fill="none" stroke="#FAF7F2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 23L26 9" stroke="#D93A2B" stroke-width="3" stroke-linecap="round"/></svg>overrule</span><p class="notes">Every figure on this slide is a hypothesis on the stated assumptions, not a forecast · 1 EMARKETER, B2B Digital Ad Spend Forecast 2026 (Jan 2026) · 2 Duolingo shareholder letter, Q3 2026 (Nov 3, 2026): 87% of revenue from subscriptions, 7% from advertising</p></footer>
 </section>
 <section class="slide">
   <header><p class="eyebrow">09 / 10 · Why it is new</p><h1>Why now, and why it is new</h1></header>
@@ -268,7 +300,7 @@ html, body { height: 100%; overflow: hidden; background: #000; }
           <div class="stat"><p class="figure">No login</p><p>the whole path, from scan to dashboard, works for the jury right now</p></div>
         </div>
         <div class="box"><p class="eyebrow">Live in production · launched Nov 15, 2026 · as of Nov 15, 2026</p>
-    <p><b>2</b> sessions · <b>1</b> scans · <b>0</b> with a scored drill · <b>0</b> trials started</p>
+    <p><b>4</b> sessions · <b>1</b> scans · <b>0</b> with a scored drill · <b>0</b> trials started</p>
     <p>“Would you pay $8/month?” — N = 0 <i>(N &lt; 10: too few to conclude)</i></p>
     <p class="small">Internal traffic and the demo profile are excluded.</p></div>
       </div>

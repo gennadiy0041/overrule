@@ -38,6 +38,67 @@ const LAYOFFS = {
     "Challenger, Gray & Christmas, October 2026 report (Nov 5, 2026): job cuts announced by US-based employers, by stated reason; AI was cited in 54,836 in all of 2025",
 };
 
+/**
+ * The money model. Every figure is a hypothesis to be tested, and the slides say so.
+ * The derived numbers are computed below, so the slides cannot disagree with each other.
+ */
+const MODEL = {
+  /** Engine 1: the subscription. */
+  annualPrice: 99.99,
+  cac: 48,
+  ltv: 95,
+  /** Paying members and revenue per member-year on the path to $100M ARR. */
+  members: 890_000,
+  revenuePerMember: 100,
+  /** Engine 2, Partner Catch: a sponsor pays per verified completion and half goes to the member. */
+  sponsorPays: 1,
+  memberShare: 0.5,
+  /** Base case, kept low on purpose: two sponsored catches a month per paying member. */
+  sponsoredPerMonth: 2,
+  /** Model calls, payment fees and hosting, as a share of subscription revenue. */
+  costOfRevenueShare: 0.1,
+  /** About 80 people. */
+  team: 15_000_000,
+  /** Add-on, Defend your work: a pack of rehearsals sold apart from the subscription. */
+  packPrice: 4.99,
+  packSize: 5,
+  cardFeeShare: 0.029,
+  cardFeeFixed: 0.3,
+  /** Taken from the measured cost of one live drill; a rehearsal makes calls of the same size. */
+  modelCostPerRehearsal: 0.06,
+  /** Upside only, outside the $100M: the share of members who buy one pack a month. */
+  packBuyersShare: 0.2,
+};
+const packCosts = MODEL.packPrice * MODEL.cardFeeShare + MODEL.cardFeeFixed + MODEL.packSize * MODEL.modelCostPerRehearsal;
+const packKept = MODEL.packPrice - packCosts;
+const packUpside = MODEL.members * MODEL.packBuyersShare * 12 * MODEL.packPrice;
+const reward = MODEL.sponsorPays * MODEL.memberShare;
+const kept = MODEL.sponsorPays - reward;
+const rewardPerYear = reward * MODEL.sponsoredPerMonth * 12;
+const rewardShareOfPlan = rewardPerYear / MODEL.annualPrice;
+/** Sponsored catches a month that return the whole annual plan. */
+const catchesToRecoup = Math.ceil(MODEL.annualPrice / 12 / reward);
+const subscriptionRevenue = MODEL.members * MODEL.revenuePerMember;
+const partnerRevenue = MODEL.members * MODEL.sponsoredPerMonth * 12 * kept;
+const sponsorSpend = MODEL.members * MODEL.sponsoredPerMonth * 12 * MODEL.sponsorPays;
+const totalRevenue = subscriptionRevenue + partnerRevenue;
+/** In a steady state the cost of replacing members is revenue divided by LTV/CAC. */
+const marketing = subscriptionRevenue * (MODEL.cac / MODEL.ltv);
+const costOfRevenue = subscriptionRevenue * MODEL.costOfRevenueShare;
+const operatingProfit = totalRevenue - marketing - costOfRevenue - MODEL.team;
+const profitWithoutPartners = subscriptionRevenue - marketing - costOfRevenue - MODEL.team;
+const usd = (amount: number) => `$${amount.toFixed(2)}`;
+const millions = (amount: number) => `$${Math.round(amount / 1_000_000)}M`;
+
+/** Outside reference points for Partner Catch, each with its source. */
+const BENCHMARKS = {
+  attention:
+    "Reference points: a click on LinkedIn Ads in the US costs about $9 (ZenABM benchmark of 211 B2B advertisers, Feb 2026); a 15–20-minute survey of an individual contributor pays $20–35 (CleverX, Jul 2026); Brave passes 70% of ad revenue to its users (Brave, 2019)",
+  marketShare: "under 0.1% of US B2B digital advertising, $24.6B in 2026<sup>1</sup>",
+  marketSource:
+    "1 EMARKETER, B2B Digital Ad Spend Forecast 2026 (Jan 2026) · 2 Duolingo shareholder letter, Q3 2026 (Nov 3, 2026): 87% of revenue from subscriptions, 7% from advertising",
+};
+
 /** The last slide: the proverb, the two halves of it, the callback to the first slide, the ask. */
 const CLOSING = {
   proverb: "“Trust, but verify.”",
@@ -231,21 +292,9 @@ const productSlides = [
 
   slide(
     5,
-    "What we sell",
-    "Discover → Develop → Prove",
-    `<div class="cols3 shots">
-      ${phone("map-phone", "<b>Discover.</b> Free scan → a personal exposure map built on 19,265 human-labeled tasks across 923 occupations.")}
-      ${phone("drill-phone", "<b>Develop.</b> An AI-written document from your job: 3–4 planted mistakes and lines that only look wrong.")}
-      ${phone("dashboard-phone", "<b>Prove.</b> A Judgment Score (Elo), a streak, and a record for your self-review.")}
-    </div>`,
-    "Exposure data: Eloundou et al., “GPTs are GPTs” (2023), human task labels over O*NET · All screenshots are the live product; the dashboard shows the demo profile (a simulated week played through the real engine)",
-  ),
-
-  slide(
-    6,
-    "It works — live",
-    "Catch today’s AI mistake — live",
-    `<div class="cols3 live">
+    "What we sell · it works — live",
+    "Discover → Develop → Prove — live",
+    `<div class="live four">
       <div class="liveLeft">
         <div class="qrBig">${link(APP_URL, qr)}<div><p>${link(APP_URL, `<b>${SHORT_URL}</b>`)}</p><p class="small">No sign-up · 2 minutes · any of 923 occupations</p><p class="small">Code: ${link(REPO_URL, `<b>${SHORT_REPO}</b>`)}</p></div></div>
         <div class="facts">
@@ -254,66 +303,104 @@ const productSlides = [
           <p><b>Calibration, not suspicion.</b> Misses cost points — and so do false alarms.</p>
         </div>
       </div>
-      ${phone("sheet-phone", "Tap a line, name the mistake, say why.")}
-      ${phone("review-phone", "Every flag is scored by code against an answer key.")}
+      ${phone("map-phone", "<b>Discover.</b> A free scan: your own exposure map, from 19,265 human-labeled tasks.")}
+      ${phone("sheet-phone", "<b>Develop.</b> An AI-written document from your job. Tap a line, name the mistake.")}
+      ${phone("review-phone", "<b>Prove.</b> Scored by code against a key; your Judgment Score moves.")}
     </div>`,
-    `Launch pool: ${pool.totals.accepted} verified drills — ${drafts - pool.totals.rejectedByVerify} kept from ${drafts} model drafts (${pool.totals.rejectedByVerify} rejected by the verifier) + ${pool.totals.accepted - (drafts - pool.totals.rejectedByVerify)} written during the build · ${crossCheckedShare} ${pool.totals.accepted} passed a blind cross-check: a second model had to find at least half of the planted mistakes`,
+    `Exposure data: Eloundou et al., “GPTs are GPTs” (2023), human task labels over O*NET · Launch pool: ${pool.totals.accepted} verified drills — ${drafts - pool.totals.rejectedByVerify} kept from ${drafts} model drafts (${pool.totals.rejectedByVerify} rejected by the verifier) + ${pool.totals.accepted - (drafts - pool.totals.rejectedByVerify)} written during the build; ${crossCheckedShare} ${pool.totals.accepted} passed a blind cross-check by a second model`,
   ),
 
   slide(
-    7,
+    6,
     "What we sell · why they come back tomorrow",
     "Why they come back tomorrow",
     `<div class="cols2 wideRight">
       <ul class="big">
-        <li><b>Free — the habit.</b> Daily Catch: one shared drill per profession per day; miss it and it is gone. A streak, a Judgment Score, a shareable Wordle-style grid.</li>
-        <li><b>Paid — $99.99 a year</b> (7-day trial) or $19.99 a month. Personal drills from your own tasks, weak-spot training, a Weekly Debrief, a Review Report for your self-review.</li>
-        <li><b>The trigger.</b> The streak resets at midnight ET; a daily calendar reminder is one tap. No email or push yet — the next thing to build.</li>
-        <li><b>Measured in production:</b> next-day return, Daily Catch completions, shares.</li>
-        <li><b>The metric that matters: renewal.</b> Only ~8% of monthly app subscriptions survive a year<sup>1</sup> — so annual is the default plan.</li>
+        <li><b>Free — the habit.</b> Daily Catch: one shared drill per profession per day; miss it and it is gone. A streak, a Judgment Score, a shareable grid.</li>
+        <li><b>Paid — $99.99 a year</b> (7-day trial) or $19.99 a month. Personal drills from your own tasks, weak-spot training, a Weekly Debrief, a Review Report.</li>
+        <li><b>Next — Defend your work.</b> Paste the report you are about to send; rehearse what your manager will ask — “Where does this number come from?” Add-on: ${MODEL.packSize} rehearsals for ${usd(MODEL.packPrice)}.</li>
+        <li><b>Next — Partner Catch.</b> A sponsor funds the day’s drill; a verified catch earns the member credit. Both planned, not built: slides 7–8.</li>
+        <li><b>The metric: renewal.</b> ~8% of monthly app subscriptions survive a year<sup>1</sup>; annual by default.</li>
       </ul>
       <figure class="desktop"><img src="shots/dashboard-desktop.png" alt="" /></figure>
     </div>`,
-    "1 RevenueCat, State of Subscription Apps 2026 · Dashboard: demo profile, simulated week",
+    "1 RevenueCat, State of Subscription Apps 2026 · Dashboard: demo profile, simulated week · Next-day return, Daily Catch completions and shares are recorded in production",
   ),
 
   slide(
-    8,
-    "Why it makes money",
-    "Hypothesis: CAC ≈ $48, paid back on the first payment",
-    `<div class="cols3 money">
+    7,
+    "Why it makes money · unit economics",
+    "Unit economics: two engines and a paid add-on",
+    `<div class="cols2 engines">
       <div>
-        <p class="eyebrow">Funnel hypothesis · per 1,000 clicks at $1</p>
+        <p class="eyebrow">Engine 1 · subscription — hypothesis, per 1,000 clicks at $1</p>
         <table>
           <tr><td>Start the scan</td><td>600 · 60%</td></tr>
           <tr><td>See their map</td><td>420 · 70%</td></tr>
           <tr><td>Finish the first drill</td><td>290 · 69%</td></tr>
           <tr><td>Start a trial or a monthly plan</td><td>60 · 21%</td></tr>
-          <tr><td><b>Pay</b></td><td><b>21 · 35% → CAC ≈ $48</b></td></tr>
+          <tr><td><b>Pay</b></td><td><b>21 · 35% → CAC ≈ $${MODEL.cac}</b></td></tr>
         </table>
-        <p class="small">Untested: there are no outside users yet. The test is $300–500 of paid social with the film on slide 3 as the first creative. Fewer than 3 trial starts per 100 clicks would mean LTV &lt; CAC.</p>
-      </div>
-      <div>
-        <p class="eyebrow">Price and lifetime value · estimate</p>
+        <p class="small">Average first payment ≈ $60: ads pay back on the first payment. LTV ≈ $${MODEL.ltv} after fees and refunds (monthly: 3.5 payments ≈ $70; annual: $99.99 + 30% first renewal<sup>1</sup> ≈ $130; half choose annual), before about $0.06 of model cost per live drill (measured). LTV/CAC ≈ 2; target 3. Untested: no outside users yet, and checkout in this build is a demo. The test: $300–500 of paid social with the film as the first creative.</p>
+        <p class="eyebrow gap">Add-on · Defend your work — hypothesis, per pack</p>
         <table>
-          <tr><td>Annual (default, 7-day trial)</td><td>$99.99</td></tr>
-          <tr><td>Monthly</td><td>$19.99</td></tr>
-          <tr><td>Average first payment</td><td>≈ $60</td></tr>
-          <tr><td><b>Blended LTV, after fees and refunds</b></td><td><b>≈ $95</b></td></tr>
+          <tr><td>${MODEL.packSize} rehearsals of the questions a manager will ask</td><td>${usd(MODEL.packPrice)}</td></tr>
+          <tr><td>Card fee 2.9% + $0.30 · models ≈ ${usd(MODEL.modelCostPerRehearsal)} a rehearsal</td><td>−${usd(packCosts)}</td></tr>
+          <tr><td><b>Overrule keeps</b></td><td><b>${usd(packKept)} · ${Math.round((packKept / MODEL.packPrice) * 100)}%</b></td></tr>
         </table>
-        <p class="small">Assumes half choose annual. Monthly: 3.5 payments ≈ $70. Annual: $99.99 + 30% first renewal<sup>1</sup> ≈ $130. Blend ≈ $100, before model costs: a live drill costs about $0.06 (measured). LTV/CAC ≈ 2 on these assumptions; target 3. Checkout in this build is a demo: no payment is taken.</p>
       </div>
       <div>
-        <p class="eyebrow">Path to $100M ARR</p>
-        ${stat("1M × $100", "paying members × revenue a year — about 4.5% of the ≈ 22M frequent AI users aged 25–44 (estimate)")}
+        <p class="eyebrow">Engine 2 · Partner Catch — hypothesis, per verified completion</p>
+        <table>
+          <tr><td>A sponsor pays for a verified catch</td><td>${usd(MODEL.sponsorPays)}</td></tr>
+          <tr><td>The member’s reward</td><td>${usd(reward)}</td></tr>
+          <tr><td><b>Overrule keeps</b></td><td><b>${usd(kept)}</b></td></tr>
+        </table>
         <ul class="channels">
-          <li><b>923 SEO pages, live today:</b> “Will AI replace {job}?” — each ends in the scan.</li>
-          <li><b>The shareable grid:</b> every Daily Catch result is a post.</li>
-          <li><b>Quiz-funnel ads:</b> scan → personal map → first catch → paywall.</li>
+          <li><b>The sponsor buys</b> about five minutes of scored attention from a chosen occupation and a brand card on the result screen<sup>2</sup>. It never appears inside the document: drills stay fictional.</li>
+          <li><b>The member earns</b> credit toward the subscription, then cash. ${MODEL.sponsoredPerMonth} sponsored catches a month return $${rewardPerYear} a year, ${Math.round(rewardShareOfPlan * 100)}% of the annual plan; ${catchesToRecoup} a month return all of it. Rewards are capped at the price paid: cash back, not income.</li>
+          <li><b>Never at a loss.</b> Sponsors prepay. A reward is half of money already received, paid only for a real review (a score threshold, one a day). No sponsor, no reward. And no CAC: it rides on the daily habit.</li>
         </ul>
       </div>
     </div>`,
-    "1 RevenueCat 2026: first renewal of annual plans is 23–40% by category · Unit economics and market size are hypotheses, labeled as such",
+    `1 RevenueCat 2026: first renewal of annual plans is 23–40% by category · 2 ${BENCHMARKS.attention} · Card fee: standard US rate · Hypotheses; Partner Catch and Defend your work are not built yet`,
+  ),
+
+  slide(
+    8,
+    "Why it makes money · path to $100M ARR",
+    `Path to $100M ARR: ${Math.round(MODEL.members / 1000)}K members, two engines, profit on the way`,
+    `<div class="cols2 engines">
+      <div>
+        <p class="eyebrow">Revenue at scale · hypothesis</p>
+        <table>
+          <tr><td>Subscriptions: ${Math.round(MODEL.members / 1000)}K members × ≈ $${MODEL.revenuePerMember} a year</td><td>${millions(subscriptionRevenue)}</td></tr>
+          <tr><td>Partner Catch: ${Math.round(MODEL.members / 1000)}K × ${MODEL.sponsoredPerMonth} a month × ${usd(kept)} × 12</td><td>${millions(partnerRevenue)}</td></tr>
+          <tr><td><b>ARR</b></td><td><b>${millions(totalRevenue)}</b></td></tr>
+        </table>
+        <p class="small">${Math.round(MODEL.members / 1000)}K members are ${((MODEL.members / 22_000_000) * 100).toFixed(1)}% of the ≈ 22M frequent AI users aged 25–44 (estimate). Not counted: free players of the Daily Catch, and the Defend your work add-on — one member in five buying a ${usd(MODEL.packPrice)} pack a month would add ≈ ${millions(packUpside)}. Sponsors would spend ${millions(sponsorSpend)} a year — ${BENCHMARKS.marketShare}. The mix has a precedent: Duolingo earns 87% of its revenue from subscriptions and 7% from advertising<sup>2</sup>.</p>
+        <p class="eyebrow gap">How members arrive</p>
+        <ul class="channels">
+          <li><b>923 SEO pages, live today:</b> “Will AI replace {job}?” — each ends in the scan.</li>
+          <li><b>The shareable grid:</b> every Daily Catch result is a post.</li>
+          <li><b>Quiz-funnel ads:</b> scan → personal map → first catch → paywall; the film is the first creative.</li>
+        </ul>
+      </div>
+      <div>
+        <p class="eyebrow">Illustrative P&amp;L at $100M ARR</p>
+        <table>
+          <tr><td>Revenue</td><td>${millions(totalRevenue)}</td></tr>
+          <tr><td>Marketing — at LTV/CAC ≈ 2, half of subscription revenue</td><td>−${millions(marketing)}</td></tr>
+          <tr><td>Models, payments, hosting — ≈ ${Math.round(MODEL.costOfRevenueShare * 100)}% of subscriptions</td><td>−${millions(costOfRevenue)}</td></tr>
+          <tr><td>Team and operations — about 80 people</td><td>−${millions(MODEL.team)}</td></tr>
+          <tr><td><b>Operating profit</b></td><td><b>≈ ${millions(operatingProfit)}</b></td></tr>
+        </table>
+        <p class="small">Without Partner Catch the same P&amp;L ends at ≈ ${millions(profitWithoutPartners)}: the second engine carries no acquisition cost. At LTV/CAC 3, marketing falls to a third of subscription revenue.</p>
+        <p class="eyebrow gap">Who runs it</p>
+        <p class="small">Today: one founder — product, code and growth. Hires in this order, paid from revenue: a COO for sponsors, payouts and fraud control · a head of growth for the paid funnel · a content lead for drill quality · engineers.</p>
+      </div>
+    </div>`,
+    `Every figure on this slide is a hypothesis on the stated assumptions, not a forecast · ${BENCHMARKS.marketSource}`,
   ),
 
   slide(
@@ -423,6 +510,12 @@ table.compact td:first-child { font-weight: 600; white-space: nowrap; }
 .desktop img { width: 100%; display: block; }
 .shots { align-items: stretch; }
 .live { grid-template-columns: 1.25fr 0.9fr 0.9fr; }
+.live.four { display: grid; grid-template-columns: 1.3fr 0.8fr 0.8fr 0.8fr; gap: 26px; height: 100%; }
+.live.four .phone figcaption { font-size: 14px; }
+.live.four .facts { font-size: 14.5px; }
+.engines table { font-size: 16.5px; } .engines td { padding: 7px 0; }
+.engines .small { font-size: 13px; line-height: 1.42; }
+.engines .channels { margin-top: 12px; font-size: 14.5px; }
 .liveLeft { display: flex; flex-direction: column; justify-content: space-between; min-height: 0; }
 .facts { font-size: 15.5px; line-height: 1.4; color: #48433B; } .facts b { color: #14120F; } .facts p { margin-top: 10px; }
 .qrBig { display: flex; align-items: center; gap: 22px; }

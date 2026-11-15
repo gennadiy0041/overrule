@@ -124,6 +124,60 @@ written in no standard. The person who signs answers for it. That is the skill O
 когда тебе об этом сказал, в каком университете. Если есть приказ или письмо — скажи, что можешь показать.
 Не добавляй того, чего не знаешь наверняка.
 
+### 11в. «Партнёры платят пользователям — это уже B2B?»
+
+**RU.** Нет. Пользователь и плательщик подписки — человек. Партнёр — рекламодатель, как у Duolingo: там 87%
+выручки дают подписки и 7% — реклама (письмо акционерам за третий квартал 2026 года). У нас в модели 89% и 11%.
+Партнёрская часть пока план и гипотеза, в продукте её нет.
+
+**EN.** No. The user and the payer is a person. The partner is an advertiser, as at Duolingo: 87% of its revenue
+is subscriptions and 7% advertising (Q3 2026 shareholder letter). Our model is 89% and 11%. Partner Catch is a plan
+and a hypothesis; it is not in the product yet.
+
+### 11г. «Почему спонсор заплатит доллар за прохождение?»
+
+**RU.** Потому что это дешевле того, что он покупает сейчас. Клик в рекламе LinkedIn в США стоит около 9 долларов
+(ZenABM, 211 компаний, февраль 2026). За 15–20 минут опроса специалиста платят 20–35 долларов (CleverX, 2026).
+Мы просим доллар за пять минут внимания человека нужной профессии — и это внимание проверено счётом, а не кликом.
+Проверяется десятью пилотными спонсорами; если по доллару не берут, цена — параметр, а не основа продукта.
+
+**EN.** Because it is cheaper than what they buy today. A LinkedIn Ads click in the US costs about $9 (ZenABM,
+211 B2B advertisers, Feb 2026); a 15–20-minute survey of a professional pays $20–35 (CleverX, 2026). We ask $1 for
+about five minutes of attention from a chosen occupation, verified by a score, not a click. To be tested with ten
+pilot sponsors; the price is a parameter, not the foundation.
+
+### 11д. «Платить людям за задания — вы наберёте охотников за бонусами»
+
+**RU.** Три предохранителя. Бонус начисляется только за настоящую проверку: порог по счёту, одно спонсорское
+задание в день. Бонус — это сначала зачёт в счёт подписки, а не наличные. И потолок: за год не больше цены
+подписки, то есть это кэшбэк, а не заработок. Свои деньги мы не платим вообще: нет спонсора — нет бонуса.
+
+**EN.** Three guardrails. A reward needs a real review: a score threshold, one sponsored drill a day. It is credit
+toward the subscription first, not cash. And it is capped at the price paid per year: cash back, not income.
+We never pay our own money: no sponsor, no reward.
+
+### 11е. «В заданиях у вас вымышленные компании. Как туда попадёт спонсор?»
+
+**RU.** Никак, и это принцип. В документе с ошибками не может стоять настоящий бренд. Спонсор — рамка вокруг
+задания: «задание дня при поддержке X» и карточка на экране результата. Сам документ остаётся вымышленным.
+
+**EN.** It does not, on principle: a document with planted mistakes must not carry a real brand. The sponsor frames
+the drill — "today's catch is supported by X" and a card on the result screen. The document stays fictional.
+
+### 11ж. «Что такое “Защити свою работу” и почему за неё платят отдельно?»
+
+**RU.** Это повод открыть Overrule перед настоящей задачей. Человек боится одного вопроса: «Откуда эта
+цифра?» — а документ писал ИИ. Он вставляет отчёт, получает вопросы, которые задаст руководитель, и
+репетирует ответы. Платят отдельно, потому что это разовая потребность перед дедлайном, а не привычка: пять
+репетиций за 4,99 доллара, около доллара за раз. Не в убыток: комиссия карты и модели забирают 74 цента с
+пакета, остаётся 4,25. В расчёт ста миллионов это не входит. Это гипотеза.
+
+**EN.** It is the reason to open Overrule before a real task. People fear one question — "where does this number
+come from?" — when AI wrote the document. They paste the report, get the questions a manager would ask, and
+rehearse the answers. It is sold apart because it is a one-off need before a deadline, not a habit: five rehearsals
+for $4.99. Not at a loss: the card fee and model calls take $0.74 of a pack, $4.25 stays. It is not in the $100M
+model. It is a hypothesis.
+
 ### 12. «Откуда 121 тысяча?»
 
 **RU.** Challenger, Gray & Christmas, отчёт за октябрь 2026 года, опубликован 5 ноября. За январь–октябрь
