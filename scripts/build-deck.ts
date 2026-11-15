@@ -18,7 +18,7 @@ const ROOT = join(import.meta.dir, "..");
 const DECK = join(ROOT, "deck");
 const APP_URL = process.env["APP_URL"] ?? "https://overrule-production.up.railway.app";
 const SHORT_URL = APP_URL.replace(/^https?:\/\//, "");
-const UNIT_TESTS = 344;
+const UNIT_TESTS = 351;
 
 // ───────────────────────────── Inputs ─────────────────────────────
 

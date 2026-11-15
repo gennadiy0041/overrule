@@ -17,6 +17,65 @@ export function toAnthropicInputSchema(schema: Record<string, unknown>): Record<
   return rest;
 }
 
+/** Keywords a strict Anthropic tool schema does not accept: sizes and ranges are checked by our own code instead. */
+const STRICT_UNSUPPORTED: ReadonlySet<string> = new Set([
+  "minLength",
+  "maxLength",
+  "minItems",
+  "maxItems",
+  "minimum",
+  "maximum",
+  "exclusiveMinimum",
+  "exclusiveMaximum",
+  "multipleOf",
+  "pattern",
+  "uniqueItems",
+]);
+
+function rangeHint(noun: string, min: Json | undefined, max: Json | undefined): string | null {
+  if (typeof min === "number" && typeof max === "number") return `${noun}: ${min} to ${max}.`;
+  if (typeof max === "number") return `${noun}: at most ${max}.`;
+  if (typeof min === "number") return `${noun}: at least ${min}.`;
+  return null;
+}
+
+function strictNode(node: Json): Json {
+  if (Array.isArray(node)) return node.map(strictNode);
+  if (!isObject(node)) return node;
+
+  const out: JsonObject = {};
+  for (const [key, value] of Object.entries(node)) {
+    if (key === "$schema" || STRICT_UNSUPPORTED.has(key)) continue;
+    if (key === "oneOf") out["anyOf"] = strictNode(value);
+    else if (key === "properties" && isObject(value)) {
+      // Property names are data, not keywords: only their schemas are rewritten.
+      out[key] = Object.fromEntries(Object.entries(value).map(([name, child]) => [name, strictNode(child)]));
+    } else out[key] = strictNode(value);
+  }
+
+  // The limits the grammar cannot enforce stay visible to the model as plain words.
+  const hints = [
+    rangeHint("Length in characters", node["minLength"], node["maxLength"]),
+    rangeHint("Number of items", node["minItems"], node["maxItems"]),
+    rangeHint("Value", node["minimum"], node["maximum"]),
+  ].filter((hint): hint is string => hint !== null);
+  if (hints.length > 0) {
+    out["description"] = [typeof node["description"] === "string" ? node["description"] : "", ...hints].join(" ").trim();
+  }
+  if (out["type"] === "object" && !("additionalProperties" in out)) out["additionalProperties"] = false;
+  return out;
+}
+
+/**
+ * Anthropic strict tool input: the answer is decoded against the schema itself, so a
+ * field can no longer arrive with the wrong shape (an object sent as a string, a value
+ * outside an enum). Strict schemas accept no size or range keywords; those are dropped
+ * here, kept as hints in the descriptions, and still enforced by zod and the verifier.
+ */
+export function toAnthropicStrictSchema(schema: Record<string, unknown>): Record<string, unknown> {
+  return strictNode(schema as JsonObject) as Record<string, unknown>;
+}
+
 /** Keywords Gemini's `responseSchema` (an OpenAPI 3.0 subset) understands. Everything else is dropped. */
 const GEMINI_KEYWORDS: ReadonlySet<string> = new Set([
   "type",

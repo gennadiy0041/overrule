@@ -30,6 +30,12 @@ Short notes on choices that are not obvious from the code.
 - **Claude answers through an optional tool call.** The current model rejects a forced `tool_choice`
   ("not supported for this model"), so the single tool is offered with `auto` and the system prompt tells the model
   to answer through it. An answer without the tool call is treated as malformed and takes the normal retry path.
+- **The Claude tool is declared `strict`.** Without it the model sent the nested `brief` object as a string in
+  2 of 16 drafts on 2026-11-15; each cost a 30-second retry, and for a visitor that meant the 45-second budget ran
+  out. A strict tool is decoded against the schema, so the shape cannot be wrong. Strict schemas take no size or
+  range keywords: they are dropped from the schema, kept as hints in the descriptions, and still enforced by zod
+  and the verifier. After the change 7 of 7 drafts passed on the first try at the same latency. If the API ever
+  refuses the strict form of a schema, that tool is sent without `strict` from then on.
 - **Gemini runs in JSON mode with the schema in the prompt.** Its `responseSchema` dialect rejected our nested
   union schema with HTTP 400. The answer is validated by the same zod schema and verifier as any other draft.
 - **Stringified nested fields are unwrapped before validation.** Models occasionally return `"brief": "{…}"`.

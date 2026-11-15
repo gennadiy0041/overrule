@@ -1,9 +1,11 @@
-import { toAnthropicInputSchema } from "./schema";
+import { toAnthropicInputSchema, toAnthropicStrictSchema } from "./schema";
 import { LlmError, type StructuredProvider, type StructuredRequest, type StructuredResponse } from "./types";
 
 const API_URL = "https://api.anthropic.com/v1/messages";
 const API_VERSION = "2023-06-01";
 const BODY_EXCERPT = 200;
+/** A 400 that is about the tool's schema (as opposed to credit, limits or the request itself). */
+const SCHEMA_REFUSAL = /schema|strict|grammar/i;
 
 interface MessagesResponse {
   content?: Array<{ type: string; name?: string; input?: unknown }>;
@@ -30,13 +32,19 @@ const TOOL_INSTRUCTION =
 /**
  * Claude over plain `fetch`. Strict JSON comes from tool use: the answer is the
  * input of the one tool we define, described by a JSON Schema.
+ *
+ * The tool is declared `strict`, so the answer is decoded against the schema and a
+ * field cannot arrive with the wrong shape (the model used to send the nested
+ * `brief` object as a string in roughly one draft out of eight). If the API ever
+ * refuses the strict form of a schema, that tool is sent without `strict` from
+ * then on: the answer is validated by our own code either way.
  */
 export function createClaudeProvider(options: { apiKey: string; model: string; fetch?: typeof fetch }): StructuredProvider {
   const send = options.fetch ?? fetch;
+  /** Tools whose strict schema the API refused. */
+  const strictRefused = new Set<string>();
 
-  async function generate(request: StructuredRequest): Promise<StructuredResponse> {
-    let status: number;
-    let text: string;
+  async function post(request: StructuredRequest, strict: boolean): Promise<{ status: number; text: string }> {
     try {
       const response = await send(API_URL, {
         method: "POST",
@@ -54,17 +62,29 @@ export function createClaudeProvider(options: { apiKey: string; model: string; f
             {
               name: request.toolName,
               description: request.toolDescription,
-              input_schema: toAnthropicInputSchema(request.jsonSchema),
+              input_schema: strict
+                ? toAnthropicStrictSchema(request.jsonSchema)
+                : toAnthropicInputSchema(request.jsonSchema),
+              ...(strict ? { strict: true } : {}),
             },
           ],
           tool_choice: { type: "auto" },
         }),
         signal: AbortSignal.timeout(request.timeoutMs),
       });
-      status = response.status;
-      text = await response.text();
+      return { status: response.status, text: await response.text() };
     } catch (error) {
       throw fetchFailure("claude", error);
+    }
+  }
+
+  async function generate(request: StructuredRequest): Promise<StructuredResponse> {
+    const strict = !strictRefused.has(request.toolName);
+    let { status, text } = await post(request, strict);
+    if (strict && status === 400 && SCHEMA_REFUSAL.test(text)) {
+      strictRefused.add(request.toolName);
+      console.warn(`claude: strict schema refused for ${request.toolName}; continuing without it`);
+      ({ status, text } = await post(request, false));
     }
 
     if (status < 200 || status >= 300) throw new LlmError("claude", "http", text.slice(0, BODY_EXCERPT), status);

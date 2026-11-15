@@ -7,7 +7,7 @@ export * from "./types";
 export { callStructured } from "./call";
 export { createClaudeProvider } from "./anthropic";
 export { createGeminiProvider } from "./gemini";
-export { toAnthropicInputSchema, toGeminiSchema } from "./schema";
+export { toAnthropicInputSchema, toAnthropicStrictSchema, toGeminiSchema } from "./schema";
 export { generateDrill, type GeneratedDrill, type GenerateDrillDeps, type GenerationStage } from "./generate";
 export { gradeWhy, type WhyItem } from "./gradeWhy";
 export { crossCheckDrill, buildSolverPrompt, CROSS_CHECK_PASS_RATE, type CrossCheckResult } from "./crossCheck";

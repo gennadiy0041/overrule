@@ -10,7 +10,7 @@ Working memory for the build. Updated after every milestone.
 
 ## State on 2026-11-15, 08:40 Astana
 
-Everything in P0 and P1 is live in production and covered by tests: 344 unit/API tests, 10 Playwright e2e runs
+Everything in P0 and P1 is live in production and covered by tests: 351 unit/API tests, 10 Playwright e2e runs
 against production (phone + desktop), CI green. Model credit is back: live generation is on, under a dollar ceiling.
 
 ### P0 — done
@@ -83,4 +83,6 @@ against production (phone + desktop), CI green. Model credit is back: live gener
   drill. It is now prepared when the scan is finished; verified live (2 s).
 - Nov 15 08:10 Medium effort is faster per draft but fails the verifier far more often; default effort kept.
 - Nov 15 08:15 The six hand-written Customer Service drills passed the blind cross-check (19 of 20 found).
+- Nov 15 08:30 Two of sixteen drafts carried `brief` as a string and cost a retry (one visitor got a pool drill
+  after 46 s). The Claude tool is now strict; 7 of 7 drafts passed on the first try afterwards.
 - More in `docs/decisions.md`.
