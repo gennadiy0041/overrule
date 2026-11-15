@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-14T22:07:35.367Z",
+  "updatedAt": "2026-11-15T02:48:17.475Z",
   "models": {
     "claude": "claude-sonnet-5-5",
     "gemini": "gemini-3.5-flash",
@@ -84,7 +84,8 @@
       "providerErrors": 60,
       "rejectedByCrossCheck": 0,
       "crossCheckedBy": {
-        "none": 6
+        "claude-haiku-5-5": 4,
+        "gemini-3.5-flash": 2
       }
     }
   ],
@@ -97,6 +98,6 @@
     "rejectedByCrossCheck": 0
   },
   "notes": [
-    "43-4051.00 (Customer Service Representatives): the model account ran out of credit during the pool run, so every generation call for this occupation failed (60 provider errors). Its six drills were written by Claude in the build session instead. They pass verifyDrill like every other drill; they have NOT been through the blind cross-check (crossCheckedBy: none)."
+    "43-4051.00 (Customer Service Representatives): the model account ran out of credit during the pool run, so every generation call for this occupation failed (60 provider errors). Its six drills were written by Claude in the build session instead. They pass verifyDrill like every other drill. Once credit was back (2026-11-15) they went through the same blind cross-check as the rest: the solver found 19 of the 20 planted mistakes, and every drill passed."
   ]
 }

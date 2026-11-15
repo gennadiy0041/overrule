@@ -71,10 +71,13 @@ export class OccupationStore {
     });
   }
 
-  /** A short label for share text and headers: "Marketing", "HR", or the full title. */
+  /**
+   * A short label for share text and headers: "Marketing", "HR", or the official title
+   * without its exclusion clause ("Secondary School Teachers, Except Special and …").
+   */
   shortName(soc: string): string {
     const starter = STARTER_OCCUPATIONS.find((s) => s.soc === soc);
-    return starter?.short ?? this.bySoc.get(soc)?.title ?? "My job";
+    return starter?.short ?? this.bySoc.get(soc)?.title.replace(/,\s+Except\b.*$/, "") ?? "My job";
   }
 }
 

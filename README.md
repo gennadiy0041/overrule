@@ -126,11 +126,15 @@ and rejected drills are in [data/pool/stats.json](data/pool/stats.json).
 
 The launch pool holds **54 drills for six occupations**: of 87 model drafts, 39 were rejected by the verifier and 48
 were accepted and cross-checked. The remaining six (Customer Service) were written in the build session after the
-model account ran out of credit — verified by the same code, not cross-checked, and marked as such in the stats.
+model account ran out of credit; they are verified by the same code and, once credit was back, passed the same
+blind cross-check (the solver found 19 of their 20 planted mistakes). All 54 drills are cross-checked.
 
 The user never sees a provider error: the wait screen streams the real stages over SSE, and after 45 seconds the
 verified pool takes over. The first drill starts generating in the background as soon as the tasks are picked in
-the scan. When a live generation fails, the pool is served at once for the next three minutes instead of making the
+the scan, and the shared Daily Catch of an occupation without a pool as soon as the scan is finished. In scripted
+visits to production on 2026-11-15 (a browser that pauses briefly to "read") a draft took about 26 s, the first
+drill appeared 11–12 s after pressing start, and the Daily Catch opened in 2 s. When a live generation fails, the
+pool is served at once for the next three minutes instead of making the
 next person wait for the same outage — and live drills come back by themselves when the provider does.
 
 **The answer key never leaves the server before submission** (`toPublicDrill`), which the API test asserts.
@@ -241,7 +245,7 @@ Development: `bun run dev` (server with reload) and `bun run dev:web` (Vite on :
 
 ```bash
 bun run typecheck   # tsc --noEmit
-bun run test        # 340 unit tests, including an API test (in-memory SQLite, fake model provider)
+bun run test        # 343 unit tests, including an API test (in-memory SQLite, fake model provider)
 bun run e2e         # Playwright against production: phone and desktop
 ```
 

@@ -29,6 +29,18 @@ beforeAll(async () => {
   week = ctx.attempts.list(DEMO_TEMPLATE_ID);
 });
 
+describe("occupation short names", () => {
+  test("launch occupations have a short label; other titles lose their exclusion clause", () => {
+    expect(ctx.occupations.shortName("11-2021.00")).toBe("Marketing");
+    expect(ctx.occupations.get("25-2031.00")?.title).toBe(
+      "Secondary School Teachers, Except Special and Career/Technical Education",
+    );
+    expect(ctx.occupations.shortName("25-2031.00")).toBe("Secondary School Teachers");
+    expect(ctx.occupations.shortName("29-1141.00")).toBe("Registered Nurses");
+    expect(ctx.occupations.shortName("00-0000.00")).toBe("My job");
+  });
+});
+
 describe("calendar reminder", () => {
   const ics = buildDailyReminderIcs("https://overrule.test", NOW);
 

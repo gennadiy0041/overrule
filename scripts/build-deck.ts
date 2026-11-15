@@ -18,7 +18,7 @@ const ROOT = join(import.meta.dir, "..");
 const DECK = join(ROOT, "deck");
 const APP_URL = process.env["APP_URL"] ?? "https://overrule-production.up.railway.app";
 const SHORT_URL = APP_URL.replace(/^https?:\/\//, "");
-const UNIT_TESTS = 333;
+const UNIT_TESTS = 343;
 
 // ───────────────────────────── Inputs ─────────────────────────────
 
@@ -52,6 +52,7 @@ const crossChecked = pool.perOccupation.reduce(
   (n, o) => n + Object.entries(o.crossCheckedBy).reduce((m, [by, count]) => m + (by === "none" ? 0 : count), 0),
   0,
 );
+const crossCheckedShare = crossChecked === pool.totals.accepted ? "all" : `${crossChecked}`;
 const metrics = await liveMetrics();
 const builtOn = new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 
@@ -80,8 +81,8 @@ const tally = (t: Record<string, number> | undefined) =>
     .join(" · ") || "no answers yet";
 
 function liveBox(): string {
-  // No token, or nobody but us has visited yet: say where the numbers live rather than print a row of zeros.
-  if (!metrics || metrics.sessions.total === 0) {
+  // No token, or nobody but us has finished a scan yet: say where the numbers live rather than print a row of zeros.
+  if (!metrics || metrics.sessions.withScan === 0) {
     return `<div class="box"><p class="eyebrow">Live numbers</p><p>Funnel, retention and survey answers are measured in production from launch (${builtOn}) and shown, with N, at <b>/metrics</b>. Our own traffic is excluded.</p></div>`;
   }
   const surveyN = metrics.microSurvey.n + metrics.fullSurvey.n;
@@ -186,7 +187,7 @@ const slides = [
       ${phone("sheet-phone", "Tap a line, name the mistake, say why.")}
       ${phone("review-phone", "Every flag is scored by code against an answer key.")}
     </div>`,
-    `Launch pool: ${drafts} model drafts · ${pool.totals.rejectedByVerify} rejected by the verifier · ${pool.totals.accepted} drills accepted, ${crossChecked} of them also solved blind by a second model`,
+    `Launch pool: ${drafts} model drafts · ${pool.totals.rejectedByVerify} rejected by the verifier · ${pool.totals.accepted} drills accepted, ${crossCheckedShare} of them also solved blind by a second model`,
   ),
 
   slide(
@@ -274,7 +275,7 @@ const slides = [
         <p class="eyebrow">Built solo in 24 hours — and live</p>
         <div class="grid2 tight">
           ${stat("923", "occupations, 19,265 tasks; published scores reproduced exactly — as a unit test")}
-          ${stat(String(pool.totals.accepted), `verified drills in the launch pool; ${crossChecked} also passed a blind cross-check`)}
+          ${stat(String(pool.totals.accepted), `verified drills in the launch pool; ${crossCheckedShare} also passed a blind cross-check`)}
           ${stat(String(UNIT_TESTS), "automated tests, plus end-to-end runs on phone and desktop")}
           ${stat("0", "sign-ups needed: the whole path works for the jury right now")}
         </div>

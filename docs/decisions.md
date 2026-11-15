@@ -44,13 +44,14 @@ Short notes on choices that are not obvious from the code.
   every generation in flight still fit. At the ceiling the product serves the pool and grades with the heuristic.
 - **The shared Daily Catch of an occupation without a pool is prepared ahead of time**: when a real person finishes
   the scan, and when their dashboard asks for today's status. Generating it on the click made the person wait a
-  whole generation, and one rejected draft (about one in five on 2026-11-15) pushed that past the 45-second budget,
-  which gave everyone in that occupation a drill from another occupation for the day.
+  whole generation, and one rejected draft (one of the seven written on 2026-11-15) pushed that past the 45-second
+  budget, which gave everyone in that occupation a drill from another occupation for the day.
 - **Default model effort is kept.** Measured on 2026-11-15 with six drills at `medium` effort: a draft took about
-  11 s instead of about 27 s, but only 2 of 6 first drafts passed the verifier (4 of 5 at the default that day),
+  11 s instead of about 26 s, but only 2 of 6 first drafts passed the verifier (6 of 7 at the default that day),
   mostly because the key covered two mistake types instead of three. Time to an accepted drill did not improve.
 - **Six Customer Service drills were written in the build session.** The model account ran out of credit during the
-  pool run. They pass `verifyDrill` but were not cross-checked; `data/pool/stats.json` says so.
+  pool run. They pass `verifyDrill`, and once credit was back they went through the same blind cross-check as the
+  rest: the solver found 19 of the 20 planted mistakes and all six passed (`data/pool/stats.json`).
 
 ## Scoring
 
