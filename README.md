@@ -11,7 +11,8 @@ and your Judgment Score moves.
 
 - **Live:** https://overrule-production.up.railway.app — no sign-up, no login
 - **Pitch deck:** [deck/Overrule_BusinessCup2.pdf](deck/Overrule_BusinessCup2.pdf) (the stage version, which plays
-  the film, is [deck/pitch.html](deck/pitch.html))
+  the film, is [deck/pitch.html](deck/pitch.html); `bun run build-pptx` makes the same deck as a PowerPoint file
+  with the film embedded)
 - **30-second film:** https://overrule-production.up.railway.app/film
 - **60-second walkthrough:** [docs/demo.mp4](docs/demo.mp4)
 
@@ -22,7 +23,9 @@ Built solo in 24 hours for Business Cup 2.0 (Zimran × AIESEC), Skills track.
 ## Judges' quick path (3 minutes)
 
 1. Open the [live product](https://overrule-production.up.railway.app) on a phone or a laptop. Tap **Scan my job — free**.
-2. Type a job title (try your own — all 923 O\*NET occupations work), keep or change the pre-selected tasks,
+2. Type a job title (try your own — all 923 O\*NET occupations work; leadership roles from CEO to HR director are
+   offered on the same screen, and titles such as "VP of sales" or "chief people officer" are classified when typed),
+   keep or change the pre-selected tasks,
    answer four one-tap questions. You get a **personal AI-exposure map** computed from real labour data.
 3. Tap **Catch your first AI mistake**. A drill is generated for a task from your job while you read the map
    (if the model is unavailable you get a drill from the verified pool instead, and the page says so).
@@ -48,6 +51,13 @@ and the method page [/about](https://overrule-production.up.railway.app/about).
 
 Screenshots and the walkthrough video are captured from production by `bun run screenshots` and
 `bun run record-demo`; the deck is built from them by `bun run build-deck`.
+
+`bun run build-pptx` (Windows with PowerPoint, plus ffmpeg) turns the stage deck into
+`deck/Overrule_BusinessCup2.pptx`: every slide is a picture of the HTML deck, so it looks the same on a computer
+without the deck's fonts; the film is stored inside the file and starts when its slide opens; the speaker notes
+carry the pitch script. PowerPoint itself assembles the file and then checks it (`scripts/check-pptx.ps1`): it
+records the whole slide show, and the recording must contain the film, in sync and with its sound. The `.pptx`
+files are not committed (40 MB with the full-quality film; `--light` gives a 13 MB copy).
 
 ---
 
@@ -219,7 +229,7 @@ src/shared/     the HTTP contract (zod request schemas + response types) used by
 src/server/     routes/ · services/ (drill service, demo seeding, metrics, report) · repos/ · llm/ · ssr/
 src/web/        React app: pages/, drill/, ui/ (small kit), lib/
 data/           occupations.json (built by scripts/import-data.ts), pool/ (verified drills), raw sources
-scripts/        import-data, generate-pool, llm-smoke, screenshots, build-deck, record-demo, build-og
+scripts/        import-data, generate-pool, llm-smoke, screenshots, build-deck, build-pptx, record-demo, build-og
 tests/          unit/ (engine + an API test that walks the whole product path), e2e/ (Playwright, against prod)
 deck/           the pitch deck (PDF, the HTML it is built from, production screenshots)
 docs/           decisions.md, the walkthrough video, pitch script and Q&A (Russian), LinkedIn post
@@ -285,7 +295,7 @@ Development: `bun run dev` (server with reload) and `bun run dev:web` (Vite on :
 
 ```bash
 bun run typecheck   # tsc --noEmit
-bun run test        # 384 unit tests, including two API tests (in-memory SQLite, fake model provider)
+bun run test        # 445 unit tests, including two API tests (in-memory SQLite, fake model provider)
 bun run e2e         # Playwright against production: phone and desktop
 ```
 

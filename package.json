@@ -19,6 +19,7 @@
     "seed-demo": "bun scripts/seed-demo.ts",
     "screenshots": "bun scripts/screenshots.ts",
     "build-deck": "bun scripts/build-deck.ts",
+    "build-pptx": "bun scripts/build-pptx.ts",
     "record-demo": "bun scripts/record-demo.ts"
   },
   "dependencies": {

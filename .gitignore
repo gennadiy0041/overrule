@@ -14,3 +14,6 @@ deck/out/
 
 # Full-quality film for the live pitch (37 MB); the web-sized copy lives in public/film.mp4
 deck/film-full.mp4
+
+# The PowerPoint stage deck carries the film inside it (13–40 MB); `bun run build-pptx` rebuilds it
+deck/*.pptx

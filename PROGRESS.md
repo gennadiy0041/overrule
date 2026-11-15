@@ -5,15 +5,17 @@ Working memory for the build. Updated after every milestone.
 - Prod: https://overrule-production.up.railway.app
 - Repo: https://github.com/gennadiy0041/overrule
 - Deck: `deck/Overrule_BusinessCup2.pdf` (10 slides, the submission) · stage version: `deck/pitch.html` (plays the film)
+  · PowerPoint: `deck/Overrule_BusinessCup2.pptx` (film embedded and starting by itself; `bun run build-pptx`, not committed)
 - Film (30 s): https://overrule-production.up.railway.app/film · walkthrough video: `docs/demo.mp4`
 - Railway: project `business-cup-demo`, service `overrule` (`ab5e6d03-de53-4911-9d1c-5cdc9cdbcc0a`), volume `/data`
 - Deadline: final package by 2026-11-15 11:00 Astana (form closes 12:00)
 
-## State on 2026-11-15, 11:40 Astana
+## State on 2026-11-15, 11:10 Astana
 
-Everything in P0 and P1 is live in production and covered by tests: 384 unit/API tests, 12 Playwright e2e runs
+Everything in P0 and P1 is live in production and covered by tests: 445 unit/API tests, 14 Playwright e2e runs
 against production (phone + desktop). Model credit is back: live generation is on, under a dollar ceiling
-(about $0.54 of $18 spent in production).
+(about $0.54 of $18 spent in production). The submitted deck says 384 tests on slide 9: it was built before the
+leadership titles and their 61 search cases were added.
 
 ### P0 — done
 
@@ -40,12 +42,15 @@ against production (phone + desktop). Model credit is back: live generation is o
 ### P2
 
 - [x] Installable web app (manifest and icons; start URL is the Daily Catch). No service worker, so not offline.
-- [x] Defend your work (`/defend`) — live since 11:32 on Nov 15. Paste a text you are about to send, get five
+- [x] Defend your work (`/defend`) — live since 10:32 Astana on Nov 15. Paste a text you are about to send, get five
       questions about its own lines, answer, see which answers hold; first one free, then 5 for $4.99 (demo
       checkout). Built at the founder's request after outside feedback that the product lacked a reason to open
       it before a real task. It was acceptable to ship this late because it does not touch the drill path and
       every model step has a rule-based fallback; it is backed by 28 tests, e2e on phone and desktop and one live
       run with the model. It has had no outside users.
+- [x] Leadership roles in the scan — seven roles offered on the first screen (CEO to HR director) and 150
+      leadership titles classified when typed; before, "cmo", "chro", "vp" and "managing director" landed on
+      unrelated occupations.
 - [ ] Second Look — deliberately not built: it is an LLM feature, and model credit came back three hours before
       the deadline. An unverified feature shipped hours before judging is a worse bet than one flawless path.
       It is on the roadmap.
