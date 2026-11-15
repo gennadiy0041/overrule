@@ -33,7 +33,7 @@ const UNIT_TESTS = 445;
  */
 const LAYOFFS = {
   figure: "121,401",
-  text: "announced US job cuts in January–October 2026 for which the employer named AI as the reason — more than twice the AI figure for all of 2025. In all, 617,189 cuts were announced.",
+  text: "announced US job cuts in January–October 2026 where the employer named AI as the reason — more than twice the AI figure for all of 2025. In all, 617,189 cuts were announced.",
   source:
     "Challenger, Gray & Christmas, October 2026 report (Nov 5, 2026): job cuts announced by US-based employers, by stated reason; AI was cited in 54,836 in all of 2025",
 };
@@ -198,9 +198,11 @@ function liveBox(): string {
   const surveyN = metrics.microSurvey.n + metrics.fullSurvey.n;
   const pay = { ...metrics.microSurvey.wouldPay };
   for (const [answer, count] of Object.entries(metrics.fullSurvey.answers["wouldPay"] ?? {})) pay[answer] = (pay[answer] ?? 0) + count;
-  return `<div class="box"><p class="eyebrow">Live in production · launched ${LAUNCHED} · as of ${builtOn}</p>
+  // The same date twice on one line reads as a typo.
+  const dates = builtOn === LAUNCHED ? `launched and measured ${LAUNCHED}` : `launched ${LAUNCHED} · as of ${builtOn}`;
+  return `<div class="box"><p class="eyebrow">Live in production · ${dates}</p>
     <p><b>${metrics.sessions.total}</b> sessions · <b>${metrics.sessions.withScan}</b> scans · <b>${metrics.sessions.withAttempt}</b> with a scored drill · <b>${metrics.sessions.trials}</b> trials started</p>
-    <p>“Would you pay $8/month?” — N = ${surveyN}${surveyN > 0 ? `: ${tally(pay)}` : ""}${surveyN < 10 ? " <i>(N &lt; 10: too few to conclude)</i>" : ""}</p>
+    <p>“Would you pay $8/month?” (≈ the annual plan) — N = ${surveyN}${surveyN > 0 ? `: ${tally(pay)}` : ""}${surveyN < 10 ? " <i>(N &lt; 10: too few to judge)</i>" : ""}</p>
     <p class="small">Internal traffic and the demo profile are excluded.</p></div>`;
 }
 
@@ -229,10 +231,10 @@ const turnSlide = `<section class="slide night">
   <header>${eyebrow(2, "Why I built Overrule")}<h1>Software took the rulebook. The responsibility stayed human.</h1></header>
   <div class="body">
     <div class="turn">
-      <div class="stat"><p class="figure">4</p><p>positions in normokontrol — the checking of student theses against formatting standards — closed by my university after Kalyp, the checker I built as a student in September, went live. I did not plan it; I learned of it afterwards.</p></div>
+      <div class="stat"><p class="figure">4</p><p>positions in normokontrol — the checking of student theses against formatting standards — cut by my university after Kalyp, the checker I built as a student in September, went live. I did not plan it; I found out later.</p></div>
       <div class="stat"><p class="figure">${LAYOFFS.figure}</p><p>${LAYOFFS.text}<sup>1</sup></p></div>
     </div>
-    <p class="pull">A program can check formatting against a standard. Whether a number in a report is right is written in no standard. Overrule trains that call — and does not promise to save a job.</p>
+    <p class="pull">A program can check formatting against a standard. No standard says whether a number in a report is right. Overrule trains that call — and does not promise to save a job.</p>
     <blockquote class="loud">“Artificial intelligence is gonna replace literally half of all white-collar workers in the U.S.”<cite>Jim Farley, CEO of Ford<sup>2</sup></cite></blockquote>
   </div>
   <footer><p class="notes left">Kalyp is the founder’s earlier project; the four positions are his own account · 1 ${LAYOFFS.source} · 2 Aspen Ideas Festival, June 2025, as quoted by Fortune, Jul 5, 2025</p></footer>
@@ -254,7 +256,7 @@ const filmSlidePrint = `<section class="slide cinema">
       <p class="hook">The hook for paid social: <b>“Catch what AI gets wrong — before your boss does.”</b></p>
     </div>
   </div>
-  <footer><p class="notes left">Made within the same 24 hours: stock footage, a synthetic voice-over, and a product scene built from the product’s own interface.</p></footer>
+  <footer><p class="notes left">Made in the 24-hour build: stock footage, a synthetic voice-over, and a scene built from the product’s own interface.</p></footer>
 </section>`;
 
 /** 3 (stage). The film itself. */
@@ -275,11 +277,11 @@ const productSlides = [
         <p class="lede">Overrule is a 5-minute daily drill and a rating for the skill people are now paid for: checking AI’s work — and knowing when to overrule it.</p>
         <p class="eyebrow gap">Who pays</p>
         <ul>
-          <li><b>Jess, 34, marketing manager</b> at a 2,000-person company in Ohio. The CEO announced “AI-first”; an AI item appeared in her review form.</li>
+          <li><b>Jess, 34, marketing manager</b> at a 2,000-person company in Ohio. The CEO announced “AI-first”; her review form now has an AI line.</li>
           <li>She writes her reports with ChatGPT every day. Last quarter an invented number reached her VP — and he noticed.</li>
           <li>She pays before a performance review, or right after someone else catches an AI mistake in her work.</li>
         </ul>
-        <p class="pull">She is not afraid of losing her job. She is afraid of putting her name to a mistake.</p>
+        <p class="pull">She is not afraid of losing her job. She is afraid of putting her name on a mistake.</p>
       </div>
       <div>
         <div class="grid2 tight">
@@ -302,12 +304,12 @@ const productSlides = [
       <div class="liveLeft">
         <div class="qrBig">${link(APP_URL, qr)}<div><p>${link(APP_URL, `<b>${SHORT_URL}</b>`)}</p><p class="small">No sign-up · 2 minutes · any of 923 occupations</p><p class="small">Code: ${link(REPO_URL, `<b>${SHORT_REPO}</b>`)}</p></div></div>
         <div class="facts">
-          <p><b>Generated, then proven.</b> One model call writes the document and its key; deterministic code verifies it. Every number is recomputed by our own evaluator.</p>
+          <p><b>Generated, then proven.</b> One model call writes the document and its answer key; deterministic code verifies it. Every number is recomputed by our own evaluator.</p>
           <p><b>Never a dead end.</b> Claude → retry with the verifier’s notes → Gemini → verified pool. If the models fail, you get a pool drill, and the page says so.</p>
           <p><b>Calibration, not suspicion.</b> Misses cost points — and so do false alarms.</p>
         </div>
       </div>
-      ${phone("map-phone", "<b>Discover.</b> A free scan: your own exposure map, from 19,265 human-labeled tasks.")}
+      ${phone("map-phone", "<b>Discover.</b> A free scan: your AI-exposure map, from 19,265 human-labeled tasks.")}
       ${phone("sheet-phone", "<b>Develop.</b> An AI-written document from your job. Tap a line, name the mistake.")}
       ${phone("review-phone", "<b>Prove.</b> Scored by code against a key; your Judgment Score moves.")}
     </div>`,
@@ -345,7 +347,7 @@ const productSlides = [
           <tr><td>Start a trial or a monthly plan</td><td>60 · 21%</td></tr>
           <tr><td><b>Pay</b></td><td><b>21 · 35% → CAC ≈ $${MODEL.cac}</b></td></tr>
         </table>
-        <p class="small">Average first payment ≈ $60: ads pay back on the first payment. LTV ≈ $${MODEL.ltv} after fees and refunds (monthly: 3.5 payments ≈ $70; annual: $99.99 + 30% first renewal<sup>1</sup> ≈ $130; half choose annual), before about $0.06 of model cost per live drill (measured). LTV/CAC ≈ 2; target 3. Untested: no outside users yet, and checkout in this build is a demo. The test: $300–500 of paid social with the film as the first creative.</p>
+        <p class="small">Average first payment ≈ $60: ads pay back on the first payment. LTV ≈ $${MODEL.ltv} after fees and refunds (monthly: 3.5 payments ≈ $70; annual: $99.99 + 30% first renewal<sup>1</sup> ≈ $130; half choose annual), before about $0.06 of model cost per live drill (measured). LTV/CAC ≈ 2; target 3. Untested: no paying users yet, and checkout in this build is a demo. The test: $300–500 in paid social with the film as the first creative.</p>
         <p class="eyebrow gap">Add-on · Defend your work — live · per pack of ${MODEL.packSize}</p>
         <table>
           <tr><td>${MODEL.packSize} rehearsals of the questions a manager will ask</td><td>${usd(MODEL.packPrice)}</td></tr>
@@ -361,9 +363,9 @@ const productSlides = [
           <tr><td><b>Overrule keeps</b></td><td><b>${usd(kept)}</b></td></tr>
         </table>
         <ul class="channels">
-          <li><b>The sponsor buys</b> about five minutes of scored attention from a chosen occupation and a brand card on the result screen<sup>2</sup>. It never appears inside the document: drills stay fictional.</li>
+          <li><b>The sponsor buys</b> about five minutes of scored attention from a chosen occupation and a brand card on the result screen<sup>2</sup>. The brand never appears inside the document: drills stay fictional.</li>
           <li><b>The member earns</b> credit toward the subscription, then cash. ${MODEL.sponsoredPerMonth} sponsored catches a month return $${rewardPerYear} a year, ${Math.round(rewardShareOfPlan * 100)}% of the annual plan; ${catchesToRecoup} a month return all of it. Rewards are capped at the price paid: cash back, not income.</li>
-          <li><b>Never at a loss.</b> Sponsors prepay. A reward is half of money already received, paid only for a real review (a score threshold, one a day). No sponsor, no reward. And no CAC: it rides on the daily habit.</li>
+          <li><b>Never at a loss.</b> Sponsors prepay. A reward is half of money already received, paid only for a real catch (a score threshold, one a day). No sponsor, no reward. And no CAC: it rides on the daily habit.</li>
         </ul>
       </div>
     </div>`,
@@ -373,7 +375,7 @@ const productSlides = [
   slide(
     8,
     "Why it makes money · path to $100M ARR",
-    `Path to $100M ARR: ${Math.round(MODEL.members / 1000)}K members, two engines, profit on the way`,
+    `Path to $100M ARR: ${Math.round(MODEL.members / 1000)}K members, two engines, at a profit`,
     `<div class="cols2 engines">
       <div>
         <p class="eyebrow">Revenue at scale · hypothesis</p>
@@ -382,7 +384,7 @@ const productSlides = [
           <tr><td>Partner Catch: ${Math.round(MODEL.members / 1000)}K × ${MODEL.sponsoredPerMonth} a month × ${usd(kept)} × 12</td><td>${millions(partnerRevenue)}</td></tr>
           <tr><td><b>ARR</b></td><td><b>${millions(totalRevenue)}</b></td></tr>
         </table>
-        <p class="small">${Math.round(MODEL.members / 1000)}K members are ${((MODEL.members / 22_000_000) * 100).toFixed(1)}% of the ≈ 22M frequent AI users aged 25–44 (estimate). Not counted: free players of the Daily Catch, and the Defend your work add-on — one member in five buying a ${usd(MODEL.packPrice)} pack a month would add ≈ ${millions(packUpside)}. Sponsors would spend ${millions(sponsorSpend)} a year — ${BENCHMARKS.marketShare}. The mix has a precedent: Duolingo earns 87% of its revenue from subscriptions and 7% from advertising<sup>2</sup>.</p>
+        <p class="small">${Math.round(MODEL.members / 1000)}K members are ${((MODEL.members / 22_000_000) * 100).toFixed(1)}% of the ≈ 22M frequent AI users aged 25–44 (estimate). Not counted: free Daily Catch players, and the Defend your work add-on — one member in five buying a ${usd(MODEL.packPrice)} pack a month would add ≈ ${millions(packUpside)}. Sponsors would spend ${millions(sponsorSpend)} a year — ${BENCHMARKS.marketShare}. The mix has a precedent: Duolingo earns 87% of its revenue from subscriptions and 7% from advertising<sup>2</sup>.</p>
         <p class="eyebrow gap">How members arrive</p>
         <ul class="channels">
           <li><b>923 SEO pages, live today:</b> “Will AI replace {job}?” — each ends in the scan.</li>
@@ -404,7 +406,7 @@ const productSlides = [
         <p class="small">Today: one founder — product, code and growth. Hires in this order, paid from revenue: a COO for sponsors, payouts and fraud control · a head of growth for the paid funnel · a content lead for drill quality · engineers.</p>
       </div>
     </div>`,
-    `Every figure on this slide is a hypothesis on the stated assumptions, not a forecast · ${BENCHMARKS.marketSource}`,
+    `Every figure on this slide is a hypothesis under the stated assumptions, not a forecast · ${BENCHMARKS.marketSource}`,
   ),
 
   slide(
@@ -420,7 +422,7 @@ const productSlides = [
           <tr><td>Hallucination Lab</td><td>learning games</td></tr>
           <tr><td>HumanEdge AI</td><td>workshops for executives</td></tr>
         </table>
-        <p class="small"><b>Not an alternative: Coursiv</b> teaches people to use AI tools. The same people then answer for what AI produces — that is our user.</p>
+        <p class="small"><b>Not an alternative: Coursiv</b> teaches people to use AI tools. The same people then answer for what AI produces — they are our users.</p>
         <p class="pull">Overrule: drills built from <i>your own</i> tasks, on public labor data · blind drills with decoys, scored for calibration · a consumer subscription.</p>
         <p class="small">Why now: in the most AI-exposed occupations, relative employment of 22–25-year-olds fell 13%, while workers aged 30+ gained 6–12%<sup>1</sup>. The authors’ explanation: AI substitutes for codified “book” knowledge more than for experience.</p>
       </div>
@@ -428,7 +430,7 @@ const productSlides = [
         <p class="eyebrow">Built solo in 24 hours — and live</p>
         <div class="grid2 tight">
           ${stat("923", "occupations, 19,265 tasks; published scores reproduced exactly — as a unit test")}
-          ${stat(String(pool.totals.accepted), `verified drills in the launch pool; ${crossCheckedShare} also passed a blind cross-check`)}
+          ${stat(String(pool.totals.accepted), `verified drills in the launch pool; ${crossCheckedShare} passed a blind cross-check`)}
           ${stat(String(UNIT_TESTS), "automated tests, plus end-to-end runs on phone and desktop")}
           ${stat("No login", "the whole path, from scan to dashboard, works for the jury right now")}
         </div>
