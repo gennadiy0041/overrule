@@ -10,6 +10,12 @@ Working memory for the build. Updated after every milestone.
 - Railway: project `business-cup-demo`, service `overrule` (`ab5e6d03-de53-4911-9d1c-5cdc9cdbcc0a`), volume `/data`
 - Deadline: final package by 2026-11-15 11:00 Astana (form closes 12:00)
 
+## Submitted on 2026-11-15, 11:18 Astana
+
+The organisers' form saved the case as submission No. 1: team Overrule, solo; the deck
+`deck/Overrule_BusinessCup2.pdf` as of commit `f716afe`, production running `4e47158`, this repository.
+Their automatic check finished at 11:22. The form stays open for a newer version until 12:00.
+
 ## State on 2026-11-15, 11:10 Astana
 
 Everything in P0 and P1 is live in production and covered by tests: 445 unit/API tests, 14 Playwright e2e runs
