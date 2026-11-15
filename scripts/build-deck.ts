@@ -46,7 +46,7 @@ const CLOSING = {
   halves: "<b>Coursiv</b> teaches people to do more with AI.<br/><b>Overrule</b> trains them to check what comes back.",
   whole: "Same customer, next step: both halves of the proverb.",
   callback: "Kalyp took the rulebook, not the responsibility. Overrule trains the call.",
-  ask: "Two minutes, no login: catch today’s AI mistake.",
+  ask: "Don’t trust this pitch. Verify it: two minutes, no login.",
 };
 
 // ───────────────────────────── Inputs ─────────────────────────────
@@ -364,7 +364,7 @@ const closingSlide = `<section class="slide closing">
   </div>
   <footer>
     <span class="pair"><img src="assets/kalyp-logo.png" alt="Kalyp" /><span class="arrow">→</span>${LOGO_ON_DARK}</span>
-    <p class="notes">AI does the work. You make the call.</p>
+    <p class="notes">I did the work. You make the call.</p>
   </footer>
 </section>`;
 
