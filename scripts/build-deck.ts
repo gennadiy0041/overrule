@@ -28,7 +28,7 @@ const UNIT_TESTS = 445;
 // ───────────────────────────── The founder's story ─────────────────────────────
 
 /**
- * The opening is the founder's own: Kalyp is his earlier project and the four
+ * The opening is the founder's own: Qalyp is his earlier project and the four
  * positions are his account. The layoffs figure is a published one and carries its source.
  */
 const LAYOFFS = {
@@ -110,7 +110,7 @@ const CLOSING = {
     "The Russian proverb «Доверяй, но проверяй», as Ronald Reagan quoted it to Mikhail Gorbachev at the signing of the INF Treaty, December 8, 1987. Gorbachev: “You repeat that at every meeting.”",
   halves: "<b>Coursiv</b> teaches people to do more with AI.<br/><b>Overrule</b> trains them to check what comes back.",
   whole: "Same customer, next step: both halves of the proverb.",
-  callback: "Kalyp took the rulebook, not the responsibility. Overrule trains the call.",
+  callback: "Qalyp took the rulebook, not the responsibility. Overrule trains the call.",
   ask: "Don’t trust this pitch. Verify it: two minutes, no login.",
 };
 
@@ -213,11 +213,11 @@ function liveBox(): string {
  * in the PDF, which the jury reads without him, a caption says what it is and what is submitted.
  */
 const kalypSlide = (caption: boolean) => `<section class="slide kalyp${caption ? " captioned" : ""}">
-  <img src="assets/kalyp-logo.png" alt="Kalyp" />
+  <img src="assets/kalyp-logo.png" alt="Qalyp" />
   ${
     caption
       ? `<div class="caption">
-    <p><b>Kalyp</b> — the project I built before this one. It is not what I am submitting; it is why.</p>
+    <p><b>Qalyp</b> — the project I built before this one. It is not what I am submitting; it is why.</p>
     <p><b>Overrule</b> — a 5-minute daily drill that trains US professionals to catch the mistakes in AI’s work. B2C · web · live with no login: ${link(APP_URL, `<b>${SHORT_URL}</b>`)}</p>
   </div>`
       : ""
@@ -231,13 +231,13 @@ const turnSlide = `<section class="slide night">
   <header>${eyebrow(2, "Why I built Overrule")}<h1>Software took the rulebook. The responsibility stayed human.</h1></header>
   <div class="body">
     <div class="turn">
-      <div class="stat"><p class="figure">4</p><p>positions in normokontrol — the checking of student theses against formatting standards — cut by my university after Kalyp, the checker I built as a student in September, went live. I did not plan it; I found out later.</p></div>
+      <div class="stat"><p class="figure">4</p><p>positions in normokontrol — the checking of student theses against formatting standards — cut by my university after Qalyp, the checker I built as a student in September, went live. I did not plan it; I found out later.</p></div>
       <div class="stat"><p class="figure">${LAYOFFS.figure}</p><p>${LAYOFFS.text}<sup>1</sup></p></div>
     </div>
     <p class="pull">A program can check formatting against a standard. No standard says whether a number in a report is right. Overrule trains that call — and does not promise to save a job.</p>
     <blockquote class="loud">“Artificial intelligence is gonna replace literally half of all white-collar workers in the U.S.”<cite>Jim Farley, CEO of Ford<sup>2</sup></cite></blockquote>
   </div>
-  <footer><p class="notes left">Kalyp is the founder’s earlier project; the four positions are his own account · 1 ${LAYOFFS.source} · 2 Aspen Ideas Festival, June 2025, as quoted by Fortune, Jul 5, 2025</p></footer>
+  <footer><p class="notes left">Qalyp is the founder’s earlier project; the four positions are his own account · 1 ${LAYOFFS.source} · 2 Aspen Ideas Festival, June 2025, as quoted by Fortune, Jul 5, 2025</p></footer>
 </section>`;
 
 /** 3 (print). The film as four frames and a way to watch it. */
@@ -456,7 +456,7 @@ const closingSlide = `<section class="slide closing">
     </div>
   </div>
   <footer>
-    <span class="pair"><img src="assets/kalyp-logo.png" alt="Kalyp" /><span class="arrow">→</span>${LOGO_ON_DARK}</span>
+    <span class="pair"><img src="assets/kalyp-logo.png" alt="Qalyp" /><span class="arrow">→</span>${LOGO_ON_DARK}</span>
     <p class="notes">I did the work. You make the call.</p>
   </footer>
 </section>`;
@@ -530,7 +530,7 @@ table.compact td:first-child { font-weight: 600; white-space: nowrap; }
 .money { gap: 40px; } .money table { font-size: 16.5px; } .money .stat .figure { font-size: 44px; } .money .stat p:last-child { font-size: 14.5px; }
 .channels { margin-top: 14px; font-size: 15px; line-height: 1.4; color: #48433B; } .channels b { color: #14120F; } .channels li { margin-bottom: 7px; }
 
-/* The opening: the dark of the Kalyp logo. */
+/* The opening: the dark of the Qalyp logo. */
 .kalyp { background: #070718; padding: 0; align-items: center; justify-content: center; }
 .kalyp img { height: 600px; -webkit-mask-image: radial-gradient(closest-side, #000 72%, transparent 100%); mask-image: radial-gradient(closest-side, #000 72%, transparent 100%); }
 .tag { position: absolute; left: 60px; bottom: 34px; font-size: 12.5px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: #77749A; }

@@ -109,16 +109,16 @@ people on this side of it.
 
 ### 11а. «Вы автоматизировали проверяющих. Почему проверку ИИ не автоматизируют так же?»
 
-**RU.** Kalyp проверяет оформление по стандарту: правила записаны, поэтому их можно отдать программе.
+**RU.** Qalyp проверяет оформление по стандарту: правила записаны, поэтому их можно отдать программе.
 Верна ли цифра в отчёте, уместен ли вывод, можно ли это отправлять клиенту — ни в одном стандарте не записано.
 Отвечает тот, кто подписал. Этот навык Overrule и тренирует. Пример: в 2023 году суд в Нью-Йорке оштрафовал
 на пять тысяч долларов юристов, а не ChatGPT, который выдумал им судебные дела (Mata v. Avianca).
 
-**EN.** Kalyp checks formatting against a standard: the rules are written down, so a program can apply them.
+**EN.** Qalyp checks formatting against a standard: the rules are written down, so a program can apply them.
 Whether a number in a report is right, whether the conclusion follows, whether it can go to a client — that is
 written in no standard. The person who signs answers for it. That is the skill Overrule trains.
 
-### 11б. «Откуда вы знаете, что ставки закрыли именно из-за Kalyp?»
+### 11б. «Откуда вы знаете, что ставки закрыли именно из-за Qalyp?»
 
 **RU.** Ставки уже закрыты: четырёх человек убрали из нормоконтроля. Ответь своими словами и коротко: кто и
 когда тебе об этом сказал, в каком университете. Если есть приказ или письмо — скажи, что можешь показать.
@@ -211,15 +211,15 @@ twice last year's AI total. "Only the beginning" is my opinion, not a forecast f
 **EN.** It is an image, not a judgment. Coursiv teaches people to hand work to AI — to trust it with tasks.
 Overrule trains the other half: verifying what comes back. Neither works without the other.
 
-### 15. «Какое отношение Kalyp имеет к американскому рынку?»
+### 15. «Какое отношение Qalyp имеет к американскому рынку?»
 
 **RU.** Прямое по механике. В университете программа забрала проверку, а отвечать за работу остался человек.
 В США то же самое уже массово: 30% работников пользуются ИИ на работе несколько раз в неделю (Gallup), 58%
-полагаются на его результат, толком не проверив (KPMG). Kalyp — причина, по которой я это заметил; Overrule — продукт для США.
+полагаются на его результат, толком не проверив (KPMG). Qalyp — причина, по которой я это заметил; Overrule — продукт для США.
 
 **EN.** The mechanism is the same. At my university software took the checking and a person stayed accountable.
 In the US this is already mass behaviour: 30% of workers use AI at work several times a week (Gallup), and 58%
-rely on its output without checking (KPMG). Kalyp is why I noticed; Overrule is the product for the US.
+rely on its output without checking (KPMG). Qalyp is why I noticed; Overrule is the product for the US.
 
 ---
 

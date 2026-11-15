@@ -10,11 +10,15 @@ Working memory for the build. Updated after every milestone.
 - Railway: project `business-cup-demo`, service `overrule` (`ab5e6d03-de53-4911-9d1c-5cdc9cdbcc0a`), volume `/data`
 - Deadline: final package by 2026-11-15 11:00 Astana (form closes 12:00)
 
-## Submitted on 2026-11-15, 11:18 Astana
+## Submitted on 2026-11-15: No. 1 at 11:18, No. 2 at 11:31 Astana
 
-The organisers' form saved the case as submission No. 1: team Overrule, solo; the deck
-`deck/Overrule_BusinessCup2.pdf` as of commit `f716afe`, production running `4e47158`, this repository.
-Their automatic check finished at 11:22. The form stays open for a newer version until 12:00.
+The organisers' form saved the case twice; they review the latest. Team Overrule, solo; production running
+`4e47158`; this repository.
+
+- No. 1, 11:18 — the deck as of commit `f716afe`. Their automatic check finished at 11:22.
+- No. 2, 11:31 — the deck as of commit `ddba888`: the same slides after a copy edit (two independent passes, a
+  native copy editor and a jury reader, plus my own). No grammar errors were found; the fixes are idiom and
+  clarity, e.g. "positions closed" (which reads as "filled") became "cut".
 
 ## State on 2026-11-15, 11:10 Astana
 
@@ -108,7 +112,7 @@ leadership titles and their 61 search cases were added.
 - Nov 15 08:15 The six hand-written Customer Service drills passed the blind cross-check (19 of 20 found).
 - Nov 15 08:30 Two of sixteen drafts carried `brief` as a string and cost a retry (one visitor got a pool drill
   after 46 s). The Claude tool is now strict; 7 of 7 drafts passed on the first try afterwards.
-- Nov 15 08:50 The deck was rebuilt around the founder's opening: slide 1 is the Kalyp logo, slide 2 the four
+- Nov 15 08:50 The deck was rebuilt around the founder's opening: slide 1 is the Qalyp logo, slide 2 the four
   positions and the US figure, slide 3 the 30-second film, slide 10 the proverb "Trust, but verify".
 - Nov 15 08:50 The founder's figure of 219,000 layoffs since January could not be found in any source. Slide 2
   uses 121,401: US job cuts in January–October 2026 where the employer named AI as the reason (Challenger,
