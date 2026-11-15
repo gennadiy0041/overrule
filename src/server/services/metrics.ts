@@ -45,7 +45,7 @@ export interface MetricsSnapshot {
     draftsAccepted: number;
     draftsRejected: number;
     /** Why drill drafts did not make it: verifier codes or the provider's error, most frequent first. */
-    rejections: Array<{ reason: string; count: number }>;
+    rejections: Array<{ reason: string; count: number; latest: string }>;
     spend: ModelSpend;
   };
 }
@@ -172,11 +172,12 @@ export function collectMetrics(db: Database, now: Date, includeInternal: boolean
   }
   const drafts = llmRows.filter((row) => row.purpose === "generate");
   // A rejected draft is logged as "verify: <codes> | <first finding>"; a provider failure as its short error.
-  const reasons = new Map<string, number>();
+  const reasons = new Map<string, { count: number; latest: string }>();
   for (const row of drafts) {
     if (row.ok === 1) continue;
-    const reason = (row.error ?? "unknown").split(" | ")[0]!.slice(0, 90);
-    reasons.set(reason, (reasons.get(reason) ?? 0) + 1);
+    const error = row.error ?? "unknown";
+    const reason = error.split(" | ")[0]!.slice(0, 90);
+    reasons.set(reason, { count: (reasons.get(reason)?.count ?? 0) + 1, latest: error });
   }
 
   return {
@@ -221,7 +222,7 @@ export function collectMetrics(db: Database, now: Date, includeInternal: boolean
       draftsAccepted: drafts.filter((row) => row.ok === 1).length,
       draftsRejected: drafts.filter((row) => row.ok === 0).length,
       rejections: [...reasons]
-        .map(([reason, count]) => ({ reason, count }))
+        .map(([reason, { count, latest }]) => ({ reason, count, latest }))
         .sort((a, b) => b.count - a.count || a.reason.localeCompare(b.reason))
         .slice(0, 8),
       spend: modelSpend(db, budgetUsd),
