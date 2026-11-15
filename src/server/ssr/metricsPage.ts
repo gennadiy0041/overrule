@@ -6,6 +6,10 @@ function pct(share: number | null): string {
   return share === null ? "—" : `${(share * 100).toFixed(share < 0.1 ? 1 : 0)}%`;
 }
 
+function usd(amount: number): string {
+  return `$${amount.toFixed(amount < 1 ? 4 : 2)}`;
+}
+
 function tallyLine(tally: Tally, order: ReadonlyArray<string>): string {
   const total = Object.values(tally).reduce((n, v) => n + v, 0);
   if (total === 0) return "no answers yet";
@@ -117,6 +121,20 @@ export function renderMetricsPage(m: MetricsSnapshot, context: LayoutContext): s
           <p class="mt-3 text-sm text-ink-2">
             Drill drafts accepted by the verifier: ${m.llm.draftsAccepted}. Rejected (failed verification or provider
             error): ${m.llm.draftsRejected}. A rejected draft is never shown to a user.
+          </p>`,
+      )}
+
+      ${section(
+        "Model spend (estimate)",
+        html`${table(
+            ["Model", "Calls", "Tokens in", "Tokens out", "Est. cost"],
+            m.llm.spend.lines.map((line) => [line.model, line.calls, line.inputTokens, line.outputTokens, usd(line.usd)]),
+          )}
+          <p class="mt-3 text-sm text-ink-2">
+            Estimated spend: ${usd(m.llm.spend.usd)} of the ${usd(m.llm.spend.budgetUsd)} ceiling
+            (${usd(m.llm.spend.remainingUsd)} left). Token counts at list prices, with timed-out calls counted at
+            their ceiling: an estimate that errs high, not an invoice. At the ceiling the product stops calling
+            models and serves the verified pool.
           </p>`,
       )}
     </main>`;

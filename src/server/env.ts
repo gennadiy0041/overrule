@@ -26,6 +26,12 @@ const EnvSchema = z.object({
   GEN_LIMIT_PER_SESSION: z.coerce.number().int().nonnegative().default(12),
   /** Live drill generations allowed across all sessions per ET day. */
   GEN_LIMIT_GLOBAL: z.coerce.number().int().nonnegative().default(600),
+  /**
+   * Ceiling on total model spend, in US dollars, estimated from token counts at list
+   * prices. Once it is reached the product stops calling models: drills come from the
+   * verified pool and notes are graded by the heuristic. Raise it deliberately.
+   */
+  LLM_BUDGET_USD: z.coerce.number().nonnegative().default(20),
 });
 
 export type Env = z.infer<typeof EnvSchema>;

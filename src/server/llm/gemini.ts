@@ -11,7 +11,7 @@ const OUTPUT_HEADROOM = 4;
 
 interface GenerateContentResponse {
   candidates?: Array<{ content?: { parts?: Array<{ text?: string }> }; finishReason?: string }>;
-  usageMetadata?: { promptTokenCount?: number; candidatesTokenCount?: number };
+  usageMetadata?: { promptTokenCount?: number; candidatesTokenCount?: number; thoughtsTokenCount?: number };
 }
 
 function schemaInstruction(request: StructuredRequest): string {
@@ -68,12 +68,14 @@ export function createGeminiProvider(options: { apiKey: string; model: string; f
     } catch {
       throw new LlmError("gemini", "malformed", "answer is not valid JSON");
     }
+    const usage = body.usageMetadata;
     return {
       data,
-      ...(body.usageMetadata?.promptTokenCount === undefined ? {} : { inputTokens: body.usageMetadata.promptTokenCount }),
-      ...(body.usageMetadata?.candidatesTokenCount === undefined
+      ...(usage?.promptTokenCount === undefined ? {} : { inputTokens: usage.promptTokenCount }),
+      // Hidden reasoning is billed as output, so it belongs in the count the budget is built on.
+      ...(usage?.candidatesTokenCount === undefined
         ? {}
-        : { outputTokens: body.usageMetadata.candidatesTokenCount }),
+        : { outputTokens: usage.candidatesTokenCount + (usage.thoughtsTokenCount ?? 0) }),
     };
   }
 

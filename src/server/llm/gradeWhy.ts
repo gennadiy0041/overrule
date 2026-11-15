@@ -15,7 +15,8 @@ export interface WhyItem {
 }
 
 const DEFAULT_TIMEOUT_MS = 12_000;
-const MAX_TOKENS = 600;
+/** Room for the model's own working-out plus one score per note; an answer cut off here falls back to the heuristic. */
+const MAX_TOKENS = 2_000;
 
 const GradesSchema = z.object({
   scores: z.array(

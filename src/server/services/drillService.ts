@@ -23,6 +23,7 @@ import type { DrillRepo, StoredDrill } from "../repos/drills";
 import type { EventRepo } from "../repos/events";
 import { isPro, type Session, type SessionRepo } from "../repos/sessions";
 import { buildAnnotations, collectCues } from "./attemptResult";
+import { GENERATION_RESERVE_USD, GRADING_RESERVE_USD, type ModelBudget } from "./budget";
 import { rankPoolDrills, type DrillPool } from "./pool";
 
 /** A failure the HTTP layer turns into a status code and an error code. */
@@ -54,6 +55,8 @@ export interface DrillServiceDeps {
   pool: DrillPool;
   providers: Providers;
   llmLog: LlmLogger;
+  /** Dollar ceiling on model spend; see services/budget.ts. */
+  budget: ModelBudget;
 }
 
 /**
@@ -236,7 +239,7 @@ export class DrillService {
       rawFlags.filter((flag) => targets.has(flag.targetId)),
       drill.key.length + EXTRA_FLAGS,
     );
-    const { whyScores, gradedBy } = await this.gradeNotes(drill, flags);
+    const { whyScores, gradedBy } = await this.gradeNotes(drill, flags, session.isInternal);
     const score = scoreAttempt(drill, flags, whyScores);
 
     // Re-read the session: the rating may have moved while the notes were being graded.
@@ -313,6 +316,7 @@ export class DrillService {
   private async gradeNotes(
     drill: Drill,
     flags: ReadonlyArray<Flag>,
+    internal: boolean,
   ): Promise<{ whyScores: Record<string, WhyScore>; gradedBy: AttemptResult["whyGradedBy"] }> {
     const keyByTarget = new Map(drill.key.map((item) => [item.targetId, item]));
     const items = flags.flatMap((flag) => {
@@ -324,7 +328,9 @@ export class DrillService {
     });
     if (items.length === 0) return { whyScores: {}, gradedBy: "none" };
 
-    const provider = this.deps.providers.claudeFast ?? this.deps.providers.claude;
+    // Our own traffic and a spent budget both mean "no model call": the heuristic grades instead.
+    const mayUseModel = !internal && this.deps.budget.allows(GRADING_RESERVE_USD);
+    const provider = mayUseModel ? (this.deps.providers.claudeFast ?? this.deps.providers.claude) : undefined;
     let usedModel = false;
     const whyScores = await gradeWhy(items, {
       ...(provider ? { provider } : {}),
@@ -372,6 +378,8 @@ export class DrillService {
     if (!providers.claude && !providers.gemini) return null;
     if (plan.internal || this.deps.now().getTime() < this.liveDownUntil) return null;
     if (!this.withinLimits(plan.sessionId)) return null;
+    // Dollar ceiling: there must be room for this generation and for every one already in flight.
+    if (!this.deps.budget.allows((this.pending.size + 1) * GENERATION_RESERVE_USD)) return null;
 
     const generated = await generateDrill(
       {
@@ -423,7 +431,7 @@ export class DrillService {
     }
   }
 
-  /** Cost guard: per-session and global caps on live generations per ET day. */
+  /** Cost guard by count: per-session and global caps on live generations per ET day. */
   private withinLimits(sessionId: string | null): boolean {
     const { env, drills } = this.deps;
     const dayStart = new Date(nextEtMidnight(this.deps.now()).getTime() - 24 * 60 * 60 * 1000).toISOString();

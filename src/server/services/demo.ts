@@ -132,6 +132,7 @@ export async function seedDemoTemplate(ctx: AppContext, seed = DEMO_SEED): Promi
     pool: ctx.pool,
     providers: {},
     llmLog: () => undefined,
+    budget: ctx.budget,
   });
 
   ctx.sessions.create({ id: DEMO_TEMPLATE_ID, now: clock, userAgent: null, isInternal: true, isDemo: true });

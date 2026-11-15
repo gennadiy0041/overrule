@@ -12,6 +12,7 @@ export { generateDrill, type GeneratedDrill, type GenerateDrillDeps, type Genera
 export { gradeWhy, type WhyItem } from "./gradeWhy";
 export { crossCheckDrill, buildSolverPrompt, CROSS_CHECK_PASS_RATE, type CrossCheckResult } from "./crossCheck";
 export type { GenerateDrillInput } from "./prompts";
+export { estimateCostUsd, priceOf, type TokenPrice } from "./pricing";
 
 export interface ProviderSet {
   claude?: StructuredProvider;

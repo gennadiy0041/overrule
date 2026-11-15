@@ -105,7 +105,7 @@ export function pageRoutes(ctx: AppContext): Hono {
   /** `/metrics?token=…` — add `&all=1` to include internal traffic, `&format=json` for raw numbers. */
   app.get("/metrics", (c) => {
     if (!tokenMatches(c.req.query("token"), ctx.env.METRICS_TOKEN)) return c.text("Unauthorized", 401);
-    const snapshot = collectMetrics(ctx.db, ctx.now(), c.req.query("all") === "1");
+    const snapshot = collectMetrics(ctx.db, ctx.now(), c.req.query("all") === "1", ctx.budget.limitUsd);
     c.header("Cache-Control", "no-store");
     return c.req.query("format") === "json" ? c.json(snapshot) : c.html(renderMetricsPage(snapshot, layout));
   });

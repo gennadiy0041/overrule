@@ -10,6 +10,7 @@ import { EventRepo } from "./repos/events";
 import { ReportRepo } from "./repos/reports";
 import { createLlmLogger } from "./repos/llmCalls";
 import { SessionRepo } from "./repos/sessions";
+import { ModelBudget } from "./services/budget";
 import { DrillService, type Providers } from "./services/drillService";
 import { loadPool, syncPool } from "./services/pool";
 import { loadSsrAssets } from "./ssr/layout";
@@ -39,6 +40,7 @@ export async function buildContext(env: Env, options: BootstrapOptions = {}): Pr
   syncPool(pool, drills, now());
   for (const rejected of pool.rejected) console.warn(`pool drill rejected by verifyDrill — ${rejected}`);
 
+  const budget = new ModelBudget(db, env.LLM_BUDGET_USD);
   const drillService = new DrillService({
     env,
     now,
@@ -50,6 +52,7 @@ export async function buildContext(env: Env, options: BootstrapOptions = {}): Pr
     pool,
     providers: options.providers ?? createProviders(env),
     llmLog: createLlmLogger(db, now),
+    budget,
   });
 
   console.log(`data: ${occupations.all.length} occupations · pool: ${pool.size} verified drills`);
@@ -64,6 +67,7 @@ export async function buildContext(env: Env, options: BootstrapOptions = {}): Pr
     attempts,
     reports: new ReportRepo(db),
     pool,
+    budget,
     drillService,
     ssrAssets: loadSsrAssets(WEB_ROOT),
   };

@@ -1,5 +1,6 @@
 import type { Database } from "../db";
 import type { EventName } from "../repos/events";
+import { modelSpend, type ModelSpend } from "./budget";
 
 /**
  * Product metrics for /metrics, computed straight from the event log.
@@ -39,7 +40,7 @@ export interface MetricsSnapshot {
   counters: Tally;
   microSurvey: { n: number; shippedAiError: Tally; wouldPay: Tally };
   fullSurvey: { n: number; answers: Record<string, Tally> };
-  llm: { groups: LlmGroup[]; draftsAccepted: number; draftsRejected: number };
+  llm: { groups: LlmGroup[]; draftsAccepted: number; draftsRejected: number; spend: ModelSpend };
 }
 
 const FUNNEL: ReadonlyArray<[EventName, string]> = [
@@ -79,7 +80,7 @@ function tally(values: ReadonlyArray<string | undefined>): Tally {
   return out;
 }
 
-export function collectMetrics(db: Database, now: Date, includeInternal: boolean): MetricsSnapshot {
+export function collectMetrics(db: Database, now: Date, includeInternal: boolean, budgetUsd: number): MetricsSnapshot {
   // `real` filters a joined `sessions s`.
   const real = includeInternal ? "s.is_demo = 0" : "s.is_demo = 0 AND s.is_internal = 0";
   const count = (sql: string, ...params: Array<string | number>): number =>
@@ -204,6 +205,7 @@ export function collectMetrics(db: Database, now: Date, includeInternal: boolean
         .sort((a, b) => a.purpose.localeCompare(b.purpose) || b.calls - a.calls),
       draftsAccepted: drafts.filter((row) => row.ok === 1).length,
       draftsRejected: drafts.filter((row) => row.ok === 0).length,
+      spend: modelSpend(db, budgetUsd),
     },
   };
 }

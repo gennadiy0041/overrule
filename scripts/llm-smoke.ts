@@ -10,7 +10,14 @@ import { join } from "node:path";
 import { countWords, type Level } from "../src/engine/drillSchema";
 import type { OccupationsFile } from "../src/engine/occupations";
 import { loadEnv } from "../src/server/env";
-import { createProviders, crossCheckDrill, generateDrill, gradeWhy, type LlmCallRecord } from "../src/server/llm";
+import {
+  createProviders,
+  crossCheckDrill,
+  estimateCostUsd,
+  generateDrill,
+  gradeWhy,
+  type LlmCallRecord,
+} from "../src/server/llm";
 
 const args = new Map<string, string>();
 for (const arg of process.argv.slice(2)) {
@@ -33,11 +40,12 @@ const occupation = file.occupations.find((o) => o.soc === "11-2021.00")!;
 const task = occupation.tasks.find((t) => t.id === 952) ?? occupation.tasks.find((t) => t.label !== "E0")!;
 
 const calls: LlmCallRecord[] = [];
+const costOf = (record: LlmCallRecord) => estimateCostUsd(record.model, record.inputTokens ?? 0, record.outputTokens ?? 0);
 const log = (record: LlmCallRecord) => {
   calls.push(record);
   console.log(
-    `  ${record.purpose} · ${record.provider} · ${Math.round(record.ms)} ms · ${record.ok ? "ok" : `FAILED (${record.error})`}` +
-      ` · tokens ${record.inputTokens ?? "?"}/${record.outputTokens ?? "?"}`,
+    `  ${record.purpose} · ${record.provider} (${record.model}) · ${Math.round(record.ms)} ms · ${record.ok ? "ok" : `FAILED (${record.error})`}` +
+      ` · tokens ${record.inputTokens ?? "?"}/${record.outputTokens ?? "?"} · ~$${costOf(record).toFixed(4)}`,
   );
 };
 
@@ -82,4 +90,7 @@ if (solver) {
     console.log(`cross-check by ${solver.name} unavailable: ${error instanceof Error ? error.message : error}`);
   }
 }
-console.log(`calls: ${calls.length}, failed: ${calls.filter((c) => !c.ok).length}`);
+console.log(
+  `calls: ${calls.length}, failed: ${calls.filter((c) => !c.ok).length}, ` +
+    `estimated cost at list prices: $${calls.reduce((sum, c) => sum + costOf(c), 0).toFixed(4)}`,
+);

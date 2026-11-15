@@ -301,7 +301,7 @@ describe("events, surveys and metrics", () => {
       sessions: { total: number; trials: number };
       funnel: Array<{ event: string; sessions: number }>;
       microSurvey: { n: number };
-      llm: { draftsAccepted: number };
+      llm: { draftsAccepted: number; spend: { usd: number; budgetUsd: number; remainingUsd: number } };
     }>(`/metrics?token=${METRICS_TOKEN}&format=json`);
     const reached = Object.fromEntries(metrics.funnel.map((step) => [step.event, step.sessions]));
     expect(reached["scan_complete"]).toBe(1);
@@ -310,9 +310,14 @@ describe("events, surveys and metrics", () => {
     expect(metrics.sessions.trials).toBe(1);
     expect(metrics.microSurvey.n).toBe(1);
     expect(metrics.llm.draftsAccepted).toBeGreaterThanOrEqual(2);
+    // Every model call is priced: the estimate is positive and sits under the ceiling.
+    expect(metrics.llm.spend.usd).toBeGreaterThan(0);
+    expect(metrics.llm.spend.budgetUsd).toBe(20);
+    expect(metrics.llm.spend.remainingUsd).toBeCloseTo(20 - metrics.llm.spend.usd, 6);
 
-    const page = await client.request(`/metrics?token=${METRICS_TOKEN}`);
-    expect(await page.text()).toContain("Funnel (unique sessions)");
+    const page = await (await client.request(`/metrics?token=${METRICS_TOKEN}`)).text();
+    expect(page).toContain("Funnel (unique sessions)");
+    expect(page).toContain("Model spend (estimate)");
   });
 
   test("automated browsers are tagged internal and kept out of the metrics", async () => {

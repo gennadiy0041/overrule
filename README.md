@@ -195,9 +195,21 @@ limited to 80–140 characters. API keys live only in server environment variabl
 
 ### Cost guards
 
-Live generations are capped per session and globally per day (`GEN_LIMIT_PER_SESSION`, `GEN_LIMIT_GLOBAL`); beyond
-the cap, and whenever a provider is down, the verified pool is served. Every model call is recorded in `llm_calls`
-(purpose, provider, model, latency, outcome, tokens) and summarised on `/metrics`.
+Every model call is recorded in `llm_calls` (purpose, provider, model, latency, outcome, tokens). Three guards sit
+on top of that ledger:
+
+- **A dollar ceiling** (`LLM_BUDGET_USD`, default 20). Spend is estimated from the ledger — token counts at list
+  prices, timed-out calls counted at their ceiling, so it errs high. A generation starts only while its worst case
+  and that of every generation in flight still fit. At the ceiling the product stops calling models by itself:
+  drills come from the verified pool and notes are graded by the heuristic. `/metrics` shows spend against the ceiling.
+- **Daily caps by count** on live generations, per session and across all sessions (`GEN_LIMIT_PER_SESSION`,
+  `GEN_LIMIT_GLOBAL`).
+- **Internal traffic never calls a model**: automated browsers and `/?internal=1` sessions get pool drills and
+  heuristic grading.
+
+Measured on 2026-11-15: one level-2 drill accepted on the first draft took 4,270 input and 5,070 output tokens on
+Claude Sonnet 5.5, about $0.06 at list prices; grading the notes of one attempt on Claude Haiku 5.5 costs a
+fraction of a cent.
 
 ---
 
@@ -223,12 +235,13 @@ Development: `bun run dev` (server with reload) and `bun run dev:web` (Vite on :
 | `GEMINI_API_KEY`, `GEMINI_MODEL` | Secondary provider                                            |
 | `METRICS_TOKEN`         | Protects `/metrics?token=…`                                            |
 | `GEN_LIMIT_PER_SESSION`, `GEN_LIMIT_GLOBAL` | Daily caps on live generations                     |
+| `LLM_BUDGET_USD`        | Ceiling on total model spend in US dollars (estimated); default 20     |
 
 ## Tests
 
 ```bash
 bun run typecheck   # tsc --noEmit
-bun run test        # 333 unit tests, including an API test (in-memory SQLite, fake model provider)
+bun run test        # 340 unit tests, including an API test (in-memory SQLite, fake model provider)
 bun run e2e         # Playwright against production: phone and desktop
 ```
 
@@ -258,8 +271,9 @@ traffic (team browsers via `/?internal=1`, automated tests, the demo profile) is
 - **Drills are AI-generated.** Verification proves structure and arithmetic; it cannot prove that a "logic" or
   "audience" mistake is unambiguous. The blind cross-check covers the pool, not live drills.
 - **The Judgment Score is a practice record**, not a credential. Employer recognition is a later stage.
-- **Live generation needs model credit.** Without it the product runs entirely from the verified pool; for
-  occupations outside the launch six that means a drill from the closest pooled occupation, labelled as such.
+- **Live generation needs model credit and stops at the dollar ceiling.** Without credit, or past the ceiling, the
+  product runs entirely from the verified pool; for occupations outside the launch six that means a drill from the
+  closest pooled occupation, labelled as such.
 - **Checkout is a demo**: no payment is collected in this build. Unit economics in the deck are hypotheses to be
   tested with a small ad budget.
 - **One process, one replica**: in-flight generations are tracked in memory; SQLite on a single volume.
