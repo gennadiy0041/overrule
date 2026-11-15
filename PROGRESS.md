@@ -55,13 +55,15 @@ against production (phone + desktop), CI green. Model credit is back: live gener
 
 ## Things to know
 
-- **Model credit and the ceiling.** Credit is back and live generation is on. `LLM_BUDGET_USD=19` is set on
+- **Model credit and the ceiling.** Credit is back and live generation is on. `LLM_BUDGET_USD=18` is set on
   Railway: the product estimates its own spend from the ledger of model calls and stops calling models at the
   ceiling (then: verified pool, heuristic grading). `/metrics` shows spend against the ceiling. An accepted
   level-2 drill costs about $0.05–0.06 at list prices; grading the notes of an attempt a fraction of a cent.
-- **Verified live on Nov 15** with three scripted real-visitor runs on production (nurse, software developer,
-  teacher): live first drill 11–12 s after pressing start, notes graded by the model, result in 3 s, today's Daily
-  Catch for an occupation without a pool ready in 2 s. The sessions were then tagged internal.
+- **Verified live on Nov 15** with five scripted real-visitor runs on production (nurse, software developer,
+  teacher, lawyer, marketing manager). Four got a live first drill 10–12 s after pressing start; the lawyer run hit
+  a rejected draft, waited 46 s and got a pool drill, which is what the strict tool schema then removed. In every
+  run the notes were graded by the model and the result came in 3 s; once it was prepared ahead, today's Daily
+  Catch opened in 2 s. The sessions were then tagged internal.
 - **For a demo use a fresh private window.** A browser tagged with `/?internal=1` gets pool drills only.
 - **Deploys are manual.** A push to `main` does not trigger Railway here. After pushing, re-attach the source:
   Railway MCP `connect-service-source` (repo `gennadiy0041/overrule`, branch `main`) — it builds the latest commit.
@@ -78,7 +80,8 @@ against production (phone + desktop), CI green. Model credit is back: live gener
 - Nov 15 02:35 Claude rejects a forced `tool_choice` → optional tool call. Gemini rejects our schema → JSON mode.
 - Nov 15 02:45 Credit ran out mid-pool → cooldown + pool-only mode; six Customer Service drills written in-session.
 - Nov 15 02:50 Minified one-line effects returned a promise as cleanup and crashed navigation → block-bodied effects.
-- Nov 15 07:30 Credit is back. Added a dollar ceiling on model spend (default 20, 19 in production).
+- Nov 15 07:30 Credit is back. Added a dollar ceiling on model spend (default 20, 18 in production: the owner's
+  limit is $20 in total, and the morning checks run from this machine cost about $1.10).
 - Nov 15 08:00 A live run found the shared Daily Catch generated on the click: 48 s, then another occupation's
   drill. It is now prepared when the scan is finished; verified live (2 s).
 - Nov 15 08:10 Medium effort is faster per draft but fails the verifier far more often; default effort kept.
