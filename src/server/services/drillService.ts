@@ -73,6 +73,13 @@ export const USER_WAIT_BUDGET_MS = 45_000;
  */
 export const LIVE_COOLDOWN_MS = 3 * 60_000;
 
+/**
+ * A shared Daily Catch is prepared ahead of time at most once per this long. If the
+ * attempt fails, the next page view does not pay for another one; opening the drill
+ * still starts a generation of its own.
+ */
+export const DAILY_PREPARE_RETRY_MS = 30 * 60_000;
+
 /** Used when an occupation has no AI-exposed (E1/E2) task to build a drill on. */
 const GENERIC_TASK = {
   id: 0,
@@ -103,6 +110,8 @@ export class DrillService {
   private readonly pending = new Map<string, PendingGeneration>();
   /** Epoch ms until which live generation is skipped (see LIVE_COOLDOWN_MS). */
   private liveDownUntil = 0;
+  /** Per shared daily drill: epoch ms before which it is not prepared ahead again (see DAILY_PREPARE_RETRY_MS). */
+  private readonly dailyPrepareAfter = new Map<string, number>();
 
   constructor(private readonly deps: DrillServiceDeps) {}
 
@@ -228,9 +237,14 @@ export class DrillService {
   private startDailyIfMissing(occupation: Occupation, internal: boolean): void {
     // Our own traffic never starts a generation, and pooled occupations rotate through their pool.
     if (internal || this.deps.pool.for(occupation.soc).length > 0) return;
-    const day = etDay(this.deps.now());
+    const now = this.deps.now();
+    const day = etDay(now);
     const key = dailyKey(day, occupation.soc);
     if (this.deps.drills.dailyDrillId(day, occupation.soc) || this.pending.has(key)) return;
+    // Preparing ahead is a courtesy, not a retry loop: while the provider is cooling down nothing is
+    // started, and an attempt that did not produce a drill is not repeated on every page view.
+    if (now.getTime() < this.liveDownUntil || now.getTime() < (this.dailyPrepareAfter.get(key) ?? 0)) return;
+    this.dailyPrepareAfter.set(key, now.getTime() + DAILY_PREPARE_RETRY_MS);
     this.startGeneration(key, this.dailyPlan(occupation, day, internal), day);
   }
 

@@ -10,7 +10,7 @@ Working memory for the build. Updated after every milestone.
 
 ## State on 2026-11-15, 08:40 Astana
 
-Everything in P0 and P1 is live in production and covered by tests: 343 unit/API tests, 10 Playwright e2e runs
+Everything in P0 and P1 is live in production and covered by tests: 344 unit/API tests, 10 Playwright e2e runs
 against production (phone + desktop), CI green. Model credit is back: live generation is on, under a dollar ceiling.
 
 ### P0 — done

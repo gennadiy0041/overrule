@@ -425,6 +425,41 @@ describe("an occupation without a pool", () => {
     expect(generations()).toBe(2);
   });
 
+  test("a preparation that fails is not paid for again on every page view", async () => {
+    let calls = 0;
+    // A model whose drafts never pass the verifier.
+    const hopeless: StructuredProvider = {
+      name: "claude",
+      model: "fake-model",
+      async generate() {
+        calls++;
+        return { data: { artifact: "not a drill" }, inputTokens: 100, outputTokens: 100 };
+      },
+    };
+    let nowMs = Date.parse("2026-11-14T15:00:00Z");
+    const env = loadEnv({ NODE_ENV: "test", DB_PATH: ":memory:", APP_URL: "https://overrule.test" });
+    const failingCtx = await buildContext(env, { now: () => new Date(nowMs), providers: { claude: hopeless } });
+    const visitor = new Client(createApp(failingCtx));
+    const detail = await visitor.json<OccupationDetail>(`/api/occupations/${NURSES}`);
+    const tasks = detail.tasks.slice(0, 4).map((task) => ({ taskId: task.id, frequency: "often" as const }));
+    await visitor.json("/api/scan", { body: { soc: NURSES, tasks, complete: true } });
+    await Bun.sleep(20);
+    // A draft and one retry for the personal drill, and the same for today's shared drill.
+    expect(calls).toBe(4);
+
+    // Later page views do not start another attempt, even once the provider cooldown is over…
+    nowMs += 5 * 60_000;
+    expect((await visitor.json<DailyStatus>("/api/daily")).state).toBe("available");
+    await visitor.json<DailyStatus>("/api/daily");
+    await Bun.sleep(20);
+    expect(calls).toBe(4);
+    // …until half an hour has passed.
+    nowMs += 30 * 60_000;
+    await visitor.json<DailyStatus>("/api/daily");
+    await Bun.sleep(20);
+    expect(calls).toBe(6);
+  });
+
   test("our own traffic never starts the shared drill", async () => {
     const calls: StructuredRequest[] = [];
     const provider = fakeProvider(await levelTwoDraft(), calls);

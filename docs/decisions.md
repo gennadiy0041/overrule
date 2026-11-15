@@ -45,7 +45,9 @@ Short notes on choices that are not obvious from the code.
 - **The shared Daily Catch of an occupation without a pool is prepared ahead of time**: when a real person finishes
   the scan, and when their dashboard asks for today's status. Generating it on the click made the person wait a
   whole generation, and one rejected draft (one of the seven written on 2026-11-15) pushed that past the 45-second
-  budget, which gave everyone in that occupation a drill from another occupation for the day.
+  budget, which gave everyone in that occupation a drill from another occupation for the day. Preparing ahead is tried at
+  most once per half hour per occupation, and not while a provider is cooling down, so a failing attempt is not
+  paid for again on every page view.
 - **Default model effort is kept.** Measured on 2026-11-15 with six drills at `medium` effort: a draft took about
   11 s instead of about 26 s, but only 2 of 6 first drafts passed the verifier (6 of 7 at the default that day),
   mostly because the key covered two mistake types instead of three. Time to an accepted drill did not improve.
