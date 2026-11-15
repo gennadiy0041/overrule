@@ -231,7 +231,7 @@ const turnSlide = `<section class="slide night">
   <header>${eyebrow(2, "Why I built Overrule")}<h1>Software took the rulebook. The responsibility stayed human.</h1></header>
   <div class="body">
     <div class="turn">
-      <div class="stat"><p class="figure">4</p><p>positions in normokontrol — the checking of student theses against formatting standards — cut by my university after Qalyp, the checker I built as a student in September, went live. I did not plan it; I found out later.</p></div>
+      <div class="stat"><p class="figure">4</p><p>format-review positions — staff who check student theses against formatting standards — cut by my university after Qalyp, the checker I built as a student in September, went live. I did not plan it; I found out later.</p></div>
       <div class="stat"><p class="figure">${LAYOFFS.figure}</p><p>${LAYOFFS.text}<sup>1</sup></p></div>
     </div>
     <p class="pull">A program can check formatting against a standard. No standard says whether a number in a report is right. Overrule trains that call — and does not promise to save a job.</p>
