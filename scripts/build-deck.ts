@@ -33,7 +33,7 @@ const UNIT_TESTS = 352;
  */
 const LAYOFFS = {
   figure: "121,401",
-  text: "US job cuts in January–October 2026 where the employer named AI as the reason — more than twice the total for all of 2025. In all, 617,189 cuts were announced.",
+  text: "announced US job cuts in January–October 2026 for which the employer named AI as the reason — more than twice the AI figure for all of 2025. In all, 617,189 cuts were announced.",
   source:
     "Challenger, Gray & Christmas, October 2026 report (Nov 5, 2026): job cuts announced by US-based employers, by stated reason; AI was cited in 54,836 in all of 2025",
 };
@@ -42,12 +42,11 @@ const LAYOFFS = {
 const CLOSING = {
   proverb: "“Trust, but verify.”",
   origin:
-    "The Russian proverb «Доверяй, но проверяй», as Ronald Reagan quoted it to Mikhail Gorbachev at the signing of the INF Treaty, December 8, 1987",
-  halves: "<b>Coursiv</b> teaches you to trust AI with your work.<br/><b>Overrule</b> trains you to verify it.",
-  whole: "Together: the whole proverb.",
-  callback:
-    "In September my software closed four checking positions. Overrule trains what is left to all of us: the call.",
-  ask: "Scan it. Catch today’s mistake before I leave the stage.",
+    "The Russian proverb «Доверяй, но проверяй», as Ronald Reagan quoted it to Mikhail Gorbachev at the signing of the INF Treaty, December 8, 1987. Gorbachev: “You repeat that at every meeting.”",
+  halves: "<b>Coursiv</b> teaches people to do more with AI.<br/><b>Overrule</b> trains them to check what comes back.",
+  whole: "Same customer, next step: both halves of the proverb.",
+  callback: "Kalyp took the rulebook, not the responsibility. Overrule trains the call.",
+  ask: "Two minutes, no login: catch today’s AI mistake.",
 };
 
 // ───────────────────────────── Inputs ─────────────────────────────
@@ -85,6 +84,8 @@ const crossChecked = pool.perOccupation.reduce(
 const crossCheckedShare = crossChecked === pool.totals.accepted ? "all" : `${crossChecked}`;
 const metrics = await liveMetrics();
 const builtOn = new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+/** The day the product went live; a fact, so it does not move when the deck is rebuilt. */
+const LAUNCHED = "Nov 15, 2026";
 
 const font = (pkg: string, file: string) =>
   `data:font/woff2;base64,${readFileSync(join(ROOT, "node_modules", "@fontsource-variable", pkg, "files", file)).toString("base64")}`;
@@ -102,13 +103,19 @@ const LOGO_ON_DARK = `<span class="logo"><svg width="30" height="30" viewBox="0 
 const eyebrow = (n: number, label = "") =>
   `<p class="eyebrow">${String(n).padStart(2, "0")} / 10${label ? ` · ${label}` : ""}</p>`;
 
-function slide(n: number, title: string, body: string, notes: string): string {
+/** A product slide. `label` names the judging question the slide answers, in the organisers' own words. */
+function slide(n: number, label: string, title: string, body: string, notes: string): string {
   return `<section class="slide">
-  <header>${eyebrow(n)}<h1>${title}</h1></header>
+  <header>${eyebrow(n, label)}<h1>${title}</h1></header>
   <div class="body">${body}</div>
   <footer>${LOGO}<p class="notes">${notes}</p></footer>
 </section>`;
 }
+
+const REPO_URL = "https://github.com/gennadiy0041/overrule";
+const SHORT_REPO = REPO_URL.replace(/^https?:\/\//, "");
+/** Addresses and QR codes are links: the PDF is read on a laptop, where a QR code is one step too many. */
+const link = (href: string, inner: string) => `<a href="${href}">${inner}</a>`;
 
 const phone = (shot: string, caption = "") =>
   `<figure class="phone"><img src="shots/${shot}.png" alt="" />${caption ? `<figcaption>${caption}</figcaption>` : ""}</figure>`;
@@ -119,14 +126,14 @@ const tally = (t: Record<string, number> | undefined) =>
     .join(" · ") || "no answers yet";
 
 function liveBox(): string {
-  // No token, or nobody but us has finished a scan yet: say where the numbers live rather than print a row of zeros.
+  // No token, or nobody but us has finished a scan yet: say so plainly rather than print a row of zeros.
   if (!metrics || metrics.sessions.withScan === 0) {
-    return `<div class="box"><p class="eyebrow">Live numbers</p><p>Funnel, retention and survey answers are measured in production from launch (${builtOn}) and shown, with N, at <b>/metrics</b>. Our own traffic is excluded.</p></div>`;
+    return `<div class="box"><p class="eyebrow">What is measured — and what is not yet</p><p>Launched ${LAUNCHED}. No outside users yet: every funnel number in this deck is a hypothesis. Production already records scan → map → first drill → trial, next-day return and shares, with our own traffic excluded.</p></div>`;
   }
   const surveyN = metrics.microSurvey.n + metrics.fullSurvey.n;
   const pay = { ...metrics.microSurvey.wouldPay };
   for (const [answer, count] of Object.entries(metrics.fullSurvey.answers["wouldPay"] ?? {})) pay[answer] = (pay[answer] ?? 0) + count;
-  return `<div class="box"><p class="eyebrow">Live in production · ${builtOn}</p>
+  return `<div class="box"><p class="eyebrow">Live in production · launched ${LAUNCHED} · as of ${builtOn}</p>
     <p><b>${metrics.sessions.total}</b> sessions · <b>${metrics.sessions.withScan}</b> scans · <b>${metrics.sessions.withAttempt}</b> with a scored drill · <b>${metrics.sessions.trials}</b> trials started</p>
     <p>“Would you pay $8/month?” — N = ${surveyN}${surveyN > 0 ? `: ${tally(pay)}` : ""}${surveyN < 10 ? " <i>(N &lt; 10: too few to conclude)</i>" : ""}</p>
     <p class="small">Internal traffic and the demo profile are excluded.</p></div>`;
@@ -134,48 +141,60 @@ function liveBox(): string {
 
 // ───────────────────────────── Slides ─────────────────────────────
 
-/** 1. The founder walks out to a logo nobody in the room knows. */
-const kalypSlide = `<section class="slide kalyp">
+/**
+ * 1. The founder walks out to a logo nobody in the room knows. On stage it stands alone;
+ * in the PDF, which the jury reads without him, a caption says what it is and what is submitted.
+ */
+const kalypSlide = (caption: boolean) => `<section class="slide kalyp${caption ? " captioned" : ""}">
   <img src="assets/kalyp-logo.png" alt="Kalyp" />
+  ${
+    caption
+      ? `<div class="caption">
+    <p><b>Kalyp</b> — the project I built before this one. It is not what I am submitting; it is why.</p>
+    <p><b>Overrule</b> — a 5-minute daily drill that trains US professionals to catch the mistakes in AI’s work. B2C · web · live with no login: ${link(APP_URL, `<b>${SHORT_URL}</b>`)}</p>
+  </div>`
+      : ""
+  }
   <p class="tag">Overrule · Business Cup 2.0 · Skills track · Gennady Kozlov, solo</p>
   <p class="tag right">01 / 10</p>
 </section>`;
 
-/** 2. What that logo did, and what the same force is doing at scale. */
+/** 2. What that logo did, what the same force is doing at scale, and the lesson the product is built on. */
 const turnSlide = `<section class="slide night">
-  <header>${eyebrow(2, "Kalyp · September 2026")}<h1>My software closed four positions at my own university.</h1></header>
+  <header>${eyebrow(2, "Why I built Overrule")}<h1>Software took the rulebook. The responsibility stayed human.</h1></header>
   <div class="body">
     <div class="turn">
-      <div class="stat"><p class="figure">4</p><p>normokontrol positions — the staff who check student theses against formatting standards — closed after Kalyp, the checker I built in September, went live. One student. One laptop.</p></div>
+      <div class="stat"><p class="figure">4</p><p>positions in normokontrol — the checking of student theses against formatting standards — closed by my university after Kalyp, the checker I built as a student in September, went live. I did not plan it; I learned of it afterwards.</p></div>
       <div class="stat"><p class="figure">${LAYOFFS.figure}</p><p>${LAYOFFS.text}<sup>1</sup></p></div>
     </div>
-    <p class="pull">If one student from a village can do this to four jobs, imagine what AI is doing to an economy.</p>
+    <p class="pull">A program can check formatting against a standard. Whether a number in a report is right is written in no standard. Overrule trains that call — and does not promise to save a job.</p>
+    <blockquote class="loud">“Artificial intelligence is gonna replace literally half of all white-collar workers in the U.S.”<cite>Jim Farley, CEO of Ford<sup>2</sup></cite></blockquote>
   </div>
-  <footer><p class="notes left">Kalyp is the founder’s earlier project; the four positions are his own account · 1 ${LAYOFFS.source}</p></footer>
+  <footer><p class="notes left">Kalyp is the founder’s earlier project; the four positions are his own account · 1 ${LAYOFFS.source} · 2 Aspen Ideas Festival, June 2025, as quoted by Fortune, Jul 5, 2025</p></footer>
 </section>`;
 
 /** 3 (print). The film as four frames and a way to watch it. */
 const filmSlidePrint = `<section class="slide cinema">
   <header>${eyebrow(3, "The first ad creative")}<h1>The ad is already made: 30 seconds.</h1></header>
   <div class="body filmBody">
-    <div class="strip">
+    <a class="strip" href="${APP_URL}/film">
       <img src="assets/film-a.jpg" alt="" /><img src="assets/film-b.jpg" alt="" />
       <img src="assets/film-c.jpg" alt="" /><img src="assets/film-d.jpg" alt="" />
       <span class="play"><svg viewBox="0 0 24 24" width="34" height="34"><path d="M8 5v14l11-7z" fill="#14120F"/></svg></span>
-    </div>
+    </a>
     <div class="filmSide">
-      <div class="qrTile">${qrFilm}</div>
-      <p class="watch"><b>${SHORT_URL}/film</b><br/><span>Scan to watch · 0:30 · sound on</span></p>
-      <blockquote>“AI wrote this. Looks right. Catch the mistake. Forty percent? It’s fifteen. AI does the work. You make the call.”</blockquote>
+      ${link(`${APP_URL}/film`, `<div class="qrTile">${qrFilm}</div>`)}
+      <p class="watch">${link(`${APP_URL}/film`, `<b>${SHORT_URL}/film</b>`)}<br/><span>Click or scan to watch · 0:30 · sound on</span></p>
+      <blockquote>“AI wrote this. Looks right. Catch the mistake. Forty percent? It’s fifteen. … AI does the work. You make the call.”</blockquote>
       <p class="hook">The hook for paid social: <b>“Catch what AI gets wrong — before your boss does.”</b></p>
     </div>
   </div>
-  <footer><p class="notes left">Made within the same 24 hours: stock footage, a synthetic voice-over, and a product scene recorded from the live product.</p></footer>
+  <footer><p class="notes left">Made within the same 24 hours: stock footage, a synthetic voice-over, and a product scene built from the product’s own interface.</p></footer>
 </section>`;
 
 /** 3 (stage). The film itself. */
 const filmSlideLive = `<section class="slide filmLive">
-  <video preload="auto" playsinline>
+  <video preload="auto" playsinline poster="assets/film-c.jpg">
     <source src="film-full.mp4" type="video/mp4" />
     <source src="../public/film.mp4" type="video/mp4" />
   </video>
@@ -184,6 +203,7 @@ const filmSlideLive = `<section class="slide filmLive">
 const productSlides = [
   slide(
     4,
+    "Who we sell to",
     "AI does the work. You get paid for the judgment.",
     `<div class="cols2">
       <div>
@@ -194,58 +214,63 @@ const productSlides = [
           <li>She writes her reports with ChatGPT every day. Last quarter an invented number reached her VP — and he noticed.</li>
           <li>She pays before a performance review, or right after someone else catches an AI mistake in her work.</li>
         </ul>
-        <p class="pull">She is not afraid of losing her job. She is afraid of signing her name under a mistake.</p>
+        <p class="pull">She is not afraid of losing her job. She is afraid of putting her name to a mistake.</p>
       </div>
-      <div class="grid2 tight">
-        ${stat("58%", "of US workers rely on AI output without properly checking it<sup>1</sup>")}
-        ${stat("57%", "have made mistakes in their work because of AI<sup>1</sup>")}
-        ${stat("≈ 22M", "US professionals aged 25–44 who use AI at work several times a week<sup>2</sup> — our estimate")}
-        ${stat("Reviews", "Meta now formally assesses employees on how they use AI<sup>3</sup>")}
+      <div>
+        <div class="grid2 tight">
+          ${stat("58%", "of US workers rely on AI output without properly checking it<sup>1</sup>")}
+          ${stat("57%", "have made mistakes in their work because of AI<sup>1</sup>")}
+          ${stat("≈ 22M", "US workers aged 25–44 who use AI at work a few times a week or more<sup>2</sup> — our estimate")}
+          ${stat("Reviews", "Meta now formally assesses employees on how they use AI<sup>3</sup>")}
+        </div>
+        <blockquote class="aside">“It should be the tech that you don’t trust that much.”<cite>Sam Altman, CEO of OpenAI, on ChatGPT<sup>4</sup></cite></blockquote>
       </div>
     </div>`,
-    "Illustrative persona, not a real person · 1 KPMG US, Trust in AI, Apr 2025 (n = 1,019) · 2 73.3M employed aged 25–44 (BLS, CPS 2025) × 30% (Gallup AI indicator, May 2026) · 3 eWeek, Feb 2026",
+    "Illustrative persona, not a real person · 1 KPMG US, Trust in AI, Apr 2025 (n = 1,019) · 2 73.3M employed aged 25–44 (BLS, CPS 2025) × 30% (Gallup AI indicator, May 2026) · 3 eWeek, Feb 2026 · 4 OpenAI Podcast, June 2025, as reported in the press",
   ),
 
   slide(
     5,
+    "What we sell",
     "Discover → Develop → Prove",
     `<div class="cols3 shots">
-      ${phone("map-phone", "<b>Discover.</b> Free scan → a personal exposure map built on 19,265 human-labelled tasks across 923 occupations.")}
+      ${phone("map-phone", "<b>Discover.</b> Free scan → a personal exposure map built on 19,265 human-labeled tasks across 923 occupations.")}
       ${phone("drill-phone", "<b>Develop.</b> An AI-written document from your job: 3–4 planted mistakes and lines that only look wrong.")}
-      ${phone("dashboard-phone", "<b>Prove.</b> A Judgment Score (Elo), a streak, and a report for your next review.")}
+      ${phone("dashboard-phone", "<b>Prove.</b> A Judgment Score (Elo), a streak, and a record for your self-review.")}
     </div>`,
-    "All screenshots are the live product. The dashboard shows the demo profile (a simulated week played through the real engine).",
+    "Exposure data: Eloundou et al., “GPTs are GPTs” (2023), human task labels over O*NET · All screenshots are the live product; the dashboard shows the demo profile (a simulated week played through the real engine)",
   ),
 
   slide(
     6,
+    "It works — live",
     "Catch today’s AI mistake — live",
     `<div class="cols3 live">
       <div class="liveLeft">
-        <div class="qrBig">${qr}<div><p><b>${SHORT_URL}</b></p><p class="small">No sign-up · 2 minutes · any of 923 occupations</p></div></div>
+        <div class="qrBig">${link(APP_URL, qr)}<div><p>${link(APP_URL, `<b>${SHORT_URL}</b>`)}</p><p class="small">No sign-up · 2 minutes · any of 923 occupations</p><p class="small">Code: ${link(REPO_URL, `<b>${SHORT_REPO}</b>`)}</p></div></div>
         <div class="facts">
           <p><b>Generated, then proven.</b> One model call writes the document and its key; deterministic code verifies it. Every number is recomputed by our own evaluator.</p>
-          <p><b>Never a dead end.</b> Claude → retry with the verifier’s notes → Gemini → verified pool. No provider errors, ever.</p>
+          <p><b>Never a dead end.</b> Claude → retry with the verifier’s notes → Gemini → verified pool. If the models fail, you get a pool drill, and the page says so.</p>
           <p><b>Calibration, not suspicion.</b> Misses cost points — and so do false alarms.</p>
         </div>
       </div>
       ${phone("sheet-phone", "Tap a line, name the mistake, say why.")}
       ${phone("review-phone", "Every flag is scored by code against an answer key.")}
     </div>`,
-    `Launch pool: ${drafts} model drafts · ${pool.totals.rejectedByVerify} rejected by the verifier · ${pool.totals.accepted} drills accepted, ${crossCheckedShare} of them also solved blind by a second model`,
+    `Launch pool: ${pool.totals.accepted} verified drills — ${drafts - pool.totals.rejectedByVerify} kept from ${drafts} model drafts (${pool.totals.rejectedByVerify} rejected by the verifier) + ${pool.totals.accepted - (drafts - pool.totals.rejectedByVerify)} written during the build · ${crossCheckedShare} ${pool.totals.accepted} passed a blind cross-check: a second model had to find at least half of the planted mistakes`,
   ),
 
   slide(
     7,
+    "What we sell · why they come back tomorrow",
     "Why they come back tomorrow",
     `<div class="cols2 wideRight">
       <ul class="big">
-        <li><b>Daily Catch.</b> One shared drill per profession per day. Miss it and it is gone.</li>
-        <li><b>Streak + Judgment Score.</b> The score only moves when you play.</li>
-        <li><b>Shareable result.</b> A Wordle-style grid: green, amber, red — and black for false alarms.</li>
-        <li><b>Weekly Debrief.</b> Strongest and weakest mistake type, false-alarm rate.</li>
-        <li><b>Review Report.</b> A printable record for the next performance review.</li>
-        <li><b>The metric that matters: renewal.</b> Only ~8% of monthly subscriptions survive a year<sup>1</sup> — so annual is the default plan.</li>
+        <li><b>Free — the habit.</b> Daily Catch: one shared drill per profession per day; miss it and it is gone. A streak, a Judgment Score, a shareable Wordle-style grid.</li>
+        <li><b>Paid — $99.99 a year</b> (7-day trial) or $19.99 a month. Personal drills from your own tasks, weak-spot training, a Weekly Debrief, a Review Report for your self-review.</li>
+        <li><b>The trigger.</b> The streak resets at midnight ET; a daily calendar reminder is one tap. No email or push yet — the next thing to build.</li>
+        <li><b>Measured in production:</b> next-day return, Daily Catch completions, shares.</li>
+        <li><b>The metric that matters: renewal.</b> Only ~8% of monthly app subscriptions survive a year<sup>1</sup> — so annual is the default plan.</li>
       </ul>
       <figure class="desktop"><img src="shots/dashboard-desktop.png" alt="" /></figure>
     </div>`,
@@ -254,18 +279,19 @@ const productSlides = [
 
   slide(
     8,
-    "CAC ≈ $48, paid back on the first payment",
+    "Why it makes money",
+    "Hypothesis: CAC ≈ $48, paid back on the first payment",
     `<div class="cols3 money">
       <div>
         <p class="eyebrow">Funnel hypothesis · per 1,000 clicks at $1</p>
         <table>
-          <tr><td>Start the scan</td><td>600</td></tr>
-          <tr><td>See their map</td><td>420</td></tr>
-          <tr><td>Finish the first drill</td><td>290</td></tr>
-          <tr><td>Start a trial</td><td>60</td></tr>
-          <tr><td><b>Pay</b></td><td><b>21 → CAC ≈ $48</b></td></tr>
+          <tr><td>Start the scan</td><td>600 · 60%</td></tr>
+          <tr><td>See their map</td><td>420 · 70%</td></tr>
+          <tr><td>Finish the first drill</td><td>290 · 69%</td></tr>
+          <tr><td>Start a trial or a monthly plan</td><td>60 · 21%</td></tr>
+          <tr><td><b>Pay</b></td><td><b>21 · 35% → CAC ≈ $48</b></td></tr>
         </table>
-        <p class="small">A hypothesis, to be tested with a $300–500 ad test. The first creative is the film on slide 3.</p>
+        <p class="small">Untested: there are no outside users yet. The test is $300–500 of paid social with the film on slide 3 as the first creative. Fewer than 3 trial starts per 100 clicks would mean LTV &lt; CAC.</p>
       </div>
       <div>
         <p class="eyebrow">Price and lifetime value · estimate</p>
@@ -273,9 +299,9 @@ const productSlides = [
           <tr><td>Annual (default, 7-day trial)</td><td>$99.99</td></tr>
           <tr><td>Monthly</td><td>$19.99</td></tr>
           <tr><td>Average first payment</td><td>≈ $60</td></tr>
-          <tr><td><b>Blended LTV, net</b></td><td><b>≈ $95</b></td></tr>
+          <tr><td><b>Blended LTV, after fees and refunds</b></td><td><b>≈ $95</b></td></tr>
         </table>
-        <p class="small">Monthly: 3.5 payments ≈ $70. Annual: $99.99 + 30% renewals<sup>1</sup> ≈ $130. LTV/CAC ≈ 2 today, target 3. Web checkout: no 15–30% store fee.</p>
+        <p class="small">Assumes half choose annual. Monthly: 3.5 payments ≈ $70. Annual: $99.99 + 30% first renewal<sup>1</sup> ≈ $130. Blend ≈ $100, before model costs: a live drill costs about $0.06 (measured). LTV/CAC ≈ 2 on these assumptions; target 3. Checkout in this build is a demo: no payment is taken.</p>
       </div>
       <div>
         <p class="eyebrow">Path to $100M ARR</p>
@@ -287,24 +313,25 @@ const productSlides = [
         </ul>
       </div>
     </div>`,
-    "1 RevenueCat 2026: first renewal of annual plans is 23–40% by category · Unit economics and market size are hypotheses, labelled as such",
+    "1 RevenueCat 2026: first renewal of annual plans is 23–40% by category · Unit economics and market size are hypotheses, labeled as such",
   ),
 
   slide(
     9,
+    "Why it is new",
     "Why now, and why it is new",
     `<div class="cols2">
       <div>
         <p class="eyebrow">Alternatives</p>
         <table class="compact">
-          <tr><td>Coursiv</td><td>teaches using AI tools — the step before us</td></tr>
           <tr><td>Lacuna</td><td>free hallucination-spotting trainer, mostly for lawyers</td></tr>
           <tr><td>Slopcheck</td><td>daily “AI photo or real?” game</td></tr>
           <tr><td>Hallucination Lab</td><td>learning games</td></tr>
           <tr><td>HumanEdge AI</td><td>workshops for executives</td></tr>
         </table>
-        <p class="pull">Overrule: drills from <i>your</i> tasks on labour data · blind drills with decoys, scored for calibration · a consumer subscription.</p>
-        <p class="small">Why now: in the most AI-exposed occupations, relative employment of 22–25-year-olds fell 13%, while workers aged 30+ gained 6–12%<sup>1</sup>. AI replaces book knowledge, not judgment.</p>
+        <p class="small"><b>Not an alternative: Coursiv</b> teaches people to use AI tools. The same people then answer for what AI produces — that is our user.</p>
+        <p class="pull">Overrule: drills built from <i>your own</i> tasks, on public labor data · blind drills with decoys, scored for calibration · a consumer subscription.</p>
+        <p class="small">Why now: in the most AI-exposed occupations, relative employment of 22–25-year-olds fell 13%, while workers aged 30+ gained 6–12%<sup>1</sup>. The authors’ explanation: AI substitutes for codified “book” knowledge more than for experience.</p>
       </div>
       <div>
         <p class="eyebrow">Built solo in 24 hours — and live</p>
@@ -312,12 +339,12 @@ const productSlides = [
           ${stat("923", "occupations, 19,265 tasks; published scores reproduced exactly — as a unit test")}
           ${stat(String(pool.totals.accepted), `verified drills in the launch pool; ${crossCheckedShare} also passed a blind cross-check`)}
           ${stat(String(UNIT_TESTS), "automated tests, plus end-to-end runs on phone and desktop")}
-          ${stat("0", "sign-ups needed: the whole path works for the jury right now")}
+          ${stat("No login", "the whole path, from scan to dashboard, works for the jury right now")}
         </div>
         ${liveBox()}
       </div>
     </div>`,
-    "1 Brynjolfsson, Chandar, Chen, “Canaries in the Coal Mine?”, Stanford Digital Economy Lab, Aug 2025; TIME on the same study",
+    "1 Brynjolfsson, Chandar, Chen, “Canaries in the Coal Mine?”, Stanford Digital Economy Lab, Aug 2025; TIME on the same study · Alternatives: learnwithlacuna.com, slopcheck.co, hallucinationlab.app, humanedgeai.com",
   ),
 ];
 
@@ -331,8 +358,8 @@ const closingSlide = `<section class="slide closing">
       <p class="callback">${CLOSING.callback}</p>
     </div>
     <div class="closeRight">
-      <div class="qrTile">${qr}</div>
-      <p class="watch"><b>${SHORT_URL}</b><br/><span>${CLOSING.ask}</span></p>
+      ${link(APP_URL, `<div class="qrTile">${qr}</div>`)}
+      <p class="watch">${link(APP_URL, `<b>${SHORT_URL}</b>`)}<br/><span>${CLOSING.ask}</span><br/><span>Code: ${link(REPO_URL, SHORT_REPO)}</span></p>
     </div>
   </div>
   <footer>
@@ -341,8 +368,8 @@ const closingSlide = `<section class="slide closing">
   </footer>
 </section>`;
 
-const printSlides = [kalypSlide, turnSlide, filmSlidePrint, ...productSlides, closingSlide];
-const liveSlides = [kalypSlide, turnSlide, filmSlideLive, ...productSlides, closingSlide];
+const printSlides = [kalypSlide(true), turnSlide, filmSlidePrint, ...productSlides, closingSlide];
+const liveSlides = [kalypSlide(false), turnSlide, filmSlideLive, ...productSlides, closingSlide];
 for (const html of printSlides) {
   if (html.includes("TODO-")) throw new Error("The opening or the closing still has a placeholder: fill LAYOFFS and CLOSING");
 }
@@ -399,7 +426,8 @@ table.compact td:first-child { font-weight: 600; white-space: nowrap; }
 .liveLeft { display: flex; flex-direction: column; justify-content: space-between; min-height: 0; }
 .facts { font-size: 15.5px; line-height: 1.4; color: #48433B; } .facts b { color: #14120F; } .facts p { margin-top: 10px; }
 .qrBig { display: flex; align-items: center; gap: 22px; }
-.qrBig svg { width: 168px; height: 168px; flex-shrink: 0; } .qrBig b { font-size: 18px; } .qrBig p { margin-bottom: 4px; }
+.qrBig svg { width: 168px; height: 168px; flex-shrink: 0; display: block; } .qrBig b { font-size: 16.5px; white-space: nowrap; } .qrBig p { margin-bottom: 4px; }
+.qrBig .small b { font-size: 13.5px; }
 .money { gap: 40px; } .money table { font-size: 16.5px; } .money .stat .figure { font-size: 44px; } .money .stat p:last-child { font-size: 14.5px; }
 .channels { margin-top: 14px; font-size: 15px; line-height: 1.4; color: #48433B; } .channels b { color: #14120F; } .channels li { margin-bottom: 7px; }
 
@@ -408,20 +436,30 @@ table.compact td:first-child { font-weight: 600; white-space: nowrap; }
 .kalyp img { height: 600px; -webkit-mask-image: radial-gradient(closest-side, #000 72%, transparent 100%); mask-image: radial-gradient(closest-side, #000 72%, transparent 100%); }
 .tag { position: absolute; left: 60px; bottom: 34px; font-size: 12.5px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: #77749A; }
 .tag.right { left: auto; right: 60px; }
+.kalyp.captioned { justify-content: flex-start; padding-top: 26px; }
+.kalyp.captioned img { height: 470px; }
+.caption { width: 920px; margin-top: 2px; text-align: center; color: #C7C4DE; font-size: 17px; line-height: 1.5; }
+.caption p + p { margin-top: 8px; } .caption b { color: #F3F1FA; }
+a { color: inherit; text-decoration: none; }
 .night { background: #070718; color: #F3F1FA; }
 .night .eyebrow { color: #9390B4; } .night .notes { color: #77749A; } .night sup { color: #9390B4; }
 .night h1 { max-width: 1100px; }
-.turn { display: grid; grid-template-columns: 1fr 1.25fr; gap: 64px; margin-top: 18px; }
-.turn .stat { border-top-color: #4B4870; padding-top: 18px; }
-.turn .stat .figure { font-size: 128px; line-height: 0.95; margin-bottom: 14px; background: linear-gradient(100deg, #F3F1FA 20%, #A78BFA 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.night header { margin-bottom: 16px; }
+.turn { display: grid; grid-template-columns: 1fr 1.25fr; gap: 64px; margin-top: 6px; }
+.turn .stat { border-top-color: #4B4870; padding-top: 14px; }
+.turn .stat .figure { font-size: 104px; line-height: 0.95; margin-bottom: 10px; background: linear-gradient(100deg, #F3F1FA 20%, #A78BFA 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .turn .stat p:last-child { font-size: 19px; line-height: 1.4; color: #C7C4DE; max-width: 520px; }
-.night .pull { border-left-color: #8B5CF6; font-size: 26px; margin-top: 34px; max-width: 1000px; }
+.night .pull { border-left-color: #8B5CF6; font-size: 24px; margin: 22px 0 0; max-width: 1040px; }
+.loud { margin-top: 20px; font-size: 21px; line-height: 1.3; color: #C7C4DE; max-width: 980px; }
+.loud cite { color: #9390B4; font-size: 14px; margin-top: 8px; }
+.aside { margin-top: 30px; font-size: 27px; line-height: 1.25; padding-left: 14px; border-left: 3px solid #D93A2B; }
+.aside cite { font-size: 14px; margin-top: 10px; }
 
 /* The film. */
 .cinema { background: #0E0D0B; color: #FAF7F2; }
 .cinema .eyebrow { color: #9A948A; } .cinema .notes { color: #8A8479; }
 .filmBody { display: grid; grid-template-columns: 1.62fr 1fr; gap: 44px; align-items: start; }
-.strip { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.strip { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; color: inherit; }
 .strip img { width: 100%; display: block; border-radius: 6px; }
 .play { position: absolute; left: 50%; top: 50%; width: 84px; height: 84px; margin: -42px 0 0 -42px; border-radius: 50%; background: #FAF7F2; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,.5); }
 .play svg { margin-left: 4px; }

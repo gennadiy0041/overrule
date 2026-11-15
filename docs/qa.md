@@ -9,11 +9,11 @@
 
 **RU.** Нет. Модель у нас — сменный генератор черновика, а продукт — это то, что вокруг: карта задач на открытых
 трудовых данных, ключ ответов к каждому заданию, проверка кодом, подсчёт кодом и рейтинг. Если Claude падает,
-работает Gemini, если падает и он — проверенный пул; пользователь разницы не видит.
+работает Gemini, если падает и он — проверенный пул: ошибки пользователь не видит, а на странице написано, что задание из пула.
 
 **EN.** No. The model is a replaceable draft generator; the product is everything around it — a task map on public
 labour data, an answer key for every drill, verification and scoring in code, and a rating. If Claude is down
-Gemini takes over, then a verified pool — the user never notices.
+Gemini takes over, then a verified pool: the user never sees an error, and the page says the drill is pre-verified.
 
 ### 2. «Чем вы отличаетесь от Coursiv?»
 
@@ -105,6 +105,21 @@ and every drill passes verification in code.
 a person when software takes the checking: the responsibility and the call. So my second product is for the
 people on this side of it.
 
+### 11а. «Вы автоматизировали проверяющих. Почему проверку ИИ не автоматизируют так же?»
+
+**RU.** Kalyp проверяет оформление по стандарту: правила записаны, поэтому их можно отдать программе.
+Верна ли цифра в отчёте, уместен ли вывод, можно ли это отправлять клиенту — ни в одном стандарте не записано.
+Отвечает тот, кто подписал. Этот навык Overrule и тренирует.
+
+**EN.** Kalyp checks formatting against a standard: the rules are written down, so a program can apply them.
+Whether a number in a report is right, whether the conclusion follows, whether it can go to a client — that is
+written in no standard. The person who signs answers for it. That is the skill Overrule trains.
+
+### 11б. «Откуда вы знаете, что ставки закрыли именно из-за Kalyp?»
+
+**RU.** Ответь своими словами и коротко: кто и когда тебе об этом сказал, в каком университете. Если есть
+приказ или письмо — скажи, что можешь показать. Не добавляй того, чего не знаешь наверняка.
+
 ### 12. «Откуда 121 тысяча?»
 
 **RU.** Challenger, Gray & Christmas, отчёт за октябрь 2026 года, опубликован 5 ноября. За январь–октябрь
@@ -118,12 +133,12 @@ announced plans with the employer's own stated reason, not confirmed separations
 ### 13. «Но сокращений в этом году меньше, чем в прошлом»
 
 **RU.** Да: всего объявлено на 44% меньше, чем за те же месяцы 2025 года, и в октябре с ИИ связали меньше всего
-сокращений за год. Но доля ИИ выросла: за десять месяцев — вдвое больше, чем за весь прошлый год. «Только начало» —
-это моё мнение, а не прогноз из отчёта.
+сокращений за год. Но ИИ назвали причиной в каждом пятом объявленном сокращении — 121 401 из 617 189, — и это более чем вдвое
+больше, чем за весь прошлый год. «Только начало» — это моё мнение, а не прогноз из отчёта.
 
 **EN.** True: total announced cuts are down 44% on the same months of 2025, and October had the fewest AI-cited cuts
-of the year. But AI's share grew: ten months brought twice last year's total. "Only the beginning" is my opinion,
-not a forecast from the report.
+of the year. But AI was the stated reason in about one in five announced cuts (121,401 of 617,189), more than
+twice last year's AI total. "Only the beginning" is my opinion, not a forecast from the report.
 
 ### 14. «Почему Coursiv — это „доверяй“?»
 
@@ -138,7 +153,7 @@ Overrule trains the other half: verifying what comes back. Neither works without
 
 **RU.** Прямое по механике. В университете программа забрала проверку, а отвечать за работу остался человек.
 В США то же самое уже массово: 30% работников пользуются ИИ на работе несколько раз в неделю (Gallup), 58%
-отправляют результат без проверки (KPMG). Kalyp — причина, по которой я это заметил; Overrule — продукт для США.
+полагаются на его результат, толком не проверив (KPMG). Kalyp — причина, по которой я это заметил; Overrule — продукт для США.
 
 **EN.** The mechanism is the same. At my university software took the checking and a person stayed accountable.
 In the US this is already mass behaviour: 30% of workers use AI at work several times a week (Gallup), and 58%
@@ -156,5 +171,7 @@ rely on its output without checking (KPMG). Kalyp is why I noticed; Overrule is 
 | «Как получить $100M ARR?» | 1 млн платящих × ~$100 в год. Рынок — около 22 млн человек (73,3 млн занятых 25–44 × 30% частых пользователей ИИ; это оценка). Нужно 4–5% от него. |
 | «Задания не слишком простые?» | Пять уровней: от явных ошибок до сверки текста с таблицей. Уровень подбирается по рейтингу. |
 | «Что если пользователь не согласен с ключом?» | Числовые ошибки доказаны пересчётом. По остальным показываем объяснение и исправление; кнопка «оспорить» — в roadmap. |
-| «Сколько стоит одно задание?» | Один вызов модели на генерацию и один короткий на оценку «почему». Замер 15 ноября на проде: принятое задание уровня 2 — около $0,05–0,06 по прайсу (примерно 4 тыс. токенов на вход и 4–5 тыс. на выход), оценка заметок — доли цента. Забракованный проверкой черновик стоит столько же (в замере — 1 из 7). Daily Catch общий для профессии, поэтому его стоимость делится на всех игроков. Расход против потолка виден на `/metrics`. |
+| «Сколько стоит одно задание?» | Один вызов модели на генерацию и один короткий на оценку «почему». Замер 15 ноября на проде: принятое задание уровня 2 — около $0,05–0,06 по прайсу (примерно 4 тыс. токенов на вход и 4–5 тыс. на выход), оценка заметок — доли цента. Забракованный проверкой черновик стоит столько же: 15 ноября таких было 2 из 24,
+оба до включения строгой схемы; ночью, при сборке пула, — 39 из 87, в основном из-за лимита длины, который потом
+поправили. Daily Catch общий для профессии, поэтому его стоимость делится на всех игроков. Расход против потолка виден на `/metrics`. |
 | «А если кто-то накрутит вам счёт за модели?» | Не накрутит. Есть потолок расхода в долларах: он считается по журналу вызовов, и генерация стартует, только если её худший случай ещё помещается. На потолке продукт сам переходит на проверенный пул. Плюс дневные лимиты на сессию и на всех, а автоматические браузеры модель не вызывают вообще. |

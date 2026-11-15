@@ -36,15 +36,17 @@ What did AI get wrong for you this week?
 
 ---
 
-## Photo
+## Video or photo
 
-One of these, in order of preference:
+Best: attach the 30-second film as a native video (`public/film.mp4`, 9 MB; LinkedIn plays it in the feed).
+It can also be watched at https://overrule-production.up.railway.app/film — add that link in the first comment.
+
+If you post a photo instead, one of these, in order of preference:
 
 1. You at the hackathon with the laptop open on the drill screen (a flagged line in red is visible).
 2. A phone in hand showing the result screen — "You caught 3 of 4" and the Judgment Score.
-3. The first slide of the deck as an image.
 
-Avoid stock images and AI-generated pictures: the post is about real work.
+Avoid AI-generated pictures: the post is about real work.
 
 ## Short version (for a repost or a comment)
 

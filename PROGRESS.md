@@ -4,13 +4,14 @@ Working memory for the build. Updated after every milestone.
 
 - Prod: https://overrule-production.up.railway.app
 - Repo: https://github.com/gennadiy0041/overrule
-- Deck: `deck/Overrule_BusinessCup2.pdf` (10 slides) · Video: `docs/demo.mp4`
+- Deck: `deck/Overrule_BusinessCup2.pdf` (10 slides, the submission) · stage version: `deck/pitch.html` (plays the film)
+- Film (30 s): https://overrule-production.up.railway.app/film · walkthrough video: `docs/demo.mp4`
 - Railway: project `business-cup-demo`, service `overrule` (`ab5e6d03-de53-4911-9d1c-5cdc9cdbcc0a`), volume `/data`
 - Deadline: final package by 2026-11-15 11:00 Astana (form closes 12:00)
 
 ## State on 2026-11-15, 08:40 Astana
 
-Everything in P0 and P1 is live in production and covered by tests: 351 unit/API tests, 10 Playwright e2e runs
+Everything in P0 and P1 is live in production and covered by tests: 352 unit/API tests, 10 Playwright e2e runs
 against production (phone + desktop), CI green. Model credit is back: live generation is on, under a dollar ceiling.
 
 ### P0 — done
@@ -88,4 +89,9 @@ against production (phone + desktop), CI green. Model credit is back: live gener
 - Nov 15 08:15 The six hand-written Customer Service drills passed the blind cross-check (19 of 20 found).
 - Nov 15 08:30 Two of sixteen drafts carried `brief` as a string and cost a retry (one visitor got a pool drill
   after 46 s). The Claude tool is now strict; 7 of 7 drafts passed on the first try afterwards.
+- Nov 15 08:50 The deck was rebuilt around the founder's opening: slide 1 is the Kalyp logo, slide 2 the four
+  positions and the US figure, slide 3 the 30-second film, slide 10 the proverb "Trust, but verify".
+- Nov 15 08:50 The founder's figure of 219,000 layoffs since January could not be found in any source. Slide 2
+  uses 121,401: US job cuts in January–October 2026 where the employer named AI as the reason (Challenger,
+  Gray & Christmas, report of Nov 5, 2026; 617,189 announced in all; 54,836 AI-attributed in all of 2025).
 - More in `docs/decisions.md`.

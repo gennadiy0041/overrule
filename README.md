@@ -54,12 +54,13 @@ AI is now mandatory at work, and its mistakes are still yours.
 
 | Fact                                                                                   | Source                                                                                                    |
 | -------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| 58% of US workers rely on AI output without checking it; 57% have made mistakes at work because of AI | [KPMG US, Trust in AI, Apr 2025](https://kpmg.com/us/en/media/news/trust-in-ai-2025.html) (n = 1,019)     |
+| 58% of US workers rely on AI output without properly checking it; 57% have made mistakes at work because of AI | [KPMG US, Trust in AI, Apr 2025](https://kpmg.com/us/en/media/news/trust-in-ai-2025.html) (n = 1,019)     |
 | 30% of US employees use AI at work a few times a week or more (11% in 2023)            | [Gallup AI indicator, May 2026](https://www.gallup.com/699797/indicator-artificial-intelligence.aspx)     |
 | 40% of US workers received "workslop" in the past month; 42% trusted the sender less   | [Stanford Social Media Lab × BetterUp, via The Register](https://www.theregister.com/2025/09/26/ai_workslop_productivity/) |
 | Accepting AI output without checking it is treated as a performance problem            | [VKTR, Mar 2026](https://www.vktr.com/employee-experience/how-managers-weigh-employee-ai-use-in-performance-reviews/) |
 
-Courses teach people to _do more_ with AI. Nobody trains — or measures — the other half: knowing when to overrule it.
+Courses teach people to _do more_ with AI. The few tools that train spotting AI's mistakes are built for lawyers or
+as games; nobody trains it on your own job's tasks, or measures it.
 
 **Who it is for:** US office professionals aged 25–45 who use AI at work every week and are still the ones who sign
 the result. **What they pay for:** personal drills built from their own tasks, weak-spot training, a weekly debrief
@@ -247,7 +248,7 @@ Development: `bun run dev` (server with reload) and `bun run dev:web` (Vite on :
 
 ```bash
 bun run typecheck   # tsc --noEmit
-bun run test        # 351 unit tests, including an API test (in-memory SQLite, fake model provider)
+bun run test        # 352 unit tests, including an API test (in-memory SQLite, fake model provider)
 bun run e2e         # Playwright against production: phone and desktop
 ```
 
