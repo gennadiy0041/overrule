@@ -10,7 +10,9 @@ and your Judgment Score moves.
 [![CI](https://github.com/gennadiy0041/overrule/actions/workflows/ci.yml/badge.svg)](https://github.com/gennadiy0041/overrule/actions/workflows/ci.yml)
 
 - **Live:** https://overrule-production.up.railway.app — no sign-up, no login
-- **Pitch deck:** [deck/Overrule_BusinessCup2.pdf](deck/Overrule_BusinessCup2.pdf)
+- **Pitch deck:** [deck/Overrule_BusinessCup2.pdf](deck/Overrule_BusinessCup2.pdf) (the stage version, which plays
+  the film, is [deck/pitch.html](deck/pitch.html))
+- **30-second film:** https://overrule-production.up.railway.app/film
 - **60-second walkthrough:** [docs/demo.mp4](docs/demo.mp4)
 
 Built solo in 24 hours for Business Cup 2.0 (Zimran × AIESEC), Skills track.

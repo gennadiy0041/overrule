@@ -78,8 +78,9 @@ stop making honest mistakes in practice.
 
 ### 9. «Вы продаёте страх?»
 
-**RU.** Мы продаём контроль. Карта честная: «ИИ ускоряет задачу» не значит «профессия исчезнет», и мы это пишем
-прямо под цифрой. Обещаний «вас не уволят» у нас нет нигде.
+**RU.** Мы продаём контроль. Вступление — про то, что уже происходит; продукт — про то, что с этим делать.
+Карта честная: «ИИ ускоряет задачу» не значит «профессия исчезнет», и мы это пишем прямо под цифрой.
+Обещаний «вас не уволят» у нас нет нигде.
 
 **EN.** We sell control. The map is honest — "AI can speed up a task" is not "the job disappears", and it says so
 right under the number. Nowhere do we promise job protection.
@@ -93,6 +94,55 @@ right under the number. Nowhere do we promise job protection.
 **EN.** Live numbers from `/metrics` and the survey as of this morning: how many finished the scan, reached the
 first drill, said they'd pay. And technically: the engine reproduces the published scores for all 923 occupations,
 and every drill passes verification in code.
+
+### 11. «Вы гордитесь тем, что из-за вас закрыли ставки?»
+
+**RU.** Нет. Я этого не планировал и узнал уже после запуска. Но именно там я увидел, что остаётся у человека,
+когда проверку забирает программа: ответственность и решение. Поэтому мой второй продукт — для людей по эту
+сторону: он тренирует навык, который программа не закрыла.
+
+**EN.** No. I did not plan it and learned about it after the launch. But that is where I saw what stays with
+a person when software takes the checking: the responsibility and the call. So my second product is for the
+people on this side of it.
+
+### 12. «Откуда 121 тысяча?»
+
+**RU.** Challenger, Gray & Christmas, отчёт за октябрь 2026 года, опубликован 5 ноября. За январь–октябрь
+работодатели в США объявили о 617 189 сокращениях; в 121 401 случае причиной назвали ИИ. За весь 2025 год
+таких было 54 836. Это объявленные планы с причиной от самого работодателя, а не подтверждённые увольнения.
+
+**EN.** Challenger, Gray & Christmas, October 2026 report, published Nov 5. In January–October US-based employers
+announced 617,189 job cuts; AI was the stated reason in 121,401 of them, against 54,836 in all of 2025. These are
+announced plans with the employer's own stated reason, not confirmed separations.
+
+### 13. «Но сокращений в этом году меньше, чем в прошлом»
+
+**RU.** Да: всего объявлено на 44% меньше, чем за те же месяцы 2025 года, и в октябре с ИИ связали меньше всего
+сокращений за год. Но доля ИИ выросла: за десять месяцев — вдвое больше, чем за весь прошлый год. «Только начало» —
+это моё мнение, а не прогноз из отчёта.
+
+**EN.** True: total announced cuts are down 44% on the same months of 2025, and October had the fewest AI-cited cuts
+of the year. But AI's share grew: ten months brought twice last year's total. "Only the beginning" is my opinion,
+not a forecast from the report.
+
+### 14. «Почему Coursiv — это „доверяй“?»
+
+**RU.** Это образ, не оценка. Coursiv учит человека поручать работу ИИ — то есть доверять ему задачи. Overrule
+учит вторую половину: проверять, что получилось. Одно без другого не работает, поэтому мы не конкуренты, а
+две части одной пословицы.
+
+**EN.** It is an image, not a judgment. Coursiv teaches people to hand work to AI — to trust it with tasks.
+Overrule trains the other half: verifying what comes back. Neither works without the other.
+
+### 15. «Какое отношение Kalyp имеет к американскому рынку?»
+
+**RU.** Прямое по механике. В университете программа забрала проверку, а отвечать за работу остался человек.
+В США то же самое уже массово: 30% работников пользуются ИИ на работе несколько раз в неделю (Gallup), 58%
+отправляют результат без проверки (KPMG). Kalyp — причина, по которой я это заметил; Overrule — продукт для США.
+
+**EN.** The mechanism is the same. At my university software took the checking and a person stayed accountable.
+In the US this is already mass behaviour: 30% of workers use AI at work several times a week (Gallup), and 58%
+rely on its output without checking (KPMG). Kalyp is why I noticed; Overrule is the product for the US.
 
 ---
 
