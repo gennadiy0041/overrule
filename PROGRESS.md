@@ -9,10 +9,11 @@ Working memory for the build. Updated after every milestone.
 - Railway: project `business-cup-demo`, service `overrule` (`ab5e6d03-de53-4911-9d1c-5cdc9cdbcc0a`), volume `/data`
 - Deadline: final package by 2026-11-15 11:00 Astana (form closes 12:00)
 
-## State on 2026-11-15, 08:40 Astana
+## State on 2026-11-15, 11:40 Astana
 
-Everything in P0 and P1 is live in production and covered by tests: 356 unit/API tests, 10 Playwright e2e runs
-against production (phone + desktop), CI green. Model credit is back: live generation is on, under a dollar ceiling.
+Everything in P0 and P1 is live in production and covered by tests: 384 unit/API tests, 12 Playwright e2e runs
+against production (phone + desktop). Model credit is back: live generation is on, under a dollar ceiling
+(about $0.54 of $18 spent in production).
 
 ### P0 — done
 
@@ -39,9 +40,16 @@ against production (phone + desktop), CI green. Model credit is back: live gener
 ### P2
 
 - [x] Installable web app (manifest and icons; start URL is the Daily Catch). No service worker, so not offline.
+- [x] Defend your work (`/defend`) — live since 11:32 on Nov 15. Paste a text you are about to send, get five
+      questions about its own lines, answer, see which answers hold; first one free, then 5 for $4.99 (demo
+      checkout). Built at the founder's request after outside feedback that the product lacked a reason to open
+      it before a real task. It was acceptable to ship this late because it does not touch the drill path and
+      every model step has a rule-based fallback; it is backed by 28 tests, e2e on phone and desktop and one live
+      run with the model. It has had no outside users.
 - [ ] Second Look — deliberately not built: it is an LLM feature, and model credit came back three hours before
       the deadline. An unverified feature shipped hours before judging is a worse bet than one flawless path.
       It is on the roadmap.
+- [ ] Partner Catch (sponsored drills with a reward for the member) — a hypothesis in the deck, not built.
 - [ ] Dynamic OG image of a result — not built.
 
 ### Known gaps

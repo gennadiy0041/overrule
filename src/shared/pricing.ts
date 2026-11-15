@@ -15,8 +15,9 @@ export const PRACTICE_DAILY_LIMIT = 10;
  * "Defend your work" is sold apart from the subscription, by the pack: it answers a
  * one-off need before a deadline, not a daily habit. The first rehearsal is free.
  *
- * Not at a loss: the card fee (2.9% + $0.30) and the model calls (about $0.06 a
- * rehearsal, the measured cost of a live drill) take about $0.74 of a pack.
+ * Not at a loss: the card fee (2.9% + $0.30) takes $0.44 of a pack and the model
+ * calls about $0.05 — one rehearsal of a short report measured at $0.01 in
+ * production on 2026-11-15 (see README, "Cost guards").
  */
 export const REHEARSAL_PACK = { size: 5, price: 4.99 } as const;
 export const FREE_REHEARSALS = 1;

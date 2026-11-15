@@ -137,6 +137,43 @@ test("/metrics is closed without the token", async ({ request }) => {
   expect((await request.get("/metrics?token=wrong")).status()).toBe(401);
 });
 
+test("Defend your work: questions about your own text, one scored round, then the pack", async ({ page }) => {
+  const errors = watchConsole(page);
+
+  await page.goto("/");
+  await page.getByRole("link", { name: "Rehearse a document" }).click();
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Rehearse the hard questions before you hit send.");
+  await expect(page.getByRole("button", { name: "Find the hard questions" })).toBeDisabled();
+  await expectNoSidewaysScroll(page);
+
+  await page.getByRole("button", { name: "Use a sample report" }).click();
+  await page.getByRole("button", { name: "Find the hard questions" }).click();
+
+  // Five questions, each quoting a line of the pasted text. (Our own traffic gets the rule-based reader.)
+  await expect(page.getByRole("button", { name: "Score my answers" })).toBeVisible({ timeout: 60_000 });
+  await expect(page.locator("blockquote")).toHaveCount(5);
+  await expectNoSidewaysScroll(page);
+  await shot(page, "09-defend-questions");
+  await page
+    .locator("textarea")
+    .first()
+    .fill("It is from the Q3 revenue dashboard, email channel, July to September, exported on October 2.");
+  await page.getByRole("button", { name: "Score my answers" }).click();
+
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("1 of 5 answers holds.");
+  await expect(page.getByText("Holds", { exact: true })).toBeVisible();
+  await expect(page.getByText("Open", { exact: true })).toHaveCount(4);
+  await expectNoSidewaysScroll(page);
+  await shot(page, "10-defend-result");
+
+  // The free rehearsal is used: the next one needs the pack (demo checkout).
+  await page.getByRole("button", { name: "Rehearse another document" }).click();
+  await page.getByRole("button", { name: "Get 5 rehearsals — $4.99" }).click();
+  await expect(page.getByText("5 rehearsals left.")).toBeVisible();
+
+  expect(errors).toEqual([]);
+});
+
 test("the API never returns the answer key before submission", async ({ request }) => {
   const daily = await request.post("/api/demo");
   expect(daily.ok()).toBe(true);

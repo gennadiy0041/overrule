@@ -23,7 +23,7 @@ const ROOT = join(import.meta.dir, "..");
 const DECK = join(ROOT, "deck");
 const APP_URL = process.env["APP_URL"] ?? "https://overrule-production.up.railway.app";
 const SHORT_URL = APP_URL.replace(/^https?:\/\//, "");
-const UNIT_TESTS = 356;
+const UNIT_TESTS = 384;
 
 // ───────────────────────────── The founder's story ─────────────────────────────
 
@@ -64,8 +64,12 @@ const MODEL = {
   packSize: 5,
   cardFeeShare: 0.029,
   cardFeeFixed: 0.3,
-  /** Taken from the measured cost of one live drill; a rehearsal makes calls of the same size. */
-  modelCostPerRehearsal: 0.06,
+  /**
+   * Measured in production on Nov 15, 2026: one rehearsal of a short report took 1,323 input and 659 output
+   * tokens on Claude Sonnet 5.5 and 1,200 + 262 on Claude Haiku 5.5, about $0.01 at list prices. The model
+   * assumes twice that, which also covers a text of the maximum length.
+   */
+  modelCostPerRehearsal: 0.02,
   /** Upside only, outside the $100M: the share of members who buy one pack a month. */
   packBuyersShare: 0.2,
 };
@@ -318,8 +322,8 @@ const productSlides = [
       <ul class="big">
         <li><b>Free — the habit.</b> Daily Catch: one shared drill per profession per day; miss it and it is gone. A streak, a Judgment Score, a shareable grid.</li>
         <li><b>Paid — $99.99 a year</b> (7-day trial) or $19.99 a month. Personal drills from your own tasks, weak-spot training, a Weekly Debrief, a Review Report.</li>
-        <li><b>Next — Defend your work.</b> Paste the report you are about to send; rehearse what your manager will ask — “Where does this number come from?” Add-on: ${MODEL.packSize} rehearsals for ${usd(MODEL.packPrice)}.</li>
-        <li><b>Next — Partner Catch.</b> A sponsor funds the day’s drill; a verified catch earns the member credit. Both planned, not built: slides 7–8.</li>
+        <li><b>Live — Defend your work.</b> Paste the report you are about to send; rehearse what your manager will ask — “Where does this number come from?” First one free, then ${MODEL.packSize} for ${usd(MODEL.packPrice)}.</li>
+        <li><b>Next — Partner Catch.</b> A sponsor funds the day’s drill; a verified catch earns the member credit. Planned, not built: slides 7–8.</li>
         <li><b>The metric: renewal.</b> ~8% of monthly app subscriptions survive a year<sup>1</sup>; annual by default.</li>
       </ul>
       <figure class="desktop"><img src="shots/dashboard-desktop.png" alt="" /></figure>
@@ -342,10 +346,10 @@ const productSlides = [
           <tr><td><b>Pay</b></td><td><b>21 · 35% → CAC ≈ $${MODEL.cac}</b></td></tr>
         </table>
         <p class="small">Average first payment ≈ $60: ads pay back on the first payment. LTV ≈ $${MODEL.ltv} after fees and refunds (monthly: 3.5 payments ≈ $70; annual: $99.99 + 30% first renewal<sup>1</sup> ≈ $130; half choose annual), before about $0.06 of model cost per live drill (measured). LTV/CAC ≈ 2; target 3. Untested: no outside users yet, and checkout in this build is a demo. The test: $300–500 of paid social with the film as the first creative.</p>
-        <p class="eyebrow gap">Add-on · Defend your work — hypothesis, per pack</p>
+        <p class="eyebrow gap">Add-on · Defend your work — live · per pack of ${MODEL.packSize}</p>
         <table>
           <tr><td>${MODEL.packSize} rehearsals of the questions a manager will ask</td><td>${usd(MODEL.packPrice)}</td></tr>
-          <tr><td>Card fee 2.9% + $0.30 · models ≈ ${usd(MODEL.modelCostPerRehearsal)} a rehearsal</td><td>−${usd(packCosts)}</td></tr>
+          <tr><td>Card fee 2.9% + $0.30 · models ${usd(MODEL.modelCostPerRehearsal)} each (measured: $0.01)</td><td>−${usd(packCosts)}</td></tr>
           <tr><td><b>Overrule keeps</b></td><td><b>${usd(packKept)} · ${Math.round((packKept / MODEL.packPrice) * 100)}%</b></td></tr>
         </table>
       </div>
@@ -363,7 +367,7 @@ const productSlides = [
         </ul>
       </div>
     </div>`,
-    `1 RevenueCat 2026: first renewal of annual plans is 23–40% by category · 2 ${BENCHMARKS.attention} · Card fee: standard US rate · Hypotheses; Partner Catch and Defend your work are not built yet`,
+    `1 RevenueCat 2026: first renewal of annual plans is 23–40% by category · 2 ${BENCHMARKS.attention} · Card fee: standard US rate · Demand for all three is a hypothesis; Partner Catch is planned, not built`,
   ),
 
   slide(

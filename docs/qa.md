@@ -168,15 +168,19 @@ the drill — "today's catch is supported by X" and a card on the result screen.
 
 **RU.** Это повод открыть Overrule перед настоящей задачей. Человек боится одного вопроса: «Откуда эта
 цифра?» — а документ писал ИИ. Он вставляет отчёт, получает вопросы, которые задаст руководитель, и
-репетирует ответы. Платят отдельно, потому что это разовая потребность перед дедлайном, а не привычка: пять
-репетиций за 4,99 доллара, около доллара за раз. Не в убыток: комиссия карты и модели забирают 74 цента с
-пакета, остаётся 4,25. В расчёт ста миллионов это не входит. Это гипотеза.
+репетирует ответы. Это уже работает: `/defend`, первая репетиция бесплатно. Платят отдельно, потому что это
+разовая потребность перед дедлайном, а не привычка: пять репетиций за 4,99 доллара, около доллара за раз.
+Не в убыток: комиссия карты забирает 44 цента, модели — около 10 (одна репетиция на проде стоила 1 цент,
+в расчёте берём 2). Остаётся 4,45. В расчёт ста миллионов это не входит. Спрос — гипотеза: оплата пока
+демонстрационная. И честно: модель судит, насколько ответ конкретен и проверяем, а не правдив ли он.
 
 **EN.** It is the reason to open Overrule before a real task. People fear one question — "where does this number
 come from?" — when AI wrote the document. They paste the report, get the questions a manager would ask, and
-rehearse the answers. It is sold apart because it is a one-off need before a deadline, not a habit: five rehearsals
-for $4.99. Not at a loss: the card fee and model calls take $0.74 of a pack, $4.25 stays. It is not in the $100M
-model. It is a hypothesis.
+rehearse the answers. It is live at `/defend`, and the first rehearsal is free. It is sold apart because it is a
+one-off need before a deadline, not a habit: five rehearsals for $4.99. Not at a loss: the card fee takes $0.44 of
+a pack and model calls about $0.10 (one rehearsal cost $0.01 in production; the model assumes $0.02), so $4.45
+stays. It is not in the $100M model. Demand is a hypothesis: checkout in this build is a demo. And to be exact:
+the model judges whether an answer is specific and checkable, not whether it is true.
 
 ### 12. «Откуда 121 тысяча?»
 

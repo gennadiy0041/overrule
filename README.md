@@ -32,6 +32,9 @@ Built solo in 24 hours for Business Cup 2.0 (Zimran × AIESEC), Skills track.
 5. Short on time? Open the [**demo profile**](https://overrule-production.up.railway.app/demo): a simulated week for
    "Jess, marketing manager", produced by a scripted player running through the real engine. You can play today's
    Daily Catch as Jess.
+6. Try [**Defend your work**](https://overrule-production.up.railway.app/defend): tap **Use a sample report**, then
+   **Find the hard questions**. You get five questions, each about a line of that text; answer one or two and
+   score them. The first rehearsal is free; the pack after it is a demo checkout.
 
 Also worth a look: one of the 923 SEO pages, e.g.
 [/will-ai-replace/marketing-managers](https://overrule-production.up.railway.app/will-ai-replace/marketing-managers),
@@ -167,6 +170,35 @@ The next level is the one whose difficulty is closest to `R − 70`; the mistake
 the last ten drills is forced into the next personal drill. Percentiles are shown only against real players (no
 demo profiles, no internal traffic) and stay locked until there are 20 of them.
 
+### Defend — rehearse the questions before you send
+
+The drills are practice. **Defend your work** (`/defend`) is for the real deadline: the fear that a manager asks
+"where does this number come from?" about a report AI drafted. A person pastes the text they are about to send
+(200–8,000 characters) and says who will read it; they get five questions, each about one line of their own text,
+answer them, and see which answers hold.
+
+The same rule as in the drills applies: **the model writes, code decides what is kept.**
+
+- **Questions.** Claude writes five questions, each with the line it is about. `groundQuestions`
+  (`src/engine/rehearsal.ts`) keeps a question only if its quote really is in the document (spacing, case and
+  typographic quotes aside) and no line is questioned twice. Fewer than three grounded questions and the whole set
+  is rejected and recorded as a failed call.
+- **Answers.** One scored round per rehearsal: `holds`, `partial` or `open`, with one sentence on what to add.
+  The model is asked whether an answer is specific and checkable. It cannot verify that it is true, the prompt
+  forbids it to say so, and the page says the same. A blank answer is `open` without a model call.
+- **Without a model** — our own traffic, a spent budget, a provider failure, a rejected set — a rule-based reader
+  takes over: it finds the lines with a figure, an unnamed source, a stated cause, an absolute promise or a
+  recommendation and asks what follows from each; answers are scored by whether there is one and whether it gives
+  the reader something to check. The page says which of the two wrote the questions.
+- **Nothing a person pastes is stored**: not the document, not the questions, not the answers. The database keeps
+  counts only (`rehearsals`, `rehearsal_packs`); the questions travel back to the server with the answers.
+- **Price.** The first rehearsal is free, then a pack of 5 for $4.99, sold apart from the subscription because it
+  answers a one-off need, not a habit. The pack uses the same demo checkout as the subscription.
+
+It shipped on the morning of the deadline, after outside feedback that the product lacked a reason to open it
+before a real task. What backs it: 28 unit and API tests, an end-to-end run on phone and desktop, and one live run
+in production with the model (questions in 7 seconds, verdicts in 4). It has had no outside users.
+
 ---
 
 ## Architecture
@@ -198,7 +230,8 @@ Design decisions worth knowing are logged in [docs/decisions.md](docs/decisions.
 ### Sessions and privacy
 
 Anonymous cookie sessions: no accounts, no email, no personal data. Survey answers and "why" notes are free text
-limited to 80–140 characters. API keys live only in server environment variables.
+limited to 80–140 characters. Text pasted into Defend your work is used for one model call and never written to
+the database. API keys live only in server environment variables.
 
 ### Cost guards
 
@@ -214,9 +247,13 @@ on top of that ledger:
 - **Internal traffic never calls a model**: automated browsers and `/?internal=1` sessions get pool drills and
   heuristic grading.
 
+Rehearsals sit under the same ceiling, with their own caps: at most 10 model-written rehearsals per session a day
+and 40 an hour across the product; past either, the rule-based reader writes the questions.
+
 Measured on 2026-11-15: one level-2 drill accepted on the first draft took 4,270 input and 5,070 output tokens on
 Claude Sonnet 5.5, about $0.06 at list prices; grading the notes of one attempt on Claude Haiku 5.5 costs a
-fraction of a cent.
+fraction of a cent. One rehearsal of a 590-character report took 1,323 input and 659 output tokens on Sonnet 5.5
+for the questions and 1,200 + 262 on Haiku 5.5 for the verdicts: about $0.01.
 
 ---
 
@@ -248,7 +285,7 @@ Development: `bun run dev` (server with reload) and `bun run dev:web` (Vite on :
 
 ```bash
 bun run typecheck   # tsc --noEmit
-bun run test        # 356 unit tests, including an API test (in-memory SQLite, fake model provider)
+bun run test        # 384 unit tests, including two API tests (in-memory SQLite, fake model provider)
 bun run e2e         # Playwright against production: phone and desktop
 ```
 
@@ -261,7 +298,10 @@ What the tests pin down:
 - `scoring` and `elo` match the worked examples (56 of 144 points; +1 at level 3 from 1000);
 - `daily` handles ET day boundaries, both DST switches and streaks;
 - the API test walks scan → map → drill → submit → dashboard → checkout → practice → report → metrics and asserts
-  that the answer key is absent from the drill payload.
+  that the answer key is absent from the drill payload;
+- `rehearsal` and the Defend API test: a question that quotes a line the author never wrote is dropped, a set with
+  too few grounded questions is rejected, nothing of the pasted text reaches the database, a rehearsal is scored
+  once, the second one needs a pack, and internal traffic or a spent budget never calls a model.
 
 ## Metrics
 
@@ -281,8 +321,11 @@ traffic (team browsers via `/?internal=1`, automated tests, the demo profile) is
 - **Live generation needs model credit and stops at the dollar ceiling.** Without credit, or past the ceiling, the
   product runs entirely from the verified pool; for occupations outside the launch six that means a drill from the
   closest pooled occupation, labelled as such.
-- **Checkout is a demo**: no payment is collected in this build. Unit economics in the deck are hypotheses to be
-  tested with a small ad budget.
+- **Checkout is a demo**: no payment is collected in this build, for the subscription or for the rehearsal pack.
+  Unit economics in the deck are hypotheses to be tested with a small ad budget.
+- **Defend your work judges form, not truth.** It tells you whether an answer is specific and checkable; it cannot
+  know whether your number is right. It shipped on the morning of the deadline and has had one live run with the
+  model.
 - **One process, one replica**: in-flight generations are tracked in memory; SQLite on a single volume.
 - The pool rotates through a fixed set per profession; a production Daily Catch needs a fresh, reviewed drill per day.
 
