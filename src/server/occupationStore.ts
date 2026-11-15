@@ -1,6 +1,7 @@
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 import {
+  LEADERSHIP_ROLES,
   STARTER_OCCUPATIONS,
   STARTER_SOCS,
   type Occupation,
@@ -51,6 +52,14 @@ export class OccupationStore {
   /** Occupations with a pre-generated drill pool, in launch order. */
   get starters(): Occupation[] {
     return STARTER_OCCUPATIONS.flatMap((s) => this.bySoc.get(s.soc) ?? []);
+  }
+
+  /** Leadership roles suggested next to the launch occupations, each under the titles people hold. */
+  get leadership(): OccupationHit[] {
+    return LEADERSHIP_ROLES.flatMap((role) => {
+      const occupation = this.bySoc.get(role.soc);
+      return occupation ? [{ ...summarize(occupation), closest: false, label: role.label }] : [];
+    });
   }
 
   /** Free-text job-title search; an empty query suggests the launch occupations. */

@@ -118,11 +118,27 @@ beforeAll(async () => {
 
 describe("occupations", () => {
   test("search suggests the launch occupations and finds a job title", async () => {
-    const suggested = await client.json<{ results: OccupationHit[] }>("/api/occupations?q=");
+    const suggested = await client.json<{ results: OccupationHit[]; leadership: OccupationHit[] }>("/api/occupations?q=");
     expect(suggested.results.map((r) => r.soc)).toContain(MARKETING);
 
-    const found = await client.json<{ results: OccupationHit[] }>("/api/occupations?q=marketing%20manager");
+    // Leadership roles are suggested apart from the launch occupations, under the titles people hold.
+    expect(suggested.leadership).toHaveLength(7);
+    expect(suggested.leadership[0]).toMatchObject({ soc: "11-1011.00", title: "Chief Executives", closest: false });
+    expect(suggested.leadership[0]?.label).toContain("CEO");
+    for (const role of suggested.leadership) {
+      expect(role.label, role.soc).toBeTruthy();
+      expect((await client.request(`/api/occupations/${role.soc}`)).status).toBe(200);
+    }
+
+    const found = await client.json<{ results: OccupationHit[]; leadership: OccupationHit[] }>(
+      "/api/occupations?q=marketing%20manager",
+    );
     expect(found.results[0]?.soc).toBe(MARKETING);
+    expect(found.leadership).toEqual([]);
+
+    // A typed leadership title is classified too.
+    const cfo = await client.json<{ results: OccupationHit[] }>("/api/occupations?q=cfo");
+    expect(cfo.results[0]).toMatchObject({ soc: "11-3031.00", matchedTitle: "cfo" });
   });
 
   test("an occupation lists its tasks, Core first, with no session needed", async () => {

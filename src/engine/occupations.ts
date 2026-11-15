@@ -45,6 +45,23 @@ export const STARTER_OCCUPATIONS = [
 
 export const STARTER_SOCS: ReadonlySet<string> = new Set(STARTER_OCCUPATIONS.map((o) => o.soc));
 
+/**
+ * Leadership roles offered in the scan before anything is typed, under the titles people
+ * hold rather than the official ones ("CEO", not "Chief Executives"). Each points at the
+ * occupation whose documents that person signs off: a CFO reviews financial drafts, so the
+ * CFO lands on Financial Managers, although O*NET also files the title under Chief Executives.
+ * Every other management title is reached by typing it (data/modern-titles.json).
+ */
+export const LEADERSHIP_ROLES = [
+  { label: "CEO, founder, managing director", soc: "11-1011.00" },
+  { label: "COO, general manager, operations director", soc: "11-1021.00" },
+  { label: "CFO, finance director", soc: "11-3031.00" },
+  { label: "CTO, CIO, IT director", soc: "11-3021.00" },
+  { label: "CMO, marketing director, head of product", soc: "11-2021.00" },
+  { label: "Sales director, chief revenue officer", soc: "11-2022.00" },
+  { label: "HR director, chief people officer", soc: "11-3121.00" },
+] as const;
+
 /** URL-safe slug for an occupation title. */
 export function slugify(title: string): string {
   return title

@@ -4,7 +4,7 @@
  */
 import { describe, expect, test } from "bun:test";
 import { join } from "node:path";
-import type { OccupationsFile } from "../../src/engine/occupations";
+import { LEADERSHIP_ROLES, type OccupationsFile } from "../../src/engine/occupations";
 import { buildSearchIndex, searchOccupations } from "../../src/engine/search";
 
 const DATA = join(import.meta.dir, "..", "..", "data");
@@ -56,6 +56,93 @@ describe("the titles people actually use", () => {
 
   test("abbreviations are expanded", () => {
     expect(top("hr specialist", 1)).toEqual(["13-1071.00"]);
+  });
+});
+
+describe("leadership titles", () => {
+  // Each title lands on the occupation whose documents that person signs off.
+  test.each([
+    ["ceo", "11-1011.00"],
+    ["chief executive officer", "11-1011.00"],
+    ["founder", "11-1011.00"],
+    ["co-founder", "11-1011.00"],
+    ["cofounder", "11-1011.00"],
+    ["business owner", "11-1011.00"],
+    ["entrepreneur", "11-1011.00"],
+    ["president", "11-1011.00"],
+    ["managing director", "11-1011.00"],
+    ["executive director", "11-1011.00"],
+    ["chairman", "11-1011.00"],
+    ["board member", "11-1011.00"],
+    ["vice president", "11-1011.00"],
+    ["vp", "11-1011.00"],
+    ["svp", "11-1011.00"],
+    ["executive", "11-1011.00"],
+    ["coo", "11-1021.00"],
+    ["chief operating officer", "11-1021.00"],
+    ["operations director", "11-1021.00"],
+    ["director of operations", "11-1021.00"],
+    ["head of operations", "11-1021.00"],
+    ["general manager", "11-1021.00"],
+    ["director", "11-1021.00"],
+    ["department head", "11-1021.00"],
+    ["country manager", "11-1021.00"],
+    ["senior manager", "11-1021.00"],
+    ["manager", "11-1021.00"],
+    ["team lead", "11-1021.00"],
+    ["cfo", "11-3031.00"],
+    ["chief financial officer", "11-3031.00"],
+    ["finance director", "11-3031.00"],
+    ["head of finance", "11-3031.00"],
+    ["cto", "11-3021.00"],
+    ["chief technology officer", "11-3021.00"],
+    ["cio", "11-3021.00"],
+    ["ciso", "11-3021.00"],
+    ["it director", "11-3021.00"],
+    ["vp engineering", "11-3021.00"],
+    ["head of engineering", "11-3021.00"],
+    ["cmo", "11-2021.00"],
+    ["chief marketing officer", "11-2021.00"],
+    ["marketing director", "11-2021.00"],
+    ["head of product", "11-2021.00"],
+    ["chief product officer", "11-2021.00"],
+    ["cro", "11-2022.00"],
+    ["chief revenue officer", "11-2022.00"],
+    ["sales director", "11-2022.00"],
+    ["vp of sales", "11-2022.00"],
+    ["head of sales", "11-2022.00"],
+    ["chro", "11-3121.00"],
+    ["chief people officer", "11-3121.00"],
+    ["hr director", "11-3121.00"],
+    ["head of hr", "11-3121.00"],
+    ["chief medical officer", "11-9111.00"],
+    ["chief compliance officer", "11-9199.02"],
+    ["plant manager", "11-3051.00"],
+    ["head of supply chain", "11-3071.04"],
+    ["school principal", "11-9032.00"],
+  ])("%s → %s first", (query, soc) => {
+    expect(top(query, 1), `${query} → ${titleOf.get(top(query, 1)[0] ?? "")}`).toEqual([soc]);
+  });
+
+  test("a C-suite title that O*NET files under Chief Executives still offers Chief Executives second", () => {
+    expect(top("cfo", 2)).toEqual(["11-3031.00", "11-1011.00"]);
+    expect(top("cto", 2)).toEqual(["11-3021.00", "11-1011.00"]);
+  });
+
+  test("a film director still finds their own occupation right under the business one", () => {
+    expect(top("director", 2)).toContain("27-2012.00");
+  });
+
+  test("every title in the dictionary and every suggested leadership role points at an occupation we have", async () => {
+    const modern = (await Bun.file(join(DATA, "modern-titles.json")).json()) as Array<{ title: string; soc: string }>;
+    for (const { title, soc } of modern) expect(titleOf.has(soc), `${title} → ${soc}`).toBe(true);
+    for (const role of LEADERSHIP_ROLES) expect(titleOf.has(role.soc), `${role.label} → ${role.soc}`).toBe(true);
+    // No title is listed twice with two different occupations.
+    const seen = new Map<string, string>();
+    for (const { title, soc } of modern) {
+      expect(seen.get(title) ?? soc, `${title} is listed for two occupations`).toBe(soc);
+      seen.set(title, soc);
+    }
   });
 });
 

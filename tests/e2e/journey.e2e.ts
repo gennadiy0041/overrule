@@ -137,6 +137,27 @@ test("/metrics is closed without the token", async ({ request }) => {
   expect((await request.get("/metrics?token=wrong")).status()).toBe(401);
 });
 
+test("the scan offers leadership roles and classifies a typed executive title", async ({ page }) => {
+  const errors = watchConsole(page);
+
+  await page.goto("/scan");
+  const roles = page.getByRole("list", { name: "Leadership roles" });
+  await expect(roles.getByRole("button")).toHaveCount(7);
+  await expect(roles.getByRole("button", { name: /CEO, founder, managing director/ })).toBeVisible();
+  await expectNoSidewaysScroll(page);
+  await shot(page, "11-scan-leadership");
+
+  // A title O*NET does not list: the chief people officer is a human resources manager.
+  await page.getByRole("combobox").fill("chief people officer");
+  await expect(page.getByRole("option").first()).toContainText("Human Resources Managers");
+  await page.getByRole("combobox").fill("");
+
+  await roles.getByRole("button", { name: /CFO, finance director/ }).click();
+  await expect(page.getByRole("heading", { name: "Which of these do you actually do?" })).toBeVisible();
+
+  expect(errors).toEqual([]);
+});
+
 test("Defend your work: questions about your own text, one scored round, then the pack", async ({ page }) => {
   const errors = watchConsole(page);
 

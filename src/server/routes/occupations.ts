@@ -13,7 +13,9 @@ export function occupationRoutes(ctx: AppContext): Hono {
   app.get("/occupations", (c) => {
     const query = (c.req.query("q") ?? "").slice(0, MAX_QUERY_LENGTH);
     const results: OccupationHit[] = ctx.occupations.search(query);
-    return c.json({ results });
+    // Before anything is typed the scan suggests the launch occupations and, apart from them, leadership roles.
+    const leadership: OccupationHit[] = query.trim().length < 2 ? ctx.occupations.leadership : [];
+    return c.json({ results, leadership });
   });
 
   app.get("/occupations/:soc", (c) => {

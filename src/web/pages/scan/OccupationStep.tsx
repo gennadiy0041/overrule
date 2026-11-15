@@ -9,6 +9,7 @@ const DEBOUNCE_MS = 150;
 export function OccupationStep({ onPick }: { onPick: (occupation: { soc: string; title: string }) => void }) {
   const [query, setQuery] = useState("");
   const [hits, setHits] = useState<OccupationHit[]>([]);
+  const [leadership, setLeadership] = useState<OccupationHit[]>([]);
   const [loading, setLoading] = useState(true);
   const [active, setActive] = useState(0);
   const listId = useId();
@@ -25,14 +26,19 @@ export function OccupationStep({ onPick }: { onPick: (occupation: { soc: string;
     const timer = window.setTimeout(
       () => {
         api
-          .get<{ results: OccupationHit[] }>(`/api/occupations?q=${encodeURIComponent(query.trim())}`)
-          .then(({ results }) => {
+          .get<{ results: OccupationHit[]; leadership?: OccupationHit[] }>(
+            `/api/occupations?q=${encodeURIComponent(query.trim())}`,
+          )
+          .then(({ results, leadership: roles }) => {
             if (cancelled) return;
             setHits(results);
+            setLeadership(roles ?? []);
             setActive(0);
           })
           .catch(() => {
-            if (!cancelled) setHits([]);
+            if (cancelled) return;
+            setHits([]);
+            setLeadership([]);
           })
           .finally(() => {
             if (!cancelled) setLoading(false);
@@ -85,7 +91,7 @@ export function OccupationStep({ onPick }: { onPick: (occupation: { soc: string;
           value={query}
           onChange={(event) => setQuery(event.target.value)}
           onKeyDown={onKeyDown}
-          placeholder="e.g. marketing manager, accountant, recruiter"
+          placeholder="e.g. marketing manager, accountant, CEO"
           className="min-h-14 w-full rounded-2xl border border-line-strong bg-card px-4 pr-12 text-lg placeholder:text-ink-3 focus:border-ink focus:outline-none"
         />
         {loading && <Spinner className="absolute top-1/2 right-4 -translate-y-1/2" />}
@@ -121,6 +127,34 @@ export function OccupationStep({ onPick }: { onPick: (occupation: { soc: string;
           </li>
         ))}
       </ul>
+      {/* Leadership roles under the titles people hold; any other management title is found by typing it. */}
+      {!typed && leadership.length > 0 && (
+        <>
+          <p className="eyebrow mt-8">Leadership</p>
+          <ul aria-label="Leadership roles" className="mt-3 divide-y divide-line">
+            {leadership.map((role) => (
+              <li key={role.soc}>
+                <button
+                  type="button"
+                  onClick={() => onPick(role)}
+                  className="flex min-h-14 w-full items-center justify-between gap-3 rounded-lg px-3 py-2 text-left transition-colors hover:bg-paper-2"
+                >
+                  <span>
+                    <span className="block font-medium">{role.label ?? role.title}</span>
+                    {role.label && <span className="block text-sm text-ink-3">{role.title}</span>}
+                  </span>
+                  <span aria-hidden="true" className="shrink-0 text-ink-3">
+                    →
+                  </span>
+                </button>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-3 px-3 text-sm text-ink-3">
+            Another leadership title — VP, head of a department, plant manager? Type it above.
+          </p>
+        </>
+      )}
       {typed && !loading && hits.length === 0 && (
         <p className="mt-4 text-ink-2">No match — try a simpler title, like “accountant” or “project manager”.</p>
       )}

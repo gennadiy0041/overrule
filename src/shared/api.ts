@@ -31,6 +31,8 @@ export interface OccupationSummary {
 }
 
 export interface OccupationHit extends OccupationSummary {
+  /** The titles a suggested leadership role goes by ("CEO, founder, managing director"); shown above the official title. */
+  label?: string;
   /** The alternate or modern job title that matched, when it wasn't the official one. */
   matchedTitle?: string;
   /** Nothing matched literally; this is the closest occupation we could find. */
