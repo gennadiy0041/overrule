@@ -10,10 +10,10 @@ Working memory for the build. Updated after every milestone.
 - Railway: project `business-cup-demo`, service `overrule` (`ab5e6d03-de53-4911-9d1c-5cdc9cdbcc0a`), volume `/data`
 - Deadline: final package by 2026-11-15 11:00 Astana (form closes 12:00)
 
-## Submitted on 2026-11-15: No. 1 at 11:18, No. 2 at 11:31, No. 3 at 11:37 Astana
+## Submitted on 2026-11-15: the final version is No. 4, saved at 11:54 Astana
 
-The organisers' form saved the case three times; they review the latest. Team Overrule, solo; production
-running `4e47158`; this repository.
+The organisers' form saved the case four times (11:18, 11:31, 11:37, 11:54); they review the latest. Team
+Overrule, solo; production running `4e47158`; this repository.
 
 - No. 1, 11:18 — the deck as of commit `f716afe`. Their automatic check finished at 11:22.
 - No. 2, 11:31 — the deck as of commit `ddba888`: the same slides after a copy edit (two independent passes, a
@@ -21,6 +21,8 @@ running `4e47158`; this repository.
   clarity, e.g. "positions closed" (which reads as "filled") became "cut".
 - No. 3, 11:37 — the deck as of commit `b344d12`: the founder's earlier project is spelled Qalyp. I had
   written "Kalyp", my own transliteration of the Cyrillic name; the founder caught it.
+- No. 4, 11:54 — the deck as of commit `a013e14`, the final one: "format-review positions" on slide 2 instead of
+  the transliterated "normokontrol", which is not an English word. The founder questioned it and asked for the fix.
 
 ## State on 2026-11-15, 11:10 Astana
 
