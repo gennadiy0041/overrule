@@ -49,6 +49,8 @@ export function scanRoutes(ctx: AppContext): Hono<AppEnv> {
     });
 
     ctx.drillService.prepareFirstDrill(session.id);
+    // Once the scan is finished the person will reach their dashboard: have today's Daily Catch ready too.
+    if (body.data.complete) ctx.drillService.prepareDaily(session.id);
     return c.json({ ok: true });
   });
 

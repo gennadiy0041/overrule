@@ -121,6 +121,9 @@ export function renderMetricsPage(m: MetricsSnapshot, context: LayoutContext): s
           <p class="mt-3 text-sm text-ink-2">
             Drill drafts accepted by the verifier: ${m.llm.draftsAccepted}. Rejected (failed verification or provider
             error): ${m.llm.draftsRejected}. A rejected draft is never shown to a user.
+            ${m.llm.rejections.length === 0
+              ? ""
+              : `Reasons: ${m.llm.rejections.map((r) => `${r.reason} ×${r.count}`).join("; ")}.`}
           </p>`,
       )}
 

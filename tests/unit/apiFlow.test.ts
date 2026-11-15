@@ -391,6 +391,61 @@ describe("when the model providers are down", () => {
   });
 });
 
+describe("an occupation without a pool", () => {
+  const NURSES = "29-1141.00";
+
+  test("today's Daily Catch is prepared when the scan is finished, so opening it is instant", async () => {
+    const calls: StructuredRequest[] = [];
+    const provider = fakeProvider(await levelTwoDraft(), calls);
+    const generations = () => calls.filter((call) => call.purpose === "generate").length;
+    const env = loadEnv({ NODE_ENV: "test", DB_PATH: ":memory:", APP_URL: "https://overrule.test" });
+    // 10:00 in New York on the day of Daily Catch #1, which is a level-2 drill like the fake draft.
+    const nurseCtx = await buildContext(env, {
+      now: () => new Date("2026-11-14T15:00:00Z"),
+      providers: { claude: provider },
+    });
+    expect(nurseCtx.pool.for(NURSES)).toEqual([]);
+    const visitor = new Client(createApp(nurseCtx));
+
+    const detail = await visitor.json<OccupationDetail>(`/api/occupations/${NURSES}`);
+    const tasks = detail.tasks.slice(0, 4).map((task) => ({ taskId: task.id, frequency: "often" as const }));
+    await visitor.json("/api/scan", { body: { soc: NURSES, tasks } });
+    expect(generations()).toBe(1); // the first personal drill, as soon as the tasks are known
+    await visitor.json("/api/scan", { body: { soc: NURSES, tasks, complete: true } });
+    expect(generations()).toBe(2); // plus today's shared drill, once the scan is finished
+    await Bun.sleep(20);
+
+    const daily = await visitor.json<DailyStatus>("/api/daily");
+    expect(daily.state).toBe("available");
+    expect(daily.drillId).toBeDefined();
+    const events = await visitor.sse("/api/drills/next", { mode: "daily" });
+    expect(events.find((e) => e.event === "ready")!.data).toEqual({ drillId: daily.drillId!, origin: "live" });
+    // Nobody had to wait, and nothing was generated twice.
+    expect(events.some((e) => e.event === "stage")).toBe(false);
+    expect(generations()).toBe(2);
+  });
+
+  test("our own traffic never starts the shared drill", async () => {
+    const calls: StructuredRequest[] = [];
+    const provider = fakeProvider(await levelTwoDraft(), calls);
+    const env = loadEnv({ NODE_ENV: "test", DB_PATH: ":memory:", APP_URL: "https://overrule.test" });
+    const internalApp = createApp(await buildContext(env, { providers: { claude: provider } }));
+    const headers = { "user-agent": "Mozilla/5.0 HeadlessChrome/159.0", "content-type": "application/json" };
+    const detail = (await (await internalApp.request(`/api/occupations/${NURSES}`)).json()) as OccupationDetail;
+    const tasks = detail.tasks.slice(0, 4).map((task) => ({ taskId: task.id, frequency: "often" }));
+    const scan = await internalApp.request("/api/scan", {
+      method: "POST",
+      headers,
+      body: JSON.stringify({ soc: NURSES, tasks, complete: true }),
+    });
+    expect(scan.status).toBe(200);
+    const cookie = scan.headers.getSetCookie()[0]!.split(";")[0]!;
+    expect((await internalApp.request("/api/daily", { headers: { ...headers, cookie } })).status).toBe(200);
+    await Bun.sleep(20);
+    expect(calls.length).toBe(0);
+  });
+});
+
 describe("server-rendered pages", () => {
   test("an SEO page is rendered for an occupation, and unknown slugs are 404", async () => {
     const page = await client.request("/will-ai-replace/marketing-managers");

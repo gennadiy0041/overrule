@@ -40,7 +40,14 @@ export interface MetricsSnapshot {
   counters: Tally;
   microSurvey: { n: number; shippedAiError: Tally; wouldPay: Tally };
   fullSurvey: { n: number; answers: Record<string, Tally> };
-  llm: { groups: LlmGroup[]; draftsAccepted: number; draftsRejected: number; spend: ModelSpend };
+  llm: {
+    groups: LlmGroup[];
+    draftsAccepted: number;
+    draftsRejected: number;
+    /** Why drill drafts did not make it: verifier codes or the provider's error, most frequent first. */
+    rejections: Array<{ reason: string; count: number }>;
+    spend: ModelSpend;
+  };
 }
 
 const FUNNEL: ReadonlyArray<[EventName, string]> = [
@@ -131,7 +138,7 @@ export function collectMetrics(db: Database, now: Date, includeInternal: boolean
   }
 
   const llmRows = db
-    .query("SELECT purpose, provider, model, ms, ok, input_tokens, output_tokens FROM llm_calls")
+    .query("SELECT purpose, provider, model, ms, ok, input_tokens, output_tokens, error FROM llm_calls")
     .all() as Array<{
     purpose: string;
     provider: string;
@@ -140,6 +147,7 @@ export function collectMetrics(db: Database, now: Date, includeInternal: boolean
     ok: number;
     input_tokens: number | null;
     output_tokens: number | null;
+    error: string | null;
   }>;
   const groups = new Map<string, LlmGroup & { latencies: number[] }>();
   for (const row of llmRows) {
@@ -163,6 +171,13 @@ export function collectMetrics(db: Database, now: Date, includeInternal: boolean
     groups.set(key, group);
   }
   const drafts = llmRows.filter((row) => row.purpose === "generate");
+  // A rejected draft is logged as "verify: <codes> | <first finding>"; a provider failure as its short error.
+  const reasons = new Map<string, number>();
+  for (const row of drafts) {
+    if (row.ok === 1) continue;
+    const reason = (row.error ?? "unknown").split(" | ")[0]!.slice(0, 90);
+    reasons.set(reason, (reasons.get(reason) ?? 0) + 1);
+  }
 
   return {
     generatedAt: now.toISOString(),
@@ -205,6 +220,10 @@ export function collectMetrics(db: Database, now: Date, includeInternal: boolean
         .sort((a, b) => a.purpose.localeCompare(b.purpose) || b.calls - a.calls),
       draftsAccepted: drafts.filter((row) => row.ok === 1).length,
       draftsRejected: drafts.filter((row) => row.ok === 0).length,
+      rejections: [...reasons]
+        .map(([reason, count]) => ({ reason, count }))
+        .sort((a, b) => b.count - a.count || a.reason.localeCompare(b.reason))
+        .slice(0, 8),
       spend: modelSpend(db, budgetUsd),
     },
   };

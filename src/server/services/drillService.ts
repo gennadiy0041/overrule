@@ -177,7 +177,11 @@ export class DrillService {
     if (!occupation) return { ...base, state: "needs_scan" };
 
     const drillId = this.deps.drills.dailyDrillId(day, occupation.soc) ?? this.assignDailyFromPool(day, occupation.soc);
-    if (!drillId) return { ...base, state: "available" };
+    if (!drillId) {
+      // Nothing assigned yet: start today's drill now, so opening it does not mean waiting for a generation.
+      this.startDailyIfMissing(occupation, session.isInternal);
+      return { ...base, state: "available" };
+    }
 
     const attempt = this.deps.attempts.findForDrill(session.id, drillId);
     if (!attempt) return { ...base, state: "available", drillId };
@@ -196,8 +200,8 @@ export class DrillService {
     const assigned = drills.dailyDrillId(day, occupation.soc) ?? this.assignDailyFromPool(day, occupation.soc);
     if (assigned) return { drillId: assigned, origin: drills.find(assigned)?.origin ?? "pool" };
 
-    // No pool for this occupation: today's shared drill is generated once, by whoever arrives first.
-    const key = `daily:${day}:${occupation.soc}`;
+    // No pool for this occupation: today's shared drill is generated once, for whoever arrives first.
+    const key = dailyKey(day, occupation.soc);
     const generation = this.pending.get(key) ?? this.startGeneration(key, this.dailyPlan(occupation, day, internal), day);
     const stored = await this.waitFor(generation, onStage);
     if (stored) return { drillId: drills.assignDaily(day, occupation.soc, stored.drill.id), origin: "live" };
@@ -208,6 +212,26 @@ export class DrillService {
     if (candidates.length === 0) throw new ServiceError(500, "no_drill_available");
     const fallback = candidates[pickDailyIndex(day, candidates.length)]!;
     return { drillId: drills.assignDaily(day, occupation.soc, fallback.id), origin: "pool" };
+  }
+
+  /**
+   * Start today's shared Daily Catch for an occupation that has no pool as soon as a
+   * real person is known to do that job, so it is ready long before they open it.
+   * Safe to call repeatedly.
+   */
+  prepareDaily(sessionId: string): void {
+    const session = this.deps.sessions.find(sessionId);
+    const occupation = session ? this.occupationOf(session) : undefined;
+    if (session && occupation) this.startDailyIfMissing(occupation, session.isInternal);
+  }
+
+  private startDailyIfMissing(occupation: Occupation, internal: boolean): void {
+    // Our own traffic never starts a generation, and pooled occupations rotate through their pool.
+    if (internal || this.deps.pool.for(occupation.soc).length > 0) return;
+    const day = etDay(this.deps.now());
+    const key = dailyKey(day, occupation.soc);
+    if (this.deps.drills.dailyDrillId(day, occupation.soc) || this.pending.has(key)) return;
+    this.startGeneration(key, this.dailyPlan(occupation, day, internal), day);
   }
 
   /** Launch occupations rotate through their pre-built pool: the same drill for everyone, every day. */
@@ -544,6 +568,10 @@ export class DrillService {
 
 function personalKey(sessionId: string): string {
   return `personal:${sessionId}`;
+}
+
+function dailyKey(day: string, soc: string): string {
+  return `daily:${day}:${soc}`;
 }
 
 /** AI-exposed tasks of an occupation, most central first (Core before Supplemental, E1 before E2). */

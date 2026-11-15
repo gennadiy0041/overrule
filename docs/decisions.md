@@ -36,7 +36,19 @@ Short notes on choices that are not obvious from the code.
   That is a transport quirk, not a content problem, and should not cost a 30-second retry.
 - **Three-minute cooldown after a failed live generation.** When a provider is down (or out of credit) the pool is
   served at once; live drills resume by themselves when the provider does.
-- **Internal traffic never spends model budget.** Sessions from automated browsers or `/?internal=1` get pool drills.
+- **Internal traffic never spends model budget.** Sessions from automated browsers or `/?internal=1` get pool drills
+  and heuristic grading of their notes.
+- **A dollar ceiling on model spend** (`LLM_BUDGET_USD`). Count limits do not see failed generations, and a rejected
+  draft costs as much as an accepted one. The ceiling is computed from the ledger of model calls (token counts at
+  list prices, timed-out calls at their ceiling), and a generation starts only while its worst case and that of
+  every generation in flight still fit. At the ceiling the product serves the pool and grades with the heuristic.
+- **The shared Daily Catch of an occupation without a pool is prepared ahead of time**: when a real person finishes
+  the scan, and when their dashboard asks for today's status. Generating it on the click made the person wait a
+  whole generation, and one rejected draft (about one in five on 2026-11-15) pushed that past the 45-second budget,
+  which gave everyone in that occupation a drill from another occupation for the day.
+- **Default model effort is kept.** Measured on 2026-11-15 with six drills at `medium` effort: a draft took about
+  11 s instead of about 27 s, but only 2 of 6 first drafts passed the verifier (4 of 5 at the default that day),
+  mostly because the key covered two mistake types instead of three. Time to an accepted drill did not improve.
 - **Six Customer Service drills were written in the build session.** The model account ran out of credit during the
   pool run. They pass `verifyDrill` but were not cross-checked; `data/pool/stats.json` says so.
 
