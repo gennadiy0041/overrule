@@ -30,7 +30,7 @@ function Hero() {
           </ButtonLink>
         </div>
         <p className="mt-4 text-sm text-ink-3">
-          No sign-up. 2 minutes. Built on public labour data for 923 occupations.
+          No sign-up. 2 minutes. Built on public labor data for 923 occupations.
         </p>
       </div>
       <ReviewedDraft />

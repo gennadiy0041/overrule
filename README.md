@@ -248,7 +248,7 @@ Development: `bun run dev` (server with reload) and `bun run dev:web` (Vite on :
 
 ```bash
 bun run typecheck   # tsc --noEmit
-bun run test        # 352 unit tests, including an API test (in-memory SQLite, fake model provider)
+bun run test        # 356 unit tests, including an API test (in-memory SQLite, fake model provider)
 bun run e2e         # Playwright against production: phone and desktop
 ```
 

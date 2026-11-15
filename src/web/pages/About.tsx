@@ -10,7 +10,7 @@ const SECTIONS: ReadonlyArray<[id: string, title: string]> = [
   ["scoring", "Scoring and the Judgment Score"],
   ["limits", "Limitations"],
   ["sources", "Sources"],
-  ["licences", "Licences and attribution"],
+  ["licences", "Licenses and attribution"],
 ];
 
 const SOURCES: ReadonlyArray<{ name: string; claim: string; href: string }> = [
@@ -231,7 +231,7 @@ new R = R + K·(p − E)      K = 40 for your first 10 drills, then 24`}</Formul
           </ul>
         </Section>
 
-        <Section id="licences" title="Licences and attribution">
+        <Section id="licences" title="Licenses and attribution">
           <p>
             Overrule’s code is open source under the MIT License (
             <External href="https://github.com/gennadiy0041/overrule">GitHub</External>). The exposure dataset is

@@ -201,7 +201,7 @@ export function renderSeoOccupation(
   return renderDocument(
     {
       title: fullTitle.length <= 70 ? fullTitle : `Will AI replace ${occupation.title}? | Overrule`,
-      description: `${beta} of the work of ${occupation.title} is AI-exposed — a task-by-task breakdown of ${occupation.tasks.length} tasks from US labour data, and what it means for the people who do the job.`,
+      description: `${beta} of the work of ${occupation.title} is AI-exposed — a task-by-task breakdown of ${occupation.tasks.length} tasks from US labor data, and what it means for the people who do the job.`,
       path: `/will-ai-replace/${occupation.slug}`,
       jsonLd: {
         "@context": "https://schema.org",
@@ -280,7 +280,7 @@ export function renderSeoIndex(occupations: ReadonlyArray<Occupation>, stats: Se
   return renderDocument(
     {
       title: `Will AI replace your job? ${stats.occupationCount} occupations, task by task | Overrule`,
-      description: `How much of each job can AI already do? A task-by-task look at ${stats.occupationCount} US occupations, built on public labour data.`,
+      description: `How much of each job can AI already do? A task-by-task look at ${stats.occupationCount} US occupations, built on public labor data.`,
       path: "/will-ai-replace",
     },
     body,

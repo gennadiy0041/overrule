@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import type { MeResponse } from "../../shared/api";
 import { PLAN_FEATURES, PRICING, type PlanChoice } from "../../shared/pricing";
 import { track, useApi } from "../lib/api";
+import { paywallLead } from "../lib/paywallLead";
 import { ButtonLink, cx, Eyebrow, PageLoading, Shell } from "../ui";
 
 const PLANS: ReadonlyArray<{ id: PlanChoice; title: string; price: string; detail: string; note: string }> = [
@@ -63,10 +64,7 @@ export default function Paywall() {
       <div className="animate-rise pt-4 pb-12">
         <Eyebrow>Overrule Pro</Eyebrow>
         <h1 className="mt-2 text-[2.25rem] leading-[1.08] sm:text-5xl">Train on your own work, 5 minutes a day</h1>
-        <p className="mt-4 text-lg leading-relaxed text-ink-2">
-          You just caught mistakes in one AI draft. Pro builds a new one from your own tasks whenever you want — and
-          trains the mistakes you miss most.
-        </p>
+        <p className="mt-4 text-lg leading-relaxed text-ink-2">{paywallLead(me?.byType)}</p>
 
         <ul className="mt-6 space-y-2.5">
           {PLAN_FEATURES.pro.map((feature) => (
@@ -114,7 +112,13 @@ export default function Paywall() {
         <ButtonLink to={`/checkout?plan=${plan}`} size="lg" full className="mt-6">
           Start my 7-day free trial
         </ButtonLink>
-        <p className="mt-3 text-center text-sm text-ink-3">Cancel anytime.</p>
+        <p className="mt-3 text-center text-sm text-ink-3">
+          {PRICING[plan].trialDays} days free, then{" "}
+          {plan === "annual"
+            ? `$${PRICING.annual.price.toFixed(2)} a year`
+            : `$${PRICING.monthly.price.toFixed(2)} a month`}
+          . Cancel anytime before the trial ends and you pay nothing.
+        </p>
         <p className="mt-5 text-center">
           <Link to="/dashboard" className="inline-flex min-h-11 items-center font-medium underline underline-offset-4">
             Continue with free plan
