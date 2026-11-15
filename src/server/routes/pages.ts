@@ -4,6 +4,7 @@ import { getCookie } from "hono/cookie";
 import type { AppContext } from "../context";
 import { isAutomation, SESSION_COOKIE } from "../session";
 import { collectMetrics } from "../services/metrics";
+import { renderFilmPage } from "../ssr/filmPage";
 import { html } from "../ssr/html";
 import { renderDocument, siteFooter, siteHeader, type LayoutContext } from "../ssr/layout";
 import { renderMetricsPage } from "../ssr/metricsPage";
@@ -86,6 +87,12 @@ export function pageRoutes(ctx: AppContext): Hono {
         ),
       ),
     );
+  });
+
+  /** The 30-second film, for the QR code in the pitch deck: watch it, then try the product. */
+  app.get("/film", (c) => {
+    c.header("Cache-Control", SEO_CACHE);
+    return c.html(once("film", () => renderFilmPage(layout)));
   });
 
   app.get("/sitemap.xml", (c) => {

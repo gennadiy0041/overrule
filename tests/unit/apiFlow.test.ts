@@ -489,6 +489,14 @@ describe("server-rendered pages", () => {
     expect((await client.request("/will-ai-replace/not-a-job")).status).toBe(404);
   });
 
+  test("the film page is served, with a player and a way into the scan", async () => {
+    const page = await client.request("/film");
+    expect(page.status).toBe(200);
+    const body = await page.text();
+    expect(body).toContain('src="/film.mp4"');
+    expect(body).toContain('href="/scan"');
+  });
+
   test("sitemap and robots are served", async () => {
     const sitemap = await (await client.request("/sitemap.xml")).text();
     expect(sitemap).toContain("https://overrule.test/will-ai-replace/marketing-managers");

@@ -11,3 +11,6 @@ playwright-report/
 deck/out/
 *.log
 .DS_Store
+
+# Full-quality film for the live pitch (37 MB); the web-sized copy lives in public/film.mp4
+deck/film-full.mp4
